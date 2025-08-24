@@ -1,0 +1,31 @@
+{
+  "latex-workshop.latex.autoBuild.run": "never",
+  "latex-workshop.latex.recipe.default": "lastUsed",
+  "latex-workshop.latex.build.forceRecipeUsage": true,
+  "latex-workshop.latex.tools": [
+    {
+      "name": "make (docker)",
+      "command": "docker-compose",
+      "args": ["run", "--rm", "latex", "bash", "-lc", "make"]
+    },
+    {
+      "name": "make clean (docker)",
+      "command": "docker-compose",
+      "args": ["run", "--rm", "latex", "bash", "-lc", "make clean"]
+    },
+    {
+      "name": "texcount (docker)",
+      "command": "docker-compose",
+      "args": ["run", "--rm", "latex", "bash", "-lc", "texcount -inc -total tcc.tex"]
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    { "name": "make (docker)", "tools": ["make (docker)"] },
+  { "name": "make clean (docker)", "tools": ["make clean (docker)"] },
+  { "name": "texcount (docker)", "tools": ["texcount (docker)"] }
+  ],
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.latex.search.rootFiles.include": [
+    "**/latex/tcc.tex"
+  ]
+}

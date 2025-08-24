@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "TCC: build (docker)",
+      "type": "shell",
+      "command": "docker-compose",
+      "args": ["run", "--rm", "latex", "bash", "-lc", "make"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "TCC: clean (docker)",
+      "type": "shell",
+      "command": "docker-compose",
+      "args": ["run", "--rm", "latex", "bash", "-lc", "make clean"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "TCC: texcount (docker)",
+      "type": "shell",
+      "command": "docker-compose",
+      "args": ["run", "--rm", "latex", "bash", "-lc", "texcount -inc -total tcc.tex"],
+      "options": { "cwd": "${workspaceFolder}/latex" },
+      "problemMatcher": []
+    }
+  ]
+}
