@@ -1,107 +1,195 @@
 \chapter{Projeto do aplicativo}
 
-\section{Descrição do aplicativo}
-
-O Projeto é um aplicativo móvel multiplataforma voltado à organização de partidas de futebol amador no Distrito Federal. Seu principal objetivo é facilitar a conexão entre pessoas que desejam jogar, oferecendo uma forma prática, acessível e colaborativa de encontrar partidas, confirmar presença e aproveitar melhor as quadras públicas disponíveis na cidade. O aplicativo busca fortalecer o futebol comunitário, promovendo a ocupação saudável dos espaços urbanos e o incentivo à atividade física.
-O público-alvo do aplicativo é composto por \textit{jogadores e jogadoras amadores(as)}, geralmente entre 16 e 45 anos, que praticam o futebol de forma recreativa em quadras públicas, escolas, clubes ou campos alugados. Incluem-se também grupos organizados que mantêm partidas fixas semanais e pessoas recém-chegadas à cidade que desejam se integrar a novos círculos esportivos. O aplicativo foi pensado para atender tanto quem já participa regularmente de jogos quanto quem busca retomar a prática esportiva ou encontrar novas oportunidades para jogar.
-A criação do Aplicativo surgiu da observação de um problema recorrente entre quem joga futebol em Brasília: a dificuldade em organizar partidas de maneira eficiente. Atualmente, a marcação de jogos ocorre de forma fragmentada, por meio de grupos em aplicativos de mensagem, contatos informais e dependência de comunicação boca a boca. Essa dinâmica resulta em partidas desmarcadas, desistências de última hora, subutilização das quadras e barreiras de entrada para novos participantes. Em muitos casos, pessoas interessadas em jogar simplesmente não sabem onde ou quando há partidas acontecendo próximas a elas.
-A proposta de valor do Aplicativo é oferecer uma \textbf{plataforma centralizada} para o futebol comunitário, unindo tecnologia e convivência social. O aplicativo permitirá visualizar quadras públicas próximas, organizar partidas abertas ou fechadas, gerenciar listas de presença, compartilhar informações de horários e integrar novos jogadores de forma simples e transparente. Além disso, o sistema poderá futuramente incorporar recursos como notificações em tempo real, rankings, estatísticas e organização de campeonatos locais.
-Mais do que um aplicativo, o Aplicativo se propõe a ser um catalisador de encontros, saúde e lazer, utilizando a tecnologia como meio de fortalecer o sentimento de comunidade em torno do esporte mais popular do país.
-
-
-\section{Escopo do MVP 1}
-\section{Escopo do MVP 1}
-
-O escopo do MVP 1 foi definido com base na identificação das funcionalidades mínimas necessárias para validar a proposta do aplicativo: facilitar a organização e o gerenciamento de partidas de futebol amador em Brasília. O objetivo é oferecer uma versão funcional, capaz de comprovar a viabilidade técnica e o valor social da solução.
-
-O MVP busca permitir que usuários(as) possam visualizar quadras disponíveis, criar partidas, convidar amigos e confirmar presença em jogos, concentrando-se nas funcionalidades essenciais para o funcionamento do ecossistema central do aplicativo.
-
-As funcionalidades incluídas no MVP 1 são:
-
-\begin{itemize}
-  \item \textbf{Cadastro e autenticação}: criação de conta via e-mail com código de verificação, login e gerenciamento básico de perfil (apelido e avatar).
-  \item \textbf{Mapa de quadras}: exibição interativa de quadras públicas no mapa com informações básicas, como nome, localização e disponibilidade.
-  \item \textbf{Criação e gerenciamento de futs}: criação, edição e exclusão de partidas; definição de local, horário e descrição; e compartilhamento de convite por link.
-  \item \textbf{Confirmação de presença}: confirmação, exibição da lista de participantes e contagem total de jogadores confirmados.
-  \item \textbf{Gerenciamento básico de partidas}: possibilidade de o criador iniciar o jogo e registrar resultados.
-\end{itemize}
-
-Além disso, foram previstas funcionalidades complementares para aprimorar a experiência de uso, como a possibilidade de cadastro manual de participantes sem aplicativo e a alternância entre modo claro e escuro.
-
-Dessa forma, o MVP 1 busca equilibrar simplicidade, utilidade e viabilidade, permitindo validar a proposta de valor do aplicativo de forma eficiente e alinhada ao tempo disponível para o desenvolvimento do TCC 2.
-
-\section{Fluxos principais}
-
-Os fluxos de uso representam a sequência de ações realizadas pelos usuários dentro do aplicativo para alcançar seus objetivos. Cada fluxo descreve o caminho percorrido desde a intenção inicial até a conclusão da tarefa, garantindo que as interações do sistema sejam coerentes, intuitivas e acessíveis. A seguir, são descritos os principais fluxos que compõem o escopo do MVP 1.
-
-\subsection{Criar conta}
-Ao acessar o aplicativo pela primeira vez, o usuário se depara com um campo para inserir seu endereço de e-mail. O sistema verifica automaticamente se aquele e-mail já está associado a uma conta. Caso não esteja, o usuário é redirecionado para o formulário de cadastro, onde deve informar dados básicos como nome, apelido e e-mail para concluir seu registro e liberar o acesso às funcionalidades do aplicativo.
-
-\subsection{Fazer login}
-No processo de autenticação, o usuário informa seu e-mail cadastrado e recebe um código de verificação enviado para o mesmo endereço. Ao digitar o código correto, o sistema valida o login e o redireciona para a tela inicial do aplicativo. O fluxo é projetado para ser rápido, eliminando a necessidade de senhas e priorizando segurança e praticidade.
-
-\subsection{Visualizar quadras}
-Ao abrir o aplicativo, o usuário é automaticamente direcionado para o mapa interativo, centralizado em sua localização atual. As quadras próximas são representadas por \textit{pins}, permitindo uma visão geral das opções disponíveis. O usuário pode explorar o mapa, aplicar filtros e selecionar qualquer marcador para visualizar informações detalhadas sobre a quadra escolhida.
-
-\subsection{Marcar fut}
-A partir do mapa, o usuário seleciona uma quadra e acessa seu perfil, onde visualiza o cronograma de horários disponíveis. Clicando no botão “Criar fut”, o sistema abre a tela de criação de partida, solicitando informações obrigatórias como nome do jogo e horário de início. Após confirmar, o fut é cadastrado e passa a aparecer no mapa para outros usuários.
-
-\subsection{Visualizar futs e confirmar presença}
-O usuário pode explorar o mapa e selecionar uma quadra com partidas já cadastradas. Ao abrir o perfil da quadra, ele visualiza a grade de horários e escolhe o fut desejado. Na tela de detalhes, são exibidas informações como o nome da partida, horário, número de participantes e jogadores confirmados. O usuário então pode confirmar sua presença clicando no botão “Bora Fut”, sendo adicionado à lista de participantes.
-
-\subsection{Enviar convite}
-Jogadores que já confirmaram presença em uma partida podem convidar outras pessoas para participar. A partir da tela do fut, o usuário clica em “Enviar convite” e escolhe o aplicativo de sua preferência (como WhatsApp ou Telegram) para compartilhar um link direto para o jogo. Ao clicar no link, o convidado é redirecionado ao aplicativo e pode confirmar presença com poucos toques.
-
-\subsection{Confirmar chegada}
-No momento da partida, os participantes podem abrir o aplicativo e visualizar um \textit{popup} destacando o fut do qual confirmaram presença. Ao clicar nesse alerta, são direcionados ao perfil da partida, onde o botão “Confirmar chegada” fica disponível a partir do horário de início. Essa confirmação ajuda o sistema a registrar quem compareceu efetivamente e a atualizar a ordem de chegada dos jogadores.
-
-\subsection{Iniciar o fut}
-O criador do fut tem a permissão para iniciar a partida assim que o horário agendado é alcançado. Ele pode acessar rapidamente o perfil da partida por meio do \textit{popup} de destaque e iniciar o jogo, fazendo com que o sistema gere automaticamente os dois times iniciais com base na ordem de chegada e organize os próximos times na fila. Jogadores que chegarem após o início são posicionados no final da lista.
-
-\subsection{Gerenciar fut}
-Durante o jogo, qualquer participante pode abrir o aplicativo e acessar o perfil do fut em andamento para visualizar o cronômetro e os gols registrados. O criador da partida ou o time “de próxima” pode pausar e retomar o cronômetro, bem como registrar gols associando-os a jogadores específicos. Esse gerenciamento mantém a transparência e o ritmo das partidas.
-
-\subsection{Cadastro manual de jogadores}
-Nem todos os participantes possuem aplicativo, internet ou conta ativa. Para esses casos, o sistema permite o cadastro manual. Um jogador já logado pode abrir o perfil do fut e clicar em “Adicionar participante manualmente”, preenchendo nome e e-mail do colega. Dessa forma, mesmo sem conexão, o jogador é incluído oficialmente na partida.
-
-\subsection{Rota para a quadra}
-Para facilitar o deslocamento até o local do jogo, o aplicativo disponibiliza um botão “Como chegar” em cada perfil de quadra. Ao ser acionado, o sistema gera um \textit{deep link} que abre automaticamente o aplicativo de mapas padrão do dispositivo (Google Maps ou Waze) com a rota traçada até o endereço da quadra. Essa integração reduz o tempo de busca e melhora a experiência de chegada ao local.
-
-\subsection{Resumo dos fluxos}
-Em conjunto, esses fluxos estruturam a jornada completa do usuário dentro do aplicativo, desde o acesso inicial e descoberta das quadras até a criação, gerenciamento e participação efetiva em partidas. O foco no fluxo contínuo e na navegação intuitiva reforça o objetivo central do aplicativo: conectar pessoas, simplificar a organização de jogos e promover o uso ativo das quadras públicas de Brasília.
+  \section{Descrição do aplicativo}
+    O Projeto é um aplicativo móvel multiplataforma voltado à organização de partidas de futebol amador no Distrito Federal. Seu principal objetivo é facilitar a conexão entre pessoas que desejam jogar, oferecendo uma forma prática, acessível e colaborativa de encontrar partidas, confirmar presença e aproveitar melhor as quadras públicas disponíveis na cidade. O aplicativo busca fortalecer o futebol comunitário, promovendo a ocupação saudável dos espaços urbanos e o incentivo à atividade física.
+    O público-alvo do aplicativo é composto por \textit{jogadores e jogadoras amadores(as)}, geralmente entre 16 e 45 anos, que praticam o futebol de forma recreativa em quadras públicas, escolas, clubes ou campos alugados. Incluem-se também grupos organizados que mantêm partidas fixas semanais e pessoas recém-chegadas à cidade que desejam se integrar a novos círculos esportivos. O aplicativo foi pensado para atender tanto quem já participa regularmente de jogos quanto quem busca retomar a prática esportiva ou encontrar novas oportunidades para jogar.
+    A criação do Aplicativo surgiu da observação de um problema recorrente entre quem joga futebol em Brasília: a dificuldade em organizar partidas de maneira eficiente. Atualmente, a marcação de jogos ocorre de forma fragmentada, por meio de grupos em aplicativos de mensagem, contatos informais e dependência de comunicação boca a boca. Essa dinâmica resulta em partidas desmarcadas, desistências de última hora, subutilização das quadras e barreiras de entrada para novos participantes. Em muitos casos, pessoas interessadas em jogar simplesmente não sabem onde ou quando há partidas acontecendo próximas a elas.
+    A proposta de valor do Aplicativo é oferecer uma \textbf{plataforma centralizada} para o futebol comunitário, unindo tecnologia e convivência social. O aplicativo permitirá visualizar quadras públicas próximas, organizar partidas abertas ou fechadas, gerenciar listas de presença, compartilhar informações de horários e integrar novos jogadores de forma simples e transparente. Além disso, o sistema poderá futuramente incorporar recursos como notificações em tempo real, rankings, estatísticas e organização de campeonatos locais.
+    Mais do que um aplicativo, o Aplicativo se propõe a ser um catalisador de encontros, saúde e lazer, utilizando a tecnologia como meio de fortalecer o sentimento de comunidade em torno do esporte mais popular do país.
 
 
-\section{Requisitos do MVP 1}
-% Organização dos requisitos do MVP
+  \section{Escopo do MVP 1}
+    O escopo do MVP 1 foi definido com base na identificação das funcionalidades mínimas necessárias para validar a proposta do aplicativo: facilitar a organização e o gerenciamento de partidas de futebol amador em Brasília. O objetivo é oferecer uma versão funcional, capaz de comprovar a viabilidade técnica e o valor social da solução.
 
-\subsection{Requisitos funcionais}
-% Lista resumida de RFs
+    O MVP busca permitir que usuários(as) possam visualizar quadras disponíveis, criar partidas, convidar amigos e confirmar presença em jogos, concentrando-se nas funcionalidades essenciais para o funcionamento do ecossistema central do aplicativo.
 
-\subsection{Requisitos não funcionais}
-% Lista resumida de RNFs
+    As funcionalidades incluídas no MVP 1 são:
 
-\section{Design de interface}
-% Identidade visual aplicada; diretrizes de acessibilidade; uso das heurísticas de Nielsen
+    \begin{itemize}
+      \item \textbf{Cadastro e autenticação}: criação de conta via e-mail com código de verificação, login e gerenciamento básico de perfil (apelido e avatar).
+      \item \textbf{Mapa de quadras}: exibição interativa de quadras públicas no mapa com informações básicas, como nome, localização e disponibilidade.
+      \item \textbf{Criação e gerenciamento de futs}: criação, edição e exclusão de partidas; definição de local, horário e descrição; e compartilhamento de convite por link.
+      \item \textbf{Confirmação de presença}: confirmação, exibição da lista de participantes e contagem total de jogadores confirmados.
+      \item \textbf{Gerenciamento básico de partidas}: possibilidade de o criador iniciar o jogo e registrar resultados.
+    \end{itemize}
 
-\section{Prototipação}
-% Telas de alta fidelidade no Figma
+    Além disso, foram previstas funcionalidades complementares para aprimorar a experiência de uso, como a possibilidade de cadastro manual de participantes sem aplicativo e a alternância entre modo claro e escuro.
 
-\section{Arquitetura e design}
-% Visão geral da arquitetura
+    Dessa forma, o MVP 1 busca equilibrar simplicidade, utilidade e viabilidade, permitindo validar a proposta de valor do aplicativo de forma eficiente e alinhada ao tempo disponível para o desenvolvimento do TCC 2.
 
-\subsection{Modelo C4 de contexto e contêineres}
-% Diagramas C4 nível contexto e contêineres
+  \section{Fluxos principais}
 
-\subsection{Modelo de dados do PostgreSQL}
-% Diagrama de entidades e relacionamentos
+    Os fluxos de uso representam a sequência de ações realizadas pelos usuários dentro do aplicativo para alcançar seus objetivos. Cada fluxo descreve o caminho percorrido desde a intenção inicial até a conclusão da tarefa, garantindo que as interações do sistema sejam coerentes, intuitivas e acessíveis. A seguir, são descritos os principais fluxos que compõem o escopo do MVP 1.
 
-\subsection{Contratos de API REST}
-% Endpoints, métodos e esquemas
+    \subsection{Criar conta}
+      Ao acessar o aplicativo pela primeira vez, o usuário se depara com um campo para inserir seu endereço de e-mail. O sistema verifica automaticamente se aquele e-mail já está associado a uma conta. Caso não esteja, o usuário é redirecionado para o formulário de cadastro, onde deve informar dados básicos como nome, apelido e e-mail para concluir seu registro e liberar o acesso às funcionalidades do aplicativo.
 
-\subsection{Decisões arquiteturais registradas em ADRs curtas}
-% Sumário de ADRs
+    \subsection{Fazer login}
+      No processo de autenticação, o usuário informa seu e-mail cadastrado e recebe um código de verificação enviado para o mesmo endereço. Ao digitar o código correto, o sistema valida o login e o redireciona para a tela inicial do aplicativo. O fluxo é projetado para ser rápido, eliminando a necessidade de senhas e priorizando segurança e praticidade.
 
-\section{Prova de conceito}
-% Demonstração mínima: mapa com pins da API Express; ação de abrir rota por deep link; prints e repositório
+    \subsection{Visualizar quadras}
+      Ao abrir o aplicativo, o usuário é automaticamente direcionado para o mapa interativo, centralizado em sua localização atual. As quadras próximas são representadas por \textit{pins}, permitindo uma visão geral das opções disponíveis. O usuário pode explorar o mapa, aplicar filtros e selecionar qualquer marcador para visualizar informações detalhadas sobre a quadra escolhida.
+
+    \subsection{Marcar fut}
+      A partir do mapa, o usuário seleciona uma quadra e acessa seu perfil, onde visualiza o cronograma de horários disponíveis. Clicando no botão “Criar fut”, o sistema abre a tela de criação de partida, solicitando informações obrigatórias como nome do jogo e horário de início. Após confirmar, o fut é cadastrado e passa a aparecer no mapa para outros usuários.
+
+    \subsection{Visualizar futs e confirmar presença}
+      O usuário pode explorar o mapa e selecionar uma quadra com partidas já cadastradas. Ao abrir o perfil da quadra, ele visualiza a grade de horários e escolhe o fut desejado. Na tela de detalhes, são exibidas informações como o nome da partida, horário, número de participantes e jogadores confirmados. O usuário então pode confirmar sua presença clicando no botão “Bora Fut”, sendo adicionado à lista de participantes.
+
+    \subsection{Enviar convite}
+      Jogadores que já confirmaram presença em uma partida podem convidar outras pessoas para participar. A partir da tela do fut, o usuário clica em “Enviar convite” e escolhe o aplicativo de sua preferência (como WhatsApp ou Telegram) para compartilhar um link direto para o jogo. Ao clicar no link, o convidado é redirecionado ao aplicativo e pode confirmar presença com poucos toques.
+
+    \subsection{Confirmar chegada}
+      No momento da partida, os participantes podem abrir o aplicativo e visualizar um \textit{popup} destacando o fut do qual confirmaram presença. Ao clicar nesse alerta, são direcionados ao perfil da partida, onde o botão “Confirmar chegada” fica disponível a partir do horário de início. Essa confirmação ajuda o sistema a registrar quem compareceu efetivamente e a atualizar a ordem de chegada dos jogadores.
+
+    \subsection{Iniciar o fut}
+      O criador do fut tem a permissão para iniciar a partida assim que o horário agendado é alcançado. Ele pode acessar rapidamente o perfil da partida por meio do \textit{popup} de destaque e iniciar o jogo, fazendo com que o sistema gere automaticamente os dois times iniciais com base na ordem de chegada e organize os próximos times na fila. Jogadores que chegarem após o início são posicionados no final da lista.
+
+    \subsection{Gerenciar fut}
+      Durante o jogo, qualquer participante pode abrir o aplicativo e acessar o perfil do fut em andamento para visualizar o cronômetro e os gols registrados. O criador da partida ou o time “de próxima” pode pausar e retomar o cronômetro, bem como registrar gols associando-os a jogadores específicos. Esse gerenciamento mantém a transparência e o ritmo das partidas.
+
+    \subsection{Cadastro manual de jogadores}
+      Nem todos os participantes possuem aplicativo, internet ou conta ativa. Para esses casos, o sistema permite o cadastro manual. Um jogador já logado pode abrir o perfil do fut e clicar em “Adicionar participante manualmente”, preenchendo nome e e-mail do colega. Dessa forma, mesmo sem conexão, o jogador é incluído oficialmente na partida.
+
+    \subsection{Rota para a quadra}
+      Para facilitar o deslocamento até o local do jogo, o aplicativo disponibiliza um botão “Como chegar” em cada perfil de quadra. Ao ser acionado, o sistema gera um \textit{deep link} que abre automaticamente o aplicativo de mapas padrão do dispositivo (Google Maps ou Waze) com a rota traçada até o endereço da quadra. Essa integração reduz o tempo de busca e melhora a experiência de chegada ao local.
+
+    \subsection{Resumo dos fluxos}
+      Em conjunto, esses fluxos estruturam a jornada completa do usuário dentro do aplicativo, desde o acesso inicial e descoberta das quadras até a criação, gerenciamento e participação efetiva em partidas. O foco no fluxo contínuo e na navegação intuitiva reforça o objetivo central do aplicativo: conectar pessoas, simplificar a organização de jogos e promover o uso ativo das quadras públicas de Brasília.
+
+  \section{Requisitos do MVP 1}
+    Esta seção apresenta os requisitos que compõem o escopo do MVP 1 do \textbf{BoraFut}. Eles foram definidos a partir das técnicas de elicitação e priorização descritas na Seção~\ref{sec:metodologia-elicitacao}. A organização foi feita em duas categorias principais: Requisitos Funcionais (RF), que descrevem os comportamentos esperados do sistema, e Requisitos Não Funcionais (RNF), que tratam das qualidades e restrições técnicas associadas ao produto.
+
+    \subsection{Requisitos funcionais MODELO - FAZER DEFINITIVO DEPOIS} 
+      Os requisitos funcionais definem as ações e comportamentos esperados do sistema. A Tabela~\ref{tab:rf-borafut} resume os principais RFs do MVP~1.
+
+      \begin{table}[H]
+      \centering
+      \caption{Requisitos funcionais do MVP 1}
+      \label{tab:rf-borafut}
+      \begin{tabular}{p{1cm} p{13cm}}
+      \toprule
+      \textbf{ID} & \textbf{Descrição resumida} \\
+      \midrule
+      RF01 & O sistema deve permitir o cadastro de novos usuários por e-mail. \\
+      RF02 & O sistema deve enviar um código de verificação para validação de login. \\
+      RF03 & O sistema deve exibir um mapa com quadras públicas próximas ao usuário. \\
+      RF04 & O sistema deve permitir a criação, edição e exclusão de partidas (futs). \\
+      RF05 & O sistema deve permitir a confirmação de presença em partidas. \\
+      RF06 & O sistema deve permitir o compartilhamento de convites via link externo. \\
+      RF07 & O sistema deve possibilitar o cadastro manual de participantes sem conta. \\
+      RF08 & O sistema deve oferecer botão de rota que abre o aplicativo de mapas do dispositivo. \\
+      \bottomrule
+      \end{tabular}
+      \end{table}
+
+    \subsection{Requisitos não funcionais MODELO - FAZER DEFINITIVO DEPOIS}
+      Os requisitos não funcionais estabelecem as propriedades de qualidade, restrições e padrões técnicos do aplicativo.
+
+      \begin{table}[H]
+      \centering
+      \caption{Requisitos não funcionais do MVP 1}
+      \label{tab:rnf-borafut}
+      \begin{tabular}{p{1cm} p{13cm}}
+      \toprule
+      \textbf{ID} & \textbf{Descrição resumida} \\
+      \midrule
+      RNF01 & O aplicativo deve ser multiplataforma, funcionando em Android e iOS. \\
+      RNF02 & O sistema deve apresentar tempo médio de resposta inferior a 3 segundos em operações principais. \\
+      RNF03 & O layout deve seguir princípios de usabilidade de Nielsen e design responsivo. \\
+      RNF04 & O aplicativo deve utilizar autenticação por código enviado ao e-mail do usuário. \\
+      RNF05 & Os dados devem ser armazenados em banco PostgreSQL hospedado na AWS. \\
+      RNF06 & O sistema deve utilizar API REST com comunicação via HTTPS. \\
+      RNF07 & O aplicativo deve respeitar a LGPD, exigindo consentimento e idade mínima de 16 anos. \\
+      RNF08 & O sistema deve seguir convenções de código e linting definidas no projeto (ESLint). \\
+      \bottomrule
+      \end{tabular}
+      \end{table}
+
+  \section{Design de interface REVISAR E REFAZER}
+    O design de interface do \textbf{BoraFut} reflete a identidade visual definida no documento interno
+    \textit{Borafut — Manual de Identidade Visual}~\cite{borafut_visual2025}, desenvolvido pela equipe do projeto.
+    Esse guia estabelece os elementos fundamentais da marca, como paleta de cores, tipografia, ícones e
+    diretrizes de uso, garantindo unidade estética e coerência entre o aplicativo e suas demais comunicações.
+
+    \subsection{Identidade visual}
+      A identidade visual foi concebida para transmitir energia, simplicidade e senso de comunidade,
+      valores centrais do \textbf{BoraFut}. A marca utiliza proporções uniformes e formas geométricas simples,
+      reforçando o equilíbrio e a clareza visual. O logotipo adota uma fonte monoespaçada de traços arredondados,
+      inspirada na tipografia \textit{Dune Rise}, de Jesta Designs, ajustada para criar uma sensação mais próxima e
+      acolhedora ao contexto esportivo e comunitário.
+
+      A paleta principal é composta por tons de ciano, que simbolizam vitalidade, confiança e dinamismo,
+      complementados por cinza e branco, que equilibram e conferem sofisticação à composição visual.
+      Essas cores aparecem de forma consistente na interface do aplicativo, desde os botões até os
+      elementos de navegação, reforçando o reconhecimento da marca.
+
+      A tipografia escolhida para a interface é a \textbf{Open Sans}, uma fonte sem serifa amplamente usada em
+      ambientes digitais. Sua legibilidade em diferentes tamanhos de tela e sua aparência moderna contribuem
+      para uma leitura agradável e fluida. Essa combinação de tipografia e cores cria uma experiência visual
+      que equilibra leveza e clareza, tornando a navegação mais intuitiva para o usuário.
+
+    \subsection{Diretrizes de acessibilidade}
+      O design do aplicativo foi desenvolvido com base em princípios de acessibilidade digital, garantindo que
+      o \textbf{BoraFut} possa ser utilizado por públicos diversos, independentemente de idade ou familiaridade
+      com tecnologia. As diretrizes seguem recomendações das \textit{Web Content Accessibility Guidelines} (WCAG~2.1),
+      incluindo contraste mínimo de 4.5:1 entre texto e fundo, botões com dimensões adequadas ao toque (mínimo
+      de 44x44~px) e ícones acompanhados de rótulos descritivos. 
+
+      O layout foi projetado para oferecer hierarquia visual clara, com espaçamentos amplos e elementos
+      interativos bem destacados. O aplicativo também suporta modo escuro, reduzindo o cansaço visual em
+      uso prolongado, e utiliza linguagem neutra e inclusiva em suas mensagens e labels.
+
+    \subsection{Heurísticas de Nielsen e usabilidade}
+      As decisões de design foram orientadas pelos princípios heurísticos de usabilidade propostos por
+      Jakob Nielsen~(1994), amplamente reconhecidos na área de Interação Humano-Computador. Entre os
+      aplicados ao \textbf{BoraFut}, destacam-se:
+
+      \begin{itemize}
+          \item \textbf{Visibilidade do status do sistema}: o usuário recebe feedback imediato ao confirmar presença,
+          criar um jogo ou realizar qualquer ação relevante, por meio de mensagens e animações sutis;
+          \item \textbf{Correspondência entre o sistema e o mundo real}: o aplicativo utiliza termos próximos da
+          linguagem cotidiana dos jogadores, como “fut”, “bora jogar” e “confirmar presença”;
+          \item \textbf{Controle e liberdade do usuário}: o usuário pode editar, cancelar ou sair de ações a qualquer
+          momento, evitando erros permanentes;
+          \item \textbf{Consistência e padrões}: ícones, botões e cores seguem padrões estáveis, reduzindo a curva
+          de aprendizado e promovendo previsibilidade;
+          \item \textbf{Prevenção e recuperação de erros}: as mensagens de erro são claras e instrutivas, indicando o
+          que deve ser feito para corrigir o problema.
+      \end{itemize}
+
+      Essas diretrizes asseguram uma interface coerente, acessível e orientada à experiência do usuário,
+      favorecendo o engajamento e reduzindo barreiras de uso para diferentes perfis de jogadores.
+
+  \section{Prototipação}
+  % Telas de alta fidelidade no Figma
+
+  \section{Arquitetura e design}
+  % Visão geral da arquitetura
+
+    \subsection{Modelo C4 de contexto e contêineres}
+    % Diagramas C4 nível contexto e contêineres
+
+    \subsection{Modelo de dados do PostgreSQL}
+    % Diagrama de entidades e relacionamentos
+
+    \subsection{Contratos de API REST}
+    % Endpoints, métodos e esquemas
+
+    \subsection{Decisões arquiteturais registradas em ADRs curtas}
+    % Sumário de ADRs
+
+  \section{Prova de conceito}
+  % Demonstração mínima: mapa com pins da API Express; ação de abrir rota por deep link; prints e repositório
 
 
