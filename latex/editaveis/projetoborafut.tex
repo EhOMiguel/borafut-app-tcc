@@ -7,6 +7,54 @@
     A proposta de valor do Aplicativo é oferecer uma \textbf{plataforma centralizada} para o futebol comunitário, unindo tecnologia e convivência social. O aplicativo permitirá visualizar quadras públicas próximas, organizar partidas abertas ou fechadas, gerenciar listas de presença, compartilhar informações de horários e integrar novos jogadores de forma simples e transparente. Além disso, o sistema poderá futuramente incorporar recursos como notificações em tempo real, rankings, estatísticas e organização de campeonatos locais.
     Mais do que um aplicativo, o Aplicativo se propõe a ser um catalisador de encontros, saúde e lazer, utilizando a tecnologia como meio de fortalecer o sentimento de comunidade em torno do esporte mais popular do país.
 
+  \section{Requisitos do MVP 1}
+    Esta seção apresenta os requisitos que compõem o escopo do MVP 1 do \textbf{BoraFut}. Eles foram definidos a partir das técnicas de elicitação e priorização descritas na Seção~\ref{sec:metodologia-elicitacao}. A organização foi feita em duas categorias principais: Requisitos Funcionais (RF), que descrevem os comportamentos esperados do sistema, e Requisitos Não Funcionais (RNF), que tratam das qualidades e restrições técnicas associadas ao produto.
+
+    \subsection{Requisitos funcionais MODELO - FAZER DEFINITIVO DEPOIS} 
+      Os requisitos funcionais definem as ações e comportamentos esperados do sistema. A Tabela~\ref{tab:rf-borafut} resume os principais RFs do MVP~1.
+
+      \begin{table}[H]
+      \centering
+      \caption{Requisitos funcionais do MVP 1}
+      \label{tab:rf-borafut}
+      \begin{tabular}{p{1cm} p{13cm}}
+      \toprule
+      \textbf{ID} & \textbf{Descrição resumida} \\
+      \midrule
+      RF01 & O sistema deve permitir o cadastro de novos usuários por e-mail. \\
+      RF02 & O sistema deve enviar um código de verificação para validação de login. \\
+      RF03 & O sistema deve exibir um mapa com quadras públicas próximas ao usuário. \\
+      RF04 & O sistema deve permitir a criação, edição e exclusão de partidas (futs). \\
+      RF05 & O sistema deve permitir a confirmação de presença em partidas. \\
+      RF06 & O sistema deve permitir o compartilhamento de convites via link externo. \\
+      RF07 & O sistema deve possibilitar o cadastro manual de participantes sem conta. \\
+      RF08 & O sistema deve oferecer botão de rota que abre o aplicativo de mapas do dispositivo. \\
+      \bottomrule
+      \end{tabular}
+      \end{table}
+
+    \subsection{Requisitos não funcionais MODELO - FAZER DEFINITIVO DEPOIS}
+      Os requisitos não funcionais estabelecem as propriedades de qualidade, restrições e padrões técnicos do aplicativo.
+
+      \begin{table}[H]
+      \centering
+      \caption{Requisitos não funcionais do MVP 1}
+      \label{tab:rnf-borafut}
+      \begin{tabular}{p{1cm} p{13cm}}
+      \toprule
+      \textbf{ID} & \textbf{Descrição resumida} \\
+      \midrule
+      RNF01 & O aplicativo deve ser multiplataforma, funcionando em Android e iOS. \\
+      RNF02 & O sistema deve apresentar tempo médio de resposta inferior a 3 segundos em operações principais. \\
+      RNF03 & O layout deve seguir princípios de usabilidade de Nielsen e design responsivo. \\
+      RNF04 & O aplicativo deve utilizar autenticação por código enviado ao e-mail do usuário. \\
+      RNF05 & Os dados devem ser armazenados em banco PostgreSQL hospedado na AWS. \\
+      RNF06 & O sistema deve utilizar API REST com comunicação via HTTPS. \\
+      RNF07 & O aplicativo deve respeitar a LGPD, exigindo consentimento e idade mínima de 16 anos. \\
+      RNF08 & O sistema deve seguir convenções de código e linting definidas no projeto (ESLint). \\
+      \bottomrule
+      \end{tabular}
+      \end{table}
 
   \section{Escopo do MVP 1}
     O escopo do MVP 1 foi definido com base na identificação das funcionalidades mínimas necessárias para validar a proposta do aplicativo: facilitar a organização e o gerenciamento de partidas de futebol amador em Brasília. O objetivo é oferecer uma versão funcional, capaz de comprovar a viabilidade técnica e o valor social da solução.
@@ -66,55 +114,6 @@
 
     \subsection{Resumo dos fluxos}
       Em conjunto, esses fluxos estruturam a jornada completa do usuário dentro do aplicativo, desde o acesso inicial e descoberta das quadras até a criação, gerenciamento e participação efetiva em partidas. O foco no fluxo contínuo e na navegação intuitiva reforça o objetivo central do aplicativo: conectar pessoas, simplificar a organização de jogos e promover o uso ativo das quadras públicas de Brasília.
-
-  \section{Requisitos do MVP 1}
-    Esta seção apresenta os requisitos que compõem o escopo do MVP 1 do \textbf{BoraFut}. Eles foram definidos a partir das técnicas de elicitação e priorização descritas na Seção~\ref{sec:metodologia-elicitacao}. A organização foi feita em duas categorias principais: Requisitos Funcionais (RF), que descrevem os comportamentos esperados do sistema, e Requisitos Não Funcionais (RNF), que tratam das qualidades e restrições técnicas associadas ao produto.
-
-    \subsection{Requisitos funcionais MODELO - FAZER DEFINITIVO DEPOIS} 
-      Os requisitos funcionais definem as ações e comportamentos esperados do sistema. A Tabela~\ref{tab:rf-borafut} resume os principais RFs do MVP~1.
-
-      \begin{table}[H]
-      \centering
-      \caption{Requisitos funcionais do MVP 1}
-      \label{tab:rf-borafut}
-      \begin{tabular}{p{1cm} p{13cm}}
-      \toprule
-      \textbf{ID} & \textbf{Descrição resumida} \\
-      \midrule
-      RF01 & O sistema deve permitir o cadastro de novos usuários por e-mail. \\
-      RF02 & O sistema deve enviar um código de verificação para validação de login. \\
-      RF03 & O sistema deve exibir um mapa com quadras públicas próximas ao usuário. \\
-      RF04 & O sistema deve permitir a criação, edição e exclusão de partidas (futs). \\
-      RF05 & O sistema deve permitir a confirmação de presença em partidas. \\
-      RF06 & O sistema deve permitir o compartilhamento de convites via link externo. \\
-      RF07 & O sistema deve possibilitar o cadastro manual de participantes sem conta. \\
-      RF08 & O sistema deve oferecer botão de rota que abre o aplicativo de mapas do dispositivo. \\
-      \bottomrule
-      \end{tabular}
-      \end{table}
-
-    \subsection{Requisitos não funcionais MODELO - FAZER DEFINITIVO DEPOIS}
-      Os requisitos não funcionais estabelecem as propriedades de qualidade, restrições e padrões técnicos do aplicativo.
-
-      \begin{table}[H]
-      \centering
-      \caption{Requisitos não funcionais do MVP 1}
-      \label{tab:rnf-borafut}
-      \begin{tabular}{p{1cm} p{13cm}}
-      \toprule
-      \textbf{ID} & \textbf{Descrição resumida} \\
-      \midrule
-      RNF01 & O aplicativo deve ser multiplataforma, funcionando em Android e iOS. \\
-      RNF02 & O sistema deve apresentar tempo médio de resposta inferior a 3 segundos em operações principais. \\
-      RNF03 & O layout deve seguir princípios de usabilidade de Nielsen e design responsivo. \\
-      RNF04 & O aplicativo deve utilizar autenticação por código enviado ao e-mail do usuário. \\
-      RNF05 & Os dados devem ser armazenados em banco PostgreSQL hospedado na AWS. \\
-      RNF06 & O sistema deve utilizar API REST com comunicação via HTTPS. \\
-      RNF07 & O aplicativo deve respeitar a LGPD, exigindo consentimento e idade mínima de 16 anos. \\
-      RNF08 & O sistema deve seguir convenções de código e linting definidas no projeto (ESLint). \\
-      \bottomrule
-      \end{tabular}
-      \end{table}
 
   \section{Design de interface REVISAR E REFAZER}
     O design de interface do \textbf{BoraFut} reflete a identidade visual definida no documento interno
