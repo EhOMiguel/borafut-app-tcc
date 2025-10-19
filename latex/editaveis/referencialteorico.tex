@@ -1,5 +1,13 @@
+% \chapter[Referencial Teórico]{Referencial Teórico}
+% Este capítulo apresenta a revisão de literatura que fundamenta o trabalho, reunindo conceitos, definições e estudos relevantes sobre quatro eixos: (i) esporte comunitário e espaço público; (ii) \textit{Computer-Supported Cooperative Work} (CSCW); (iii) experiências ``\textit{phygital}'', mapas e descoberta local; e (iv) cidades inteligentes. O objetivo é estabelecer a base conceitual necessária à compreensão do tema e dos desdobramentos discutidos nos capítulos seguintes, conforme a orientação de que o referencial teórico corresponda a uma análise dos trabalhos relevantes encontrados na pesquisa bibliográfica.
+
 \chapter[Referencial Teórico]{Referencial Teórico}
-Este capítulo apresenta a revisão de literatura que fundamenta o trabalho, reunindo conceitos, definições e estudos relevantes sobre quatro eixos: (i) esporte comunitário e espaço público; (ii) \textit{Computer-Supported Cooperative Work} (CSCW); (iii) experiências ``\textit{phygital}'', mapas e descoberta local; e (iv) cidades inteligentes. O objetivo é estabelecer a base conceitual necessária à compreensão do tema e dos desdobramentos discutidos nos capítulos seguintes, conforme a orientação de que o referencial teórico corresponda a uma análise dos trabalhos relevantes encontrados na pesquisa bibliográfica.
+
+Este capítulo reúne os fundamentos teóricos que sustentam o desenvolvimento da pesquisa e orientam as decisões metodológicas e projetuais apresentadas nos capítulos seguintes. A revisão abrange diferentes perspectivas interdisciplinares, articulando dimensões sociais, urbanas, tecnológicas e éticas do problema investigado.
+
+A organização deste capítulo segue uma progressão do macro ao micro: inicia-se com a discussão sobre o papel do esporte comunitário e dos espaços públicos como elementos de convivência e coesão social, seguida pela abordagem das cidades inteligentes e seus marcos conceituais. Na sequência, exploram-se os princípios de \textit{Computer-Supported Cooperative Work} (CSCW) e a dinâmica dos ambientes híbridos no contexto \textit{phygital}, que integram camadas digitais e físicas da vida urbana. Por fim, abordam-se os fundamentos de Interação Humano-Computador (IHC) e usabilidade, a ética no desenvolvimento de software e os princípios de proteção e privacidade de dados. Essa estrutura busca evidenciar como valores sociais, decisões de design e práticas de engenharia se relacionam no desenvolvimento de sistemas digitais.
+
+O objetivo deste capítulo é estabelecer uma base conceitual sólida para compreender como tecnologias digitais podem apoiar práticas coletivas, promover a ocupação dos espaços públicos e incorporar valores de inclusão, transparência e responsabilidade social no desenvolvimento de soluções tecnológicas.
 
 \section{Esporte comunitário e espaço público}
 
@@ -13,21 +21,21 @@ Outra lente útil é a dos bens comuns urbanos. Inspirada nos princípios de \ci
 
 O conceito de \textit{cidades inteligentes} (\textit{smart cities}) emergiu nas últimas décadas como uma resposta à crescente urbanização e à necessidade de tornar os centros urbanos mais eficientes, sustentáveis e habitáveis. De acordo com \citeonline{Caragliu2011}, uma cidade pode ser considerada inteligente quando investimentos em capital humano e social, infraestrutura de comunicação e tecnologias digitais promovem o crescimento econômico sustentável e a qualidade de vida, por meio de uma governança participativa. Embora a proposta inicial estivesse fortemente associada ao uso intensivo de tecnologia da informação e comunicação (TIC) para otimizar serviços urbanos e coletar dados em larga escala, autores como \citeonline{Hollands2008} observam que esse discurso foi, em muitos casos, capturado por uma lógica tecnocêntrica e corporativa. Em contraposição, abordagens mais recentes defendem as chamadas \textit{human-centred smart cities}, que buscam recentrar a tecnologia em torno das pessoas e das comunidades, reconhecendo o papel da inovação social e do engajamento cívico no desenvolvimento urbano \cite{NamPardo2011,UNHabitat2022}.
 
-De acordo com a \textit{International Telecommunication Union} (ITU), uma cidade inteligente e sustentável é aquela que “utiliza tecnologias de informação e comunicação para melhorar a qualidade de vida, a eficiência das operações e serviços urbanos, e a competitividade, assegurando ao mesmo tempo que atenda às necessidades das gerações atuais e futuras” \cite{ITUY4900}. No mesmo sentido, a norma internacional \textbf{ISO 37122:2019} estabelece indicadores para cidades inteligentes. A norma enfatiza dimensões como engajamento cidadão, inclusão digital, governança participativa e indicadores relacionados à cultura, esporte e lazer, reforçando que a inteligência urbana envolve também vitalidade social e acesso equitativo aos espaços públicos. \cite{ISO37122}
+De acordo com a \textit{International Telecommunication Union} (ITU), uma cidade inteligente e sustentável é aquela que “utiliza tecnologias de informação e comunicação para melhorar a qualidade de vida, a eficiência das operações e serviços urbanos, e a competitividade, assegurando ao mesmo tempo que atenda às necessidades das gerações atuais e futuras” \cite{ITUY4900}. No mesmo sentido, a norma internacional ISO 37122:2019 estabelece indicadores para cidades inteligentes. A norma enfatiza dimensões como engajamento cidadão, inclusão digital, governança participativa e indicadores relacionados à cultura, esporte e lazer, reforçando que a inteligência urbana envolve também vitalidade social e acesso equitativo aos espaços públicos. \cite{ISO37122}
 
-Essa visão também converge com a Agenda 2030 da Organização das Nações Unidas, especialmente o Objetivo de Desenvolvimento Sustentável (ODS) 11, que visa “tornar as cidades e os assentamentos humanos inclusivos, seguros, resilientes e sustentáveis” \cite{ONU2015}. A meta 11.7, em particular, propõe garantir o acesso universal a espaços públicos seguros, inclusivos e acessíveis, destacando o papel do lazer e da prática esportiva como componentes de uma cidade mais saudável e participativa.
+Essas diretrizes internacionais também convergem com a Agenda 2030 da Organização das Nações Unidas, especialmente o Objetivo de Desenvolvimento Sustentável (ODS) 11, que visa “tornar as cidades e os assentamentos humanos inclusivos, seguros, resilientes e sustentáveis” \cite{ONU2015}. A meta 11.7, em particular, propõe garantir o acesso universal a espaços públicos seguros, inclusivos e acessíveis, destacando o papel do lazer e da prática esportiva como componentes de uma cidade mais saudável e participativa.
 
 Sob essa perspectiva, a inteligência urbana não reside apenas na adoção de tecnologia, mas na capacidade de usar ferramentas digitais para fortalecer o tecido social e promover a ocupação qualificada dos espaços públicos.
 
-\section{CSCW (Computer Supported Cooperative Work)}
+\section{CSCW}
 O campo de estudo conhecido como \textit{Computer Supported Cooperative Work} (CSCW) surgiu na década de 1980 com o objetivo de compreender como a tecnologia pode apoiar o trabalho coletivo mediado por computadores. Segundo \citeonline{Grudin1994}, o CSCW é um domínio multidisciplinar que integra contribuições da ciência da computação, psicologia, sociologia e design, buscando compreender como grupos organizam, coordenam e executam tarefas em conjunto. Já \citeonline{SchmidtBannon1992} enfatizam que o CSCW não se restringe à automação de processos, mas à criação de sistemas que respeitem e ampliem as práticas sociais existentes, apoiando o que denominam \textit{cooperação situada}. 
 
-Esse campo parte do reconhecimento de que o trabalho coletivo é fundamentalmente uma atividade social, e que as tecnologias digitais devem atuar como mediadoras das interações entre indivíduos. Dessa forma, o CSCW fornece uma base conceitual relevante para o desenvolvimento de sistemas que envolvem coordenação distribuída, comunicação assíncrona e colaboração.
+Esse campo parte do reconhecimento de que o trabalho coletivo é essencialmente uma atividade social, e que as tecnologias digitais devem atuar como mediadoras das interações entre indivíduos. Dessa forma, o CSCW fornece uma base conceitual relevante para o desenvolvimento de sistemas que envolvem coordenação distribuída, comunicação assíncrona e colaboração.
 
 % O QUE ESTAVA ANTES
 % Neste trabalho, CSCW é entendido como o campo interdisciplinar que estuda e projeta tecnologias para apoiar a cooperação entre pessoas. A ênfase recai em tornar o trabalho em grupo mais coordenado e previsível, com menos desencontros e incertezas. Para isso, a literatura descreve conceitos e mecanismos que estruturam a colaboração, como o trabalho de articulação e a consciência situacional, além de apontar desafios recorrentes no desenvolvimento de sistemas colaborativos \cite{schmidt1992taking,dourish1992awareness,olson2000distance,grudin1994eight}.
 
-    \subsection{Consciência compartilhada (\textit{Awareness})}
+    \subsection{Consciência compartilhada}
     Um dos conceitos centrais do CSCW é o de \textit{awareness}, ou consciência compartilhada, definido por \citeonline{DourishBellotti1992} como a capacidade de compreender as atividades de outros participantes de forma a facilitar a coordenação de ações. Essa consciência pode abranger aspectos sociais, situacionais e organizacionais \cite{GutwinGreenberg2002}, permitindo que os indivíduos percebam quem está envolvido, o que está sendo feito e em que estágio se encontra uma determinada tarefa.
 
     Em ambientes colaborativos, a manutenção da \textit{awareness} reduz a necessidade de comunicação explícita e ajuda a sincronizar esforços dispersos. Ferramentas que tornam visíveis os estados e as ações dos participantes, por exemplo, indicadores de presença, notificações ou atualizações de status, funcionam como mecanismos de suporte à coordenação e ao engajamento coletivo \cite{olson2000distance}.
@@ -61,13 +69,23 @@ Esse campo parte do reconhecimento de que o trabalho coletivo é fundamentalment
 
 \section{Ambientes híbridos e o conceito de Phygital}
 
-O termo \textit{phygital} combina as palavras \textit{physical} e \textit{digital} para descrever experiências em que os ambientes físico e digital se entrelaçam, formando uma única camada de interação. A ideia, inicialmente difundida no design e no marketing, tem sido incorporada a campos como interação humano-computador para caracterizar contextos em que a mediação tecnológica conecta práticas presenciais e digitais de forma contínua \cite{LecavalierBardy2020,Evans2020}.
+O termo \textit{phygital} combina as palavras \textit{physical} e \textit{digital} para descrever experiências em que os ambientes físico e digital se entrelaçam, formando uma única camada de interação. A ideia, inicialmente difundida no design e no marketing, tem sido incorporada a campos como a interação humano-computador e os estudos urbanos para caracterizar contextos em que a mediação tecnológica conecta práticas presenciais e digitais de forma contínua \cite{LecavalierBardy2020,Evans2020}.
 
-Essa perspectiva dialoga com os estudos sobre \textit{espaços híbridos}, nos quais mobilidade e conectividade transformam a forma de viver e perceber a cidade. Segundo \citeonline{desouzaesilva2006hybrid}, as redes digitais acompanham as pessoas em movimento e tornam o acesso à informação contextual, como localização e horário — parte da própria experiência urbana. Ao mesmo tempo, a literatura sobre \textit{serviços baseados em localização} (\textit{location-based services}) mostra como sistemas que utilizam dados geográficos sustentam funcionalidades como busca por pontos próximos, traçado de rotas e recomendações situadas \cite{raper2007lbs}. Essas tecnologias reforçam a integração entre o espaço físico e a camada digital, na qual as decisões cotidianas passam a ser orientadas por informações de contexto.
+    \subsection{Espaços híbridos}
 
-A dimensão colaborativa desse ambiente híbrido também se manifesta na chamada \textit{geografia voluntária} (\textit{volunteered geographic information}), conceito que descreve a produção espontânea de dados espaciais por cidadãos. Aplicativos de navegação como o Waze exemplificam o potencial do \textit{volunteered geographic information}, em que usuários alimentam e atualizam coletivamente mapas vivos com dados de tráfego e incidentes. Esse modelo de colaboração espacial demonstra como informações produzidas voluntariamente em ambientes híbridos podem gerar valor público e apoiar decisões situadas \cite{goodchild2007citizens}.
+    O conceito de \textit{espaços híbridos} descreve ambientes em que a mobilidade física e a conectividade digital se integram na experiência cotidiana. Segundo \citeonline{desouzaesilva2006hybrid}, as redes móveis acompanham as pessoas em movimento e fazem com que o acesso à informação contextual, como localização, horário e presença, se torne parte do próprio ambiente urbano. Nesse contexto, a cidade passa a ser percebida como uma camada híbrida, onde as fronteiras entre o online e o offline são fluidas e dinâmicas.
 
-Com a combinação de ambientes híbridos, serviços baseados em localização e dados voluntários, consolidou-se um padrão de uso em que as pessoas escolhem no digital o que farão no físico. A descoberta hiperlocal depende de sinais simples e atualizados, como localização, horário e disponibilidade, que reduzem a incerteza antes do deslocamento e tornam mais eficiente a ocupação de lugares e a participação em atividades presenciais.
+    \subsection{Serviços baseados em localização}
+
+    Os \textit{serviços baseados em localização} (\textit{location-based services} — LBS) são sistemas que utilizam dados geográficos para entregar informações ou recomendações relevantes ao contexto do usuário. Conforme \citeonline{raper2007lbs}, tais serviços combinam mecanismos de posicionamento, geocodificação e busca espacial para oferecer funcionalidades como identificação de pontos próximos, traçado de rotas e filtragem por tempo e distância. Dessa forma, o LBS atua como ponte entre os espaços híbridos e as práticas sociais mediadas por aplicativos.
+
+    \subsection{Geografia voluntária e mapas vivos}
+
+    A \textit{geografia voluntária} (\textit{volunteered geographic information} — VGI) refere-se à produção espontânea de dados espaciais por cidadãos comuns, que passam a atuar como sensores distribuídos no território. Segundo \citeonline{goodchild2007citizens}, esses registros, como marcações de locais, eventos e condições do ambiente, constituem uma forma de inteligência coletiva aplicada ao espaço. Aplicativos de navegação como o Waze exemplificam o potencial da VGI, em que usuários alimentam e atualizam coletivamente mapas vivos com informações sobre tráfego e incidentes.
+
+    \subsection{Descoberta hiperlocal e integração online--offline}
+
+    A combinação entre espaços híbridos, serviços baseados em localização e dados voluntários consolida um padrão de uso em que as pessoas decidem no ambiente digital o que farão no físico. A chamada \textit{descoberta hiperlocal} depende de sinais simples e atualizados, como localização, horário e disponibilidade, que reduzem a incerteza antes do deslocamento e tornam mais eficiente a ocupação de lugares e a participação em atividades presenciais. Essa integração torna o digital não apenas um canal de informação, mas uma extensão ativa do espaço público.
 
 % \section{Phygital}
 % Neste trabalho, usa se o termo phygital para descrever experiências em que camadas digitais e físicas se entrelaçam no cotidiano da cidade. Com a difusão dos smartphones, tornou se comum decidir no ambiente digital o que será feito no ambiente físico, com base em informações de contexto como localização, horário, disponibilidade e avaliações. Essa perspectiva dialoga com estudos sobre espaços híbridos, nos quais mobilidade e conectividade alteram a forma de sociabilidade urbana \cite{desouzaesilva2006hybrid}, e com a literatura de serviços baseados em localização, que sustenta funcionalidades como busca por pontos próximos, rotas e filtros de distância e tempo \cite{raper2007lbs}. Também se relaciona à noção de geografia voluntária, em que cidadãos registram lugares e eventos, alimentando mapas vivos de oportunidades locais \cite{goodchild2007citizens}.
@@ -84,59 +102,63 @@ Com a combinação de ambientes híbridos, serviços baseados em localização e
 
 A Interação Humano-Computador (IHC) é uma disciplina interdisciplinar dedicada ao estudo, design, avaliação e implementação de sistemas interativos voltados ao uso humano \cite{barbosa2010ihc}. Envolve fundamentos da computação, design, psicologia cognitiva e ergonomia, buscando compreender como pessoas e tecnologias se relacionam para que os sistemas sejam mais eficazes, eficientes e satisfatórios \cite{preece2019interaction}. Segundo \citeonline{barbosa2010ihc}, a IHC procura promover um ciclo contínuo de observação, projeto e avaliação, de modo a alinhar as características técnicas do sistema às necessidades cognitivas e emocionais dos usuários.
 
-\subsection{Fundamentos de IHC e experiência de uso}
+    \subsection{Fundamentos de IHC e experiência de uso}
 
-De acordo com a norma \textit{ISO 9241-210:2019}, o design centrado no usuário é um processo iterativo que visa melhorar a eficácia, a eficiência e a satisfação na interação com sistemas interativos. Essa perspectiva, também defendida por \citeonline{barbosa2010ihc}, reforça que a usabilidade deve ser considerada desde as fases iniciais do processo de engenharia de software, sendo tanto um atributo de qualidade quanto um princípio de projeto. 
+    De acordo com a norma \textit{ISO 9241-210:2019}, o design centrado no usuário é um processo iterativo que visa melhorar a eficácia, a eficiência e a satisfação na interação com sistemas interativos. Essa perspectiva, também defendida por \citeonline{barbosa2010ihc}, reforça que a usabilidade deve ser considerada desde as fases iniciais do processo de engenharia de software, sendo tanto um atributo de qualidade quanto um princípio de projeto. 
 
-A experiência do usuário (UX), conceito complementar à usabilidade, amplia o foco para aspectos emocionais e simbólicos da interação. \citeonline{norman2013design} descreve o design como um processo capaz de evocar respostas afetivas positivas e reduzir a frustração, equilibrando funcionalidade, estética e significado. Um bom design, portanto, deve possibilitar uma interação fluida, intuitiva e prazerosa, que favoreça o engajamento e a continuidade de uso.
+    A experiência do usuário (UX), conceito complementar à usabilidade, amplia o foco para aspectos emocionais e simbólicos da interação. \citeonline{norman2013design} descreve o design como um processo capaz de evocar respostas afetivas positivas e reduzir a frustração, equilibrando funcionalidade, estética e significado. Um bom design, portanto, deve possibilitar uma interação fluida, intuitiva e prazerosa, que favoreça o engajamento e a continuidade de uso.
 
-\subsection{Usabilidade e heurísticas de Nielsen}
+    \subsection{Usabilidade e heurísticas de Nielsen}
 
-A usabilidade, conforme \citeonline{nielsen1994usability}, refere-se à medida em que um sistema permite aos usuários alcançarem seus objetivos de forma eficaz, eficiente e satisfatória. O autor propôs dez heurísticas que orientam o design e a avaliação de interfaces, sintetizadas na Tabela~\ref{tab:heuristicas_nielsen}. Essas diretrizes são amplamente utilizadas em avaliações de usabilidade por oferecerem princípios gerais que se aplicam a diferentes contextos de interação.
+    A usabilidade, conforme \citeonline{nielsen1994usability}, refere-se à medida em que um sistema permite aos usuários alcançarem seus objetivos de forma eficaz, eficiente e satisfatória. O autor propôs dez heurísticas que orientam o design e a avaliação de interfaces, sintetizadas na Tabela~\ref{tab:heuristicas_nielsen}. Essas diretrizes são amplamente utilizadas em avaliações de usabilidade por oferecerem princípios gerais que se aplicam a diferentes contextos de interação.
 
-\begin{table}[h]
-\centering
-\caption{Heurísticas de Usabilidade de Jakob Nielsen (1994)}
-\label{tab:heuristicas_nielsen}
-\begin{tabular}{p{4cm}p{10cm}}
-\toprule
-\textbf{Heurística} & \textbf{Descrição resumida} \\
-\midrule
-Visibilidade do estado do sistema & O sistema deve manter o usuário informado sobre o que está acontecendo, por meio de feedback adequado e em tempo razoável. \\
-Correspondência entre sistema e mundo real & A interface deve falar a linguagem do usuário, com termos e conceitos familiares. \\
-Controle e liberdade do usuário & O usuário deve poder desfazer ações facilmente e sair de estados indesejados. \\
-Consistência e padrões & Elementos semelhantes devem ter comportamento previsível em toda a interface. \\
-Prevenção de erros & O sistema deve evitar que erros ocorram, preferencialmente, a posteriori corrigir. \\
-Reconhecimento em vez de memorização & O usuário não deve precisar lembrar informações entre telas; as opções relevantes devem estar visíveis. \\
-Flexibilidade e eficiência de uso & O sistema deve atender tanto usuários iniciantes quanto experientes, oferecendo atalhos quando apropriado. \\
-Design estético e minimalista & As interfaces devem conter apenas informações essenciais, evitando poluição visual. \\
-Ajudar usuários a reconhecer, diagnosticar e recuperar-se de erros & Mensagens de erro devem ser claras, explicativas e propor soluções. \\
-Ajuda e documentação & Mesmo que o sistema seja intuitivo, deve haver suporte acessível ao usuário. \\
-\bottomrule
-\end{tabular}
-\end{table}
+    \begin{table}[h]
+    \centering
+    \caption{Heurísticas de Usabilidade de Jakob Nielsen (1994)}
+    \label{tab:heuristicas_nielsen}
+    \begin{tabular}{p{4cm}p{10cm}}
+    \toprule
+    \textbf{Heurística} & \textbf{Descrição resumida} \\
+    \midrule
+    Visibilidade do estado do sistema & O sistema deve manter o usuário informado sobre o que está acontecendo, por meio de feedback adequado e em tempo razoável. \\
+    Correspondência entre sistema e mundo real & A interface deve falar a linguagem do usuário, com termos e conceitos familiares. \\
+    Controle e liberdade do usuário & O usuário deve poder desfazer ações facilmente e sair de estados indesejados. \\
+    Consistência e padrões & Elementos semelhantes devem ter comportamento previsível em toda a interface. \\
+    Prevenção de erros & O sistema deve evitar que erros ocorram, preferencialmente, a posteriori corrigir. \\
+    Reconhecimento em vez de memorização & O usuário não deve precisar lembrar informações entre telas; as opções relevantes devem estar visíveis. \\
+    Flexibilidade e eficiência de uso & O sistema deve atender tanto usuários iniciantes quanto experientes, oferecendo atalhos quando apropriado. \\
+    Design estético e minimalista & As interfaces devem conter apenas informações essenciais, evitando poluição visual. \\
+    Ajudar usuários a reconhecer, diagnosticar e recuperar-se de erros & Mensagens de erro devem ser claras, explicativas e propor soluções. \\
+    Ajuda e documentação & Mesmo que o sistema seja intuitivo, deve haver suporte acessível ao usuário. \\
+    \bottomrule
+    \end{tabular}
+    \end{table}
 
-Entre essas diretrizes, destacam-se princípios especialmente relevantes para interfaces móveis e colaborativas, como a visibilidade do estado do sistema, o reconhecimento em vez da memorização e o design estético e minimalista. Tais aspectos favorecem a clareza cognitiva, reduzem a carga de memória e tornam a interação mais fluida em contextos de uso dinâmico.
+    Entre essas diretrizes, destacam-se princípios especialmente relevantes para interfaces móveis e colaborativas, como a visibilidade do estado do sistema, o reconhecimento em vez da memorização e o design estético e minimalista. Tais aspectos favorecem a clareza cognitiva, reduzem a carga de memória e tornam a interação mais fluida em contextos de uso dinâmico.
 
-\subsection{Acessibilidade e inclusão digital}
+    \subsection{Acessibilidade e inclusão digital}
 
-A acessibilidade é um componente essencial da qualidade de uso e da responsabilidade social no desenvolvimento de sistemas interativos. As diretrizes do W3C, descritas nas \textit{Web Content Accessibility Guidelines} (WCAG 2.1), orientam que o conteúdo digital deve ser perceptível, operável, compreensível e robusto \cite{WCAG21}. Além dos aspectos técnicos, a acessibilidade inclui a adequação da linguagem ao público-alvo, promovendo clareza textual e acessibilidade cognitiva.
+    A acessibilidade é um componente essencial da qualidade de uso e da responsabilidade social no desenvolvimento de sistemas interativos. As diretrizes do W3C, descritas nas \textit{Web Content Accessibility Guidelines} (WCAG 2.1), orientam que o conteúdo digital deve ser perceptível, operável, compreensível e robusto \cite{WCAG21}. Além dos aspectos técnicos, a acessibilidade inclui a adequação da linguagem ao público-alvo, promovendo clareza textual e acessibilidade cognitiva.
 
 \section{Ética e Proteção de Dados}
 
 A ética na engenharia de software refere-se à responsabilidade dos profissionais em considerar os impactos sociais e individuais das soluções tecnológicas, equilibrando eficiência técnica e bem-estar coletivo \cite{floridi2013ethics}. Essa visão considera que cada escolha de design e de arquitetura da informação pode afetar a privacidade, a autonomia e a segurança de grupos e indivíduos.
 
-\subsection{Privacidade e legislação de dados pessoais}
+    \subsection{Privacidade e legislação de dados pessoais}
 
-A privacidade é reconhecida como um direito fundamental pela Constituição Federal de 1988 e regulamentada no Brasil pela Lei nº 13.709/2018, a Lei Geral de Proteção de Dados Pessoais (LGPD). A LGPD define dado pessoal como qualquer informação relacionada a pessoa natural identificada ou identificável e estabelece princípios que devem orientar todo o tratamento de dados, como finalidade, adequação, necessidade, segurança, transparência e responsabilização \cite{LGPD2018}. O tratamento ético dos dados requer que a coleta e o uso das informações ocorram apenas para finalidades legítimas, explícitas e informadas ao titular, evitando a coleta excessiva e o reuso indevido.
+    A privacidade é reconhecida como um direito fundamental pela Constituição Federal de 1988 e regulamentada no Brasil pela Lei nº 13.709/2018, a Lei Geral de Proteção de Dados Pessoais (LGPD). A LGPD define dado pessoal como qualquer informação relacionada a pessoa natural identificada ou identificável e estabelece princípios que devem orientar todo o tratamento de dados, como finalidade, adequação, necessidade, segurança, transparência e responsabilização \cite{LGPD2018}. O tratamento ético dos dados requer que a coleta e o uso das informações ocorram apenas para finalidades legítimas, explícitas e informadas ao titular, evitando a coleta excessiva e o reuso indevido.
 
-Em aplicações colaborativas, a ética da privacidade ganha relevância especial, pois informações produzidas por um usuário podem afetar outros. Sistemas baseados em localização e interação social, por exemplo, lidam com dados contextuais, como presença e horários, que, se mal administrados, podem expor hábitos ou padrões de comportamento. Nessas situações, a proteção de dados deve ser compreendida como um requisito de projeto, e não apenas como uma obrigação legal.
+    Em aplicações colaborativas, a ética da privacidade ganha relevância especial, pois informações produzidas por um usuário podem afetar outros. Sistemas baseados em localização e interação social, por exemplo, lidam com dados contextuais, como presença e horários, que, se mal administrados, podem expor hábitos ou padrões de comportamento. Nessas situações, a proteção de dados deve ser compreendida como um requisito de projeto, e não apenas como uma obrigação legal.
 
-\subsection{Privacy by Design}
+    \subsection{Privacy by Design}
 
-A abordagem de \textit{Privacy by Design} (PbD), proposto por \citeonline{cavoukian2011privacy}, estabelece que a proteção de dados deve ser incorporada desde as etapas iniciais de concepção do sistema e mantida durante todo o seu ciclo de vida. Essa abordagem preventiva busca antecipar riscos e reduzir vulnerabilidades, tratando a privacidade como um requisito de projeto e não como um complemento posterior.
+    A abordagem de \textit{Privacy by Design} (PbD), proposto por \citeonline{cavoukian2011privacy}, estabelece que a proteção de dados deve ser incorporada desde as etapas iniciais de concepção do sistema e mantida durante todo o seu ciclo de vida. Essa abordagem preventiva busca antecipar riscos e reduzir vulnerabilidades, tratando a privacidade como um requisito de projeto e não como um complemento posterior.
 
-Na prática, o PbD se traduz na transparência sobre o uso das informações, na possibilidade de o usuário controlar sua visibilidade e na adoção de padrões de design que evitem a exposição indevida.
+    Na prática, o PbD se traduz na transparência sobre o uso das informações, na possibilidade de o usuário controlar sua visibilidade e na adoção de padrões de design que evitem a exposição indevida.
+
+% \bigskip
+% \noindent\textbf{Síntese.} Os quatro eixos aqui revisados fornecem a base conceitual necessária para compreender o fenômeno do esporte comunitário na cidade, os princípios de coordenação mediados por tecnologia, as dinâmicas híbridas entre camadas digitais e físicas no espaço urbano e os marcos de mensuração e governança associados a cidades inteligentes. Nos capítulos seguintes, tais fundamentos amparam as escolhas metodológicas e as análises conduzidas neste trabalho.
 
 \bigskip
-\noindent\textbf{Síntese.} Os quatro eixos aqui revisados fornecem a base conceitual necessária para compreender o fenômeno do esporte comunitário na cidade, os princípios de coordenação mediados por tecnologia, as dinâmicas híbridas entre camadas digitais e físicas no espaço urbano e os marcos de mensuração e governança associados a cidades inteligentes. Nos capítulos seguintes, tais fundamentos amparam as escolhas metodológicas e as análises conduzidas neste trabalho.
+\noindent\textbf{Síntese.} 
+Os eixos teóricos revisados neste capítulo articulam as dimensões sociais, tecnológicas e éticas que fundamentam este trabalho. A discussão sobre o esporte comunitário e o espaço público evidencia o potencial do encontro coletivo na cidade; as noções de cidades inteligentes e ambientes híbridos mostram como tecnologias digitais reconfiguram a experiência urbana; e os princípios de CSCW, IHC e \textit{privacy by design} oferecem diretrizes para o desenvolvimento de sistemas cooperativos, centrados no usuário e socialmente responsáveis. Esses fundamentos orientam as escolhas metodológicas e técnicas dos capítulos seguintes.
