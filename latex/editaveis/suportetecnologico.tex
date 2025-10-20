@@ -16,9 +16,6 @@ O Expo é uma plataforma e conjunto de SDKs\footnote{SDK significa \textit{Softw
 \subsection{Expo Application Services}
 O \textit{Expo Application Services} (EAS) é o conjunto de serviços em nuvem do Expo para construir, assinar, publicar e gerenciar aplicativos React Native. O EAS Build compila binários para Android e iOS na nuvem, o EAS Submit auxilia no envio às lojas\cite{eas_build,eas_suite}. Esse fluxo permite gerar builds para iOS sem a necessidade de um computador com macOS local.
 
-\subsection{TypeScript}
-O TypeScript é um superconjunto tipado de JavaScript que adiciona tipagem estática, inferência de tipos e recursos avançados de linguagem. No contexto do aplicativo, a tipagem melhora a legibilidade, ajuda a prevenir erros em tempo de desenvolvimento e favorece a manutenção em projetos de médio porte, com suporte nativo no ecossistema React e no Node.js \cite{typescript_handbook}.
-
 \section{Tecnologias de desenvolvimento backend e arquitetura de API}
 O backend é a camada responsável por processar a lógica de negócio, manipular dados e disponibilizar serviços para o aplicativo móvel. Nesta etapa, optamos por tecnologias consolidadas que oferecem bom desempenho, comunidade ativa e ampla documentação.
 
@@ -44,15 +41,16 @@ Considerando a natureza do sistema proposto, que envolve relações bem definida
 
 \subsection{Sistema Gerenciador de Banco de Dados}
 
-Como SGBD, foi adotado o \textbf{PostgreSQL}, por se tratar de uma solução de código aberto, madura e amplamente utilizada no meio acadêmico e corporativo. O PostgreSQL segue o padrão SQL ANSI, oferece mecanismos de controle de acesso robustos e dispõe de extensões geoespaciais, como o PostGIS, úteis para o armazenamento de coordenadas geográficas. Além disso, sua compatibilidade com serviços em nuvem e a disponibilidade na camada gratuita da AWS (\textit{Free Tier}) tornam a solução adequada para o contexto do projeto, garantindo baixo custo e alta confiabilidade.
+Como SGBD, foi adotado o PostgreSQL, por se tratar de uma solução de código aberto, madura e amplamente utilizada no meio acadêmico e corporativo. O PostgreSQL segue o padrão SQL ANSI, oferece mecanismos de controle de acesso robustos e dispõe de extensões geoespaciais, como o PostGIS, úteis para o armazenamento de coordenadas geográficas. Além disso, sua compatibilidade com serviços em nuvem e a disponibilidade na camada gratuita da AWS (\textit{Free Tier}) tornam a solução adequada para o contexto do projeto, garantindo baixo custo e alta confiabilidade.
 
 
 \subsection{Modelagem conceitual}
 
-O modelo conceitual foi estruturado para representar as principais entidades e suas relações, com destaque para \textbf{Usuário}, \textbf{Quadra} e \textbf{Partida}, que constituem o núcleo funcional do sistema. Cada entidade foi normalizada para evitar redundância e preservar a consistência dos dados, conforme os princípios de normalização propostos por Codd \cite{codd1970relational}.
+O modelo conceitual foi estruturado para representar as principais entidades e suas relações, com destaque para Usuário, Quadra e Partida, que constituem o núcleo funcional do sistema. Cada entidade foi normalizada para evitar redundância e preservar a consistência dos dados, conforme os princípios de normalização propostos por Codd \cite{codd1970relational}.
 
 O diagrama entidade–relacionamento completo encontra-se nos Apêndices \ref{apendice:MER} e \ref{apendice:DER}, que apresentam, respectivamente, o modelo conceitual e o modelo lógico derivados da análise do domínio. Esses diagramas orientam a estrutura física do banco e servem como referência para o desenvolvimento e futuras evoluções do sistema.
 
+% ESCREVER ESSA SEÇÃO POR ULTIMO
 \section{Integrações e serviços externos}
 
 \subsection{APIs e SDKs}
@@ -77,13 +75,39 @@ O Figma é uma ferramenta online de design e prototipação de interfaces \cite{
 \subsection{Google Drive}
 O Google Drive é um serviço de armazenamento em nuvem para documentos, planilhas e apresentações \cite{drive_workspace}. Utilizamos para guardar e compartilhar materiais do projeto, como questionários, identidade visual, análises e atas, garantindo acesso rápido e organização em pastas.
 
-\subsection{GitHub}
-O GitHub é uma plataforma de hospedagem de repositórios Git \cite{github_version_control}. Adotamos para versionar o código do aplicativo e do backend, permitindo controle de histórico, colaboração entre desenvolvedores e segurança dos artefatos de software.
-
-Em conjunto, essas ferramentas sustentam o planejamento, a execução e a documentação do projeto em um espaço de trabalho unificado, acessível e colaborativo.
-
 \section{Ambiente de desenvolvimento e qualidade de código}
-% ESLint e Prettier; builds com EAS; sem CI no TCC 1
+
+Esta seção apresenta o ambiente e as ferramentas empregadas no desenvolvimento do sistema, bem como os mecanismos utilizados para manter a qualidade e a consistência do código. As escolhas foram orientadas pela busca de eficiência, portabilidade e legibilidade, de modo a garantir um fluxo de trabalho colaborativo e padronizado entre os desenvolvedores.
+
+\subsection{Visual Studio Code}
+
+O Visual Studio Code é um editor de código-fonte multiplataforma, gratuito e de código aberto, desenvolvido pela Microsoft. Ele oferece recursos como realce de sintaxe, depuração integrada, terminal embutido e um vasto ecossistema de extensões que ampliam suas funcionalidades.  
+
+Foi utilizado como ambiente principal de desenvolvimento devido à sua leveza, extensibilidade e integração nativa com o ecossistema JavaScript e TypeScript. O editor também possui integração direta com o Git, o que facilitou o controle de versão e o trabalho colaborativo. Extensões como ESLint e Prettier foram incorporadas ao ambiente, contribuindo para a padronização e detecção precoce de erros no código, além disso, a decisão também considerou a familiaridade e o conhecimento prévio do time, reduzindo a curva de aprendizado e aumentando a produtividade \cite{vscode_docs}.
+
+\subsection{Android Studio e Expo Go}
+
+O Android Studio é o ambiente de desenvolvimento integrado (IDE) oficial para o sistema Android, fornecido pelo Google, que inclui emuladores, ferramentas de análise de desempenho e suporte à depuração de aplicativos móveis.  
+
+Foi utilizado para executar emuladores e validar o comportamento do aplicativo em diferentes tamanhos e configurações de dispositivos \cite{android_studio}.
+
+\subsection{ESLint e Prettier}
+
+O ESLint é uma ferramenta de análise estática de código que identifica padrões problemáticos e erros de estilo em projetos JavaScript e TypeScript. Já o Prettier é um formatador automático que aplica um padrão uniforme de formatação ao código-fonte.  
+
+Essas ferramentas foram configuradas em conjunto para garantir legibilidade, consistência e padronização em toda a base de código \cite{eslint_docs,prettier_docs}.
+
+\subsection{TypeScript}
+
+O TypeScript é uma linguagem de programação de código aberto desenvolvida pela Microsoft que estende o JavaScript, adicionando tipagem estática e recursos de orientação a objetos. Ela é amplamente utilizada em grandes aplicações por oferecer maior previsibilidade e robustez ao código \cite{typescript_handbook}.
+
+Sua adoção neste projeto proporcionou maior segurança e manutenção do código, permitindo detectar erros durante o desenvolvimento e facilitando a colaboração entre diferentes partes do sistema. Além disso, o suporte nativo do TypeScript no ecossistema React Native e Node.js favoreceu a integração entre as camadas do aplicativo, reduzindo inconsistências e aumentando a confiabilidade geral.
+
+\subsection{Git e GitHub}
+
+O Git é um sistema distribuído de controle de versão que permite rastrear alterações no código-fonte e gerenciar o trabalho colaborativo entre desenvolvedores. O GitHub, por sua vez, é uma plataforma de hospedagem baseada em Git que oferece repositórios remotos, controle de acesso, integração contínua e ferramentas de revisão de código.  
+
+Essas ferramentas foram empregadas para gerenciar o ciclo de vida do código, garantindo rastreabilidade, histórico de alterações e colaboração entre os desenvolvedores \cite{git_docs,github_version_control}.
 
 \section{Segurança e LGPD no nível tecnológico}
 % Confirmação de idade mínima (16+); aceite de Termos/Política; uso responsável de localização
