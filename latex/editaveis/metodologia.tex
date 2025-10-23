@@ -1,43 +1,124 @@
 \chapter{Metodologia}
+Escrever quando finalizar o capitulo.
 
-\section{Abordagem de processo}
-% Princípios ágeis: tempo e custo fixos, escopo adaptativo por valor
+\section{Abordagem de desenvolvimento}
+% Descrever a abordagem metodológica utilizada (ex: ágil, incremental, MVP-driven)
+% Explicar a lógica de tempo e custo fixos, escopo adaptativo por valor
+% Justificar o modelo de desenvolvimento adotado e como ele se alinha aos objetivos do TCC
+
+O desenvolvimento de sistemas de software requer a definição de uma abordagem metodológica que oriente o processo de trabalho e estabeleça o equilíbrio entre previsibilidade, qualidade e flexibilidade. Essa escolha depende das características do projeto, da equipe e do ambiente organizacional, influenciando diretamente a forma como requisitos, tempo e recursos são gerenciados \cite{pressman2019}.
+
+O projeto \textit{BORAFUT} foi fundamentado em uma \textbf{abordagem híbrida}, combinando elementos de processos \textit{dirigidos a plano} (\textit{plan-driven}) e de metodologias \textit{ágeis} (\textit{agile-driven}). Essa escolha busca conciliar a estruturação necessária ao contexto acadêmico do Trabalho de Conclusão de Curso (TCC) com a adaptabilidade e o foco em valor característicos das metodologias ágeis.
+
+\subsection{Abordagens dirigidas a plano e ágeis}
+
+De acordo com Sommerville \cite{sommerville2011}, as abordagens de desenvolvimento podem ser compreendidas a partir da relação entre três fatores principais: \textit{escopo}, \textit{recursos} e \textit{tempo}. Em processos dirigidos a plano, busca-se controlar rigorosamente o escopo e os requisitos desde o início do projeto, permitindo que cronograma e custos sejam ajustados conforme a necessidade.
+
+Por outro lado, as abordagens ágeis invertem essa lógica, mantendo tempo e recursos fixos e permitem que o escopo seja adaptado ao longo do desenvolvimento. Nessa abordagem, a prioridade recai sobre a entrega contínua de valor ao cliente e a colaboração próxima entre a equipe de desenvolvimento e os usuários \cite{boehm2003, pressman2019}. Essa diferença conceitual é ilustrada na Figura~\ref{fig:plan-vs-agile}, adaptada de Sommerville (2011), que contrasta os paradigmas dirigidos a plano e orientados a valor.
+
+
+\begin{figure}[h]
+    \centering
+    % \includegraphics[width=0.7\textwidth]{bf7c1830-9c61-42c0-b969-d34834f4f0b1.png}
+    \caption{Comparativo entre abordagens dirigidas a plano e orientadas a valor. Adaptado de Sommerville (2011).}
+    \label{fig:plan-vs-agile}
+\end{figure}
+
+No contexto do \textit{BORAFUT}, o tempo de execução e os recursos disponíveis são fixos, delimitados pelos semestres letivos e pela equipe reduzida. A necessidade de adaptar o escopo e priorizações durante o desenvolvimento caracteriza um cenário tipicamente orientado a valor, justificando a adoção de princípios ágeis.
+
+Entretanto, o projeto também apresenta certas características de um processo dirigido a plano, pois, neste trabalho, optou-se organizacionalmente por tratar o \textit{TCC 1} como uma etapa de planejamento estruturado, dedicada à definição de requisitos, arquitetura e critérios de desenvolvimento. O \textit{TCC 2}, por sua vez, concentra-se na implementação incremental e validação do MVP, com possibilidade de ajustes de escopo e priorização. Essa decisão organizacional, alinhada às necessidades do projeto, permite uma combinação coerente entre planejamento e adaptabilidade.
+
+\subsection{Critérios para escolha da abordagem}
+
+A decisão metodológica foi orientada por critérios propostos por Sommerville \cite{sommerville2011} e Gupta et al. \cite{gupta2019}, que relacionam características do projeto, da equipe e do ambiente ao modelo de processo mais adequado. 
+
+Segundo Sommerville, abordagens dirigidas a plano são mais apropriadas quando os requisitos são estáveis e bem definidos, o ambiente é formal e a equipe é grande ou distribuída. Já abordagens ágeis são indicadas para projetos de pequena escala, com requisitos mutáveis, equipes reduzidas e comunicação direta com o cliente.
+
+De forma complementar, Gupta et al. propõem quatro dimensões analíticas: \textit{projeto}, \textit{pessoas}, \textit{produto} e \textit{processo}, que orientam a escolha do modelo de desenvolvimento. Projetos com escopo exploratório, produtos inovadores e requisitos voláteis, conduzidos por equipes pequenas e autônomas, tendem a se beneficiar de processos ágeis e iterativos. Além disso, fatores sociais e culturais, como a proximidade entre desenvolvedores e usuários, também favorecem a agilidade, por viabilizarem ciclos curtos de feedback e validação contínua.
+
+No caso do \textit{BORAFUT}, essas condições estão presentes. O sistema possui requisitos voláteis e evolutivos, definidos de forma colaborativa entre os próprios desenvolvedores e usuários, que pertencem ao mesmo grupo social. A equipe é pequena e estável, o produto é inovador e o ambiente de trabalho é autogerido e não hierárquico. A baixa criticidade do sistema também reforça a adequação de uma abordagem predominantemente ágil.
+
+\begin{table}[h]
+\centering
+\caption{Síntese dos critérios de escolha da abordagem de desenvolvimento.}
+\label{tab:criterios-abordagem}
+\begin{tabular}{p{4cm} p{5cm} p{5cm}}
+\toprule
+\textbf{Critério} & \textbf{Característica do BORAFUT} & \textbf{Implicação metodológica} \\ 
+\midrule
+Estabilidade dos requisitos & Requisitos mutáveis e evolutivos & Favorece abordagem ágil \\
+Tamanho da equipe & Pequena e coesa & Favorece abordagem ágil \\
+Criticidade do sistema & Baixa criticidade & Permite entregas incrementais \\
+Disponibilidade do cliente & Alta (usuário = desenvolvedor) & Favorece feedback contínuo \\
+Tempo e recursos & Fixos (limitações do TCC) & Exige planejamento inicial estruturado \\
+Contexto organizacional & Acadêmico, com avaliação formal & Requer documentação mínima suficiente \\
+Natureza do produto & Inovadora e exploratória & Favorece adaptabilidade e iteração \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Equilíbrio entre planejamento e adaptabilidade}
+
+Embora o projeto adote princípios ágeis, reconhece-se a importância de um planejamento inicial robusto. Essa combinação não representa um conflito metodológico, desde que cada paradigma seja aplicado de forma coerente e contextualizada \cite{boehm2003}. O planejamento fornece a estrutura necessária para o acompanhamento e avaliação acadêmica, enquanto a adaptação contínua garante flexibilidade e foco em valor durante o desenvolvimento.
+
+Para preservar a coerência entre as abordagens e evitar sobreposição de práticas conflitantes, foram observados os seguintes princípios:
+\begin{itemize}
+    \item \textbf{Planejar o suficiente, não em excesso}: o planejamento inicial estabelece diretrizes estratégicas, não restrições fixas;
+    \item \textbf{Congelar decisões estruturais, não funcionais}: arquitetura e padrões técnicos permanecem estáveis, enquanto os requisitos e funcionalidades podem evoluir;
+    \item \textbf{Documentar para comunicar, não para controlar}: a documentação serve como meio de alinhamento entre integrantes, evitando burocracia desnecessária;
+    \item \textbf{Validar continuamente}: o sucesso do processo é avaliado pelo valor entregue a cada incremento, não pela aderência rígida ao plano inicial.
+\end{itemize}
+
+Em síntese, a abordagem de desenvolvimento do \textit{BORAFUT} combina a previsibilidade necessária à avaliação acadêmica com a adaptabilidade das práticas ágeis. Essa configuração caracteriza um modelo de processo \textbf{híbrido}, no qual o planejamento fornece estrutura e as iterações sucessivas garantem adaptabilidade e foco em valor.
+
 
 \section{Planejamento inicial}
-% Visão geral do planejamento e marcos
+% Visão geral do planejamento e dos marcos principais do projeto
 
 \subsection{Project Model Canvas}
-    % Síntese e imagem exportada do Miro
+% Inserir o PMC exportado do Miro
+% Descrever brevemente os blocos mais relevantes (proposta de valor, público, recursos, etc.)
 
 \subsection{Análise de mercado}
-    % Concorrentes e lacunas observadas
+% Apresentar os concorrentes e lacunas observadas
+% Indicar como essa análise orientou o escopo inicial e os diferenciais do BORAFUT
 
 \section{Requisitos}
-    \label{sec:metodologia-elicitacao}
-    % Estratégia geral de elicitação
+\label{sec:metodologia-elicitacao}
+% Descrever a estratégia geral de elicitação e análise de requisitos
 
-    \subsection{Elicitação}
-        
-        \subsubsection{Brainwriting}
-        
-        \subsubsection{Questionário}
-        
-        \subsubsection{Observação}
+\subsection{Elicitação}
+% Apresentar os métodos utilizados
 
-    \subsection{Seleção e refinamento de requisitos}
-        \subsubsection{MOSCOW}
-        % Método de priorização MoSCoW e matriz valor por esforço
+    \subsubsection{Brainwriting}
+    % Contexto da dinâmica e principais ideias geradas
 
-        \subsubsection{User stories}
-        % Oq são, como escrever, critérios de aceitação
+    \subsubsection{Questionário}
+    % Perfil dos respondentes, forma de aplicação e principais resultados obtidos
 
-\section{Plano de qualidade e testes}
-    % Estratégia de testes funcionais mínimos e teste de usabilidade no TCC 2
+    \subsubsection{Observação}
+    % Breve descrição de observações de campo (se aplicável)
+
+\subsection{Priorização e modelagem de requisitos}
+% Descrever como os requisitos foram analisados e refinados
+
+    \subsubsection{Método MoSCoW}
+    % Explicar o método e apresentar a matriz valor x esforço
+
+    \subsubsection{User Stories}
+    % Conceito de user story e critérios de aceitação
+    % Exemplos de user stories elaboradas
 
 \section{Plano de privacidade e segurança}
-    % Dados pessoais tratados, consentimentos, retenção e minimização
+% Descrever o tratamento de dados pessoais, consentimento, retenção e minimização
+% Referenciar a LGPD e princípios éticos abordados no Capítulo 2
 
 \section{Plano de implantação e operação}
-    % Backend em AWS, banco provisionado, chaves do Google, builds com EAS
+% Descrever o ambiente de operação e infraestrutura de execução
+% (Backend em AWS, banco provisionado, chaves do Google, builds com EAS, etc.)
 
-
+\section{Decisões arquiteturais e tecnológicas}
+% Justificar as escolhas de frameworks, linguagens e serviços (ex: React Native, FastAPI, PostgreSQL)
+% Explicar as decisões metodológicas que orientaram o design do sistema
+% (Ex: simplicidade de manutenção, custos, curva de aprendizado)
+% Referenciar que os diagramas e detalhes técnicos serão apresentados no Capítulo 5
