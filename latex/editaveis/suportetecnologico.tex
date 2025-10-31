@@ -1,115 +1,115 @@
 \chapter{Suporte Tecnológico}
 
-Neste capítulo são apresentadas as tecnologias, ferramentas e práticas que sustentaram o desenvolvimento do sistema proposto. O objetivo é descrever o suporte tecnológico adotado e justificar as principais decisões de implementação.
+    Neste capítulo são apresentadas as tecnologias, ferramentas e práticas que sustentaram o desenvolvimento do sistema proposto. O objetivo é descrever o suporte tecnológico adotado e justificar as principais decisões de implementação.
 
-Inicialmente, são expostas as plataformas e tecnologias utilizadas no desenvolvimento do aplicativo móvel e de seu backend. Em seguida, detalham-se as integrações externas, as ferramentas que apoiaram o processo de projeto e as práticas de qualidade aplicadas no ambiente de desenvolvimento. Por fim, são abordados os mecanismos de segurança e conformidade com a Lei Geral de Proteção de Dados (LGPD).
+    Inicialmente, são expostas as plataformas e tecnologias utilizadas no desenvolvimento do aplicativo móvel e de seu backend. Em seguida, detalham-se as integrações externas, as ferramentas que apoiaram o processo de projeto e as práticas de qualidade aplicadas no ambiente de desenvolvimento. Por fim, são abordados os mecanismos de segurança e conformidade com a Lei Geral de Proteção de Dados (LGPD).
 
-\section{Plataforma e tecnologias de desenvolvimento móvel}
-A escolha inicial foi pelo Flutter, por permitir uma base única de código para Android e iOS. O Flutter é um kit de ferramentas de código aberto criado pelo Google para o desenvolvimento de interfaces a partir de uma única base de código, usando a linguagem Dart \cite{flutter_docs}. Contudo, o processo de publicação para iOS exige um ambiente macOS para compilar, assinar e enviar o aplicativo, recurso de que não dispomos no momento. Buscando alternativas, adotamos o React Native em conjunto com o Expo. Além disso, utilizamos o EAS para construção e distribuição em nuvem, e adotamos TypeScript como linguagem principal.
+    \section{Plataforma e tecnologias de desenvolvimento móvel}
+        A escolha inicial foi pelo Flutter, por permitir uma base única de código para Android e iOS. O Flutter é um kit de ferramentas de código aberto criado pelo Google para o desenvolvimento de interfaces a partir de uma única base de código, usando a linguagem Dart \cite{flutter_docs}. Contudo, o processo de publicação para iOS exige um ambiente macOS para compilar, assinar e enviar o aplicativo, recurso de que não dispomos no momento. Buscando alternativas, adotamos o React Native em conjunto com o Expo. Além disso, utilizamos o EAS para construção e distribuição em nuvem, e adotamos TypeScript como linguagem principal.
 
-\subsection{React Native}
-O React Native é um framework de código aberto para desenvolvimento de aplicativos nativos a partir do ecossistema React. O React, por sua vez, é uma biblioteca JavaScript criada para construir interfaces de usuário por meio de \textit{componentes} reaproveitáveis, um modo de organizar a tela em partes menores e independentes \cite{react_docs}. O React Native aplica essas mesmas ideias no contexto móvel, permitindo criar aplicativos para Android e iOS usando JavaScript ou TypeScript, com acesso a componentes nativos do sistema e recarga rápida durante o desenvolvimento \cite{reactnative_docs}.
+        \subsection{React Native}
+        O React Native é um framework de código aberto para desenvolvimento de aplicativos nativos a partir do ecossistema React. O React, por sua vez, é uma biblioteca JavaScript criada para construir interfaces de usuário por meio de \textit{componentes} reaproveitáveis, um modo de organizar a tela em partes menores e independentes \cite{react_docs}. O React Native aplica essas mesmas ideias no contexto móvel, permitindo criar aplicativos para Android e iOS usando JavaScript ou TypeScript, com acesso a componentes nativos do sistema e recarga rápida durante o desenvolvimento \cite{reactnative_docs}.
 
-\subsection{Expo}
-O Expo é uma plataforma e conjunto de SDKs\footnote{SDK significa \textit{Software Development Kit}, ou conjunto de bibliotecas e ferramentas que facilitam o uso de funcionalidades prontas em um aplicativo.} de código aberto que padroniza o ambiente do React Native e simplifica tarefas comuns do ciclo de desenvolvimento, como inicialização de projetos, acesso a APIs de dispositivo e testes em aparelhos físicos\cite{expo_docs}. Na prática, o Expo reduz a fricção de configuração e acelera a iteração de funcionalidades.
+        \subsection{Expo}
+        O Expo é uma plataforma e conjunto de SDKs\footnote{SDK significa \textit{Software Development Kit}, ou conjunto de bibliotecas e ferramentas que facilitam o uso de funcionalidades prontas em um aplicativo.} de código aberto que padroniza o ambiente do React Native e simplifica tarefas comuns do ciclo de desenvolvimento, como inicialização de projetos, acesso a APIs de dispositivo e testes em aparelhos físicos\cite{expo_docs}. Na prática, o Expo reduz a fricção de configuração e acelera a iteração de funcionalidades.
 
-\subsection{Expo Application Services}
-O \textit{Expo Application Services} (EAS) é o conjunto de serviços em nuvem do Expo para construir, assinar, publicar e gerenciar aplicativos React Native. O EAS Build compila binários para Android e iOS na nuvem, o EAS Submit auxilia no envio às lojas\cite{eas_build,eas_suite}. Esse fluxo permite gerar builds para iOS sem a necessidade de um computador com macOS local.
+        \subsection{Expo Application Services}
+        O \textit{Expo Application Services} (EAS) é o conjunto de serviços em nuvem do Expo para construir, assinar, publicar e gerenciar aplicativos React Native. O EAS Build compila binários para Android e iOS na nuvem, o EAS Submit auxilia no envio às lojas\cite{eas_build,eas_suite}. Esse fluxo permite gerar builds para iOS sem a necessidade de um computador com macOS local.
 
-\section{Tecnologias de desenvolvimento backend e arquitetura de API}
-O backend é a camada responsável por processar a lógica de negócio, manipular dados e disponibilizar serviços para o aplicativo móvel. Nesta etapa, optamos por tecnologias consolidadas que oferecem bom desempenho, comunidade ativa e ampla documentação.
+    \section{Tecnologias de desenvolvimento backend e arquitetura de API}
+        O backend é a camada responsável por processar a lógica de negócio, manipular dados e disponibilizar serviços para o aplicativo móvel. Nesta etapa, optamos por tecnologias consolidadas que oferecem bom desempenho, comunidade ativa e ampla documentação.
 
-\subsection{Node.js}
-O Node.js é um ambiente de execução para JavaScript fora do navegador, construído sobre o motor V8 do Google Chrome \cite{node_docs}. Ele permite criar aplicações escaláveis e de alto desempenho utilizando a mesma linguagem tanto no cliente quanto no servidor. Além disso, conta com o ecossistema NPM\footnote{Node Package Manager, repositório público com milhares de bibliotecas reutilizáveis que aceleram o desenvolvimento.} que disponibiliza pacotes prontos para diversas finalidades, o que reduz tempo de implementação. A familiaridade da equipe com a tecnologia e a possibilidade de adotar TypeScript no servidor reforçaram essa escolha.
+        \subsection{Node.js}
+        O Node.js é um ambiente de execução para JavaScript fora do navegador, construído sobre o motor V8 do Google Chrome \cite{node_docs}. Ele permite criar aplicações escaláveis e de alto desempenho utilizando a mesma linguagem tanto no cliente quanto no servidor. Além disso, conta com o ecossistema NPM\footnote{Node Package Manager, repositório público com milhares de bibliotecas reutilizáveis que aceleram o desenvolvimento.} que disponibiliza pacotes prontos para diversas finalidades, o que reduz tempo de implementação. A familiaridade da equipe com a tecnologia e a possibilidade de adotar TypeScript no servidor reforçaram essa escolha.
 
-\subsection{Express}
-O Express é um framework minimalista para aplicações web no Node.js \cite{express_docs}. Ele fornece recursos como roteamento de URLs e organização modular de controladores e serviços. Sua simplicidade, combinada com a flexibilidade, facilita a construção de APIs robustas sem adicionar complexidade desnecessária.
+        \subsection{Express}
+        O Express é um framework minimalista para aplicações web no Node.js \cite{express_docs}. Ele fornece recursos como roteamento de URLs e organização modular de controladores e serviços. Sua simplicidade, combinada com a flexibilidade, facilita a construção de APIs robustas sem adicionar complexidade desnecessária.
 
-\subsection{REST}
-A interface entre o backend e o aplicativo é feita por meio de uma API\footnote{Application Programming Interface. Em termos práticos, um conjunto de endpoints que define como clientes podem enviar requisições e receber respostas de um serviço.}. Adotamos o estilo arquitetural REST (Representational State Transfer), proposto por Roy Fielding em sua tese de doutorado \cite{fielding2000}. O REST não é um protocolo, mas um conjunto de princípios que orienta o design de sistemas distribuídos, normalmente implementados sobre HTTP \cite{rfc7231}. Utilizando métodos como \texttt{GET}, \texttt{POST}, \texttt{PUT} e \texttt{DELETE}, conseguimos padronizar a forma como os dados são enviados e recebidos. 
-Entre suas vantagens estão a simplicidade de implementação, a compatibilidade com diferentes clientes e a escalabilidade\footnote{A escalabilidade é favorecida quando o serviço é \textit{stateless}, ou seja, não mantém estado entre requisições. Isso permite que diferentes servidores atendam às requisições de forma independente, facilitando balanceamento e réplica.}. Em resumo, o REST equilibra praticidade e robustez, atendendo às necessidades atuais do projeto com baixo atrito de integração e amplo suporte no mercado.
+        \subsection{REST}
+        A interface entre o backend e o aplicativo é feita por meio de uma API\footnote{Application Programming Interface. Em termos práticos, um conjunto de endpoints que define como clientes podem enviar requisições e receber respostas de um serviço.}. Adotamos o estilo arquitetural REST (Representational State Transfer), proposto por Roy Fielding em sua tese de doutorado \cite{fielding2000}. O REST não é um protocolo, mas um conjunto de princípios que orienta o design de sistemas distribuídos, normalmente implementados sobre HTTP \cite{rfc7231}. Utilizando métodos como \texttt{GET}, \texttt{POST}, \texttt{PUT} e \texttt{DELETE}, conseguimos padronizar a forma como os dados são enviados e recebidos. 
+        Entre suas vantagens estão a simplicidade de implementação, a compatibilidade com diferentes clientes e a escalabilidade\footnote{A escalabilidade é favorecida quando o serviço é \textit{stateless}, ou seja, não mantém estado entre requisições. Isso permite que diferentes servidores atendam às requisições de forma independente, facilitando balanceamento e réplica.}. Em resumo, o REST equilibra praticidade e robustez, atendendo às necessidades atuais do projeto com baixo atrito de integração e amplo suporte no mercado.
 
-\section{Banco de dados}
+    \section{Ambiente de desenvolvimento e qualidade de código}
 
-O armazenamento e a gestão das informações do sistema foram concebidos de acordo com o paradigma relacional, tendo o PostgreSQL como Sistema Gerenciador de Banco de Dados (SGBD) escolhido. Antes da definição da tecnologia, foram analisados dois paradigmas amplamente utilizados na modelagem de dados: os bancos de dados SQL e NoSQL.
+        Esta seção apresenta o ambiente e as ferramentas empregadas no desenvolvimento do sistema, bem como os mecanismos utilizados para manter a qualidade e a consistência do código. As escolhas foram orientadas pela busca de eficiência, portabilidade e legibilidade, de modo a garantir um fluxo de trabalho colaborativo e padronizado entre os desenvolvedores.
 
-\subsection{Paradigmas de modelagem de dados}
+        \subsection{Visual Studio Code}
 
-Os bancos de dados SQL (\textit{Structured Query Language}) são baseados em um modelo relacional, no qual as informações são organizadas em tabelas interconectadas por chaves primárias e estrangeiras. Esse modelo é amplamente utilizado em sistemas que demandam integridade referencial, consistência transacional e consultas complexas com junções entre múltiplas entidades \cite{elmasri2016fundamentals}. Já os bancos de dados NoSQL (\textit{Not Only SQL}) utilizam modelos mais flexíveis, como documentos, grafos ou pares chave–valor, e são recomendados em cenários de alta escala horizontal ou quando os dados são semiestruturados \cite{cattell2011scalable}.
+        O Visual Studio Code é um editor de código-fonte multiplataforma, gratuito e de código aberto, desenvolvido pela Microsoft. Ele oferece recursos como realce de sintaxe, depuração integrada, terminal embutido e um vasto ecossistema de extensões que ampliam suas funcionalidades.  
 
-Considerando a natureza do sistema proposto, que envolve relações bem definidas entre dados estruturados e pouco suscetíveis a variações de formato, optou-se pela adoção de um banco de dados relacional. O modelo SQL mostra-se mais adequado para representar entidades como usuários, quadras e partidas, que seguem esquemas fixos e relações estáveis. Além disso, a aplicação requer operações transacionais seguras, como confirmações de presença, atualizações de estatísticas e sincronização de dados em tempo real, o que demanda consistência e controle de concorrência confiáveis. Dessa forma, o modelo SQL se apresenta como a escolha mais robusta e coerente com os objetivos do sistema, garantindo alta integridade, rastreabilidade e desempenho no tratamento das informações.
+        Foi utilizado como ambiente principal de desenvolvimento devido à sua leveza, extensibilidade e integração nativa com o ecossistema JavaScript e TypeScript. O editor também possui integração direta com o Git, o que facilitou o controle de versão e o trabalho colaborativo. Extensões como ESLint e Prettier foram incorporadas ao ambiente, contribuindo para a padronização e detecção precoce de erros no código, além disso, a decisão também considerou a familiaridade e o conhecimento prévio do time, reduzindo a curva de aprendizado e aumentando a produtividade \cite{vscode_docs}.
 
-\subsection{Sistema Gerenciador de Banco de Dados}
+        \subsection{Android Studio}
 
-Como SGBD, foi adotado o PostgreSQL, por se tratar de uma solução de código aberto, madura e amplamente utilizada no meio acadêmico e corporativo. O PostgreSQL segue o padrão SQL ANSI, oferece mecanismos de controle de acesso robustos e dispõe de extensões geoespaciais, como o PostGIS, úteis para o armazenamento de coordenadas geográficas. Além disso, sua compatibilidade com serviços em nuvem e a disponibilidade na camada gratuita da AWS (\textit{Free Tier}) tornam a solução adequada para o contexto do projeto, garantindo baixo custo e alta confiabilidade.
+        O Android Studio é o ambiente de desenvolvimento integrado (IDE) oficial para o sistema Android, fornecido pelo Google, que inclui emuladores, ferramentas de análise de desempenho e suporte à depuração de aplicativos móveis.  
 
+        Foi utilizado para executar emuladores e validar o comportamento do aplicativo em diferentes tamanhos e configurações de dispositivos \cite{android_studio}.
 
-\subsection{Modelagem conceitual}
+        \subsection{ESLint e Prettier}
 
-O modelo conceitual foi estruturado para representar as principais entidades e suas relações, com destaque para Usuário, Quadra e Partida, que constituem o núcleo funcional do sistema. Cada entidade foi normalizada para evitar redundância e preservar a consistência dos dados, conforme os princípios de normalização propostos por Codd \cite{codd1970relational}.
+        O ESLint é uma ferramenta de análise estática de código que identifica padrões problemáticos e erros de estilo em projetos JavaScript e TypeScript. Já o Prettier é um formatador automático que aplica um padrão uniforme de formatação ao código-fonte.  
 
-O diagrama entidade–relacionamento completo encontra-se nos Apêndices \ref{apendice:MER} e \ref{apendice:DER}, que apresentam, respectivamente, o modelo conceitual e o modelo lógico derivados da análise do domínio. Esses diagramas orientam a estrutura física do banco e servem como referência para o desenvolvimento e futuras evoluções do sistema.
+        Essas ferramentas foram configuradas em conjunto para garantir legibilidade, consistência e padronização em toda a base de código \cite{eslint_docs,prettier_docs}.
 
-% ESCREVER ESSA SEÇÃO POR ULTIMO
-\section{Integrações e serviços externos}
+        \subsection{TypeScript}
 
-\subsection{APIs e SDKs}
-% Google Maps SDK e Reverse Geocoding; deep link para Google Maps ou Waze
+        O TypeScript é uma linguagem de programação de código aberto desenvolvida pela Microsoft que estende o JavaScript, adicionando tipagem estática e recursos de orientação a objetos. Ela é amplamente utilizada em grandes aplicações por oferecer maior previsibilidade e robustez ao código \cite{typescript_handbook}.
 
-\subsection{Autenticação e notificações}
-% Firebase Auth (e-mail e código); Expo Notifications para push
+        Sua adoção neste projeto proporcionou maior segurança e manutenção do código, permitindo detectar erros durante o desenvolvimento e facilitando a colaboração entre diferentes partes do sistema. Além disso, o suporte nativo do TypeScript no ecossistema React Native e Node.js favoreceu a integração entre as camadas do aplicativo, reduzindo inconsistências e aumentando a confiabilidade geral.
 
-\section{Ferramentas de projeto e colaboração}
+        \subsection{Git e GitHub}
 
-Para organizar, visualizar e documentar o trabalho utilizamos um conjunto de ferramentas que se complementam entre si. Cada uma cumpre uma função específica, e em conjunto elas reduzem o atrito no dia a dia, favorecem a comunicação e garantem o registro das principais decisões do projeto.
+        O Git é um sistema distribuído de controle de versão que permite rastrear alterações no código-fonte e gerenciar o trabalho colaborativo entre desenvolvedores. O GitHub, por sua vez, é uma plataforma de hospedagem baseada em Git que oferece repositórios remotos, controle de acesso, integração contínua e ferramentas de revisão de código.  
 
-\subsection{Miro}
-O Miro é um quadro branco digital colaborativo em tempo real \cite{miro_whiteboard}. Permite rascunhar ideias, construir fluxos, criar mapas visuais e conduzir dinâmicas de ideação de forma coletiva. Usamos como mural central para anotar insights surgidos em reuniões e esboçar protótipos de baixa fidelidade.
+        Essas ferramentas foram empregadas para gerenciar o ciclo de vida do código, garantindo rastreabilidade, histórico de alterações e colaboração entre os desenvolvedores \cite{git_docs,github_version_control}.
 
-\subsection{Jira}
-O Jira é uma plataforma de gestão ágil que disponibiliza quadros no estilo Kanban \cite{jira_intro}. Foi utilizada para manter o backlog atualizado e acompanhar o andamento das tarefas de desenvolvimento, oferecendo visibilidade ao time sobre o que está em progresso e o que já foi concluído.
+    \section{Banco de dados}
 
-\subsection{Figma}
-O Figma é uma ferramenta online de design e prototipação de interfaces \cite{figma_site}. Com ela produzimos protótipos de alta fidelidade, registramos fluxos de navegação e validamos escolhas de interface de forma visual e interativa.
+        O armazenamento e a gestão das informações do sistema foram concebidos de acordo com o paradigma relacional, tendo o PostgreSQL como Sistema Gerenciador de Banco de Dados (SGBD) escolhido. Antes da definição da tecnologia, foram analisados dois paradigmas amplamente utilizados na modelagem de dados: os bancos de dados SQL e NoSQL.
 
-\subsection{Google Drive}
-O Google Drive é um serviço de armazenamento em nuvem para documentos, planilhas e apresentações \cite{drive_workspace}. Utilizamos para guardar e compartilhar materiais do projeto, como questionários, identidade visual, análises e atas, garantindo acesso rápido e organização em pastas.
+        \subsection{Paradigmas de modelagem de dados}
 
-\section{Ambiente de desenvolvimento e qualidade de código}
+        Os bancos de dados SQL (\textit{Structured Query Language}) são baseados em um modelo relacional, no qual as informações são organizadas em tabelas interconectadas por chaves primárias e estrangeiras. Esse modelo é amplamente utilizado em sistemas que demandam integridade referencial, consistência transacional e consultas complexas com junções entre múltiplas entidades \cite{elmasri2016fundamentals}. Já os bancos de dados NoSQL (\textit{Not Only SQL}) utilizam modelos mais flexíveis, como documentos, grafos ou pares chave–valor, e são recomendados em cenários de alta escala horizontal ou quando os dados são semiestruturados \cite{cattell2011scalable}.
 
-Esta seção apresenta o ambiente e as ferramentas empregadas no desenvolvimento do sistema, bem como os mecanismos utilizados para manter a qualidade e a consistência do código. As escolhas foram orientadas pela busca de eficiência, portabilidade e legibilidade, de modo a garantir um fluxo de trabalho colaborativo e padronizado entre os desenvolvedores.
+        Considerando a natureza do sistema proposto, que envolve relações bem definidas entre dados estruturados e pouco suscetíveis a variações de formato, optou-se pela adoção de um banco de dados relacional. O modelo SQL mostra-se mais adequado para representar entidades como usuários, quadras e partidas, que seguem esquemas fixos e relações estáveis. Além disso, a aplicação requer operações transacionais seguras, como confirmações de presença, atualizações de estatísticas e sincronização de dados em tempo real, o que demanda consistência e controle de concorrência confiáveis. Dessa forma, o modelo SQL se apresenta como a escolha mais robusta e coerente com os objetivos do sistema, garantindo alta integridade, rastreabilidade e desempenho no tratamento das informações.
 
-\subsection{Visual Studio Code}
+        \subsection{Sistema Gerenciador de Banco de Dados}
 
-O Visual Studio Code é um editor de código-fonte multiplataforma, gratuito e de código aberto, desenvolvido pela Microsoft. Ele oferece recursos como realce de sintaxe, depuração integrada, terminal embutido e um vasto ecossistema de extensões que ampliam suas funcionalidades.  
+        Como SGBD, foi adotado o PostgreSQL, por se tratar de uma solução de código aberto, madura e amplamente utilizada no meio acadêmico e corporativo. O PostgreSQL segue o padrão SQL ANSI, oferece mecanismos de controle de acesso robustos e dispõe de extensões geoespaciais, como o PostGIS, úteis para o armazenamento de coordenadas geográficas. Além disso, sua compatibilidade com serviços em nuvem e a disponibilidade na camada gratuita da AWS (\textit{Free Tier}) tornam a solução adequada para o contexto do projeto, garantindo baixo custo e alta confiabilidade.
 
-Foi utilizado como ambiente principal de desenvolvimento devido à sua leveza, extensibilidade e integração nativa com o ecossistema JavaScript e TypeScript. O editor também possui integração direta com o Git, o que facilitou o controle de versão e o trabalho colaborativo. Extensões como ESLint e Prettier foram incorporadas ao ambiente, contribuindo para a padronização e detecção precoce de erros no código, além disso, a decisão também considerou a familiaridade e o conhecimento prévio do time, reduzindo a curva de aprendizado e aumentando a produtividade \cite{vscode_docs}.
+        \subsection{Modelagem conceitual}
 
-\subsection{Android Studio e Expo Go}
+    O modelo conceitual foi estruturado para representar as principais entidades e suas relações, com destaque para Usuário, Quadra e Partida, que constituem o núcleo funcional do sistema. Cada entidade foi normalizada para evitar redundância e preservar a consistência dos dados, conforme os princípios de normalização propostos por Codd \cite{codd1970relational}.
 
-O Android Studio é o ambiente de desenvolvimento integrado (IDE) oficial para o sistema Android, fornecido pelo Google, que inclui emuladores, ferramentas de análise de desempenho e suporte à depuração de aplicativos móveis.  
+    O diagrama entidade–relacionamento completo encontra-se nos Apêndices \ref{apendice:MER} e \ref{apendice:DER}, que apresentam, respectivamente, o modelo conceitual e o modelo lógico derivados da análise do domínio. Esses diagramas orientam a estrutura física do banco e servem como referência para o desenvolvimento e futuras evoluções do sistema.
 
-Foi utilizado para executar emuladores e validar o comportamento do aplicativo em diferentes tamanhos e configurações de dispositivos \cite{android_studio}.
+    % ESCREVER ESSA SEÇÃO POR ULTIMO
 
-\subsection{ESLint e Prettier}
+    \section{Integrações e serviços externos}
 
-O ESLint é uma ferramenta de análise estática de código que identifica padrões problemáticos e erros de estilo em projetos JavaScript e TypeScript. Já o Prettier é um formatador automático que aplica um padrão uniforme de formatação ao código-fonte.  
+        \subsection{APIs e SDKs}
+        % Google Maps SDK e Reverse Geocoding; deep link para Google Maps ou Waze
 
-Essas ferramentas foram configuradas em conjunto para garantir legibilidade, consistência e padronização em toda a base de código \cite{eslint_docs,prettier_docs}.
+        \subsection{Autenticação e notificações}
+        % Firebase Auth (e-mail e código); Expo Notifications para push
 
-\subsection{TypeScript}
+    \section{Ferramentas de projeto e colaboração}
 
-O TypeScript é uma linguagem de programação de código aberto desenvolvida pela Microsoft que estende o JavaScript, adicionando tipagem estática e recursos de orientação a objetos. Ela é amplamente utilizada em grandes aplicações por oferecer maior previsibilidade e robustez ao código \cite{typescript_handbook}.
+        Para organizar, visualizar e documentar o trabalho utilizamos um conjunto de ferramentas que se complementam entre si. Cada uma cumpre uma função específica, e em conjunto elas reduzem o atrito no dia a dia, favorecem a comunicação e garantem o registro das principais decisões do projeto.
 
-Sua adoção neste projeto proporcionou maior segurança e manutenção do código, permitindo detectar erros durante o desenvolvimento e facilitando a colaboração entre diferentes partes do sistema. Além disso, o suporte nativo do TypeScript no ecossistema React Native e Node.js favoreceu a integração entre as camadas do aplicativo, reduzindo inconsistências e aumentando a confiabilidade geral.
+        \subsection{Miro}
+    O Miro é um quadro branco digital colaborativo em tempo real \cite{miro_whiteboard}. Permite rascunhar ideias, construir fluxos, criar mapas visuais e conduzir dinâmicas de ideação de forma coletiva. Usamos como mural central para anotar insights surgidos em reuniões e esboçar protótipos de baixa fidelidade.
 
-\subsection{Git e GitHub}
+        \subsection{Jira}
+    O Jira é uma plataforma de gestão ágil que disponibiliza quadros no estilo Kanban \cite{jira_intro}. Foi utilizada para manter o backlog atualizado e acompanhar o andamento das tarefas de desenvolvimento, oferecendo visibilidade ao time sobre o que está em progresso e o que já foi concluído.
 
-O Git é um sistema distribuído de controle de versão que permite rastrear alterações no código-fonte e gerenciar o trabalho colaborativo entre desenvolvedores. O GitHub, por sua vez, é uma plataforma de hospedagem baseada em Git que oferece repositórios remotos, controle de acesso, integração contínua e ferramentas de revisão de código.  
+        \subsection{Figma}
+    O Figma é uma ferramenta online de design e prototipação de interfaces \cite{figma_site}. Com ela produzimos protótipos de alta fidelidade, registramos fluxos de navegação e validamos escolhas de interface de forma visual e interativa.
 
-Essas ferramentas foram empregadas para gerenciar o ciclo de vida do código, garantindo rastreabilidade, histórico de alterações e colaboração entre os desenvolvedores \cite{git_docs,github_version_control}.
+        \subsection{Google Drive}
+    O Google Drive é um serviço de armazenamento em nuvem para documentos, planilhas e apresentações \cite{drive_workspace}. Utilizamos para guardar e compartilhar materiais do projeto, como questionários, identidade visual, análises e atas, garantindo acesso rápido e organização em pastas.
 
-\section{Segurança e LGPD no nível tecnológico}
-% Confirmação de idade mínima (16+); aceite de Termos/Política; uso responsável de localização
+    \section{Segurança e LGPD no nível tecnológico}
+    % Confirmação de idade mínima (16+); aceite de Termos/Política; uso responsável de localização
 
 
