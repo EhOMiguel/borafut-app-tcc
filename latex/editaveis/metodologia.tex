@@ -213,8 +213,40 @@ Mesmo sem seguir um protocolo formal de pesquisa, essas percepções iniciais fo
 % Descrever o ambiente de operação e infraestrutura de execução
 % (Backend em AWS, banco provisionado, chaves do Google, builds com EAS, etc.)
 
-\section{Decisões arquiteturais e tecnológicas}
-% Justificar as escolhas de frameworks, linguagens e serviços (ex: React Native, FastAPI, PostgreSQL)
+\section{Arquitetura geral do sistema}
 % Explicar as decisões metodológicas que orientaram o design do sistema
 % (Ex: simplicidade de manutenção, custos, curva de aprendizado)
 % Referenciar que os diagramas e detalhes técnicos serão apresentados no Capítulo 5
+
+A arquitetura planejada para o \textit{BORAFUT} segue o padrão cliente-servidor de três camadas (\textit{three-tier architecture}), modelo amplamente adotado em sistemas web e móveis modernos por promover a separação clara de responsabilidades, escalabilidade e manutenção simplificada \cite{pressman2019}. Nesse padrão, o sistema é dividido em três níveis principais: \textit{frontend} (camada de apresentação), \textit{backend} (camada de aplicação) e \textit{banco de dados} (camada de dados), com a possibilidade de comunicação com serviços externos (\textit{APIs} e \textit{SDKs}) para funcionalidades complementares.
+
+Essa estrutura foi escolhida por se adequar às necessidades de um projeto acadêmico em formato de MVP: permite o desenvolvimento incremental, facilita o trabalho paralelo da equipe e simplifica a implantação em serviços de nuvem. A Figura~\ref{fig:arquitetura-geral} apresenta uma visão geral da organização planejada.
+
+\begin{figure}[h]
+    \centering
+    % \includegraphics[width=0.8\textwidth]{figures/arquitetura-geral.png}
+    \caption{Visão geral da arquitetura planejada do sistema.}
+    \label{fig:arquitetura-geral}
+\end{figure}
+
+\subsubsection{Frontend}
+A camada de apresentação será desenvolvida em \textit{React Native}, visando portabilidade entre dispositivos Android e iOS. Essa tecnologia possibilita a criação de um aplicativo móvel nativo com reuso de código, integração facilitada com bibliotecas de interface e compatibilidade com serviços externos. O frontend será responsável pela interação direta com o usuário e pela comunicação com o backend via API, utilizando o formato \textit{JSON} sobre o protocolo \textit{HTTPS}.
+
+\subsubsection{Backend}
+A camada de aplicação será implementada em \textit{Node.js}, utilizando o framework \textit{Express}. Essa tecnologia oferece leveza, ampla comunidade e integração simples com bancos de dados relacionais e serviços de nuvem. O backend será responsável pela lógica de negócio, autenticação, controle de acesso e processamento das requisições enviadas pelo aplicativo, além de intermediar a comunicação com o banco de dados e com serviços externos.
+
+A arquitetura do backend seguirá o padrão \textit{RESTful}, com endpoints que permitirão operações de leitura, escrita e atualização de informações.
+
+\subsubsection{Banco de dados}
+A camada de dados será composta por um banco relacional \textit{PostgreSQL}, escolhido por sua robustez, confiabilidade e compatibilidade com provedores de nuvem. O esquema do banco será modelado de forma normalizada, garantindo integridade e consistência das informações. A modelagem conceitual detalhada será apresentada no Capítulo~\ref{chap:projeto-aplicativo}, que trata do projeto técnico do sistema.
+
+\subsubsection{Integrações externas}
+Além da comunicação direta entre cliente e servidor, o backend também realizará integrações com \textbf{APIs e SDKs de terceiros}, responsáveis por funcionalidades complementares que não justificam implementação própria no MVP. Entre as integrações planejadas estão:
+\begin{itemize}
+    \item \textbf{Autenticação federada}, via \textit{Google Identity Services}, para simplificar o processo de login e reduzir barreiras de entrada;
+    \item \textbf{Serviços de geolocalização e mapas}, por meio da \textit{Google Maps Platform}, para consulta e exibição de quadras e rotas;
+    \item \textbf{Serviços de armazenamento de mídia}, como \textit{AWS S3} ou \textit{Firebase Storage}, destinados ao envio e recuperação de imagens.
+\end{itemize}
+
+\subsubsection{Comunicação e infraestrutura}
+A comunicação entre o aplicativo e o servidor será feita por meio de requisições HTTP seguras (\textit{HTTPS}), com autenticação baseada em \textit{JSON Web Tokens} (JWT). Tanto o backend quanto o banco de dados serão hospedados no ambiente de nuvem da AWS.
