@@ -106,31 +106,104 @@ Esses princípios serão aplicados de forma pragmática, guiando decisões técn
 % Apresentar os concorrentes e lacunas observadas
 % Indicar como essa análise orientou o escopo inicial e os diferenciais do BORAFUT
 
-\section{Requisitos}
-\label{sec:metodologia-elicitacao}
+\section{Levantamento e análise de requisitos}
 % Descrever a estratégia geral de elicitação e análise de requisitos
 
 \subsection{Elicitação}
 % Apresentar os métodos utilizados
 
-    \subsubsection{Brainwriting}
-    % Contexto da dinâmica e principais ideias geradas
+\subsubsection{Brainwriting}
 
-    \subsubsection{Questionário}
-    % Perfil dos respondentes, forma de aplicação e principais resultados obtidos
+O \textit{brainwriting} é uma técnica de ideação em grupo em que os participantes geram ideias por escrito, de forma simultânea e silenciosa, passando seus registros para que os demais os leiam e desenvolvam. Diferentemente do \textit{brainstorming} oral, o \textit{brainwriting} busca reduzir problemas comuns de dinâmicas verbais como o bloqueio criativo e a apreensão avaliativa, melhorando a dinâmica e aumentando a originalidade das ideias \cite{paulus2007, pressman2019}.
 
-    \subsubsection{Observação}
-    % Breve descrição de observações de campo (se aplicável)
+Entre os formatos mais comuns está o método \textit{6-3-5} descrito por Rohrbach, no qual seis pessoas escrevem três ideias em cinco minutos e, a cada rodada, passam suas fichas adiante para que sejam desenvolvidas, acumulando várias iterações em pouco tempo \cite{rohrbach1969}. Evidências apontam que formatos escritos tendem a produzir maior quantidade e diversidade de ideias do que sessões exclusivamente orais, principalmente em grupos pequenos \cite{paulus2007}.
 
-\subsection{Priorização e modelagem de requisitos}
-% Descrever como os requisitos foram analisados e refinados
+\paragraph{Aplicação no \textit{BORAFUT}.}
+A dinâmica foi realizada com sete participantes, entre desenvolvedores e potenciais usuários. Para orientar e cobrir o problema de forma ampla, as ideias foram organizadas em seis categorias temáticas: \textit{Funcionalidades do app}, \textit{Melhorias na experiência do usuário}, \textit{Monetização e modelo de negócios}, \textit{Gamificação}, \textit{Integrações e parcerias} e \textit{Marketing e divulgação} (Figura~\ref{fig:brainwriting-categorias}).
+Cada rodada teve duração de apoximadamente 5 minutos, nas quais o foco foi em quantidade, e somente ao final, agrupamos e analisamos itens redundantes. Ao término, foram produzidos mais de 30 cartões com diversas propostas.
 
-    \subsubsection{Método MoSCoW}
-    % Explicar o método e apresentar a matriz valor x esforço
+\begin{figure}[h]
+    \centering
+    % \includegraphics[width=0.85\textwidth]{968ddf0e-751e-4393-a525-9b67d806aa0e.png}
+    \caption{Categorias utilizadas na dinâmica de \textit{brainwriting}.}
+    \label{fig:brainwriting-categorias}
+\end{figure}
 
-    \subsubsection{User Stories}
-    % Conceito de user story e critérios de aceitação
-    % Exemplos de user stories elaboradas
+\subsubsection{Questionário}
+
+Com base nas ideias geradas na dinâmica de \textit{brainwriting}, foi elaborado um questionário on-line com o objetivo de compreender o perfil dos potenciais usuários e validar hipóteses sobre comportamentos, dores e preferências relacionadas à organização de partidas de futebol amador. O instrumento foi desenvolvido em formato digital, via Google Forms, e distribuído entre grupos diversas universidades, grupos esportivos e comunidades de \textit{society} e \textit{futsal} do Distrito Federal, alcançando mais de 60 respostas válidas.
+
+\paragraph{Estrutura e objetivos.}
+O questionário combinou perguntas fechadas e de múltipla escolha, distribuídas em quatro eixos:
+\begin{enumerate}[label=(\roman*)]
+    \item \textbf{Perfil sociodemográfico} — idade, gênero e região administrativa;
+    \item \textbf{Hábitos esportivos} — frequência, local e formato das partidas;
+    \item \textbf{Comportamento organizacional} — canais e rotinas usados para marcar jogos;
+    \item \textbf{Motivações e dificuldades} — fatores que estimulam ou dificultam a prática esportiva.
+\end{enumerate}
+Os dados obtidos serviram de base tanto para a definição do público-alvo quanto para a priorização inicial de funcionalidades do \textit{BORAFUT}.
+
+\paragraph{Perfil dos respondentes.}
+A amostra foi composta majoritariamente por homens (71,9\%) entre 18 e 24 anos (70,3\%), faixa correspondente à população universitária e de jovens adultos. A distribuição geográfica concentrou-se nas regiões de Brasília (17,2\%), Guará (10,9\%) e Gama (10,9\%), além de participações expressivas de Taguatinga, Águas Claras e Santa Maria, indicando forte presença no eixo central do Distrito Federal, o foco inicial do \textit{BORAFUT}.
+
+Em relação ao nível de prática, 84,4\% dos participantes se identificaram como jogadores amadores e o restante como semiprofissionais. O formato mais comum de jogo é o \textit{futsal} (81,3\%), seguido pelo \textit{society} (51,6\%), e 15,6\% afirmaram praticar futebol de campo. Grupos de maior porte são predominantes: 53,1\% relataram possuir mais de dez jogadores, o que reforça a necessidade de uma ferramenta de coordenação coletiva.
+
+\paragraph{Hábitos e organização.}
+A frequência de jogo mostrou-se heterogênea: cerca de 25\% jogam semanalmente, 23,4\% de duas a três vezes por semana e 17,2\% não jogaram nos últimos três meses. Esses dados sugerem que o público é ativo, mas sujeito a variações de engajamento, o que abre espaço para funcionalidades de estímulo à participação contínua, como notificações, recompensas e estatísticas.
+
+Quanto aos meios de organização, 98,4\% dos respondentes utilizam o \textit{WhatsApp} para combinar jogos, enquanto 35,9\% o fazem também presencialmente e 20,3\% por redes sociais como Instagram e Facebook. Essa concentração em canais informais indica ausência de ferramentas especializadas e dispersão de informações, uma oportunidade direta para uma ferramenta de organização.
+
+\paragraph{Dores e motivações.}
+As respostas evidenciaram problemas recorrentes na organização de partidas: 39,1\% relataram que jogos deixam de acontecer ocasionalmente, e 25\% afirmaram que isso ocorre com frequência. Entre as motivações para uso do aplicativo, destacaram-se:
+
+\begin{itemize}
+    \item \textbf{“Juntar a galera ou achar gente para completar o time”} (84,4\%);
+    \item \textbf{“Marcar jogos sem dor de cabeça”} (73,4\%);
+    \item \textbf{“Achar quadra e horário com facilidade”} (62,5\%);
+    \item \textbf{“Evitar furos e desistências”} (53,1\%).
+\end{itemize}
+
+Esses resultados confirmam as hipóteses levantadas na etapa qualitativa: a principal dor do público é a dificuldade de coordenar jogadores e horários, e a motivação central está relacionada à facilitação da organização de partidas e uso eficiente das quadras disponíveis.
+
+\begin{figure}[h]
+    \centering
+    % \includegraphics[width=0.75\textwidth]{cc4d9c63-ef60-4764-9dab-f64ed6c3a473.png}
+    \caption{Exemplo de resultados obtidos no questionário aplicado.}
+    \label{fig:questionario-resultados}
+\end{figure}
+
+\paragraph{Análise e interpretação.}
+Os dados apontam para um público-alvo composto majoritariamente por jovens de 18 a 24 anos, praticantes de \textit{futsal} e residentes nas regiões centrais do Distrito Federal. Trata-se de um público digitalmente ativo, que já utiliza plataformas de comunicação, mas não possuem soluções especializadas para organização esportiva.
+
+O perfil observado é de grupos pequenos e autogeridos com alta densidade de conexões sociais, um cenário favorável para a propagação do aplicativo.
+
+A análise também sugere que o sistema deve priorizar a simplicidade de uso, a integração com canais existentes e funcionalidades voltadas à coordenação de partidas, gestão de presença e descoberta de quadras.
+
+\paragraph{Síntese do público-alvo.}
+Com base na análise dos questionários, o público inicial do \textit{BORAFUT} pode ser descrito como:
+\begin{quote}
+    Jovens adultos, entre 18 e 30 anos, predominantemente homens, praticantes amadores de futsal e \textit{society}, que jogam em grupos autônomos e organizam suas partidas via WhatsApp. Valorizam praticidade, agilidade e confiabilidade na marcação de jogos e demonstram interesse em recursos de descoberta de quadras e confirmação de presença.
+\end{quote}
+
+O instrumento completo do questionário encontra-se no Apêndice~\ref{apendice:questionario}.
+
+\subsubsection{Observação}
+
+O ponto de partida para o desenvolvimento do \textit{BORAFUT} surgiu a partir de observações feitas pelos próprios autores em ambientes de prática esportiva amadora. Durante a participação em jogos de futsal, foi possível perceber que muitos grupos enfrentavam dificuldades para marcar e organizar partidas.
+
+As observações aconteceram de forma natural, enquanto os autores participavam dessas atividades, e revelaram um problema recorrente: a organização dos jogos depende quase sempre de conversas em grupos de WhatsApp e de muita coordenação manual entre os participantes. Esse processo informal, embora funcione, costuma gerar desencontros, desistências e partidas canceladas.
+
+Mesmo sem seguir um protocolo formal de pesquisa, essas percepções iniciais foram importantes para identificar uma oportunidade de melhoria e motivaram o início do projeto.
+
+    \subsection{Priorização e modelagem de requisitos}
+    % Descrever como os requisitos foram analisados e refinados
+
+        \subsubsection{Método MoSCoW}
+        % Explicar o método e apresentar a matriz valor x esforço
+
+        \subsubsection{User Stories}
+        % Conceito de user story e critérios de aceitação
+        % Exemplos de user stories elaboradas
 
 \section{Plano de privacidade e segurança}
 % Descrever o tratamento de dados pessoais, consentimento, retenção e minimização
