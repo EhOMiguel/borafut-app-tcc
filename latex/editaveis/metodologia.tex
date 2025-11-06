@@ -2,115 +2,199 @@
 Escrever quando finalizar o capitulo.
 
 \section{Abordagem de desenvolvimento}
-% Descrever a abordagem metodológica utilizada (ex: ágil, incremental, MVP-driven)
-% Explicar a lógica de tempo e custo fixos, escopo adaptativo por valor
-% Justificar o modelo de desenvolvimento adotado e como ele se alinha aos objetivos do TCC
+    % Descrever a abordagem metodológica utilizada (ex: ágil, incremental, MVP-driven)
+    % Explicar a lógica de tempo e custo fixos, escopo adaptativo por valor
+    % Justificar o modelo de desenvolvimento adotado e como ele se alinha aos objetivos do TCC
 
-O desenvolvimento de sistemas de software requer a definição de uma abordagem metodológica que oriente o processo de trabalho e estabeleça o equilíbrio entre previsibilidade, qualidade e flexibilidade. Essa escolha depende das características do projeto, da equipe e do ambiente organizacional, influenciando diretamente a forma como requisitos, tempo e recursos são gerenciados \cite{pressman2019}.
+    O desenvolvimento de sistemas de software requer a definição de uma abordagem metodológica que oriente o processo de trabalho e estabeleça o equilíbrio entre previsibilidade, qualidade e flexibilidade. Essa escolha depende das características do projeto, da equipe e do ambiente organizacional, influenciando diretamente a forma como requisitos, tempo e recursos são gerenciados \cite{pressman2019}.
 
-O projeto \textit{BORAFUT} foi fundamentado em uma \textbf{abordagem híbrida}, combinando elementos de processos \textit{dirigidos a plano} (\textit{plan-driven}) e de metodologias \textit{ágeis} (\textit{agile-driven}). Essa escolha busca conciliar a estruturação necessária ao contexto acadêmico do Trabalho de Conclusão de Curso (TCC) com a adaptabilidade e o foco em valor característicos das metodologias ágeis.
+    O projeto \textit{BORAFUT} foi fundamentado em uma \textbf{abordagem híbrida}, combinando elementos de processos \textit{dirigidos a plano} (\textit{plan-driven}) e de metodologias \textit{ágeis} (\textit{agile-driven}). Essa escolha busca conciliar a estruturação necessária ao contexto acadêmico do Trabalho de Conclusão de Curso (TCC) com a adaptabilidade e o foco em valor característicos das metodologias ágeis.
 
-\subsection{Abordagens dirigidas a plano e ágeis}
+    \subsection{Abordagens dirigidas a plano e ágeis}
 
-De acordo com Sommerville \cite{sommerville2011}, as abordagens de desenvolvimento podem ser compreendidas a partir da relação entre três fatores principais: \textit{escopo}, \textit{recursos} e \textit{tempo}. Em processos dirigidos a plano, busca-se controlar rigorosamente o escopo e os requisitos desde o início do projeto, permitindo que cronograma e custos sejam ajustados conforme a necessidade.
+    De acordo com Sommerville \cite{sommerville2011}, as abordagens de desenvolvimento podem ser compreendidas a partir da relação entre três fatores principais: \textit{escopo}, \textit{recursos} e \textit{tempo}. Em processos dirigidos a plano, busca-se controlar rigorosamente o escopo e os requisitos desde o início do projeto, permitindo que cronograma e custos sejam ajustados conforme a necessidade.
 
-Por outro lado, as abordagens ágeis invertem essa lógica, mantendo tempo e recursos fixos e permitem que o escopo seja adaptado ao longo do desenvolvimento. Nessa abordagem, a prioridade recai sobre a entrega contínua de valor ao cliente e a colaboração próxima entre a equipe de desenvolvimento e os usuários \cite{boehm2003, pressman2019}. Essa diferença conceitual é ilustrada na Figura~\ref{fig:plan-vs-agile}, adaptada de Sommerville (2011), que contrasta os paradigmas dirigidos a plano e orientados a valor.
+    Por outro lado, as abordagens ágeis invertem essa lógica, mantendo tempo e recursos fixos e permitem que o escopo seja adaptado ao longo do desenvolvimento. Nessa abordagem, a prioridade recai sobre a entrega contínua de valor ao cliente e a colaboração próxima entre a equipe de desenvolvimento e os usuários \cite{boehm2003, pressman2019}. Essa diferença conceitual é ilustrada na Figura~\ref{fig:plan-vs-agile}, adaptada de Sommerville (2011), que contrasta os paradigmas dirigidos a plano e orientados a valor.
 
 
-\begin{figure}[h]
+    \begin{figure}[h]
+        \centering
+        % \includegraphics[width=0.7\textwidth]{bf7c1830-9c61-42c0-b969-d34834f4f0b1.png}
+        \caption{Comparativo entre abordagens dirigidas a plano e orientadas a valor. Adaptado de Sommerville (2011).}
+        \label{fig:plan-vs-agile}
+    \end{figure}
+
+    No contexto do \textit{BORAFUT}, o tempo de execução e os recursos disponíveis são fixos, delimitados pelos semestres letivos e pela equipe reduzida. A necessidade de adaptar o escopo e priorizações durante o desenvolvimento caracteriza um cenário tipicamente orientado a valor, justificando a adoção de princípios ágeis.
+
+    Entretanto, o projeto também apresenta certas características de um processo dirigido a plano, pois, neste trabalho, optou-se organizacionalmente por tratar o \textit{TCC 1} como uma etapa de planejamento estruturado, dedicada à definição de requisitos, arquitetura e critérios de desenvolvimento. O \textit{TCC 2}, por sua vez, concentra-se na implementação incremental e validação do MVP, com possibilidade de ajustes de escopo e priorização. Essa decisão organizacional, alinhada às necessidades do projeto, permite uma combinação coerente entre planejamento e adaptabilidade.
+
+    \subsection{Critérios para escolha da abordagem}
+
+    A decisão metodológica foi orientada por critérios propostos por Sommerville \cite{sommerville2011} e Gupta et al. \cite{gupta2019}, que relacionam características do projeto, da equipe e do ambiente ao modelo de processo mais adequado. 
+
+    Segundo Sommerville, abordagens dirigidas a plano são mais apropriadas quando os requisitos são estáveis e bem definidos, o ambiente é formal e a equipe é grande ou distribuída. Já abordagens ágeis são indicadas para projetos de pequena escala, com requisitos mutáveis, equipes reduzidas e comunicação direta com o cliente.
+
+    De forma complementar, Gupta et al. propõem quatro dimensões analíticas: \textit{projeto}, \textit{pessoas}, \textit{produto} e \textit{processo}, que orientam a escolha do modelo de desenvolvimento. Projetos com escopo exploratório, produtos inovadores e requisitos voláteis, conduzidos por equipes pequenas e autônomas, tendem a se beneficiar de processos ágeis e iterativos. Além disso, fatores sociais e culturais, como a proximidade entre desenvolvedores e usuários, também favorecem a agilidade, por viabilizarem ciclos curtos de feedback e validação contínua.
+
+    No caso do \textit{BORAFUT}, essas condições estão presentes. O sistema possui requisitos voláteis e evolutivos, definidos de forma colaborativa entre os próprios desenvolvedores e usuários, que pertencem ao mesmo grupo social. A equipe é pequena e estável, o produto é inovador e o ambiente de trabalho é autogerido e não hierárquico. A baixa criticidade do sistema também reforça a adequação de uma abordagem predominantemente ágil.
+
+    \begin{table}[h]
     \centering
-    % \includegraphics[width=0.7\textwidth]{bf7c1830-9c61-42c0-b969-d34834f4f0b1.png}
-    \caption{Comparativo entre abordagens dirigidas a plano e orientadas a valor. Adaptado de Sommerville (2011).}
-    \label{fig:plan-vs-agile}
-\end{figure}
+    \caption{Síntese dos critérios de escolha da abordagem de desenvolvimento.}
+    \label{tab:criterios-abordagem}
+    \begin{tabular}{p{4cm} p{5cm} p{5cm}}
+    \toprule
+    \textbf{Critério} & \textbf{Característica do BORAFUT} & \textbf{Implicação metodológica} \\ 
+    \midrule
+    Estabilidade dos requisitos & Requisitos mutáveis e evolutivos & Favorece abordagem ágil \\
+    Tamanho da equipe & Pequena e coesa & Favorece abordagem ágil \\
+    Criticidade do sistema & Baixa criticidade & Permite entregas incrementais \\
+    Disponibilidade do cliente & Alta (usuário = desenvolvedor) & Favorece feedback contínuo \\
+    Tempo e recursos & Fixos (limitações do TCC) & Exige planejamento inicial estruturado \\
+    Contexto organizacional & Acadêmico, com avaliação formal & Requer documentação mínima suficiente \\
+    Natureza do produto & Inovadora e exploratória & Favorece adaptabilidade e iteração \\
+    \bottomrule
+    \end{tabular}
+    \end{table}
 
-No contexto do \textit{BORAFUT}, o tempo de execução e os recursos disponíveis são fixos, delimitados pelos semestres letivos e pela equipe reduzida. A necessidade de adaptar o escopo e priorizações durante o desenvolvimento caracteriza um cenário tipicamente orientado a valor, justificando a adoção de princípios ágeis.
+    \subsection{Equilíbrio entre planejamento e adaptabilidade}
 
-Entretanto, o projeto também apresenta certas características de um processo dirigido a plano, pois, neste trabalho, optou-se organizacionalmente por tratar o \textit{TCC 1} como uma etapa de planejamento estruturado, dedicada à definição de requisitos, arquitetura e critérios de desenvolvimento. O \textit{TCC 2}, por sua vez, concentra-se na implementação incremental e validação do MVP, com possibilidade de ajustes de escopo e priorização. Essa decisão organizacional, alinhada às necessidades do projeto, permite uma combinação coerente entre planejamento e adaptabilidade.
+    Embora o projeto adote princípios ágeis, reconhece-se a importância de um planejamento inicial robusto. Essa combinação não representa um conflito metodológico, desde que cada paradigma seja aplicado de forma coerente e contextualizada \cite{boehm2003}. O planejamento fornece a estrutura necessária para o acompanhamento e avaliação acadêmica, enquanto a adaptação contínua garante flexibilidade e foco em valor durante o desenvolvimento.
 
-\subsection{Critérios para escolha da abordagem}
+    Para preservar a coerência entre as abordagens e evitar sobreposição de práticas conflitantes, foram observados os seguintes princípios:
+    \begin{itemize}
+        \item \textbf{Planejar o suficiente, não em excesso}: o planejamento inicial estabelece diretrizes estratégicas, não restrições fixas;
+        \item \textbf{Congelar decisões estruturais, não funcionais}: arquitetura e padrões técnicos permanecem estáveis, enquanto os requisitos e funcionalidades podem evoluir;
+        \item \textbf{Documentar para comunicar, não para controlar}: a documentação serve como meio de alinhamento entre integrantes, evitando burocracia desnecessária;
+        \item \textbf{Validar continuamente}: o sucesso do processo é avaliado pelo valor entregue a cada incremento, não pela aderência rígida ao plano inicial.
+    \end{itemize}
 
-A decisão metodológica foi orientada por critérios propostos por Sommerville \cite{sommerville2011} e Gupta et al. \cite{gupta2019}, que relacionam características do projeto, da equipe e do ambiente ao modelo de processo mais adequado. 
-
-Segundo Sommerville, abordagens dirigidas a plano são mais apropriadas quando os requisitos são estáveis e bem definidos, o ambiente é formal e a equipe é grande ou distribuída. Já abordagens ágeis são indicadas para projetos de pequena escala, com requisitos mutáveis, equipes reduzidas e comunicação direta com o cliente.
-
-De forma complementar, Gupta et al. propõem quatro dimensões analíticas: \textit{projeto}, \textit{pessoas}, \textit{produto} e \textit{processo}, que orientam a escolha do modelo de desenvolvimento. Projetos com escopo exploratório, produtos inovadores e requisitos voláteis, conduzidos por equipes pequenas e autônomas, tendem a se beneficiar de processos ágeis e iterativos. Além disso, fatores sociais e culturais, como a proximidade entre desenvolvedores e usuários, também favorecem a agilidade, por viabilizarem ciclos curtos de feedback e validação contínua.
-
-No caso do \textit{BORAFUT}, essas condições estão presentes. O sistema possui requisitos voláteis e evolutivos, definidos de forma colaborativa entre os próprios desenvolvedores e usuários, que pertencem ao mesmo grupo social. A equipe é pequena e estável, o produto é inovador e o ambiente de trabalho é autogerido e não hierárquico. A baixa criticidade do sistema também reforça a adequação de uma abordagem predominantemente ágil.
-
-\begin{table}[h]
-\centering
-\caption{Síntese dos critérios de escolha da abordagem de desenvolvimento.}
-\label{tab:criterios-abordagem}
-\begin{tabular}{p{4cm} p{5cm} p{5cm}}
-\toprule
-\textbf{Critério} & \textbf{Característica do BORAFUT} & \textbf{Implicação metodológica} \\ 
-\midrule
-Estabilidade dos requisitos & Requisitos mutáveis e evolutivos & Favorece abordagem ágil \\
-Tamanho da equipe & Pequena e coesa & Favorece abordagem ágil \\
-Criticidade do sistema & Baixa criticidade & Permite entregas incrementais \\
-Disponibilidade do cliente & Alta (usuário = desenvolvedor) & Favorece feedback contínuo \\
-Tempo e recursos & Fixos (limitações do TCC) & Exige planejamento inicial estruturado \\
-Contexto organizacional & Acadêmico, com avaliação formal & Requer documentação mínima suficiente \\
-Natureza do produto & Inovadora e exploratória & Favorece adaptabilidade e iteração \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\subsection{Equilíbrio entre planejamento e adaptabilidade}
-
-Embora o projeto adote princípios ágeis, reconhece-se a importância de um planejamento inicial robusto. Essa combinação não representa um conflito metodológico, desde que cada paradigma seja aplicado de forma coerente e contextualizada \cite{boehm2003}. O planejamento fornece a estrutura necessária para o acompanhamento e avaliação acadêmica, enquanto a adaptação contínua garante flexibilidade e foco em valor durante o desenvolvimento.
-
-Para preservar a coerência entre as abordagens e evitar sobreposição de práticas conflitantes, foram observados os seguintes princípios:
-\begin{itemize}
-    \item \textbf{Planejar o suficiente, não em excesso}: o planejamento inicial estabelece diretrizes estratégicas, não restrições fixas;
-    \item \textbf{Congelar decisões estruturais, não funcionais}: arquitetura e padrões técnicos permanecem estáveis, enquanto os requisitos e funcionalidades podem evoluir;
-    \item \textbf{Documentar para comunicar, não para controlar}: a documentação serve como meio de alinhamento entre integrantes, evitando burocracia desnecessária;
-    \item \textbf{Validar continuamente}: o sucesso do processo é avaliado pelo valor entregue a cada incremento, não pela aderência rígida ao plano inicial.
-\end{itemize}
-
-Em síntese, a abordagem de desenvolvimento do \textit{BORAFUT} combina a previsibilidade necessária à avaliação acadêmica com a adaptabilidade das práticas ágeis. Essa configuração caracteriza um modelo de processo \textbf{híbrido}, no qual o planejamento fornece estrutura e as iterações sucessivas garantem adaptabilidade e foco em valor.
+    Em síntese, a abordagem de desenvolvimento do \textit{BORAFUT} combina a previsibilidade necessária à avaliação acadêmica com a adaptabilidade das práticas ágeis. Essa configuração caracteriza um modelo de processo \textbf{híbrido}, no qual o planejamento fornece estrutura e as iterações sucessivas garantem adaptabilidade e foco em valor.
 
 \section{Processo de desenvolvimento}
 
-Com base na abordagem híbrida apresentada na seção anterior, o processo de desenvolvimento do \textit{BORAFUT} será fundamentado nos princípios do \textit{Extreme Programming} (XP), metodologia ágil proposta por Beck \cite{beck2000} que enfatiza simplicidade, colaboração e qualidade técnica. O XP foi escolhido por sua adequação a equipes pequenas e por priorizar práticas de engenharia de software em detrimento de estruturas organizacionais complexas, tornando-se mais apropriado ao contexto de um projeto acadêmico de escopo limitado.
+    Com base na abordagem híbrida apresentada na seção anterior, o processo de desenvolvimento do \textit{BORAFUT} será fundamentado nos princípios do \textit{Extreme Programming} (XP), metodologia ágil proposta por Beck \cite{beck2000} que enfatiza simplicidade, colaboração e qualidade técnica. O XP foi escolhido por sua adequação a equipes pequenas e por priorizar práticas de engenharia de software em detrimento de estruturas organizacionais complexas, tornando-se mais apropriado ao contexto de um projeto acadêmico de escopo limitado.
 
-A escolha pelo XP reflete uma decisão consciente de privilegiar práticas de engenharia e iteração contínua, em vez de adotar frameworks de gestão mais estruturados, como o \textit{Scrum}. Embora o \textit{Scrum} ofereça mecanismos formais de planejamento, papéis definidos e rituais de acompanhamento, essas características são menos relevantes no contexto do \textit{BORAFUT}, que será desenvolvido por uma equipe pequena e autogerida.
+    A escolha pelo XP reflete uma decisão consciente de privilegiar práticas de engenharia e iteração contínua, em vez de adotar frameworks de gestão mais estruturados, como o \textit{Scrum}. Embora o \textit{Scrum} ofereça mecanismos formais de planejamento, papéis definidos e rituais de acompanhamento, essas características são menos relevantes no contexto do \textit{BORAFUT}, que será desenvolvido por uma equipe pequena e autogerida.
 
-Além disso, conforme Boehm e Turner \cite{boehm2003}, a seleção de um processo ágil deve considerar o equilíbrio entre disciplina e adaptabilidade. Nesse sentido, o XP se mostra mais adequado, pois fornece um conjunto de práticas técnicas que podem ser aplicadas de forma incremental e flexível, sem comprometer a simplicidade operacional necessária em um projeto acadêmico.
+    Além disso, conforme Boehm e Turner \cite{boehm2003}, a seleção de um processo ágil deve considerar o equilíbrio entre disciplina e adaptabilidade. Nesse sentido, o XP se mostra mais adequado, pois fornece um conjunto de práticas técnicas que podem ser aplicadas de forma incremental e flexível, sem comprometer a simplicidade operacional necessária em um projeto acadêmico.
 
-A adoção do XP também está alinhada à filosofia incremental do \textit{MVP}, permitindo que cada ciclo de desenvolvimento produza versões funcionais do sistema, com oportunidades de revisão e refinamento contínuo. O foco não está em seguir um método prescritivo, mas em aplicar seus princípios para orientar um processo iterativo, colaborativo e centrado na entrega de valor.
+    A adoção do XP também está alinhada à filosofia incremental do \textit{MVP}, permitindo que cada ciclo de desenvolvimento produza versões funcionais do sistema, com oportunidades de revisão e refinamento contínuo. O foco não está em seguir um método prescritivo, mas em aplicar seus princípios para orientar um processo iterativo, colaborativo e centrado na entrega de valor.
 
-\subsection{Princípios do Extreme Programming}
+    \subsection{Princípios do Extreme Programming}
 
-O XP baseia-se em cinco valores fundamentais: \textit{comunicação}, \textit{simplicidade}, \textit{feedback}, \textit{coragem} e \textit{respeito}, que orientam tanto o comportamento da equipe quanto a qualidade do produto \cite{beck2000, pressman2019}. Esses valores foram incorporados ao projeto da seguinte forma:
+        O XP baseia-se em cinco valores fundamentais: \textit{comunicação}, \textit{simplicidade}, \textit{feedback}, \textit{coragem} e \textit{respeito}, que orientam tanto o comportamento da equipe quanto a qualidade do produto \cite{beck2000, pressman2019}. Esses valores foram incorporados ao projeto da seguinte forma:
 
-\begin{itemize}
-    \item \textbf{Comunicação}: a equipe manteve comunicação contínua por meio de ferramentas colaborativas (como GitHub e Discord), eliminando a necessidade de formalismos excessivos;
-    \item \textbf{Simplicidade}: priorizaram-se soluções técnicas minimamente suficientes para atender às necessidades do MVP, evitando complexidade desnecessária;
-    \item \textbf{Feedback}: os resultados de cada incremento foram avaliados pelos próprios desenvolvedores e potenciais usuários, permitindo ajustes rápidos;
-    \item \textbf{Coragem}: decisões de design e refatoração foram tomadas de forma transparente, com abertura para mudanças quando necessárias;
-    \item \textbf{Respeito}: a colaboração e o compartilhamento de responsabilidades foram valorizados como elementos centrais da dinâmica de trabalho.
-\end{itemize}
+        \begin{itemize}
+            \item \textbf{Comunicação}: a equipe manteve comunicação contínua por meio de ferramentas colaborativas (como GitHub e Discord), eliminando a necessidade de formalismos excessivos;
+            \item \textbf{Simplicidade}: priorizaram-se soluções técnicas minimamente suficientes para atender às necessidades do MVP, evitando complexidade desnecessária;
+            \item \textbf{Feedback}: os resultados de cada incremento foram avaliados pelos próprios desenvolvedores e potenciais usuários, permitindo ajustes rápidos;
+            \item \textbf{Coragem}: decisões de design e refatoração foram tomadas de forma transparente, com abertura para mudanças quando necessárias;
+            \item \textbf{Respeito}: a colaboração e o compartilhamento de responsabilidades foram valorizados como elementos centrais da dinâmica de trabalho.
+        \end{itemize}
 
-Esses princípios serão aplicados de forma pragmática, guiando decisões técnicas e o ritmo de trabalho sem a necessidade de estruturas rígidas de papéis ou cerimônias formais.
+        Esses princípios serão aplicados de forma pragmática, guiando decisões técnicas e o ritmo de trabalho sem a necessidade de estruturas rígidas de papéis ou cerimônias formais.
 
 \section{Planejamento inicial}
-% Visão geral do planejamento e dos marcos principais do projeto
 
-\subsection{Project Model Canvas}
-% Inserir o PMC exportado do Miro
-% Descrever brevemente os blocos mais relevantes (proposta de valor, público, recursos, etc.)
+    O planejamento inicial do projeto \textbf{Bora Fut} teve como objetivo consolidar a visão estratégica e o posicionamento da solução antes do início do desenvolvimento técnico. Nessa etapa, foram utilizados dois instrumentos principais: o \textit{Project Model Canvas} (PMC), para estruturar a proposta de valor e os elementos centrais do projeto, e a \textit{Análise de Mercado}, voltada à identificação de soluções similares, lacunas existentes e diferenciais competitivos.
 
-\subsection{Análise de mercado}
-% Apresentar os concorrentes e lacunas observadas
-% Indicar como essa análise orientou o escopo inicial e os diferenciais do BORAFUT
+    Esses artefatos serviram como ponto de partida para a definição do escopo do MVP e orientaram as decisões de design e desenvolvimento descritas nos capítulos seguintes.
+
+    \subsection{Project Model Canvas}
+        \paragraph{O que é o PM Canvas}
+        O \textit{Project Model Canvas} (PM Canvas) é um quadro visual criado por José Finocchio Jr. para planejar e comunicar projetos em uma única página. O modelo condensa decisões essenciais em blocos curtos, facilitando o alinhamento entre equipe e partes interessadas e funcionando como referência viva durante a execução \cite{pmcanvas}. O quadro organiza respostas às perguntas fundamentais de um projeto: por que executar, o que entregar, para quem, como realizar, quando e quanto custará. A versão clássica contempla os blocos abaixo.
+
+        \paragraph{Blocos do PM Canvas por dimensão}
+            \begin{description}
+                \item[\textbf{Por quê?}] 
+                \begin{itemize}
+                    \item \textbf{Justificativas}: Problemas, dores, demandas não atendidas e contexto passado que motivam o projeto
+                    \item \textbf{Objetivo SMART}\footnote{``SMART'' é um acrônimo para \textit{Specific}, \textit{Measurable}, \textit{Achievable}, \textit{Relevant} e \textit{Time-bound}.}: Resultado pretendido expresso de forma específica, mensurável, atingível, relevante e com prazo definido.
+                    \item \textbf{Benefícios}: Efeitos esperados após a entrega do projeto para organização, usuários e sociedade, tangíveis ou intangíveis.
+                \end{itemize}
+                \item[\textbf{O quê?}] 
+                \begin{itemize}
+                    \item \textbf{Produto ou solução}: Entregável principal do projeto (sistema, serviço, campanha, infraestrutura), descrito no nível do que será entregue.
+                    \item \textbf{Requisitos}: Condições indispensáveis que o produto deve atender, incluindo aspectos funcionais, não funcionais e critérios de aceitação.
+                \end{itemize}
+
+                \item[\textbf{Quem?}] 
+                \begin{itemize}
+                    \item \textbf{Stakeholders}: partes interessadas que influenciam ou são impactadas, com indicação de papéis e relação com o projeto.
+                    \item \textbf{Equipe}: responsáveis diretos pela execução e competências essenciais, com papéis-chave necessários ao andamento.
+                \end{itemize}
+                \item[\textbf{Como?}] 
+                \begin{itemize}
+                    \item \textbf{Premissas}: hipóteses consideradas verdadeiras no planejamento e que sustentam decisões, sujeitas a confirmação ao longo do projeto.
+                    \item \textbf{Grupos de entregas}: Conjuntos de resultados que compõem o produto, organizados em pacotes ou ondas de entrega.
+                    \item \textbf{Restrições}: limites estabelecidos que afetam o projeto, como escopo, prazos, orçamento, tecnologia, normas e dependências.
+                \end{itemize}
+                \item[\textbf{Quando?}] 
+                \begin{itemize}
+                    \item \textbf{Riscos}: incertezas que podem afetar objetivos, prazos, custos ou qualidade, descritas no nível de causa, evento e possível impacto.
+                    \item \textbf{Linha do tempo}: visão macro de marcos e datas-alvo do projeto, com principais dependências entre entregas.
+                \end{itemize}
+                \item[\textbf{Quanto?}] 
+                \begin{itemize}
+                    \item \textbf{Custos}: estimativas de recursos financeiros necessários, incluindo licenças, serviços em nuvem, pessoas e fornecedores.
+                \end{itemize}
+            \end{description}
+
+        \paragraph{Síntese do PM Canvas do \textbf{BoraFut} (consolidado)}
+            \begin{description}
+                \item[\textbf{Por quê?}] 
+                \begin{itemize}
+                    \item \textbf{Justificativas}: organização de peladas em Brasília é fragmentada e pouco previsível; dificuldade de formar times completos e atrair novos jogadores; subutilização de quadras públicas e oportunidade de fortalecer o futebol de comunidade; caso aplicado de Engenharia de Software com potencial de impacto social e continuidade.
+                    \item \textbf{Objetivos SMART}: até junho de 2026, concluir o MVP funcional com autenticação por e-mail, mapa de quadras públicas, criação/edição de partidas, confirmação de presença e compartilhamento por link, pronto para testes fechados; em julho de 2026, executar o piloto do MVP na Asa Norte, Asa Sul e UnB.
+                    \item \textbf{Benefícios}: estímulo à prática esportiva e ao convívio comunitário; uso mais eficiente das quadras públicas; visibilidade para grupos e jogadores; base de aprendizado e potencial de monetização no futuro.
+                \end{itemize}
+
+                \item[\textbf{O quê?}] 
+                \begin{itemize}
+                    \item \textbf{Produto/solução}: aplicativo móvel multiplataforma que conecta jogadores, quadras e partidas, simplificando criação de jogos, confirmação de presença e gerenciamento de partidas.
+                    \item \textbf{Requisitos do MVP}: autenticação por e-mail com verificação; mapa com quadras públicas e detalhes básicos; criação, edição e exclusão de partidas; confirmação de presença e compartilhamento por link; identidade visual aplicada e protótipo validado com 5 a 8 usuários; gerenciamento completo do futebol através do app.
+                    \item \textbf{Requisitos pós-MVP}: estatísticas de jogadores e partidas; gamificação inicial; organização de campeonatos; API de pagamentos para inscrição de campeonatos; chat/recursos comunitários.
+                \end{itemize}
+
+                \item[\textbf{Quem?}] 
+                \begin{itemize}
+                    \item \textbf{Stakeholders}: equipe de desenvolvimento e orientação acadêmica; jogadores amadores e organizadores informais de peladas; iniciativas esportivas locais e administrações regionais ligadas às quadras; parceiros potenciais, como a equipe ``Copa na Praça'' de Sobradinho.
+                    \item \textbf{Equipe}: engenheiros de software, coordenador de projetos e designer/UX.
+                \end{itemize}
+
+                \item[\textbf{Como?}] 
+                \begin{itemize}
+                    \item \textbf{Premissas}: pessoas aceitarão testar uma ferramenta dedicada em vez de depender exclusivamente de grupos de mensagens; não há entraves jurídicos para desenvolvimento e piloto acadêmico; poucos concorrentes diretos focados em quadras públicas do DF.
+                    \item \textbf{Grupos de entregas}: requisitos e arquitetura mínima; identidade visual e protótipos de alta fidelidade; backend/API e banco de dados; aplicativo móvel (MVP funcional); teste de usabilidade e ajustes; pacote de evidências e documentação final.
+                    \item \textbf{Restrições}: tempo de TCC e equipe reduzida; escopo focado no MVP; conformidade com LGPD e idade mínima de 16 anos; dependência de SDKs/APIs de terceiros (mapas, autenticação, notificações).
+                \end{itemize}
+
+                \item[\textbf{Quando?}] 
+                \begin{itemize}
+                    \item \textbf{Riscos}: adoção abaixo do esperado; falhas de SDKs e permissões de localização; expansão de concorrentes; sobrecarga de escopo e perda de engajamento da equipe.
+                    \item \textbf{Linha do tempo (macro)}: requisitos de software, identidade visual, modelagem do banco de dados, protótipo, MVPs, testes, homologação/marketing e \textit{feedback}.
+                \end{itemize}
+
+                \item[\textbf{Quanto?}] 
+                \begin{itemize}
+                    \item \textbf{Custos estimados}: publicações/lojas (\textit{host app stores} \(\approx\) R\$~99/ano;), hospedagem do backend e banco de dados \(\approx\) US\$~20/mês; eventuais despesas com ferramentas de apoio e divulgação do piloto.
+                \end{itemize}
+        \end{description}
+
+        \noindent A versão visual completa do canvas encontra-se no Apêndice~\ref{apendice:pmcanvas}, com a imagem do diagrama consolidado.
+
+
+    \subsection{Análise de mercado}
+    % Apresentar os concorrentes e lacunas observadas
+    % Indicar como essa análise orientou o escopo inicial e os diferenciais do BORAFUT
 
 \section{Levantamento e análise de requisitos}
-% Descrever a estratégia geral de elicitação e análise de requisitos
+    \label{sec:metodologia-elicitacao}
+    % Descrever a estratégia geral de elicitação e análise de requisitos
 
-\subsection{Elicitação}
-% Apresentar os métodos utilizados
+    \subsection{Elicitação}
+    % Apresentar os métodos utilizados
 
 \subsubsection{Brainwriting}
 
@@ -197,21 +281,28 @@ Mesmo sem seguir um protocolo formal de pesquisa, essas percepções iniciais fo
 
     \subsection{Priorização e modelagem de requisitos}
     % Descrever como os requisitos foram analisados e refinados
+    \subsection{Priorização e modelagem de requisitos}
+    % Descrever como os requisitos foram analisados e refinados
 
+        \subsubsection{Método MoSCoW}
+        % Explicar o método e apresentar a matriz valor x esforço
         \subsubsection{Método MoSCoW}
         % Explicar o método e apresentar a matriz valor x esforço
 
         \subsubsection{User Stories}
         % Conceito de user story e critérios de aceitação
         % Exemplos de user stories elaboradas
+        \subsubsection{User Stories}
+        % Conceito de user story e critérios de aceitação
+        % Exemplos de user stories elaboradas
 
 \section{Plano de privacidade e segurança}
-% Descrever o tratamento de dados pessoais, consentimento, retenção e minimização
-% Referenciar a LGPD e princípios éticos abordados no Capítulo 2
+    % Descrever o tratamento de dados pessoais, consentimento, retenção e minimização
+    % Referenciar a LGPD e princípios éticos abordados no Capítulo 2
 
 \section{Plano de implantação e operação}
-% Descrever o ambiente de operação e infraestrutura de execução
-% (Backend em AWS, banco provisionado, chaves do Google, builds com EAS, etc.)
+    % Descrever o ambiente de operação e infraestrutura de execução
+    % (Backend em AWS, banco provisionado, chaves do Google, builds com EAS, etc.)
 
 \section{Arquitetura geral do sistema}
 % Explicar as decisões metodológicas que orientaram o design do sistema
