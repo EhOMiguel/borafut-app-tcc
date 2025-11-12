@@ -102,10 +102,10 @@ Escrever quando finalizar o capitulo.
     Esses artefatos serviram como ponto de partida para a definição do escopo do MVP e orientaram as decisões de design e desenvolvimento descritas nos capítulos seguintes.
 
     \subsection{Project Model Canvas}
-        \paragraph{O que é o PM Canvas}
+        \subsubsection{O que é o PM Canvas}
         O \textit{Project Model Canvas} (PM Canvas) é um quadro visual criado por José Finocchio Jr. para planejar e comunicar projetos em uma única página. O modelo condensa decisões essenciais em blocos curtos, facilitando o alinhamento entre equipe e partes interessadas e funcionando como referência viva durante a execução \cite{pmcanvas}. O quadro organiza respostas às perguntas fundamentais de um projeto: por que executar, o que entregar, para quem, como realizar, quando e quanto custará. A versão clássica contempla os blocos abaixo.
 
-        \paragraph{Blocos do PM Canvas por dimensão}
+        \subsubsection{Blocos do PM Canvas por dimensão}
             \begin{description}
                 \item[\textbf{Por quê?}] 
                 \begin{itemize}
@@ -141,7 +141,7 @@ Escrever quando finalizar o capitulo.
                 \end{itemize}
             \end{description}
 
-        \paragraph{Síntese do PM Canvas do \textbf{BoraFut} (consolidado)}
+        \subsubsection{Síntese do PM Canvas do \textbf{BoraFut} (consolidado)}
             \begin{description}
                 \item[\textbf{Por quê?}] 
                 \begin{itemize}
@@ -186,8 +186,34 @@ Escrever quando finalizar o capitulo.
 
 
     \subsection{Análise de mercado}
-    % Apresentar os concorrentes e lacunas observadas
-    % Indicar como essa análise orientou o escopo inicial e os diferenciais do BORAFUT
+
+    \subsection{Análise de mercado}
+        Fizemos uma pesquisa direta sobre apps parecidos com o \textbf{BoraFut}. Buscamos no Google, na Google Play e na App Store e chegamos a cinco aplicativos: \textit{Chega+}, \textit{Appito}, \textit{PELADEIROS}, \textit{FINTTA} e \textit{Agendei~Quadras}. Para cada um, olhamos redes sociais, lemos comentários nas lojas, instalamos e usamos rapidamente para entender pontos fortes, pontos fracos e o que valia adaptar ao contexto de Brasília.
+
+        \subsubsection{Chega+}
+        Forte na organização de grupos privados de futebol. Tem convite, confirmação de presença, sorteio de times, fila e estatísticas. A base de usuários é grande (\textit{500 mil+ downloads}) e ativa, com redes sociais bem movimentadas. Comentários críticos citam \textit{excesso} de bugs e planos pagos percebidos como caros por parte dos usuários. A interface cumpre o papel, mas não se destaca em experiência.
+
+        \subsubsection{Appito}
+        É o app com maior número de downloads entre os analisados (\textit{1 milhão+}). No começo, também focava em grupos privados, mas permite deixar o jogo público para outras pessoas encontrarem pelo app. Hoje o foco principal parece ser a gestão de arenas próprias e a reserva de quadras dessas arenas (concentradas em São Paulo). Usa gamificação (rankings, estatísticas) e aproxima a experiência do universo de jogos.
+
+        \subsubsection{PELADEIROS e FINTTA}
+        Seguem a linha “grupo privado organiza o futebol”. Ambos têm alcance menor que os líderes (\textit{100 mil+ downloads}). O \textit{PELADEIROS} aposta na simplicidade (há versão \textit{Pro}); o \textit{FINTTA} agrega módulo financeiro e vitrine de quadras.
+
+        \subsubsection{Agendei~Quadras}
+        Funciona como um marketplace multiesporte. Donos anunciam as quadras e os usuários agendam e pagam. É ótimo para reserva de infraestrutura, mas não foca na dinâmica espontânea do futebol em quadras públicas.
+
+        \subsubsection{O que tiramos disso}
+            \begin{itemize}
+                \item \textbf{Funcionalidades úteis}: não vimos um “grande diferencial” exclusivo, e sim boas jornadas espalhadas entre os apps. Para o \textbf{BoraFut}, trouxemos confirmação simples, convite por link e formação de times, combinados com \textbf{mapa hiperlocal} e \textbf{descoberta de partidas} em quadras públicas.
+                \item \textbf{Mercado existe}: há demanda real por organizar o futebol amador, comprovada por alto número de downloads e engajamento nos líderes.
+                \item \textbf{Aderência em Brasília é baixa}: os grandes apps aparecem pouco no DF, abrindo espaço para uma solução pensada desde o início para quadras públicas brasilienses.
+                \item \textbf{Onde dá para diferenciar}: reduzir barreiras de entrada (fluxos rápidos, incluir convidados sem conta), priorizar jogos públicos no mapa e evitar travar o uso atrás de planos pagos no começo.
+            \end{itemize}
+
+        \subsubsection{Brasília é diferente}
+            Brasília tem um jeito próprio de jogar. A cidade possui um ecossistema único de esporte público: por causa do seu planejamento urbano, concentra uma quantidade excepcional de quadras poliesportivas e campos de futebol de acesso livre. Desde a idealização do BoraFut, pensamos em como ampliar a acessibilidade sem jamais dar a impressão de privatizar o futebol público. Na verdade, buscamos justamente o contrário. Nosso objetivo é organizar, facilitar e fortalecer ainda mais essa cultura de jogo aberto que já existe aqui.
+
+            Esse contexto também explica por que muitos aplicativos consolidados no Brasil não conseguiram crescer em Brasília. O futebol daqui funciona de um jeito diferente. Isso cria uma oportunidade real para que o BoraFut se desenvolva primeiro na capital, valorizando o que Brasília tem de mais forte e leve essa visão de acessibilidade e organização do futebol público para outras regiões do país, contribuindo para unir ainda mais o “país do futebol”.
 
 \section{Levantamento e análise de requisitos}
     \label{sec:metodologia-elicitacao}
@@ -202,7 +228,7 @@ Escrever quando finalizar o capitulo.
 
         Entre os formatos mais comuns está o método \textit{6-3-5} descrito por Rohrbach, no qual seis pessoas escrevem três ideias em cinco minutos e, a cada rodada, passam suas fichas adiante para que sejam desenvolvidas, acumulando várias iterações em pouco tempo \cite{rohrbach1969}. Evidências apontam que formatos escritos tendem a produzir maior quantidade e diversidade de ideias do que sessões exclusivamente orais, principalmente em grupos pequenos \cite{paulus2007}.
 
-        \paragraph{Aplicação no \textit{BORAFUT}.}
+        \subsubsection{Aplicação no \textit{BORAFUT}.}
         A dinâmica foi realizada com sete participantes, entre desenvolvedores e potenciais usuários. Para orientar e cobrir o problema de forma ampla, as ideias foram organizadas em seis categorias temáticas: \textit{Funcionalidades do app}, \textit{Melhorias na experiência do usuário}, \textit{Monetização e modelo de negócios}, \textit{Gamificação}, \textit{Integrações e parcerias} e \textit{Marketing e divulgação} (Figura~\ref{fig:brainwriting-categorias}).
         Cada rodada teve duração de apoximadamente 5 minutos, nas quais o foco foi em quantidade, e somente ao final, agrupamos e analisamos itens redundantes. Ao término, foram produzidos mais de 30 cartões com diversas propostas.
 
@@ -217,7 +243,7 @@ Escrever quando finalizar o capitulo.
 
         Com base nas ideias geradas na dinâmica de \textit{brainwriting}, foi elaborado um questionário on-line com o objetivo de compreender o perfil dos potenciais usuários e validar hipóteses sobre comportamentos, dores e preferências relacionadas à organização de partidas de futebol amador. O instrumento foi desenvolvido em formato digital, via Google Forms, e distribuído entre grupos diversas universidades, grupos esportivos e comunidades de \textit{society} e \textit{futsal} do Distrito Federal, alcançando mais de 60 respostas válidas.
 
-        \paragraph{Estrutura e objetivos.}
+        \subsubsection{Estrutura e objetivos.}
         O questionário combinou perguntas fechadas e de múltipla escolha, distribuídas em quatro eixos:
         \begin{enumerate}[label=(\roman*)]
             \item \textbf{Perfil sociodemográfico} — idade, gênero e região administrativa;
@@ -227,17 +253,17 @@ Escrever quando finalizar o capitulo.
         \end{enumerate}
         Os dados obtidos serviram de base tanto para a definição do público-alvo quanto para a priorização inicial de funcionalidades do \textit{BORAFUT}.
 
-        \paragraph{Perfil dos respondentes.}
+        \subsubsection{Perfil dos respondentes.}
         A amostra foi composta majoritariamente por homens (71,9\%) entre 18 e 24 anos (70,3\%), faixa correspondente à população universitária e de jovens adultos. A distribuição geográfica concentrou-se nas regiões de Brasília (17,2\%), Guará (10,9\%) e Gama (10,9\%), além de participações expressivas de Taguatinga, Águas Claras e Santa Maria, indicando forte presença no eixo central do Distrito Federal, o foco inicial do \textit{BORAFUT}.
 
         Em relação ao nível de prática, 84,4\% dos participantes se identificaram como jogadores amadores e o restante como semiprofissionais. O formato mais comum de jogo é o \textit{futsal} (81,3\%), seguido pelo \textit{society} (51,6\%), e 15,6\% afirmaram praticar futebol de campo. Grupos de maior porte são predominantes: 53,1\% relataram possuir mais de dez jogadores, o que reforça a necessidade de uma ferramenta de coordenação coletiva.
 
-        \paragraph{Hábitos e organização.}
+        \subsubsection{Hábitos e organização.}
         A frequência de jogo mostrou-se heterogênea: cerca de 25\% jogam semanalmente, 23,4\% de duas a três vezes por semana e 17,2\% não jogaram nos últimos três meses. Esses dados sugerem que o público é ativo, mas sujeito a variações de engajamento, o que abre espaço para funcionalidades de estímulo à participação contínua, como notificações, recompensas e estatísticas.
 
         Quanto aos meios de organização, 98,4\% dos respondentes utilizam o \textit{WhatsApp} para combinar jogos, enquanto 35,9\% o fazem também presencialmente e 20,3\% por redes sociais como Instagram e Facebook. Essa concentração em canais informais indica ausência de ferramentas especializadas e dispersão de informações, uma oportunidade direta para uma ferramenta de organização.
 
-        \paragraph{Dores e motivações.}
+        \subsubsection{Dores e motivações.}
         As respostas evidenciaram problemas recorrentes na organização de partidas: 39,1\% relataram que jogos deixam de acontecer ocasionalmente, e 25\% afirmaram que isso ocorre com frequência. Entre as motivações para uso do aplicativo, destacaram-se:
 
         \begin{itemize}
@@ -256,14 +282,14 @@ Escrever quando finalizar o capitulo.
             \label{fig:questionario-resultados}
         \end{figure}
 
-        \paragraph{Análise e interpretação.}
+        \subsubsection{Análise e interpretação.}
         Os dados apontam para um público-alvo composto majoritariamente por jovens de 18 a 24 anos, praticantes de \textit{futsal} e residentes nas regiões centrais do Distrito Federal. Trata-se de um público digitalmente ativo, que já utiliza plataformas de comunicação, mas não possuem soluções especializadas para organização esportiva.
 
         O perfil observado é de grupos pequenos e autogeridos com alta densidade de conexões sociais, um cenário favorável para a propagação do aplicativo.
 
         A análise também sugere que o sistema deve priorizar a simplicidade de uso, a integração com canais existentes e funcionalidades voltadas à coordenação de partidas, gestão de presença e descoberta de quadras.
 
-        \paragraph{Síntese do público-alvo.}
+        \subsubsection{Síntese do público-alvo.}
         Com base na análise dos questionários, o público inicial do \textit{BORAFUT} pode ser descrito como:
         \begin{quote}
             Jovens adultos, entre 18 e 30 anos, predominantemente homens, praticantes amadores de futsal e \textit{society}, que jogam em grupos autônomos e organizam suas partidas via WhatsApp. Valorizam praticidade, agilidade e confiabilidade na marcação de jogos e demonstram interesse em recursos de descoberta de quadras e confirmação de presença.
