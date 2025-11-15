@@ -189,67 +189,67 @@
   % Telas de alta fidelidade no Figma
 
 \section{Arquitetura e design}
-\label{sec:arquitetura-design}
+  \label{sec:arquitetura-design}
 
-Esta seção apresenta a arquitetura técnica e a modelagem do banco de dados do \textit{BORAFUT}, descrevendo como as decisões planejadas na metodologia (Seção~\ref{sec:arquitetura-geral}) foram concretizadas em artefatos. São exibidos dois diagramas baseados no modelo C4, que representam a estrutura do sistema em diferentes níveis de abstração, seguidos do modelo de dados do banco \textit{PostgreSQL}.
+  Esta seção apresenta a arquitetura técnica e a modelagem do banco de dados do \textit{BORAFUT}, descrevendo como as decisões planejadas na metodologia (Seção~\ref{sec:arquitetura-geral}) foram concretizadas em artefatos. São exibidos dois diagramas baseados no modelo C4, que representam a estrutura do sistema em diferentes níveis de abstração, seguidos do modelo de dados do banco \textit{PostgreSQL}.
 
-\subsection{Modelo C4 de contexto e contêineres}
-\label{subsec:c4}
+  \subsection{Modelo C4 de contexto e contêineres}
+    \label{subsec:c4}
 
-O modelo C4, proposto por Brown~\cite{brown2018}, é um método visual para documentar arquitetura de software em quatro níveis de abstração: contexto, contêineres, componentes e código, que permitem descrever a arquitetura de software em diferentes graus de detalhe. 
-Neste trabalho, optou-se por representar apenas os dois primeiros níveis (contexto e contêineres), por serem suficientes para comunicar a visão geral e a organização técnica do \textit{BORAFUT} no estágio atual do projeto. 
+    O modelo C4, proposto por Brown~\cite{brown2018}, é um método visual para documentar arquitetura de software em quatro níveis de abstração: contexto, contêineres, componentes e código, que permitem descrever a arquitetura de software em diferentes graus de detalhe. 
+    Neste trabalho, optou-se por representar apenas os dois primeiros níveis (contexto e contêineres), por serem suficientes para comunicar a visão geral e a organização técnica do \textit{BORAFUT} no estágio atual do projeto. 
 
-\subsubsection{Diagrama de contexto (C1).}
-O diagrama de contexto mostra o \textit{BORAFUT} como um sistema inserido em seu ambiente de uso. Ele representa as interações entre os usuários e os sistemas externos que fornecem serviços complementares.  
-Na Figura~\ref{fig:c4-contexto}, observa-se que o aplicativo é utilizado por jogadores amadores e administradores de quadra, comunicando-se com serviços responsáveis por autenticação e geolocalização.
+    \subsubsection{Diagrama de contexto (C1).}
+      O diagrama de contexto mostra o \textit{BORAFUT} como um sistema inserido em seu ambiente de uso. Ele representa as interações entre os usuários e os sistemas externos que fornecem serviços complementares.  
+      Na Figura~\ref{fig:c4-contexto}, observa-se que o aplicativo é utilizado por jogadores amadores e administradores de quadra, comunicando-se com serviços responsáveis por autenticação e geolocalização.
 
-\begin{figure}[h]
-    \centering
-    % \includegraphics[width=0.8\textwidth]{figures/c4-contexto.png}
-    \caption{Diagrama C4 nível contexto do \textit{BORAFUT}.}
-    \label{fig:c4-contexto}
-\end{figure}
+      \begin{figure}[h]
+          \centering
+          % \includegraphics[width=0.8\textwidth]{figures/c4-contexto.png}
+          \caption{Diagrama C4 nível contexto do \textit{BORAFUT}.}
+          \label{fig:c4-contexto}
+      \end{figure}
 
-\subsubsection{Diagrama de contêineres (C2).}
-O diagrama de contêineres representa a decomposição interna do sistema em suas principais partes executáveis, chamadas de contêineres. Cada contêiner abriga um conjunto de responsabilidades técnicas ou funcionais, comunicando-se com os demais por interfaces bem definidas.  
+    \subsubsection{Diagrama de contêineres (C2).}
+      O diagrama de contêineres representa a decomposição interna do sistema em suas principais partes executáveis, chamadas de contêineres. Cada contêiner abriga um conjunto de responsabilidades técnicas ou funcionais, comunicando-se com os demais por interfaces bem definidas.  
 
-A Figura~\ref{fig:c4-conteineres} apresenta os principais contêineres do \textit{BORAFUT}:
-\begin{itemize}
-    \item o \textbf{aplicativo móvel} (\textit{React Native}), responsável pela interação com o usuário e envio das requisições à API;
-    \item o \textbf{backend} (\textit{Node.js + Express}), que concentra a lógica de negócio, autenticação e orquestração de dados;
-    \item o \textbf{banco de dados relacional} (\textit{PostgreSQL}), que armazena as informações persistentes;
-    \item e as \textbf{APIs externas}, usadas para autenticação (\textit{Google Identity}), geolocalização (\textit{Google Maps Platform}) e armazenamento de mídia.
-\end{itemize}
+      A Figura~\ref{fig:c4-conteineres} apresenta os principais contêineres do \textit{BORAFUT}:
+      \begin{itemize}
+          \item o \textbf{aplicativo móvel} (\textit{React Native}), responsável pela interação com o usuário e envio das requisições à API;
+          \item o \textbf{backend} (\textit{Node.js + Express}), que concentra a lógica de negócio, autenticação e orquestração de dados;
+          \item o \textbf{banco de dados relacional} (\textit{PostgreSQL}), que armazena as informações persistentes;
+          \item e as \textbf{APIs externas}, usadas para autenticação (\textit{Google Identity}), geolocalização (\textit{Google Maps Platform}) e armazenamento de mídia.
+      \end{itemize}
 
-\begin{figure}[h]
-    \centering
-    % \includegraphics[width=0.8\textwidth]{figures/c4-conteineres.png}
-    \caption{Diagrama C4 nível contêineres do \textit{BORAFUT}.}
-    \label{fig:c4-conteineres}
-\end{figure}
+      \begin{figure}[h]
+          \centering
+          % \includegraphics[width=0.8\textwidth]{figures/c4-conteineres.png}
+          \caption{Diagrama C4 nível contêineres do \textit{BORAFUT}.}
+          \label{fig:c4-conteineres}
+      \end{figure}
 
-\subsection{Modelo de dados do PostgreSQL}
-\label{subsec:modelo-dados}
+  \subsection{Modelo de dados do PostgreSQL}
+    \label{subsec:modelo-dados}
 
-O modelo de dados do \textit{BORAFUT} foi elaborado com base nas entidades e relacionamentos identificados durante o levantamento de requisitos (Capítulo~\ref{sec:metodologia-elicitacao}). O objetivo é garantir que as informações essenciais, como jogadores, partidas e quadras sejam armazenadas de forma estruturada, mantendo a integridade referencial.
+    O modelo de dados do \textit{BORAFUT} foi elaborado com base nas entidades e relacionamentos identificados durante o levantamento de requisitos (Capítulo~\ref{sec:metodologia-elicitacao}). O objetivo é garantir que as informações essenciais, como jogadores, partidas e quadras sejam armazenadas de forma estruturada, mantendo a integridade referencial.
 
-A modelagem seguiu uma abordagem relacional normalizada, organizada em tabelas interconectadas por chaves primárias e estrangeiras. Entre as principais entidades estão:
-\begin{itemize}
-    \item \textbf{Jogador} — dados pessoais, preferências e histórico de partidas;
-    \item \textbf{Quadra} — informações sobre localização, disponibilidade e avaliações;
-    \item \textbf{Partida} — definição de horários, participantes e status;
-\end{itemize}
+    A modelagem seguiu uma abordagem relacional normalizada, organizada em tabelas interconectadas por chaves primárias e estrangeiras. Entre as principais entidades estão:
+    \begin{itemize}
+        \item \textbf{Jogador} — dados pessoais, preferências e histórico de partidas;
+        \item \textbf{Quadra} — informações sobre localização, disponibilidade e avaliações;
+        \item \textbf{Partida} — definição de horários, participantes e status;
+    \end{itemize}
 
-A Figura~\ref{fig:modelo-dados} apresenta o diagrama entidade-relacionamento (DER) que representa o modelo lógico do banco de dados planejado.
+    A Figura~\ref{fig:modelo-dados} apresenta o diagrama entidade-relacionamento (DER) que representa o modelo lógico do banco de dados planejado.
 
-\begin{figure}[h]
-    \centering
-    % \includegraphics[width=0.9\textwidth]{figures/modelo-dados.png}
-    \caption{Modelo entidade-relacionamento do banco \textit{PostgreSQL}.}
-    \label{fig:modelo-dados}
-\end{figure}
+    \begin{figure}[h]
+        \centering
+        % \includegraphics[width=0.9\textwidth]{figures/modelo-dados.png}
+        \caption{Modelo entidade-relacionamento do banco \textit{PostgreSQL}.}
+        \label{fig:modelo-dados}
+    \end{figure}
 
-O diagrama entidade–relacionamento completo encontra-se nos Apêndices \ref{apendice:MER} e \ref{apendice:DER}, que apresentam, respectivamente, o modelo conceitual e o modelo lógico do banco de dados. Esses diagramas servem como referência para a implementação física do banco no ambiente de nuvem.
+    O diagrama entidade–relacionamento completo encontra-se nos Apêndices \ref{apendice:MER} e \ref{apendice:DER}, que apresentam, respectivamente, o modelo conceitual e o modelo lógico do banco de dados. Esses diagramas servem como referência para a implementação física do banco no ambiente de nuvem.
 
     % \subsection{Contratos de API REST}
     % Endpoints, métodos e esquemas
