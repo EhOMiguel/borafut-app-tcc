@@ -99,8 +99,6 @@ Escrever quando finalizar o capitulo.
 
     O planejamento inicial do projeto \textbf{Bora Fut} teve como objetivo consolidar a visão estratégica e o posicionamento da solução antes do início do desenvolvimento técnico. Nessa etapa, foram utilizados dois instrumentos principais: o \textit{Project Model Canvas} (PMC), para estruturar a proposta de valor e os elementos centrais do projeto, e a \textit{Análise de Mercado}, voltada à identificação de soluções similares, lacunas existentes e diferenciais competitivos.
 
-    Esses artefatos serviram como ponto de partida para a definição do escopo do MVP e orientaram as decisões de design e desenvolvimento descritas nos capítulos seguintes.
-
     \subsection{Project Model Canvas}
         \subsubsection{O que é o PM Canvas}
         O \textit{Project Model Canvas} (PM Canvas) é um quadro visual criado por José Finocchio Jr. para planejar e comunicar projetos em uma única página. O modelo condensa decisões essenciais em blocos curtos, facilitando o alinhamento entre equipe e partes interessadas e funcionando como referência viva durante a execução \cite{pmcanvas}. O quadro organiza respostas às perguntas fundamentais de um projeto: por que executar, o que entregar, para quem, como realizar, quando e quanto custará. A versão clássica contempla os blocos abaixo.
@@ -183,9 +181,6 @@ Escrever quando finalizar o capitulo.
         \end{description}
 
         \noindent A versão visual completa do canvas encontra-se no Apêndice~\ref{apendice:pmcanvas}, com a imagem do diagrama consolidado.
-
-
-    \subsection{Análise de mercado}
 
     \subsection{Análise de mercado}
         Fizemos uma pesquisa direta sobre apps parecidos com o \textbf{BoraFut}. Buscamos no Google, na Google Play e na App Store e chegamos a cinco aplicativos: \textit{Chega+}, \textit{Appito}, \textit{PELADEIROS}, \textit{FINTTA} e \textit{Agendei~Quadras}. Para cada um, olhamos redes sociais, lemos comentários nas lojas, instalamos e usamos rapidamente para entender pontos fortes, pontos fracos e o que valia adaptar ao contexto de Brasília.
@@ -307,19 +302,113 @@ Escrever quando finalizar o capitulo.
 
     \subsection{Priorização e modelagem de requisitos}
         % Descrever como os requisitos foram analisados e refinados
+        A etapa de requisitos constitui um dos pilares do desenvolvimento deste projeto, pois estabelece de forma clara \textit{o que} o sistema deve oferecer e \textit{para quem}. Após a elicitação inicial, composta por análise de serviços similares, observação do domínio e discussões exploratórias, os requisitos passaram por um processo de refinamento incremental.
+        
+        Os requisitos foram organizados por meio de um processo de decomposição hierárquica, de acordo com as boas práticas de engenharia de requisitos adotadas em metodologias ágeis. Inicialmente, as necessidades do sistema foram agrupadas em \textit{épicos}, que representam objetivos de alto nível. Cada épico foi então subdividido em \textit{features}, que correspondem a partes específicas desse objetivo, geralmente associadas a um conjunto de capacidades do sistema. E por último, cada feature foi formalizada como um conjunto de \textit{user stories}, que descrevem comportamentos observáveis do sistema sob a perspectiva do usuário final.
+
+        Esse processo tem por objetivo eliminar redundâncias, ajustar o escopo, identificar dependências e priorizar entregas essenciais para o funcionamento do MVP (\textit{Minimum Viable Product}). As decisões de priorização foram baseadas no valor de negócio, no impacto para o usuário e na complexidade técnica estimada.
 
         \subsubsection{Método MoSCoW}
         % Explicar o método e apresentar a matriz valor x esforço
+
+        Para apoiar a priorização, adotou-se o método MoSCoW, amplamente utilizado em metodologias ágeis. O nome do método se refere às quatro categorias de priorização:
+
+        \begin{itemize}
+            \item \textbf{Must Have} - Requisitos indispensáveis para o funcionamento mínimo do sistema.
+            \item \textbf{Should Have} - Requisitos importantes, mas não essenciais para a primeira versão.
+            \item \textbf{Could Have} - Requisitos desejáveis, implementados apenas se houver tempo e recursos.
+            \item \textbf{Won't Have} - Requisitos deliberadamente postergados ou fora do escopo atual.
+        \end{itemize}
+
+        Durante o processo de priorização, estabeleceu-se que todos os requisitos classificados como \textit{Must Have} fariam parte do escopo mínimo de desenvolvimento, por serem essenciais ao funcionamento do MVP. Alguns requisitos classificados como e \textit{Should Have} e \textit{Could Have} foram incluídos por apresentarem boa relação entre valor entregue e esforço de implementação. Já os requisitos categorizados como \textit{Won't Have} foram deliberadamente excluídos da versão inicial, sendo direcionados para versões futuras.
+
+        A Tabela~\ref{tab:priorizacao} ilustra exemplos representativos.
+
+        \begin{table}[h]
+            \centering
+            \caption{Exemplos de requisitos incluídos e excluídos após priorização}
+            \label{tab:priorizacao}
+            \begin{tabular}{p{5cm} p{3cm} p{6cm}}
+            \toprule
+            \textbf{Requisito} & \textbf{Status} & \textbf{Justificativa} \\
+            \midrule
+        
+            Confirmar presença no fut &
+            Must &
+            Essencial para o funcionamento básico da dinâmica do fut e para organização mínima da partida. \\[0.3em]
+        
+            Fila automática e formação de times &
+            Should &
+            Agrega valor significativo à experiência e diferencia o app, com viabilidade técnica no escopo do MVP. \\[0.3em]
+        
+            Modo claro/escuro &
+            Could &
+            Melhora acessibilidade e experiência visual, mas não afeta o funcionamento principal do sistema. \\[0.3em]
+        
+            \midrule
+        
+            Divisão em ranques &
+            Won't &
+            Recurso futuramente desejável, mas envolve lógica complexa de pontuação e moderação. \\[0.3em]
+        
+            Criação e gestão de campeonatos &
+            Won't &
+            Demanda estrutura adicional de regras, tabelas e calendário, extrapolando o escopo do MVP. \\[0.3em]
+        
+            Solicitação de cadastro de quadras por usuários &
+            Won't &
+            Exige sistema de validação, moderação e fluxo de aprovação; planejado para versões posteriores. \\[0.3em]
+        
+            \bottomrule
+            \end{tabular}
+        \end{table}        
 
         \subsubsection{User Stories}
         % Conceito de user story e critérios de aceitação
         % Exemplos de user stories elaboradas
 
-\section{Plano de privacidade e segurança}
+        As \textit{user stories} foram utilizadas como principal artefato para representar requisitos funcionais do sistema. Esse formato coloca o usuário no centro da modelagem e facilita entendimento do valor associado a cada funcionalidade, permitindo que cada requisito seja interpretado como uma interação concreta entre o usuário e o sistema. Cada user story segue o padrão amplamente utilizado:
+
+        \begin{quote}
+        \textit{“Como [tipo de usuário], desejo [ação], para [valor].”}
+        \end{quote}
+
+        Para facilitar a rastreabilidade e organização, foi adotado um sistema de identificação estruturado na forma \textbf{E\#-F\#-US\#}, no qual:
+
+        \begin{itemize}
+            \item \textbf{E\#} identifica o épico ao qual a história pertence;
+            \item \textbf{F\#} identifica a feature dentro daquele épico;
+            \item \textbf{US\#} identifica a user story específica dentro da feature.
+        \end{itemize}
+
+        Dessa forma, o código \textbf{E2-F1-US1}, por exemplo, indica:
+        \begin{itemize}
+            \item Épico 2: Mapa e Descoberta de Quadras;
+            \item Feature 1: Interação com o mapa;
+            \item User Story 1: Primeira história pertencente a essa feature.
+        \end{itemize}
+
+        A seguir, alguns exemplos representativos de user stories elaboradas para o projeto:
+
+        \begin{itemize}
+            \item \textbf{E1-F2-US1} -- Como usuário registrado, desejo fazer login informando apenas meu e-mail e recebendo um código temporário por e-mail, para acessar minha conta sem precisar lembrar uma senha.
+
+            \item \textbf{E2-F1-US2} -- Como usuário, desejo selecionar uma quadra no mapa para abrir seu perfil, para obter mais informações sobre aquele local.
+
+            \item \textbf{E4-F2-US1} -- Como usuário registrado, desejo confirmar minha presença em um fut por meio de um botão “Bora”, para que os demais saibam que participarei e o organizador  planejar o jogo.
+
+            \item \textbf{E5-F3-US2} -- Como organizador de um fut, desejo que o app gere automaticamente os times com base na ordem de chegada, para agilizar o início do jogo sem discussões.
+
+            \item \textbf{E5-F4-US2} -- Como responsável pela partida, desejo registrar os gols marcados por cada time, atribuindo a um jogador específico, para gerar estatísticas individuais e do time.
+        \end{itemize}
+
+        Essas histórias, juntamente com todas as demais estão listadas no Apêndice~\ref{apendice:us}.
+
+% \section{Plano de privacidade e segurança}
     % Descrever o tratamento de dados pessoais, consentimento, retenção e minimização
     % Referenciar a LGPD e princípios éticos abordados no Capítulo 2
 
-\section{Plano de implantação e operação}
+% \section{Plano de implantação e operação}
     % Descrever o ambiente de operação e infraestrutura de execução
     % (Backend em AWS, banco provisionado, chaves do Google, builds com EAS, etc.)
 
@@ -351,12 +440,15 @@ Escrever quando finalizar o capitulo.
     A camada de dados será composta por um banco relacional \textit{PostgreSQL}, escolhido por sua robustez, confiabilidade e compatibilidade com provedores de nuvem. O esquema do banco será modelado de forma normalizada, garantindo integridade e consistência das informações. A modelagem conceitual detalhada será apresentada no Capítulo~\ref{chap:projeto-aplicativo}, que trata do projeto técnico do sistema.
 
     \subsubsection{Integrações externas}
-    Além da comunicação direta entre cliente e servidor, o backend também realizará integrações com \textbf{APIs e SDKs de terceiros}, responsáveis por funcionalidades complementares que não justificam implementação própria no MVP. Entre as integrações planejadas estão:
+    Além da comunicação direta entre cliente e servidor, o backend realizará integrações com \textbf{APIs externas essenciais} para viabilizar funcionalidades-chave do aplicativo. No estágio de MVP, essas integrações são mínimas e focadas apenas nas necessidades imediatas do projeto.
+    
+    As integrações planejadas são:
+    
     \begin{itemize}
-        \item \textbf{Autenticação federada}, via \textit{Google Identity Services}, para simplificar o processo de login e reduzir barreiras de entrada;
-        \item \textbf{Serviços de geolocalização e mapas}, por meio da \textit{Google Maps Platform}, para consulta e exibição de quadras e rotas;
-        \item \textbf{Serviços de armazenamento de mídia}, como \textit{AWS S3} ou \textit{Firebase Storage}, destinados ao envio e recuperação de imagens.
+        \item \textbf{Autenticação por código enviado por e-mail}, utilizando um serviço externo de envio de mensagens. Nesse modelo \textit{passwordless}, o usuário informa o endereço de e-mail e recebe um código temporário para acessar sua conta, eliminando a necessidade de senhas.
+        
+        \item \textbf{Serviços de geolocalização e mapas}, por meio da \textit{Google Maps Platform}, para consultar, exibir e georreferenciar quadras públicas e privadas no Distrito Federal.
     \end{itemize}
-
+    
     \subsubsection{Comunicação e infraestrutura}
     A comunicação entre o aplicativo e o servidor será feita por meio de requisições HTTP seguras (\textit{HTTPS}), com autenticação baseada em \textit{JSON Web Tokens} (JWT). Tanto o backend quanto o banco de dados serão hospedados no ambiente de nuvem da AWS.

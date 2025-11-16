@@ -62,10 +62,10 @@
 
       No nosso contexto, o diagrama foi utilizado para alinhar rapidamente o \textit{MVP}: esclarecer quais capacidades precisam estar disponíveis desde o primeiro ciclo e quais podem evoluir depois. Ele evidencia três perfis de uso: \textit{Usuário Não Registrado} (explora o mapa e consulta informações públicas de quadras e partidas), \textit{Usuário Registrado} (assume ações pessoais, como autenticação, favoritos, avaliação e confirmação/cancelamento de presença) e \textit{Organizador} (especialização do usuário registrado que conduz a partida, isto é, cria e gerencia o “fut”). Também ficam explícitas as integrações necessárias: \textit{API de E-mail} (envio/validação de códigos para login e cadastro), \textit{API de Mapas/GPS} (localização e rotas) e \textit{API Push} (lembretes e notificações).
     
-      \begin{figure}[H]
+      \begin{figure}[h]
       \centering
       % Coloque a imagem em figs/uc-borafut.png
-      \includegraphics[width=\linewidth]{figuras/uc-borafut.png}
+      % \includegraphics[width=\linewidth]{figuras/uc-borafut.png}
       \caption{Diagrama de casos de uso do \textbf{BoraFut} (gerado no Lucid).}
       \label{fig:uc-borafut}
       \end{figure}
@@ -234,13 +234,14 @@
     O modelo de dados do \textit{BORAFUT} foi elaborado com base nas entidades e relacionamentos identificados durante o levantamento de requisitos (Capítulo~\ref{sec:metodologia-elicitacao}). O objetivo é garantir que as informações essenciais, como jogadores, partidas e quadras sejam armazenadas de forma estruturada, mantendo a integridade referencial.
 
     A modelagem seguiu uma abordagem relacional normalizada, organizada em tabelas interconectadas por chaves primárias e estrangeiras. Entre as principais entidades estão:
+    
     \begin{itemize}
         \item \textbf{Jogador} — dados pessoais, preferências e histórico de partidas;
         \item \textbf{Quadra} — informações sobre localização, disponibilidade e avaliações;
         \item \textbf{Partida} — definição de horários, participantes e status;
     \end{itemize}
 
-    A Figura~\ref{fig:modelo-dados} apresenta o diagrama entidade-relacionamento (DER) que representa o modelo lógico do banco de dados planejado.
+    A Figura~\ref{fig:modelo-dados} apresenta o modelo entidade-relacionamento (MER) que representa o modelo lógico do banco de dados planejado.
 
     \begin{figure}[h]
         \centering
@@ -249,7 +250,7 @@
         \label{fig:modelo-dados}
     \end{figure}
 
-    O diagrama entidade–relacionamento completo encontra-se nos Apêndices \ref{apendice:MER} e \ref{apendice:DER}, que apresentam, respectivamente, o modelo conceitual e o modelo lógico do banco de dados. Esses diagramas servem como referência para a implementação física do banco no ambiente de nuvem.
+    O modelo entidade–relacionamento completo encontra-se no Apêndice \ref{apendice:MER} que apresenta o modelo lógico do banco de dados.
 
     % \subsection{Contratos de API REST}
     % Endpoints, métodos e esquemas
