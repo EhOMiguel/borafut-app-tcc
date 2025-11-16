@@ -1,13 +1,28 @@
 \chapter{Projeto do aplicativo}
 
   \section{Descrição do aplicativo}
-    O Projeto é um aplicativo móvel multiplataforma voltado à organização de partidas de futebol amador no Distrito Federal. Seu principal objetivo é facilitar a conexão entre pessoas que desejam jogar, oferecendo uma forma prática, acessível e colaborativa de encontrar partidas, confirmar presença e aproveitar melhor as quadras públicas disponíveis na cidade. O aplicativo busca fortalecer o futebol comunitário, promovendo a ocupação saudável dos espaços urbanos e o incentivo à atividade física.
-    O público-alvo do aplicativo é composto por \textit{jogadores e jogadoras amadores(as)}, geralmente entre 16 e 45 anos, que praticam o futebol de forma recreativa em quadras públicas, escolas, clubes ou campos alugados. Incluem-se também grupos organizados que mantêm partidas fixas semanais e pessoas recém-chegadas à cidade que desejam se integrar a novos círculos esportivos. O aplicativo foi pensado para atender tanto quem já participa regularmente de jogos quanto quem busca retomar a prática esportiva ou encontrar novas oportunidades para jogar.
-    A criação do Aplicativo surgiu da observação de um problema recorrente entre quem joga futebol em Brasília: a dificuldade em organizar partidas de maneira eficiente. Atualmente, a marcação de jogos ocorre de forma fragmentada, por meio de grupos em aplicativos de mensagem, contatos informais e dependência de comunicação boca a boca. Essa dinâmica resulta em partidas desmarcadas, desistências de última hora, subutilização das quadras e barreiras de entrada para novos participantes. Em muitos casos, pessoas interessadas em jogar simplesmente não sabem onde ou quando há partidas acontecendo próximas a elas.
-    A proposta de valor do Aplicativo é oferecer uma \textbf{plataforma centralizada} para o futebol comunitário, unindo tecnologia e convivência social. O aplicativo permitirá visualizar quadras públicas próximas, organizar partidas abertas ou fechadas, gerenciar listas de presença, compartilhar informações de horários e integrar novos jogadores de forma simples e transparente. Além disso, o sistema poderá futuramente incorporar recursos como notificações em tempo real, rankings, estatísticas e organização de campeonatos locais.
-    Mais do que um aplicativo, o Aplicativo se propõe a ser um catalisador de encontros, saúde e lazer, utilizando a tecnologia como meio de fortalecer o sentimento de comunidade em torno do esporte mais popular do país.
 
-  \section{Requisitos do MVP 1}
+  O \textit{BORAFUT} é um aplicativo móvel multiplataforma destinado à organização de partidas de futebol amador no Distrito Federal. Seu objetivo é centralizar informações que atualmente se encontram dispersas em conversas informais, reduzindo a dificuldade de marcar jogos, confirmar presença de jogadores e utilizar de forma eficiente as quadras públicas disponíveis.
+
+  O aplicativo foi projetado com base nas dores identificadas durante a fase de observação e confirmadas pelos dados do questionário aplicado a mais de 70 praticantes de futebol amador. Os resultados indicaram que a organização de partidas ocorre predominantemente por meio de grupos de WhatsApp, com alta taxa de cancelamento de jogos, desencontros de informação e pouca visibilidade sobre quadras disponíveis. Esse cenário motivou a criação de uma solução que facilite a coordenação entre jogadores e torne o processo de organizar partidas mais simples e previsível.
+
+  O público-alvo inicial do \textit{BORAFUT} é composto majoritariamente por jovens adultos entre 18 e 30 anos, praticantes amadores de futsal e \textit{society}, que jogam em quadras públicas e possuem grupos estabelecidos, mas dependem de comunicação manual e descentralizada. Esse grupo representa o perfil predominante identificado na pesquisa empírica e é o foco do MVP.
+
+  A proposta de valor do \textit{BORAFUT} é oferecer uma plataforma única e organizada para gerenciar partidas de futebol amador, reduzindo o esforço de coordenação entre os jogadores e evitando problemas comuns como desencontros, falta de informação e cancelamentos. O aplicativo reúne, em um único ambiente, funcionalidades que hoje estão dispersas entre conversas informais, listas manuais e grupos de mensagem.
+
+  As principais funcionalidades previstas para o MVP incluem:
+  \begin{itemize}
+      \item \textbf{visualização de quadras e locais de jogo próximos}, com base em geolocalização;
+      \item \textbf{criação de partidas}, definindo horário e local;
+      \item \textbf{confirmação de presença dos participantes} e acompanhamento em tempo real do número de participantes;
+      \item \textbf{autenticação por código enviado por e-mail} (modelo passwordless), simplificando o ingresso no sistema;
+      \item \textbf{exibição centralizada das informações essenciais da partida}, como horário, endereço e modalidade;
+      \item \textbf{formação automática de times}, com base na ordem de chegada, facilitando o início do jogo e evitando conflitos.
+  \end{itemize}  
+
+  No escopo do MVP, o \textit{BORAFUT} prioriza funcionalidades essenciais para organizar jogos de forma simples e funcional, sem incluir recursos avançados que deverão fazer parte de versões futuras do sistema, caso sejam validados como relevantes pelos usuários.
+
+  \section{Requisitos do MVP}
     Esta seção apresenta os requisitos que compõem o escopo do MVP 1 do \textbf{BoraFut}. Eles foram definidos a partir das técnicas de elicitação e priorização descritas na Seção~\ref{sec:metodologia-elicitacao}. A organização foi feita em duas categorias principais: Requisitos Funcionais (RF), que descrevem os comportamentos esperados do sistema, e Requisitos Não Funcionais (RNF), que tratam das qualidades e restrições técnicas associadas ao produto.
 
     \subsection{Requisitos funcionais MODELO - FAZER DEFINITIVO DEPOIS} 
@@ -71,7 +86,7 @@
       \end{figure}
 
 
-  \section{Escopo do MVP 1}
+  \section{Escopo do MVP}
     O escopo do MVP 1 foi definido com base na identificação das funcionalidades mínimas necessárias para validar a proposta do aplicativo: facilitar a organização e o gerenciamento de partidas de futebol amador em Brasília. O objetivo é oferecer uma versão funcional, capaz de comprovar a viabilidade técnica e o valor social da solução.
 
     O MVP busca permitir que usuários(as) possam visualizar quadras disponíveis, criar partidas, convidar amigos e confirmar presença em jogos, concentrando-se nas funcionalidades essenciais para o funcionamento do ecossistema central do aplicativo.
@@ -186,78 +201,76 @@
       favorecendo o engajamento e reduzindo barreiras de uso para diferentes perfis de jogadores.
 
   \section{Prototipação}
-  % Telas de alta fidelidade no Figma
+  \section{Arquitetura e design}
+    \label{sec:arquitetura-design}
 
-\section{Arquitetura e design}
-  \label{sec:arquitetura-design}
+    Esta seção apresenta a arquitetura técnica e a modelagem do banco de dados do \textit{BORAFUT}, descrevendo como as decisões planejadas na metodologia (Seção~\ref{sec:arquitetura-geral}) foram concretizadas em artefatos. São exibidos dois diagramas baseados no modelo C4, que representam a estrutura do sistema em diferentes níveis de abstração, seguidos do modelo de dados do banco \textit{PostgreSQL}.
 
-  Esta seção apresenta a arquitetura técnica e a modelagem do banco de dados do \textit{BORAFUT}, descrevendo como as decisões planejadas na metodologia (Seção~\ref{sec:arquitetura-geral}) foram concretizadas em artefatos. São exibidos dois diagramas baseados no modelo C4, que representam a estrutura do sistema em diferentes níveis de abstração, seguidos do modelo de dados do banco \textit{PostgreSQL}.
+    \subsection{Modelo C4 de contexto e contêineres}
+      \label{subsec:c4}
 
-  \subsection{Modelo C4 de contexto e contêineres}
-    \label{subsec:c4}
+      O modelo C4, proposto por Brown~\cite{brown2018}, é um método visual para documentar arquitetura de software em quatro níveis de abstração: contexto, contêineres, componentes e código, que permitem descrever a arquitetura de software em diferentes graus de detalhe. 
+      Neste trabalho, optou-se por representar apenas os dois primeiros níveis (contexto e contêineres), por serem suficientes para comunicar a visão geral e a organização técnica do \textit{BORAFUT} no estágio atual do projeto. 
 
-    O modelo C4, proposto por Brown~\cite{brown2018}, é um método visual para documentar arquitetura de software em quatro níveis de abstração: contexto, contêineres, componentes e código, que permitem descrever a arquitetura de software em diferentes graus de detalhe. 
-    Neste trabalho, optou-se por representar apenas os dois primeiros níveis (contexto e contêineres), por serem suficientes para comunicar a visão geral e a organização técnica do \textit{BORAFUT} no estágio atual do projeto. 
+      \subsubsection{Diagrama de contexto (C1).}
+        O diagrama de contexto mostra o \textit{BORAFUT} como um sistema inserido em seu ambiente de uso. Ele representa as interações entre os usuários e os sistemas externos que fornecem serviços complementares.  
+        Na Figura~\ref{fig:c4-contexto}, observa-se que o aplicativo é utilizado por jogadores amadores e administradores de quadra, comunicando-se com serviços responsáveis por autenticação e geolocalização.
 
-    \subsubsection{Diagrama de contexto (C1).}
-      O diagrama de contexto mostra o \textit{BORAFUT} como um sistema inserido em seu ambiente de uso. Ele representa as interações entre os usuários e os sistemas externos que fornecem serviços complementares.  
-      Na Figura~\ref{fig:c4-contexto}, observa-se que o aplicativo é utilizado por jogadores amadores e administradores de quadra, comunicando-se com serviços responsáveis por autenticação e geolocalização.
+        \begin{figure}[h]
+            \centering
+            % \includegraphics[width=0.8\textwidth]{figures/c4-contexto.png}
+            \caption{Diagrama C4 nível contexto do \textit{BORAFUT}.}
+            \label{fig:c4-contexto}
+        \end{figure}
 
-      \begin{figure}[h]
-          \centering
-          % \includegraphics[width=0.8\textwidth]{figures/c4-contexto.png}
-          \caption{Diagrama C4 nível contexto do \textit{BORAFUT}.}
-          \label{fig:c4-contexto}
-      \end{figure}
+      \subsubsection{Diagrama de contêineres (C2).}
+        O diagrama de contêineres representa a decomposição interna do sistema em suas principais partes executáveis, chamadas de contêineres. Cada contêiner abriga um conjunto de responsabilidades técnicas ou funcionais, comunicando-se com os demais por interfaces bem definidas.  
 
-    \subsubsection{Diagrama de contêineres (C2).}
-      O diagrama de contêineres representa a decomposição interna do sistema em suas principais partes executáveis, chamadas de contêineres. Cada contêiner abriga um conjunto de responsabilidades técnicas ou funcionais, comunicando-se com os demais por interfaces bem definidas.  
+        A Figura~\ref{fig:c4-conteineres} apresenta os principais contêineres do \textit{BORAFUT}:
+        \begin{itemize}
+            \item o \textbf{aplicativo móvel} (\textit{React Native}), responsável pela interação com o usuário e envio das requisições à API;
+            \item o \textbf{backend} (\textit{Node.js + Express}), que concentra a lógica de negócio, autenticação e orquestração de dados;
+            \item o \textbf{banco de dados relacional} (\textit{PostgreSQL}), que armazena as informações persistentes;
+            \item e as \textbf{APIs externas}, usadas para autenticação (\textit{Google Identity}), geolocalização (\textit{Google Maps Platform}) e armazenamento de mídia.
+        \end{itemize}
 
-      A Figura~\ref{fig:c4-conteineres} apresenta os principais contêineres do \textit{BORAFUT}:
+        \begin{figure}[h]
+            \centering
+            % \includegraphics[width=0.8\textwidth]{figures/c4-conteineres.png}
+            \caption{Diagrama C4 nível contêineres do \textit{BORAFUT}.}
+            \label{fig:c4-conteineres}
+        \end{figure}
+
+    \subsection{Modelo de dados do PostgreSQL}
+      \label{subsec:modelo-dados}
+
+      O modelo de dados do \textit{BORAFUT} foi elaborado com base nas entidades e relacionamentos identificados durante o levantamento de requisitos (Capítulo~\ref{sec:metodologia-elicitacao}). O objetivo é garantir que as informações essenciais, como jogadores, partidas e quadras sejam armazenadas de forma estruturada, mantendo a integridade referencial.
+
+      A modelagem seguiu uma abordagem relacional normalizada, organizada em tabelas interconectadas por chaves primárias e estrangeiras. Entre as principais entidades estão:
+      
       \begin{itemize}
-          \item o \textbf{aplicativo móvel} (\textit{React Native}), responsável pela interação com o usuário e envio das requisições à API;
-          \item o \textbf{backend} (\textit{Node.js + Express}), que concentra a lógica de negócio, autenticação e orquestração de dados;
-          \item o \textbf{banco de dados relacional} (\textit{PostgreSQL}), que armazena as informações persistentes;
-          \item e as \textbf{APIs externas}, usadas para autenticação (\textit{Google Identity}), geolocalização (\textit{Google Maps Platform}) e armazenamento de mídia.
+          \item \textbf{Jogador} — dados pessoais, preferências e histórico de partidas;
+          \item \textbf{Quadra} — informações sobre localização, disponibilidade e avaliações;
+          \item \textbf{Partida} — definição de horários, participantes e status;
       \end{itemize}
 
+      A Figura~\ref{fig:modelo-dados} apresenta o modelo entidade-relacionamento (MER) que representa o modelo lógico do banco de dados planejado.
+
       \begin{figure}[h]
           \centering
-          % \includegraphics[width=0.8\textwidth]{figures/c4-conteineres.png}
-          \caption{Diagrama C4 nível contêineres do \textit{BORAFUT}.}
-          \label{fig:c4-conteineres}
+          % \includegraphics[width=0.9\textwidth]{figures/modelo-dados.png}
+          \caption{Modelo entidade-relacionamento do banco \textit{PostgreSQL}.}
+          \label{fig:modelo-dados}
       \end{figure}
 
-  \subsection{Modelo de dados do PostgreSQL}
-    \label{subsec:modelo-dados}
-
-    O modelo de dados do \textit{BORAFUT} foi elaborado com base nas entidades e relacionamentos identificados durante o levantamento de requisitos (Capítulo~\ref{sec:metodologia-elicitacao}). O objetivo é garantir que as informações essenciais, como jogadores, partidas e quadras sejam armazenadas de forma estruturada, mantendo a integridade referencial.
-
-    A modelagem seguiu uma abordagem relacional normalizada, organizada em tabelas interconectadas por chaves primárias e estrangeiras. Entre as principais entidades estão:
-    
-    \begin{itemize}
-        \item \textbf{Jogador} — dados pessoais, preferências e histórico de partidas;
-        \item \textbf{Quadra} — informações sobre localização, disponibilidade e avaliações;
-        \item \textbf{Partida} — definição de horários, participantes e status;
-    \end{itemize}
-
-    A Figura~\ref{fig:modelo-dados} apresenta o modelo entidade-relacionamento (MER) que representa o modelo lógico do banco de dados planejado.
-
-    \begin{figure}[h]
-        \centering
-        % \includegraphics[width=0.9\textwidth]{figures/modelo-dados.png}
-        \caption{Modelo entidade-relacionamento do banco \textit{PostgreSQL}.}
-        \label{fig:modelo-dados}
-    \end{figure}
-
-    O modelo entidade–relacionamento completo encontra-se no Apêndice \ref{apendice:MER} que apresenta o modelo lógico do banco de dados.
+      O modelo entidade–relacionamento completo encontra-se no Apêndice \ref{apendice:MER} que apresenta o modelo lógico do banco de dados.
 
     % \subsection{Contratos de API REST}
     % Endpoints, métodos e esquemas
     
     % \subsection{Decisões arquiteturais registradas em ADRs curtas}
 
-  \section{Teste de usabilidade}
+    % \section{Teste de usabilidade}
     % Descrever o teste conduzido para validação do MVP
     % Incluir público participante, cenários de uso, métricas e resultados observados
     % Sumário de ADRs
