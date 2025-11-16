@@ -1,75 +1,61 @@
 \chapter{Projeto do aplicativo}
 
   \section{Descrição do aplicativo}
+    O \textit{BORAFUT} é um aplicativo móvel multiplataforma destinado à organização de partidas de futebol amador no Distrito Federal. Seu objetivo é centralizar informações que atualmente se encontram dispersas em conversas informais, reduzindo a dificuldade de marcar jogos, confirmar presença de jogadores e utilizar de forma eficiente as quadras públicas disponíveis.
 
-  O \textit{BORAFUT} é um aplicativo móvel multiplataforma destinado à organização de partidas de futebol amador no Distrito Federal. Seu objetivo é centralizar informações que atualmente se encontram dispersas em conversas informais, reduzindo a dificuldade de marcar jogos, confirmar presença de jogadores e utilizar de forma eficiente as quadras públicas disponíveis.
+    O aplicativo foi projetado com base nas dores identificadas durante a fase de observação e confirmadas pelos dados do questionário aplicado a mais de 70 praticantes de futebol amador. Os resultados indicaram que a organização de partidas ocorre predominantemente por meio de grupos de WhatsApp, com alta taxa de cancelamento de jogos, desencontros de informação e pouca visibilidade sobre quadras disponíveis. Esse cenário motivou a criação de uma solução que facilite a coordenação entre jogadores e torne o processo de organizar partidas mais simples e previsível.
 
-  O aplicativo foi projetado com base nas dores identificadas durante a fase de observação e confirmadas pelos dados do questionário aplicado a mais de 70 praticantes de futebol amador. Os resultados indicaram que a organização de partidas ocorre predominantemente por meio de grupos de WhatsApp, com alta taxa de cancelamento de jogos, desencontros de informação e pouca visibilidade sobre quadras disponíveis. Esse cenário motivou a criação de uma solução que facilite a coordenação entre jogadores e torne o processo de organizar partidas mais simples e previsível.
+    O público-alvo inicial do \textit{BORAFUT} é composto majoritariamente por jovens adultos entre 18 e 30 anos, praticantes amadores de futsal e \textit{society}, que jogam em quadras públicas e possuem grupos estabelecidos, mas dependem de comunicação manual e descentralizada. Esse grupo representa o perfil predominante identificado na pesquisa empírica e é o foco do MVP.
 
-  O público-alvo inicial do \textit{BORAFUT} é composto majoritariamente por jovens adultos entre 18 e 30 anos, praticantes amadores de futsal e \textit{society}, que jogam em quadras públicas e possuem grupos estabelecidos, mas dependem de comunicação manual e descentralizada. Esse grupo representa o perfil predominante identificado na pesquisa empírica e é o foco do MVP.
+    A proposta de valor do \textit{BORAFUT} é oferecer uma plataforma única e organizada para gerenciar partidas de futebol amador, reduzindo o esforço de coordenação entre os jogadores e evitando problemas comuns como desencontros, falta de informação e cancelamentos. O aplicativo reúne, em um único ambiente, funcionalidades que hoje estão dispersas entre conversas informais, listas manuais e grupos de mensagem.
 
-  A proposta de valor do \textit{BORAFUT} é oferecer uma plataforma única e organizada para gerenciar partidas de futebol amador, reduzindo o esforço de coordenação entre os jogadores e evitando problemas comuns como desencontros, falta de informação e cancelamentos. O aplicativo reúne, em um único ambiente, funcionalidades que hoje estão dispersas entre conversas informais, listas manuais e grupos de mensagem.
+    As principais funcionalidades previstas para o MVP incluem:
+    \begin{itemize}
+        \item \textbf{visualização de quadras e locais de jogo próximos}, com base em geolocalização;
+        \item \textbf{criação de partidas}, definindo horário e local;
+        \item \textbf{confirmação de presença dos participantes} e acompanhamento em tempo real do número de participantes;
+        \item \textbf{autenticação por código enviado por e-mail} (modelo passwordless), simplificando o ingresso no sistema;
+        \item \textbf{exibição centralizada das informações essenciais da partida}, como horário, endereço e modalidade;
+        \item \textbf{formação automática de times}, com base na ordem de chegada, facilitando o início do jogo e evitando conflitos.
+    \end{itemize}  
 
-  As principais funcionalidades previstas para o MVP incluem:
-  \begin{itemize}
-      \item \textbf{visualização de quadras e locais de jogo próximos}, com base em geolocalização;
-      \item \textbf{criação de partidas}, definindo horário e local;
-      \item \textbf{confirmação de presença dos participantes} e acompanhamento em tempo real do número de participantes;
-      \item \textbf{autenticação por código enviado por e-mail} (modelo passwordless), simplificando o ingresso no sistema;
-      \item \textbf{exibição centralizada das informações essenciais da partida}, como horário, endereço e modalidade;
-      \item \textbf{formação automática de times}, com base na ordem de chegada, facilitando o início do jogo e evitando conflitos.
-  \end{itemize}  
-
-  No escopo do MVP, o \textit{BORAFUT} prioriza funcionalidades essenciais para organizar jogos de forma simples e funcional, sem incluir recursos avançados que deverão fazer parte de versões futuras do sistema, caso sejam validados como relevantes pelos usuários.
+    No escopo do MVP, o \textit{BORAFUT} prioriza funcionalidades essenciais para organizar jogos de forma simples e funcional, sem incluir recursos avançados que deverão fazer parte de versões futuras do sistema, caso sejam validados como relevantes pelos usuários.
 
   \section{Requisitos do MVP}
-    Esta seção apresenta os requisitos que compõem o escopo do MVP 1 do \textbf{BoraFut}. Eles foram definidos a partir das técnicas de elicitação e priorização descritas na Seção~\ref{sec:metodologia-elicitacao}. A organização foi feita em duas categorias principais: Requisitos Funcionais (RF), que descrevem os comportamentos esperados do sistema, e Requisitos Não Funcionais (RNF), que tratam das qualidades e restrições técnicas associadas ao produto.
 
-    \subsection{Requisitos funcionais MODELO - FAZER DEFINITIVO DEPOIS} 
-      Os requisitos funcionais definem as ações e comportamentos esperados do sistema. A Tabela~\ref{tab:rf-borafut} resume os principais RFs do MVP~1.
+  Os requisitos do MVP do \textit{BORAFUT} foram definidos a partir das técnicas de elicitação e priorização apresentadas na Seção~\ref{sec:metodologia-elicitacao}. 
 
-      \begin{table}[h]
-      \centering
-      \caption{Requisitos funcionais do MVP 1}
-      \label{tab:rf-borafut}
-      \begin{tabular}{p{1cm} p{13cm}}
-      \toprule
-      \textbf{ID} & \textbf{Descrição resumida} \\
-      \midrule
-      RF01 & O sistema deve permitir o cadastro de novos usuários por e-mail. \\
-      RF02 & O sistema deve enviar um código de verificação para validação de login. \\
-      RF03 & O sistema deve exibir um mapa com quadras públicas próximas ao usuário. \\
-      RF04 & O sistema deve permitir a criação, edição e exclusão de partidas (futs). \\
-      RF05 & O sistema deve permitir a confirmação de presença em partidas. \\
-      RF06 & O sistema deve permitir o compartilhamento de convites via link externo. \\
-      RF07 & O sistema deve possibilitar o cadastro manual de participantes sem conta. \\
-      RF08 & O sistema deve oferecer botão de rota que abre o aplicativo de mapas do dispositivo. \\
-      \bottomrule
-      \end{tabular}
-      \end{table}
+  Os requisitos foram organizados em duas categorias: Requisitos Funcionais (RF), que descrevem os comportamentos esperados do sistema, e Requisitos Não Funcionais (RNF), que estabelecem restrições técnicas e propriedades de qualidade. A seguir, são apresentados alguns dos requisitos mais representativos do MVP.
 
-    \subsection{Requisitos não funcionais MODELO - FAZER DEFINITIVO DEPOIS}
-      Os requisitos não funcionais estabelecem as propriedades de qualidade, restrições e padrões técnicos do aplicativo.
+    \subsection{Requisitos funcionais (exemplos)}
+      Os requisitos funcionais descrevem as ações que o sistema deve ser capaz de executar no escopo do MVP. Alguns exemplos incluem:
 
-      \begin{table}[h]
-      \centering
-      \caption{Requisitos não funcionais do MVP 1}
-      \label{tab:rnf-borafut}
-      \begin{tabular}{p{1cm} p{13cm}}
-      \toprule
-      \textbf{ID} & \textbf{Descrição resumida} \\
-      \midrule
-      RNF01 & O aplicativo deve ser multiplataforma, funcionando em Android e iOS. \\
-      RNF02 & O sistema deve apresentar tempo médio de resposta inferior a 3 segundos em operações principais. \\
-      RNF03 & O layout deve seguir princípios de usabilidade de Nielsen e design responsivo. \\
-      RNF04 & O aplicativo deve utilizar autenticação por código enviado ao e-mail do usuário. \\
-      RNF05 & Os dados devem ser armazenados em banco PostgreSQL hospedado na AWS. \\
-      RNF06 & O sistema deve utilizar API REST com comunicação via HTTPS. \\
-      RNF07 & O aplicativo deve respeitar a LGPD, exigindo consentimento e idade mínima de 16 anos. \\
-      RNF08 & O sistema deve seguir convenções de código e linting definidas no projeto (ESLint). \\
-      \bottomrule
-      \end{tabular}
-      \end{table}
+      \begin{itemize}
+          \item \textbf{RF01 – Autenticação por e-mail:} o sistema deve permitir que usuários realizem login informando apenas o e-mail, recebendo um código temporário para acesso.
+          
+          \item \textbf{RF02 – Visualização de quadras:} o sistema deve exibir um mapa interativo com quadras públicas próximas ao usuário, permitindo navegação e pesquisa.
+
+          \item \textbf{RF03 – Criação de partidas:} o sistema deve permitir que usuários registrem um fut, informando quadra, horário, modalidade e número de vagas.
+
+          \item \textbf{RF04 – Confirmação de presença:} o sistema deve permitir que usuários confirmem presença em partidas abertas, exibindo em tempo real as vagas remanescentes.
+
+          \item \textbf{RF05 – Formação automática de times:} o sistema deve gerar times com base na ordem de confirmação ou chegada dos jogadores, facilitando o início das partidas.
+      \end{itemize}
+
+    \subsection{Requisitos não funcionais (exemplos)}
+      Os requisitos não funcionais estabelecem propriedades de qualidade, padrões técnicos e restrições obrigatórias para o funcionamento adequado do MVP. Alguns exemplos incluem:
+
+      \begin{itemize}
+          \item \textbf{RNF01 – Multiplataforma:} o aplicativo deve funcionar nas versões atuais dos sistemas Android e iOS.
+
+          \item \textbf{RNF02 – Tempo de resposta:} operações principais devem responder em até 3 segundos em condições normais de rede.
+
+          \item \textbf{RNF03 – Comunicação segura:} toda interação entre aplicativo e servidor deve ocorrer por meio de API REST sobre HTTPS.
+
+          \item \textbf{RNF04 – Usabilidade:} a interface deve seguir princípios de usabilidade e heurísticas de Nielsen, priorizando clareza visual, consistência e navegação simples.
+
+          \item \textbf{RNF05 – LGPD:} o sistema deve coletar consentimento explícito, proteger dados pessoais e restringir o uso a pessoas com 16 anos ou mais.
+      \end{itemize}
 
     \subsection{Diagrama de casos de uso}
 
