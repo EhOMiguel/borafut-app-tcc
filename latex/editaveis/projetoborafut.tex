@@ -116,61 +116,80 @@
     \subsection{Rota para a quadra}
     Para facilitar o deslocamento até o local do jogo, o aplicativo disponibiliza um botão “Como chegar” em cada perfil de quadra. Ao ser acionado, o sistema gera um \textit{deep link} que abre automaticamente o aplicativo de mapas padrão do dispositivo com a rota traçada até o endereço da quadra, facilitando o deslocamento até o local do fut.
 
-  \section{Design de interface REVISAR E REFAZER}
-    O design de interface do \textbf{BoraFut} reflete a identidade visual definida no documento interno
-    \textit{Borafut — Manual de Identidade Visual}~\cite{borafut_visual2025}, desenvolvido pela equipe do projeto.
+  \section{Design de Interface e Experiência do Usuário}
+    O design de interface do \textbf{BORAFUT} reflete a identidade visual definida no documento interno
+    \textit{BORAFUT — Manual de Identidade Visual}~\cite{borafut_visual2025}, desenvolvido pela equipe do projeto.
     Esse guia estabelece os elementos fundamentais da marca, como paleta de cores, tipografia, ícones e
     diretrizes de uso, garantindo unidade estética e coerência entre o aplicativo e suas demais comunicações.
 
-    \subsection{Identidade visual}
-      A identidade visual foi concebida para transmitir energia, simplicidade e senso de comunidade,
-      valores centrais do \textbf{BoraFut}. A marca utiliza proporções uniformes e formas geométricas simples,
+    \subsection{Princípios de Identidade Visual}
+      A identidade visual foi planejada para transmitir energia, simplicidade e senso de comunidade,
+      valores centrais do \textbf{BORAFUT}. 
+      
+      A Figura~\ref{fig:logotipo-borafut} apresenta o logotipo do \textbf{BORAFUT}, que utiliza proporções uniformes e formas geométricas simples,
       reforçando o equilíbrio e a clareza visual. O logotipo adota uma fonte monoespaçada de traços arredondados,
       inspirada na tipografia \textit{Dune Rise}, de Jesta Designs, ajustada para criar uma sensação mais próxima e
       acolhedora ao contexto esportivo e comunitário.
 
-      A paleta principal é composta por tons de ciano, que simbolizam vitalidade, confiança e dinamismo,
-      complementados por cinza e branco, que equilibram e conferem sofisticação à composição visual.
-      Essas cores aparecem de forma consistente na interface do aplicativo, desde os botões até os
-      elementos de navegação, reforçando o reconhecimento da marca.
+      \begin{figure}[h]
+        \centering
+        % \includegraphics[width=\linewidth]{figuras/identidade-visual.png}
+        \caption{Logotipo do \textbf{BORAFUT}.}
+        \label{fig:logotipo-borafut}
+      \end{figure}
 
-      A tipografia escolhida para a interface é a \textbf{Open Sans}, uma fonte sem serifa amplamente usada em
-      ambientes digitais. Sua legibilidade em diferentes tamanhos de tela e sua aparência moderna contribuem
-      para uma leitura agradável e fluida. Essa combinação de tipografia e cores cria uma experiência visual
-      que equilibra leveza e clareza, tornando a navegação mais intuitiva para o usuário.
+      Para orientar as escolhas estéticas, foram consultados princípios de teoria das cores, que relacionam tonalidades a percepções emocionais e valores simbólicos no design. Embora o verde seja tradicionalmente associado a energia, vitalidade
+      e confiança, sua presença é recorrente em produtos esportivos concorrentes. Para diferenciar a identidade visual,
+      optou-se por uma variação ciano-esverdeada como cor primária, que preserva significados positivos dessa paleta,
+      mas oferece distinção estética. O contraste da interface foi reforçado por um tom vibrante de laranja, próximo à
+      cor complementar desse ciano-esverdeado, seguindo recomendações de harmonia cromática. A Figura~\ref{fig:paleta-borafut}
+      apresenta a paleta principal definida para o projeto.
+      
+      \begin{figure}[h]
+          \centering
+          % \includegraphics[width=\linewidth]{figuras/paleta-cores-borafut.png}
+          \caption{Paleta de cores utilizada na interface do \textbf{BORAFUT}.}
+          \label{fig:paleta-borafut}
+      \end{figure}
 
-    \subsection{Diretrizes de acessibilidade}
-      O design do aplicativo foi desenvolvido com base em princípios de acessibilidade digital, garantindo que
-      o \textbf{BoraFut} possa ser utilizado por públicos diversos, independentemente de idade ou familiaridade
-      com tecnologia. As diretrizes seguem recomendações das \textit{Web Content Accessibility Guidelines} (WCAG~2.1),
-      incluindo contraste mínimo de 4.5:1 entre texto e fundo, botões com dimensões adequadas ao toque (mínimo
-      de 44x44~px) e ícones acompanhados de rótulos descritivos. 
+      A interface busca minimizar o uso de texto, priorizando ícones representativos com rótulos simples e uma composição visual limpa, permitindo que a maioria das ações centrais possa ser realizada entre três e cinco toques. Essa abordagem foi inspirada em características de design observadas em aplicativos como Nubank, Tinder e produtos do ecossistema Google, conhecidos por valorizarem minimalismo, fluidez e clareza interativa. A tipografia escolhida para a interface é a \textbf{Open Sans}, uma fonte sem serifa frequentemente usada em ambientes digitais.
 
-      O layout foi projetado para oferecer hierarquia visual clara, com espaçamentos amplos e elementos
-      interativos bem destacados. O aplicativo também suporta modo escuro, reduzindo o cansaço visual em
-      uso prolongado, e utiliza linguagem neutra e inclusiva em suas mensagens e labels.
+    \subsection{Diretrizes de Acessibilidade}
+      O layout foi projetado para oferecer hierarquia visual clara, espaçamentos amplos e elementos interativos bem destacados.
+      O aplicativo também oferece suporte a modo escuro, reduzindo o cansaço visual em uso prolongado, e utiliza linguagem
+      neutra e inclusiva em suas mensagens, rótulos e instruções. A Figura~\ref{fig:telas-acessibilidade} ilustra exemplos
+      de aplicação dessas diretrizes em telas do protótipo.
 
-    \subsection{Heurísticas de Nielsen e usabilidade}
-      As decisões de design foram orientadas pelos princípios heurísticos de usabilidade propostos por
-      Jakob Nielsen~(1994), amplamente reconhecidos na área de Interação Humano-Computador. Entre os
-      aplicados ao \textbf{BoraFut}, destacam-se:
+    \subsection{Heurísticas de Usabilidade Aplicadas ao BORAFUT}
+      As decisões de design foram guiadas pelos princípios heurísticos de usabilidade propostos por Jakob Nielsen (1994),
+      já discutidos no referencial teórico deste trabalho. No contexto da etapa de design, as heurísticas foram aplicadas
+      de forma prática, influenciando diretamente a estrutura das telas, os padrões de navegação e os mecanismos de feedback.
+      Entre as aplicações incorporadas ao \textbf{BORAFUT}, destacam-se:
 
       \begin{itemize}
-          \item \textbf{Visibilidade do status do sistema}: o usuário recebe feedback imediato ao confirmar presença,
-          criar um jogo ou realizar qualquer ação relevante, por meio de mensagens e animações sutis;
-          \item \textbf{Correspondência entre o sistema e o mundo real}: o aplicativo utiliza termos próximos da
-          linguagem cotidiana dos jogadores, como “fut”, “bora jogar” e “confirmar presença”;
-          \item \textbf{Controle e liberdade do usuário}: o usuário pode editar, cancelar ou sair de ações a qualquer
-          momento, evitando erros permanentes;
-          \item \textbf{Consistência e padrões}: ícones, botões e cores seguem padrões estáveis, reduzindo a curva
-          de aprendizado e promovendo previsibilidade;
-          \item \textbf{Prevenção e recuperação de erros}: as mensagens de erro são claras e instrutivas, indicando o
-          que deve ser feito para corrigir o problema.
-      \end{itemize}
-
-      Essas diretrizes asseguram uma interface coerente, acessível e orientada à experiência do usuário,
-      favorecendo o engajamento e reduzindo barreiras de uso para diferentes perfis de jogadores.
-
+        \item \textbf{Visibilidade do status do sistema}: o usuário recebe feedback imediato ao confirmar presença, criar um jogo ou realizar qualquer ação relevante, por meio de mensagens breves, estados visuais atualizados e animações sutis.
+    
+        \item \textbf{Correspondência entre o sistema e o mundo real}: o aplicativo utiliza termos próximos da linguagem cotidiana dos jogadores, como “fut”, “bora jogar” e “confirmar presença”, reforçando familiaridade e reduzindo barreiras de entendimento.
+    
+        \item \textbf{Controle e liberdade do usuário}: o usuário pode editar, cancelar ou desfazer ações a qualquer momento, evitando erros permanentes e permitindo que retome fluxos sem perda de informações.
+    
+        \item \textbf{Consistência e padrões}: ícones, botões, cores e padrões de navegação seguem estruturas estáveis, favorecendo previsibilidade e diminuindo a curva de aprendizado.
+    
+        \item \textbf{Prevenção e recuperação de erros}: o design evita situações de erro por meio de botões desabilitados, validações em tempo real e orientações claras.
+    
+        \item \textbf{Estética e design minimalista}: toda a interface prioriza clareza e simplicidade, reduzindo elementos visuais desnecessários e utilizando ícones limpos e textos curtos para manter o foco nas ações principais do fluxo.
+    
+        \item \textbf{Reconhecimento em vez de memorização}: a navegação utiliza ícones representativos acompanhados de rótulos, evitando que o usuário dependa da memorização de significados.
+    
+        \item \textbf{Flexibilidade e eficiência de uso}: o botão de “Criar fut” permanece sempre em destaque, permitindo que o usuário acesse o fluxo completo em poucos toques.
+    
+        \item \textbf{Ajudar usuários a reconhecer, diagnosticar e recuperar erros}: mensagens de erro evitam jargões e destacam visualmente o campo ou ação que precisa ser ajustado, orientando o usuário sobre como prosseguir, reduzindo frustração.
+    \end{itemize}
+    
+    Com essas aplicações, o \textbf{BORAFUT} cobre diretamente nove das dez heurísticas propostas por Nielsen,
+    aplicando princípios estabelecidos de usabilidade. Isso fortalece o design e torna a experiência mais fluida,
+    intuitiva e acessível para diferentes perfis de usuários.
+    
   \section{Prototipação}
   \section{Arquitetura e design}
     \label{sec:arquitetura-design}
