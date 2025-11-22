@@ -1,5 +1,5 @@
 \chapter{Metodologia}
-Escrever quando finalizar o capitulo.
+% Escrever quando finalizar o capitulo.
 
 \section{Abordagem de desenvolvimento}
     % Descrever a abordagem metodológica utilizada (ex: ágil, incremental, MVP-driven)
@@ -8,11 +8,11 @@ Escrever quando finalizar o capitulo.
 
     O desenvolvimento de sistemas de software requer a definição de uma abordagem metodológica que oriente o processo de trabalho e estabeleça o equilíbrio entre previsibilidade, qualidade e flexibilidade. Essa escolha depende das características do projeto, da equipe e do ambiente organizacional, influenciando diretamente a forma como requisitos, tempo e recursos são gerenciados \cite{pressman2019}.
 
-    O projeto \textit{BORAFUT} foi fundamentado em uma \textbf{abordagem híbrida}, combinando elementos de processos \textit{dirigidos a plano} (\textit{plan-driven}) e de metodologias \textit{ágeis} (\textit{agile-driven}). Essa escolha busca conciliar a estruturação necessária ao contexto acadêmico do Trabalho de Conclusão de Curso (TCC) com a adaptabilidade e o foco em valor característicos das metodologias ágeis.
+    O projeto BORAFUT foi fundamentado em uma abordagem híbrida, combinando elementos de processos dirigidos a plano e de metodologias ágeis. Essa escolha busca conciliar a estruturação necessária ao contexto acadêmico do Trabalho de Conclusão de Curso (TCC) com a adaptabilidade e o foco em valor característicos das metodologias ágeis.
 
     \subsection{Abordagens dirigidas a plano e ágeis}
 
-    De acordo com Sommerville \cite{sommerville2011}, as abordagens de desenvolvimento podem ser compreendidas a partir da relação entre três fatores principais: \textit{escopo}, \textit{recursos} e \textit{tempo}. Em processos dirigidos a plano, busca-se controlar rigorosamente o escopo e os requisitos desde o início do projeto, permitindo que cronograma e custos sejam ajustados conforme a necessidade.
+    De acordo com Sommerville \cite{sommerville2011}, as abordagens de desenvolvimento podem ser compreendidas a partir da relação entre três fatores principais: escopo, recursos e tempo. Em processos dirigidos a plano, busca-se controlar rigorosamente o escopo e os requisitos desde o início do projeto, permitindo que cronograma e custos sejam ajustados conforme a necessidade.
 
     Por outro lado, as abordagens ágeis invertem essa lógica, mantendo tempo e recursos fixos e permitem que o escopo seja adaptado ao longo do desenvolvimento. Nessa abordagem, a prioridade recai sobre a entrega contínua de valor ao cliente e a colaboração próxima entre a equipe de desenvolvimento e os usuários \cite{boehm2003, pressman2019}. Essa diferença conceitual é ilustrada na Figura~\ref{fig:plan-vs-agile}, adaptada de Sommerville (2011), que contrasta os paradigmas dirigidos a plano e orientados a valor.
 
@@ -24,9 +24,9 @@ Escrever quando finalizar o capitulo.
         \label{fig:plan-vs-agile}
     \end{figure}
 
-    No contexto do \textit{BORAFUT}, o tempo de execução e os recursos disponíveis são fixos, delimitados pelos semestres letivos e pela equipe reduzida. A necessidade de adaptar o escopo e priorizações durante o desenvolvimento caracteriza um cenário tipicamente orientado a valor, justificando a adoção de princípios ágeis.
+    No contexto do BORAFUT, o tempo de execução e os recursos disponíveis são fixos, delimitados pelos semestres letivos e pela equipe reduzida. A necessidade de adaptar o escopo e priorizações durante o desenvolvimento caracteriza um cenário tipicamente orientado a valor, justificando a adoção de princípios ágeis.
 
-    Entretanto, o projeto também apresenta certas características de um processo dirigido a plano, pois, neste trabalho, optou-se organizacionalmente por tratar o \textit{TCC 1} como uma etapa de planejamento estruturado, dedicada à definição de requisitos, arquitetura e critérios de desenvolvimento. O \textit{TCC 2}, por sua vez, concentra-se na implementação incremental e validação do MVP, com possibilidade de ajustes de escopo e priorização. Essa decisão organizacional, alinhada às necessidades do projeto, permite uma combinação coerente entre planejamento e adaptabilidade.
+    Entretanto, o projeto também apresenta certas características de um processo dirigido a plano, pois, neste trabalho, optou-se organizacionalmente por tratar o TCC 1 como uma etapa de planejamento estruturado, dedicada à definição de requisitos, arquitetura e critérios de desenvolvimento. O TCC 2, por sua vez, concentra-se na implementação incremental e validação do MVP, com possibilidade de ajustes de escopo e priorização. Essa decisão organizacional, alinhada às necessidades do projeto, permite uma combinação coerente entre planejamento e adaptabilidade.
 
     \subsection{Critérios para escolha da abordagem}
 
@@ -34,9 +34,9 @@ Escrever quando finalizar o capitulo.
 
     Segundo Sommerville, abordagens dirigidas a plano são mais apropriadas quando os requisitos são estáveis e bem definidos, o ambiente é formal e a equipe é grande ou distribuída. Já abordagens ágeis são indicadas para projetos de pequena escala, com requisitos mutáveis, equipes reduzidas e comunicação direta com o cliente.
 
-    De forma complementar, Gupta et al. propõem quatro dimensões analíticas: \textit{projeto}, \textit{pessoas}, \textit{produto} e \textit{processo}, que orientam a escolha do modelo de desenvolvimento. Projetos com escopo exploratório, produtos inovadores e requisitos voláteis, conduzidos por equipes pequenas e autônomas, tendem a se beneficiar de processos ágeis e iterativos. Além disso, fatores sociais e culturais, como a proximidade entre desenvolvedores e usuários, também favorecem a agilidade, por viabilizarem ciclos curtos de feedback e validação contínua.
+    De forma complementar, Gupta et al. propõem quatro dimensões analíticas: projeto, pessoas, produto e processo, que orientam a escolha do modelo de desenvolvimento. Projetos com escopo exploratório, produtos inovadores e requisitos voláteis, conduzidos por equipes pequenas e autônomas, tendem a se beneficiar de processos ágeis e iterativos. Além disso, fatores sociais e culturais, como a proximidade entre desenvolvedores e usuários, também favorecem a agilidade, por viabilizarem ciclos curtos de feedback e validação contínua.
 
-    No caso do \textit{BORAFUT}, essas condições estão presentes. O sistema possui requisitos voláteis e evolutivos, definidos de forma colaborativa entre os próprios desenvolvedores e usuários, que pertencem ao mesmo grupo social. A equipe é pequena e estável, o produto é inovador e o ambiente de trabalho é autogerido e não hierárquico. A baixa criticidade do sistema também reforça a adequação de uma abordagem predominantemente ágil.
+    No caso do BORAFUT, essas condições estão presentes. O sistema possui requisitos voláteis e evolutivos, definidos de forma colaborativa entre os próprios desenvolvedores e usuários, que pertencem ao mesmo grupo social. A equipe é pequena e estável, o produto é inovador e o ambiente de trabalho é autogerido e não hierárquico. A baixa criticidade do sistema também reforça a adequação de uma abordagem predominantemente ágil.
 
     \begin{table}[h]
     \centering
@@ -69,24 +69,23 @@ Escrever quando finalizar o capitulo.
         \item \textbf{Validar continuamente}: o sucesso do processo é avaliado pelo valor entregue a cada incremento, não pela aderência rígida ao plano inicial.
     \end{itemize}
 
-    Em síntese, a abordagem de desenvolvimento do \textit{BORAFUT} combina a previsibilidade necessária à avaliação acadêmica com a adaptabilidade das práticas ágeis. Essa configuração caracteriza um modelo de processo \textbf{híbrido}, no qual o planejamento fornece estrutura e as iterações sucessivas garantem adaptabilidade e foco em valor.
+    Em síntese, a abordagem de desenvolvimento do BORAFUT combina a previsibilidade necessária à avaliação acadêmica com a adaptabilidade das práticas ágeis. Essa configuração caracteriza um modelo de processo \textbf{híbrido}, no qual o planejamento fornece estrutura e as iterações sucessivas garantem adaptabilidade e foco em valor.
 
 \section{Processo de desenvolvimento}
 
-    Com base na abordagem híbrida apresentada na seção anterior, o processo de desenvolvimento do \textit{BORAFUT} será fundamentado nos princípios do \textit{Extreme Programming} (XP), metodologia ágil proposta por Beck \cite{beck2000} que enfatiza simplicidade, colaboração e qualidade técnica. O XP foi escolhido por sua adequação a equipes pequenas e por priorizar práticas de engenharia de software em detrimento de estruturas organizacionais complexas, tornando-se mais apropriado ao contexto de um projeto acadêmico de escopo limitado.
-
-    A escolha pelo XP reflete uma decisão consciente de privilegiar práticas de engenharia e iteração contínua, em vez de adotar frameworks de gestão mais estruturados, como o \textit{Scrum}. Embora o \textit{Scrum} ofereça mecanismos formais de planejamento, papéis definidos e rituais de acompanhamento, essas características são menos relevantes no contexto do \textit{BORAFUT}, que será desenvolvido por uma equipe pequena e autogerida.
+    Com base na abordagem híbrida apresentada na seção anterior, o processo de desenvolvimento do BORAFUT será fundamentado nos princípios do \textit{Extreme Programming} (XP), metodologia ágil proposta por Beck \cite{beck2000} que enfatiza simplicidade, colaboração e qualidade técnica. O XP foi escolhido por sua adequação a equipes pequenas e por priorizar práticas de engenharia de software em detrimento de estruturas organizacionais complexas, tornando-se mais apropriado ao contexto de um projeto acadêmico de escopo limitado.
+    A escolha pelo XP reflete uma decisão consciente de privilegiar práticas de engenharia e iteração contínua, em vez de adotar frameworks de gestão mais estruturados, como o Scrum. Embora o Scrum ofereça mecanismos formais de planejamento, papéis definidos e rituais de acompanhamento, essas características são menos relevantes no contexto do BORAFUT, que será desenvolvido por uma equipe pequena e autogerida.
 
     Além disso, conforme Boehm e Turner \cite{boehm2003}, a seleção de um processo ágil deve considerar o equilíbrio entre disciplina e adaptabilidade. Nesse sentido, o XP se mostra mais adequado, pois fornece um conjunto de práticas técnicas que podem ser aplicadas de forma incremental e flexível, sem comprometer a simplicidade operacional necessária em um projeto acadêmico.
 
-    A adoção do XP também está alinhada à filosofia incremental do \textit{MVP}, permitindo que cada ciclo de desenvolvimento produza versões funcionais do sistema, com oportunidades de revisão e refinamento contínuo. O foco não está em seguir um método prescritivo, mas em aplicar seus princípios para orientar um processo iterativo, colaborativo e centrado na entrega de valor.
+    A adoção do XP também está alinhada à filosofia incremental do MVP, permitindo que cada ciclo de desenvolvimento produza versões funcionais do sistema, com oportunidades de revisão e refinamento contínuo. O foco não está em seguir um método prescritivo, mas em aplicar seus princípios para orientar um processo iterativo, colaborativo e centrado na entrega de valor.
 
     \subsection{Princípios do Extreme Programming}
 
-        O XP baseia-se em cinco valores fundamentais: \textit{comunicação}, \textit{simplicidade}, \textit{feedback}, \textit{coragem} e \textit{respeito}, que orientam tanto o comportamento da equipe quanto a qualidade do produto \cite{beck2000, pressman2019}. Esses valores foram incorporados ao projeto da seguinte forma:
+        O XP baseia-se em cinco valores fundamentais: comunicação, simplicidade, feedback, coragem e respeito, que orientam tanto o comportamento da equipe quanto a qualidade do produto \cite{beck2000, pressman2019}. Esses valores foram incorporados ao projeto da seguinte forma:
 
         \begin{itemize}
-            \item \textbf{Comunicação}: a equipe manteve comunicação contínua por meio de ferramentas colaborativas (como GitHub e Discord), eliminando a necessidade de formalismos excessivos;
+            \item \textbf{Comunicação}: a equipe manteve comunicação contínua por meio de ferramentas colaborativas (como GitHub, Discord e Jira), eliminando a necessidade de formalismos excessivos;
             \item \textbf{Simplicidade}: priorizaram-se soluções técnicas minimamente suficientes para atender às necessidades do MVP, evitando complexidade desnecessária;
             \item \textbf{Feedback}: os resultados de cada incremento foram avaliados pelos próprios desenvolvedores e potenciais usuários, permitindo ajustes rápidos;
             \item \textbf{Coragem}: decisões de design e refatoração foram tomadas de forma transparente, com abertura para mudanças quando necessárias;
@@ -97,7 +96,7 @@ Escrever quando finalizar o capitulo.
 
 \section{Planejamento inicial}
 
-    O planejamento inicial do projeto \textbf{Bora Fut} teve como objetivo consolidar a visão estratégica e o posicionamento da solução antes do início do desenvolvimento técnico. Nessa etapa, foram utilizados dois instrumentos principais: o \textit{Project Model Canvas} (PMC), para estruturar a proposta de valor e os elementos centrais do projeto, e a \textit{Análise de Mercado}, voltada à identificação de soluções similares, lacunas existentes e diferenciais competitivos.
+    O planejamento inicial do projeto BORAFUT teve como objetivo consolidar a visão estratégica e o posicionamento da solução antes do início do desenvolvimento técnico. Nessa etapa, foram utilizados dois instrumentos principais: o \textit{Project Model Canvas} (PM Canvas), para estruturar a proposta de valor e os elementos centrais do projeto, e a Análise de Mercado, voltada à identificação de soluções similares, lacunas existentes e diferenciais competitivos.
 
     \subsection{Project Model Canvas}
         \subsubsection{O que é o PM Canvas}
@@ -139,11 +138,11 @@ Escrever quando finalizar o capitulo.
                 \end{itemize}
             \end{description}
 
-        \subsubsection{Síntese do PM Canvas do \textbf{BoraFut} (consolidado)}
+        \subsubsection{Síntese do PM Canvas do BORAFUT}
             \begin{description}
                 \item[\textbf{Por quê?}] 
                 \begin{itemize}
-                    \item \textbf{Justificativas}: organização de peladas em Brasília é fragmentada e pouco previsível; dificuldade de formar times completos e atrair novos jogadores; subutilização de quadras públicas e oportunidade de fortalecer o futebol de comunidade; caso aplicado de Engenharia de Software com potencial de impacto social e continuidade.
+                    \item \textbf{Justificativas}: organização de partidas em Brasília é fragmentada e pouco previsível; dificuldade de formar times completos e atrair novos jogadores; subutilização de quadras públicas e oportunidade de fortalecer o futebol de comunidade; caso aplicado de Engenharia de Software com potencial de impacto social e continuidade.
                     \item \textbf{Objetivos SMART}: até junho de 2026, concluir o MVP funcional com autenticação por e-mail, mapa de quadras públicas, criação/edição de partidas, confirmação de presença e compartilhamento por link, pronto para testes fechados; em julho de 2026, executar o piloto do MVP na Asa Norte, Asa Sul e UnB.
                     \item \textbf{Benefícios}: estímulo à prática esportiva e ao convívio comunitário; uso mais eficiente das quadras públicas; visibilidade para grupos e jogadores; base de aprendizado e potencial de monetização no futuro.
                 \end{itemize}
@@ -157,13 +156,13 @@ Escrever quando finalizar o capitulo.
 
                 \item[\textbf{Quem?}] 
                 \begin{itemize}
-                    \item \textbf{Stakeholders}: equipe de desenvolvimento e orientação acadêmica; jogadores amadores e organizadores informais de peladas; iniciativas esportivas locais e administrações regionais ligadas às quadras; parceiros potenciais, como a equipe ``Copa na Praça'' de Sobradinho.
+                    \item \textbf{Stakeholders}: equipe de desenvolvimento e orientação acadêmica; jogadores amadores e organizadores informais de partidas; iniciativas esportivas locais e administrações regionais ligadas às quadras; parceiros potenciais, como a equipe ``Copa na Praça'' de Sobradinho.
                     \item \textbf{Equipe}: engenheiros de software, coordenador de projetos e designer/UX.
                 \end{itemize}
 
                 \item[\textbf{Como?}] 
                 \begin{itemize}
-                    \item \textbf{Premissas}: pessoas aceitarão testar uma ferramenta dedicada em vez de depender exclusivamente de grupos de mensagens; não há entraves jurídicos para desenvolvimento e piloto acadêmico; poucos concorrentes diretos focados em quadras públicas do DF.
+                    \item \textbf{Premissas}: pessoas aceitarão testar uma ferramenta dedicada em vez de depender exclusivamente de grupos de mensagens; não há entraves jurídicos para desenvolvimento e piloto acadêmico; poucos concorrentes diretos focados em quadras públicas do Distrito Federal.
                     \item \textbf{Grupos de entregas}: requisitos e arquitetura mínima; identidade visual e protótipos de alta fidelidade; backend/API e banco de dados; aplicativo móvel (MVP funcional); teste de usabilidade e ajustes; pacote de evidências e documentação final.
                     \item \textbf{Restrições}: tempo de TCC e equipe reduzida; escopo focado no MVP; conformidade com LGPD e idade mínima de 16 anos; dependência de SDKs/APIs de terceiros (mapas, autenticação, notificações).
                 \end{itemize}
@@ -176,39 +175,39 @@ Escrever quando finalizar o capitulo.
 
                 \item[\textbf{Quanto?}] 
                 \begin{itemize}
-                    \item \textbf{Custos estimados}: publicações/lojas (\textit{host app stores} \(\approx\) R\$~99/ano;), hospedagem do backend e banco de dados \(\approx\) US\$~20/mês; eventuais despesas com ferramentas de apoio e divulgação do piloto.
+                    \item \textbf{Custos estimados}: publicações/lojas (\textit{host app stores} \(\approx\) R\$~675,45/ano;), hospedagem do backend e banco de dados \(\approx\) US\$~20/mês; eventuais despesas com ferramentas de apoio e divulgação do piloto \(\approx\) R\$~100/mês.
                 \end{itemize}
         \end{description}
 
         \noindent A versão visual completa do canvas encontra-se no Apêndice~\ref{apendice:pmcanvas}, com a imagem do diagrama consolidado.
 
     \subsection{Análise de mercado}
-        Fizemos uma pesquisa direta sobre apps parecidos com o \textbf{BoraFut}. Buscamos no Google, na Google Play e na App Store e chegamos a cinco aplicativos: \textit{Chega+}, \textit{Appito}, \textit{PELADEIROS}, \textit{FINTTA} e \textit{Agendei~Quadras}. Para cada um, olhamos redes sociais, lemos comentários nas lojas, instalamos e usamos rapidamente para entender pontos fortes, pontos fracos e o que valia adaptar ao contexto de Brasília.
+        Fizemos uma pesquisa direta sobre apps parecidos com o BORAFUT. Buscamos no Google, na Google Play e na App Store e chegamos a cinco aplicativos: Chega+, Appito, PELADEIROS, FINTTA e Agendei~Quadras. Para cada um, olhamos redes sociais, lemos comentários nas lojas, instalamos e usamos rapidamente para entender pontos fortes, pontos fracos e o que valia adaptar ao contexto de Brasília.
 
         \subsubsection{Chega+}
-        Forte na organização de grupos privados de futebol. Tem convite, confirmação de presença, sorteio de times, fila e estatísticas. A base de usuários é grande (\textit{500 mil+ downloads}) e ativa, com redes sociais bem movimentadas. Comentários críticos citam \textit{excesso} de bugs e planos pagos percebidos como caros por parte dos usuários. A interface cumpre o papel, mas não se destaca em experiência.
+        Forte na organização de grupos privados de futebol. Tem convite, confirmação de presença, sorteio de times, fila e estatísticas. A base de usuários é grande (500 mil+ downloads) e ativa, com redes sociais bem movimentadas. Comentários críticos citam excesso de bugs e planos pagos percebidos como caros por parte dos usuários. A interface cumpre o papel, mas não se destaca em experiência.
 
         \subsubsection{Appito}
-        É o app com maior número de downloads entre os analisados (\textit{1 milhão+}). No começo, também focava em grupos privados, mas permite deixar o jogo público para outras pessoas encontrarem pelo app. Hoje o foco principal parece ser a gestão de arenas próprias e a reserva de quadras dessas arenas (concentradas em São Paulo). Usa gamificação (rankings, estatísticas) e aproxima a experiência do universo de jogos.
+        É o app com maior número de downloads entre os analisados (1 milhão+ downloads). No começo, também focava em grupos privados, mas permite deixar o jogo público para outras pessoas encontrarem pelo app. Hoje o foco principal parece ser a gestão de arenas próprias e a reserva de quadras dessas arenas (concentradas em São Paulo). Usa gamificação (rankings, estatísticas) aproximando a experiência do universo de jogos.
 
         \subsubsection{PELADEIROS e FINTTA}
-        Seguem a linha “grupo privado organiza o futebol”. Ambos têm alcance menor que os líderes (\textit{100 mil+ downloads}). O \textit{PELADEIROS} aposta na simplicidade (há versão \textit{Pro}); o \textit{FINTTA} agrega módulo financeiro e vitrine de quadras.
+        Seguem a linha “grupo privado organiza o futebol”. Ambos têm alcance menor que os líderes (100 mil+ downloads).
 
         \subsubsection{Agendei~Quadras}
         Funciona como um marketplace multiesporte. Donos anunciam as quadras e os usuários agendam e pagam. É ótimo para reserva de infraestrutura, mas não foca na dinâmica espontânea do futebol em quadras públicas.
 
         \subsubsection{O que tiramos disso}
             \begin{itemize}
-                \item \textbf{Funcionalidades úteis}: não vimos um “grande diferencial” exclusivo, e sim boas jornadas espalhadas entre os apps. Para o \textbf{BoraFut}, trouxemos confirmação simples, convite por link e formação de times, combinados com \textbf{mapa hiperlocal} e \textbf{descoberta de partidas} em quadras públicas.
+                \item \textbf{Funcionalidades úteis}: não vimos um “grande diferencial” exclusivo, e sim boas jornadas espalhadas entre os apps. Para o BORAFUT, trouxemos confirmação simples, convite por link e formação de times, combinados com mapa hiperlocal e descoberta de partidas em quadras públicas.
                 \item \textbf{Mercado existe}: há demanda real por organizar o futebol amador, comprovada por alto número de downloads e engajamento nos líderes.
-                \item \textbf{Aderência em Brasília é baixa}: os grandes apps aparecem pouco no DF, abrindo espaço para uma solução pensada desde o início para quadras públicas brasilienses.
+                \item \textbf{Aderência em Brasília é baixa}: os grandes apps aparecem pouco no Distrito Federal, abrindo espaço para uma solução pensada desde o início para quadras públicas brasilienses.
                 \item \textbf{Onde dá para diferenciar}: reduzir barreiras de entrada (fluxos rápidos, incluir convidados sem conta), priorizar jogos públicos no mapa e evitar travar o uso atrás de planos pagos no começo.
             \end{itemize}
 
         \subsubsection{Brasília é diferente}
-            Brasília tem um jeito próprio de jogar. A cidade possui um ecossistema único de esporte público: por causa do seu planejamento urbano, concentra uma quantidade excepcional de quadras poliesportivas e campos de futebol de acesso livre. Desde a idealização do BoraFut, pensamos em como ampliar a acessibilidade sem jamais dar a impressão de privatizar o futebol público. Na verdade, buscamos justamente o contrário. Nosso objetivo é organizar, facilitar e fortalecer ainda mais essa cultura de jogo aberto que já existe aqui.
+            Brasília tem um jeito próprio de jogar. A cidade possui um ecossistema único de esporte público: por causa do seu planejamento urbano, concentra uma quantidade excepcional de quadras poliesportivas e campos de futebol de acesso livre. Desde a idealização do BORAFUT, pensamos em como ampliar a acessibilidade sem jamais dar a impressão de privatizar o futebol público. Na verdade, buscamos justamente o contrário. Nosso objetivo é organizar, facilitar e fortalecer ainda mais essa cultura de jogo aberto que já existe aqui.
 
-            Esse contexto também explica por que muitos aplicativos consolidados no Brasil não conseguiram crescer em Brasília. O futebol daqui funciona de um jeito diferente. Isso cria uma oportunidade real para que o BoraFut se desenvolva primeiro na capital, valorizando o que Brasília tem de mais forte e leve essa visão de acessibilidade e organização do futebol público para outras regiões do país, contribuindo para unir ainda mais o “país do futebol”.
+            Esse contexto também explica por que muitos aplicativos consolidados no Brasil não conseguiram crescer em Brasília. O futebol daqui funciona de um jeito diferente. Isso cria uma oportunidade real para que o BORAFUT se desenvolva primeiro na capital, valorizando o que Brasília tem de mais forte e leve essa visão de acessibilidade e organização do futebol público para outras regiões do país, contribuindo para unir ainda mais o “país do futebol”.
 
 \section{Levantamento e análise de requisitos}
     \label{sec:metodologia-elicitacao}
@@ -217,14 +216,22 @@ Escrever quando finalizar o capitulo.
     \subsection{Elicitação}
         % Apresentar os métodos utilizados
 
+    \subsubsection{Observação}
+
+        O ponto de partida para o desenvolvimento do BORAFUT surgiu a partir de observações feitas pelos próprios autores em ambientes de prática esportiva amadora. Durante a participação em jogos de futsal, foi possível perceber que muitos grupos enfrentavam dificuldades para marcar e organizar partidas.
+
+        As observações aconteceram de forma natural, enquanto os autores participavam dessas atividades, e revelaram um problema recorrente: a organização dos jogos depende quase sempre de conversas em grupos de WhatsApp e de muita coordenação manual entre os participantes. Esse processo informal, embora funcione, costuma gerar desencontros, desistências e partidas canceladas.
+
+        Mesmo sem seguir um protocolo formal de pesquisa, essas percepções iniciais foram importantes para identificar uma oportunidade de melhoria e motivaram o início do projeto.
+
     \subsubsection{Brainwriting}
 
         O \textit{brainwriting} é uma técnica de ideação em grupo em que os participantes geram ideias por escrito, de forma simultânea e silenciosa, passando seus registros para que os demais os leiam e desenvolvam. Diferentemente do \textit{brainstorming} oral, o \textit{brainwriting} busca reduzir problemas comuns de dinâmicas verbais como o bloqueio criativo e a apreensão avaliativa, melhorando a dinâmica e aumentando a originalidade das ideias \cite{paulus2007, pressman2019}.
 
-        Entre os formatos mais comuns está o método \textit{6-3-5} descrito por Rohrbach, no qual seis pessoas escrevem três ideias em cinco minutos e, a cada rodada, passam suas fichas adiante para que sejam desenvolvidas, acumulando várias iterações em pouco tempo \cite{rohrbach1969}. Evidências apontam que formatos escritos tendem a produzir maior quantidade e diversidade de ideias do que sessões exclusivamente orais, principalmente em grupos pequenos \cite{paulus2007}.
+        Entre os formatos mais comuns está o método 6-3-5 descrito por Rohrbach, no qual seis pessoas escrevem três ideias em cinco minutos e, a cada rodada, passam suas fichas adiante para que sejam desenvolvidas, acumulando várias iterações em pouco tempo \cite{rohrbach1969}. Evidências apontam que formatos escritos tendem a produzir maior quantidade e diversidade de ideias do que sessões exclusivamente orais, principalmente em grupos pequenos \cite{paulus2007}.
 
-        \paragraph{Aplicação no \textit{BORAFUT}.}
-        A dinâmica foi realizada com sete participantes, entre desenvolvedores e potenciais usuários. Para orientar e cobrir o problema de forma ampla, as ideias foram organizadas em seis categorias temáticas: \textit{Funcionalidades do app}, \textit{Melhorias na experiência do usuário}, \textit{Monetização e modelo de negócios}, \textit{Gamificação}, \textit{Integrações e parcerias} e \textit{Marketing e divulgação} (Figura~\ref{fig:brainwriting-categorias}).
+        \paragraph{Aplicação no BORAFUT.}
+        A dinâmica foi realizada com sete participantes, entre desenvolvedores e potenciais usuários. Para orientar e cobrir o problema de forma ampla, as ideias foram organizadas em seis categorias temáticas: Funcionalidades do app, Melhorias na experiência do usuário, Monetização e modelo de negócios, Gamificação, Integrações e parcerias e Marketing e divulgação (Figura~\ref{fig:brainwriting-categorias}).
         Cada rodada teve duração de apoximadamente 5 minutos, nas quais o foco foi em quantidade, e somente ao final, agrupamos e analisamos itens redundantes. Ao término, foram produzidos mais de 30 cartões com diversas propostas.
 
         \begin{figure}[h]
@@ -236,7 +243,7 @@ Escrever quando finalizar o capitulo.
 
     \subsubsection{Questionário}
 
-        Com base nas ideias geradas na dinâmica de \textit{brainwriting}, foi elaborado um questionário on-line com o objetivo de compreender o perfil dos potenciais usuários e validar hipóteses sobre comportamentos, dores e preferências relacionadas à organização de partidas de futebol amador. O instrumento foi desenvolvido em formato digital, via Google Forms, e distribuído entre grupos diversas universidades, grupos esportivos e comunidades de \textit{society} e \textit{futsal} do Distrito Federal, alcançando mais de 60 respostas válidas.
+        Com base nas ideias geradas na dinâmica de \textit{brainwriting}, foi elaborado um questionário on-line com o objetivo de compreender o perfil dos potenciais usuários e validar hipóteses sobre comportamentos, dores e preferências relacionadas à organização de partidas de futebol amador. O instrumento foi desenvolvido em formato digital, via Google Forms, e distribuído entre grupos diversas universidades, grupos esportivos e comunidades de society\footnote{O futebol society é uma modalidade derivada do futebol tradicional, praticada em campo reduzido e com equipes menores, geralmente de cinco a sete jogadores. Caracteriza-se pelo uso de gramado sintético e regras adaptadas para jogos mais rápidos e dinâmicos.} e futsal do Distrito Federal, alcançando mais de 60 respostas válidas.
 
         \paragraph{Estrutura e objetivos.}
         O questionário combinou perguntas fechadas e de múltipla escolha, distribuídas em quatro eixos:
@@ -246,17 +253,17 @@ Escrever quando finalizar o capitulo.
             \item \textbf{Comportamento organizacional} — canais e rotinas usados para marcar jogos;
             \item \textbf{Motivações e dificuldades} — fatores que estimulam ou dificultam a prática esportiva.
         \end{enumerate}
-        Os dados obtidos serviram de base tanto para a definição do público-alvo quanto para a priorização inicial de funcionalidades do \textit{BORAFUT}.
+        Os dados obtidos serviram de base tanto para a definição do público-alvo quanto para a priorização inicial de funcionalidades do BORAFUT.
 
         \paragraph{Perfil dos respondentes.}
-        A amostra foi composta majoritariamente por homens (71,9\%) entre 18 e 24 anos (70,3\%), faixa correspondente à população universitária e de jovens adultos. A distribuição geográfica concentrou-se nas regiões de Brasília (17,2\%), Guará (10,9\%) e Gama (10,9\%), além de participações expressivas de Taguatinga, Águas Claras e Santa Maria, indicando forte presença no eixo central do Distrito Federal, o foco inicial do \textit{BORAFUT}.
+        A amostra foi composta majoritariamente por homens (71,9\%) entre 18 e 24 anos (70,3\%), faixa correspondente à população universitária e de jovens adultos. A distribuição geográfica concentrou-se nas regiões de Brasília (17,2\%), Guará (10,9\%) e Gama (10,9\%), além de participações expressivas de Taguatinga, Águas Claras e Santa Maria, indicando forte presença no eixo central do Distrito Federal, o foco inicial do BORAFUT.
 
-        Em relação ao nível de prática, 84,4\% dos participantes se identificaram como jogadores amadores e o restante como semiprofissionais. O formato mais comum de jogo é o \textit{futsal} (81,3\%), seguido pelo \textit{society} (51,6\%), e 15,6\% afirmaram praticar futebol de campo. Grupos de maior porte são predominantes: 53,1\% relataram possuir mais de dez jogadores, o que reforça a necessidade de uma ferramenta de coordenação coletiva.
+        Em relação ao nível de prática, 84,4\% dos participantes se identificaram como jogadores amadores e o restante como semiprofissionais. O formato mais comum de jogo é o futsal (81,3\%), seguido pelo society (51,6\%), e 15,6\% afirmaram praticar futebol de campo. Grupos de maior porte são predominantes: 53,1\% relataram possuir mais de dez jogadores, o que reforça a necessidade de uma ferramenta de coordenação coletiva.
 
         \paragraph{Hábitos e organização.}
         A frequência de jogo mostrou-se heterogênea: cerca de 25\% jogam semanalmente, 23,4\% de duas a três vezes por semana e 17,2\% não jogaram nos últimos três meses. Esses dados sugerem que o público é ativo, mas sujeito a variações de engajamento, o que abre espaço para funcionalidades de estímulo à participação contínua, como notificações, recompensas e estatísticas.
 
-        Quanto aos meios de organização, 98,4\% dos respondentes utilizam o \textit{WhatsApp} para combinar jogos, enquanto 35,9\% o fazem também presencialmente e 20,3\% por redes sociais como Instagram e Facebook. Essa concentração em canais informais indica ausência de ferramentas especializadas e dispersão de informações, uma oportunidade direta para uma ferramenta de organização.
+        Quanto aos meios de organização, 98,4\% dos respondentes utilizam o WhatsApp para combinar jogos, enquanto 35,9\% o fazem também presencialmente e 20,3\% por redes sociais como Instagram e Facebook. Essa concentração em canais informais indica ausência de ferramentas especializadas e dispersão de informações, uma oportunidade direta para uma ferramenta de organização.
 
         \paragraph{Dores e motivações.}
         As respostas evidenciaram problemas recorrentes na organização de partidas: 39,1\% relataram que jogos deixam de acontecer ocasionalmente, e 25\% afirmaram que isso ocorre com frequência. Entre as motivações para uso do aplicativo, destacaram-se:
@@ -278,35 +285,27 @@ Escrever quando finalizar o capitulo.
         \end{figure}
 
         \paragraph{Análise e interpretação.}
-        Os dados apontam para um público-alvo composto majoritariamente por jovens de 18 a 24 anos, praticantes de \textit{futsal} e residentes nas regiões centrais do Distrito Federal. Trata-se de um público digitalmente ativo, que já utiliza plataformas de comunicação, mas não possuem soluções especializadas para organização esportiva.
+        Os dados apontam para um público-alvo composto majoritariamente por jovens de 18 a 24 anos, praticantes de futsal e residentes nas regiões centrais do Distrito Federal. Trata-se de um público digitalmente ativo, que já utiliza plataformas de comunicação, mas não possuem soluções especializadas para organização esportiva.
 
         O perfil observado é de grupos pequenos e autogeridos com alta densidade de conexões sociais, um cenário favorável para a propagação do aplicativo.
 
         A análise também sugere que o sistema deve priorizar a simplicidade de uso, a integração com canais existentes e funcionalidades voltadas à coordenação de partidas, gestão de presença e descoberta de quadras.
 
         \paragraph{Síntese do público-alvo.}
-        Com base na análise dos questionários, o público inicial do \textit{BORAFUT} pode ser descrito como:
+        Com base na análise dos questionários, o público inicial do BORAFUT pode ser descrito como:
         \begin{quote}
-            Jovens adultos, entre 18 e 30 anos, predominantemente homens, praticantes amadores de futsal e \textit{society}, que jogam em grupos autônomos e organizam suas partidas via WhatsApp. Valorizam praticidade, agilidade e confiabilidade na marcação de jogos e demonstram interesse em recursos de descoberta de quadras e confirmação de presença.
+            Jovens adultos, entre 18 e 30 anos, predominantemente homens, praticantes amadores de futsal e society, que jogam em grupos autônomos e organizam suas partidas via WhatsApp. Valorizam praticidade, agilidade e confiabilidade na marcação de jogos e demonstram interesse em recursos de descoberta de quadras e confirmação de presença.
         \end{quote}
 
         O instrumento completo do questionário encontra-se no Apêndice~\ref{apendice:questionario}.
 
-    \subsubsection{Observação}
-
-        O ponto de partida para o desenvolvimento do \textit{BORAFUT} surgiu a partir de observações feitas pelos próprios autores em ambientes de prática esportiva amadora. Durante a participação em jogos de futsal, foi possível perceber que muitos grupos enfrentavam dificuldades para marcar e organizar partidas.
-
-        As observações aconteceram de forma natural, enquanto os autores participavam dessas atividades, e revelaram um problema recorrente: a organização dos jogos depende quase sempre de conversas em grupos de WhatsApp e de muita coordenação manual entre os participantes. Esse processo informal, embora funcione, costuma gerar desencontros, desistências e partidas canceladas.
-
-        Mesmo sem seguir um protocolo formal de pesquisa, essas percepções iniciais foram importantes para identificar uma oportunidade de melhoria e motivaram o início do projeto.
-
     \subsection{Priorização e modelagem de requisitos}
         % Descrever como os requisitos foram analisados e refinados
-        A etapa de requisitos constitui um dos pilares do desenvolvimento deste projeto, pois estabelece de forma clara \textit{o que} o sistema deve oferecer e \textit{para quem}. Após a elicitação inicial, composta por análise de serviços similares, observação do domínio e discussões exploratórias, os requisitos passaram por um processo de refinamento incremental.
+        A etapa de requisitos constitui um dos pilares do desenvolvimento deste projeto, pois estabelece de forma clara o que o sistema deve oferecer e para quem. Após a elicitação inicial, composta por análise de serviços similares, observação do domínio e discussões exploratórias, os requisitos passaram por um processo de refinamento incremental.
         
-        Os requisitos foram organizados por meio de um processo de decomposição hierárquica, de acordo com as boas práticas de engenharia de requisitos adotadas em metodologias ágeis. Inicialmente, as necessidades do sistema foram agrupadas em \textit{épicos}, que representam objetivos de alto nível. Cada épico foi então subdividido em \textit{features}, que correspondem a partes específicas desse objetivo, geralmente associadas a um conjunto de capacidades do sistema. E por último, cada feature foi formalizada como um conjunto de \textit{user stories}, que descrevem comportamentos observáveis do sistema sob a perspectiva do usuário final.
+        Os requisitos foram organizados por meio de um processo de decomposição hierárquica, de acordo com as boas práticas de engenharia de requisitos adotadas em metodologias ágeis. Inicialmente, as necessidades do sistema foram agrupadas em épicos, que representam objetivos de alto nível. Cada épico foi então subdividido em \textit{features}, que correspondem a partes específicas desse objetivo, geralmente associadas a um conjunto de capacidades do sistema. E por último, cada feature foi formalizada como um conjunto de \textit{user stories}, que descrevem comportamentos observáveis do sistema sob a perspectiva do usuário final.
 
-        Esse processo tem por objetivo eliminar redundâncias, ajustar o escopo, identificar dependências e priorizar entregas essenciais para o funcionamento do MVP (\textit{Minimum Viable Product}). As decisões de priorização foram baseadas no valor de negócio, no impacto para o usuário e na complexidade técnica estimada.
+        Esse processo tem por objetivo eliminar redundâncias, ajustar o escopo, identificar dependências e priorizar entregas essenciais para o funcionamento do MVP. As decisões de priorização foram baseadas no valor de negócio, no impacto para o usuário e na complexidade técnica estimada.
 
         \subsubsection{Método MoSCoW}
         % Explicar o método e apresentar a matriz valor x esforço
@@ -340,7 +339,7 @@ Escrever quando finalizar o capitulo.
             Fila automática e formação de times &
             Should &
             Agrega valor significativo à experiência e diferencia o app, com viabilidade técnica no escopo do MVP. \\[0.3em]
-        
+            
             Modo claro/escuro &
             Could &
             Melhora acessibilidade e experiência visual, mas não afeta o funcionamento principal do sistema. \\[0.3em]
@@ -370,7 +369,7 @@ Escrever quando finalizar o capitulo.
         As \textit{user stories} foram utilizadas como principal artefato para representar requisitos funcionais do sistema. Esse formato coloca o usuário no centro da modelagem e facilita entendimento do valor associado a cada funcionalidade, permitindo que cada requisito seja interpretado como uma interação concreta entre o usuário e o sistema. Cada user story segue o padrão amplamente utilizado:
 
         \begin{quote}
-        \textit{“Como [tipo de usuário], desejo [ação], para [valor].”}
+        “Como [tipo de usuário], desejo [ação], para [valor].”
         \end{quote}
 
         Para facilitar a rastreabilidade e organização, foi adotado um sistema de identificação estruturado na forma \textbf{E\#-F\#-US\#}, no qual:
@@ -384,8 +383,8 @@ Escrever quando finalizar o capitulo.
         Dessa forma, o código \textbf{E2-F1-US1}, por exemplo, indica:
         \begin{itemize}
             \item Épico 2: Mapa e Descoberta de Quadras;
-            \item Feature 1: Interação com o mapa;
-            \item User Story 1: Primeira história pertencente a essa feature.
+            \item \textit{Feature} 1: Interação com o mapa;
+            \item \textit{User Story} 1: Primeira história pertencente a essa feature.
         \end{itemize}
 
         A seguir, alguns exemplos representativos de user stories elaboradas para o projeto:
@@ -413,11 +412,12 @@ Escrever quando finalizar o capitulo.
     % (Backend em AWS, banco provisionado, chaves do Google, builds com EAS, etc.)
 
 \section{Arquitetura geral do sistema}
+\label{sec:arquitetura-geral}
     % Explicar as decisões metodológicas que orientaram o design do sistema
     % (Ex: simplicidade de manutenção, custos, curva de aprendizado)
     % Referenciar que os diagramas e detalhes técnicos serão apresentados no Capítulo 5
 
-    A arquitetura planejada para o \textit{BORAFUT} segue o padrão cliente-servidor de três camadas (\textit{three-tier architecture}), modelo amplamente adotado em sistemas web e móveis modernos por promover a separação clara de responsabilidades, escalabilidade e manutenção simplificada \cite{pressman2019}. Nesse padrão, o sistema é dividido em três níveis principais: \textit{frontend} (camada de apresentação), \textit{backend} (camada de aplicação) e \textit{banco de dados} (camada de dados), com a possibilidade de comunicação com serviços externos (\textit{APIs} e \textit{SDKs}) para funcionalidades complementares.
+    A arquitetura planejada para o BORAFUT segue o padrão cliente-servidor de três camadas (\textit{three-tier architecture}), modelo amplamente adotado em sistemas web e móveis modernos por promover a separação clara de responsabilidades, escalabilidade e manutenção simplificada \cite{pressman2019}. Nesse padrão, o sistema é dividido em três níveis principais: frontend (camada de apresentação), backend (camada de aplicação) e banco de dados (camada de dados), com a possibilidade de comunicação com serviços externos (APIs e SDKs) para funcionalidades complementares.
 
     Essa estrutura foi escolhida por se adequar às necessidades de um projeto acadêmico em formato de MVP: permite o desenvolvimento incremental, facilita o trabalho paralelo da equipe e simplifica a implantação em serviços de nuvem. A Figura~\ref{fig:arquitetura-geral} apresenta uma visão geral da organização planejada.
 
@@ -429,26 +429,26 @@ Escrever quando finalizar o capitulo.
     \end{figure}
 
     \subsubsection{Frontend}
-    A camada de apresentação será desenvolvida em \textit{React Native}, visando portabilidade entre dispositivos Android e iOS. Essa tecnologia possibilita a criação de um aplicativo móvel nativo com reuso de código, integração facilitada com bibliotecas de interface e compatibilidade com serviços externos. O frontend será responsável pela interação direta com o usuário e pela comunicação com o backend via API, utilizando o formato \textit{JSON} sobre o protocolo \textit{HTTPS}.
+    A camada de apresentação será desenvolvida em React Native, visando portabilidade entre dispositivos Android e iOS. Essa tecnologia possibilita a criação de um aplicativo móvel nativo com reuso de código, integração facilitada com bibliotecas de interface e compatibilidade com serviços externos. O frontend será responsável pela interação direta com o usuário e pela comunicação com o backend via API, utilizando o formato \textit{JavaScript Object Notation} (JSON) sobre o protocolo \textit{Hypertext Transfer Protocol Secure} (HTTPS).
 
     \subsubsection{Backend}
-    A camada de aplicação será implementada em \textit{Node.js}, utilizando o framework \textit{Express}. Essa tecnologia oferece leveza, ampla comunidade e integração simples com bancos de dados relacionais e serviços de nuvem. O backend será responsável pela lógica de negócio, autenticação, controle de acesso e processamento das requisições enviadas pelo aplicativo, além de intermediar a comunicação com o banco de dados e com serviços externos.
+    A camada de aplicação será implementada em Node.js, utilizando o framework Express. Essa tecnologia oferece leveza, ampla comunidade e integração simples com bancos de dados relacionais e serviços de nuvem. O backend será responsável pela lógica de negócio, autenticação, controle de acesso e processamento das requisições enviadas pelo aplicativo, além de intermediar a comunicação com o banco de dados e com serviços externos.
 
-    A arquitetura do backend seguirá o padrão \textit{RESTful}, com endpoints que permitirão operações de leitura, escrita e atualização de informações.
+    A arquitetura do backend seguirá o padrão RESTful\footnote{O termo RESTful deriva do sufixo inglês ``-ful'', que indica ``caracterizado por'' ou ``que segue os princípios de''. Assim, uma RESTful API é uma API que adota os princípios da arquitetura  REST.}, com endpoints que permitirão operações de leitura, escrita e atualização de informações.
 
     \subsubsection{Banco de dados}
-    A camada de dados será composta por um banco relacional \textit{PostgreSQL}, escolhido por sua robustez, confiabilidade e compatibilidade com provedores de nuvem. O esquema do banco será modelado de forma normalizada, garantindo integridade e consistência das informações. A modelagem conceitual detalhada será apresentada no Capítulo~\ref{chap:projeto-aplicativo}, que trata do projeto técnico do sistema.
+    A camada de dados será composta por um banco relacional PostgreSQL, escolhido por sua robustez, confiabilidade e compatibilidade com provedores de nuvem. O esquema do banco será modelado de forma normalizada, garantindo integridade e consistência das informações. A modelagem detalhada de dados será apresentada na Seção~\ref{subsec:modelo-dados}, onde é descrito o modelo de dados do PostgreSQL.
 
     \subsubsection{Integrações externas}
-    Além da comunicação direta entre cliente e servidor, o backend realizará integrações com \textbf{APIs externas essenciais} para viabilizar funcionalidades-chave do aplicativo. No estágio de MVP, essas integrações são mínimas e focadas apenas nas necessidades imediatas do projeto.
+    Além da comunicação direta entre cliente e servidor, o backend realizará integrações com APIs externas essenciais para viabilizar funcionalidades-chave do aplicativo. No estágio de MVP, essas integrações são mínimas e focadas apenas nas necessidades imediatas do projeto.
     
     As integrações planejadas são:
     
     \begin{itemize}
-        \item \textbf{Autenticação por código enviado por e-mail}, utilizando um serviço externo de envio de mensagens. Nesse modelo \textit{passwordless}, o usuário informa o endereço de e-mail e recebe um código temporário para acessar sua conta, eliminando a necessidade de senhas.
+        \item \textbf{Autenticação por código enviado por e-mail}, utilizando um serviço externo de envio de mensagens (Google Identity). Nesse modelo \textit{passwordless}, o usuário informa o endereço de e-mail e recebe um código temporário para acessar sua conta, eliminando a necessidade de senhas.
         
-        \item \textbf{Serviços de geolocalização e mapas}, por meio da \textit{Google Maps Platform}, para consultar, exibir e georreferenciar quadras públicas e privadas no Distrito Federal.
+        \item \textbf{Serviços de geolocalização e mapas}, por meio da Google Maps Platform, para consultar, exibir e georreferenciar quadras públicas e privadas no Distrito Federal.
     \end{itemize}
     
     \subsubsection{Comunicação e infraestrutura}
-    A comunicação entre o aplicativo e o servidor será feita por meio de requisições HTTP seguras (\textit{HTTPS}), com autenticação baseada em \textit{JSON Web Tokens} (JWT). Tanto o backend quanto o banco de dados serão hospedados no ambiente de nuvem da AWS.
+    A comunicação entre o aplicativo e o servidor será feita por meio de requisições HTTPS, com autenticação baseada em \textit{JSON Web Tokens} (JWT). Tanto o backend quanto o banco de dados serão hospedados no ambiente de nuvem da AWS.

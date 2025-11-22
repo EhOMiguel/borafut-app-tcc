@@ -2,19 +2,21 @@
 
     Neste capítulo são apresentadas as tecnologias, ferramentas e práticas que sustentaram o desenvolvimento do sistema proposto. O objetivo é descrever o suporte tecnológico adotado e justificar as principais decisões de implementação.
 
-    Inicialmente, são expostas as plataformas e tecnologias utilizadas no desenvolvimento do aplicativo móvel e de seu backend. Em seguida, detalham-se as integrações externas, as ferramentas que apoiaram o processo de projeto e as práticas de qualidade aplicadas no ambiente de desenvolvimento. Por fim, são abordados os mecanismos de segurança e conformidade com a Lei Geral de Proteção de Dados (LGPD).
+    Inicialmente, são expostas as plataformas e tecnologias utilizadas no desenvolvimento do aplicativo móvel e de seu backend. Em seguida, detalham-se as integrações externas, as ferramentas que apoiaram o processo de projeto e as práticas de qualidade aplicadas no ambiente de desenvolvimento. 
+    % Por fim, são abordados os mecanismos de segurança e conformidade com a LGPD.
 
     \section{Plataforma e tecnologias de desenvolvimento móvel}
-        A escolha inicial foi pelo Flutter, por permitir uma base única de código para Android e iOS. O Flutter é um kit de ferramentas de código aberto criado pelo Google para o desenvolvimento de interfaces a partir de uma única base de código, usando a linguagem Dart \cite{flutter_docs}. Contudo, o processo de publicação para iOS exige um ambiente macOS para compilar, assinar e enviar o aplicativo, recurso de que não dispomos no momento. Buscando alternativas, adotamos o React Native em conjunto com o Expo. Além disso, utilizamos o EAS para construção e distribuição em nuvem, e adotamos TypeScript como linguagem principal.
+        A escolha inicial foi pelo Flutter, por permitir uma base única de código para Android e para o \textit{iPhone Operating System} (iOS). O Flutter é um kit de ferramentas de código aberto criado pelo Google para o desenvolvimento de interfaces a partir de uma única base de código, usando a linguagem Dart \cite{flutter_docs}. Contudo, o processo de publicação para iOS exige um ambiente macOS para compilar, assinar e enviar o aplicativo, recurso de que não dispomos no momento. Buscando alternativas, adotamos o React Native em conjunto com o Expo. Além disso, utilizamos o \textit{Expo Application Services} (EAS) para construção e distribuição em nuvem, e adotamos TypeScript como linguagem principal.
 
         \subsection{React Native}
         O React Native é um framework de código aberto para desenvolvimento de aplicativos nativos a partir do ecossistema React. O React, por sua vez, é uma biblioteca JavaScript criada para construir interfaces de usuário por meio de \textit{componentes} reaproveitáveis, um modo de organizar a tela em partes menores e independentes \cite{react_docs}. O React Native aplica essas mesmas ideias no contexto móvel, permitindo criar aplicativos para Android e iOS usando JavaScript ou TypeScript, com acesso a componentes nativos do sistema e recarga rápida durante o desenvolvimento \cite{reactnative_docs}.
 
         \subsection{Expo}
-        O Expo é uma plataforma e conjunto de SDKs\footnote{SDK significa \textit{Software Development Kit}, ou conjunto de bibliotecas e ferramentas que facilitam o uso de funcionalidades prontas em um aplicativo.} de código aberto que padroniza o ambiente do React Native e simplifica tarefas comuns do ciclo de desenvolvimento, como inicialização de projetos, acesso a APIs de dispositivo e testes em aparelhos físicos\cite{expo_docs}. Na prática, o Expo reduz a fricção de configuração e acelera a iteração de funcionalidades.
+        O Expo é uma plataforma e conjunto de SDKs\footnote{SDK significa \textit{Software Development Kit}, ou conjunto de bibliotecas e ferramentas que facilitam o uso de funcionalidades prontas em um aplicativo.} de código aberto que padroniza o ambiente do React Native e simplifica tarefas comuns do ciclo de desenvolvimento, como inicialização de projetos, acesso a APIs\footnote{Application Programming Interface. Em termos práticos, um conjunto de endpoints que define como clientes podem enviar requisições e receber respostas de um serviço.} de dispositivo e testes em aparelhos físicos \cite{expo_docs}. Na prática, o Expo reduz a fricção de configuração e acelera a iteração de funcionalidades.
+
 
         \subsection{Expo Application Services}
-        O \textit{Expo Application Services} (EAS) é o conjunto de serviços em nuvem do Expo para construir, assinar, publicar e gerenciar aplicativos React Native. O EAS Build compila binários para Android e iOS na nuvem, o EAS Submit auxilia no envio às lojas\cite{eas_build,eas_suite}. Esse fluxo permite gerar builds para iOS sem a necessidade de um computador com macOS local.
+        O EAS é o conjunto de serviços em nuvem do Expo para construir, assinar, publicar e gerenciar aplicativos React Native. O EAS Build compila binários para Android e iOS na nuvem, o EAS Submit auxilia no envio às lojas\cite{eas_build,eas_suite}. Esse fluxo permite gerar builds para iOS sem a necessidade de um computador com macOS local.
 
     \section{Tecnologias de desenvolvimento backend e arquitetura de API}
         O backend é a camada responsável por processar a lógica de negócio, manipular dados e disponibilizar serviços para o aplicativo móvel. Nesta etapa, optamos por tecnologias consolidadas que oferecem bom desempenho, comunidade ativa e ampla documentação.
@@ -23,10 +25,11 @@
         O Node.js é um ambiente de execução para JavaScript fora do navegador, construído sobre o motor V8 do Google Chrome \cite{node_docs}. Ele permite criar aplicações escaláveis e de alto desempenho utilizando a mesma linguagem tanto no cliente quanto no servidor. Além disso, conta com o ecossistema NPM\footnote{Node Package Manager, repositório público com milhares de bibliotecas reutilizáveis que aceleram o desenvolvimento.} que disponibiliza pacotes prontos para diversas finalidades, o que reduz tempo de implementação. A familiaridade da equipe com a tecnologia e a possibilidade de adotar TypeScript no servidor reforçaram essa escolha.
 
         \subsection{Express}
-        O Express é um framework minimalista para aplicações web no Node.js \cite{express_docs}. Ele fornece recursos como roteamento de URLs e organização modular de controladores e serviços. Sua simplicidade, combinada com a flexibilidade, facilita a construção de APIs robustas sem adicionar complexidade desnecessária.
+        O Express é um framework minimalista para aplicações web no Node.js \cite{express_docs}. Ele fornece recursos como roteamento de \textit{Uniform Resource Locators} (URLs) e organização modular de controladores e serviços. Sua simplicidade, combinada com a flexibilidade, facilita a construção de APIs robustas sem adicionar complexidade desnecessária.
 
-        \subsection{REST}
-        A interface entre o backend e o aplicativo é feita por meio de uma API\footnote{Application Programming Interface. Em termos práticos, um conjunto de endpoints que define como clientes podem enviar requisições e receber respostas de um serviço.}. Adotamos o estilo arquitetural REST (Representational State Transfer), proposto por Roy Fielding em sua tese de doutorado \cite{fielding2000}. O REST não é um protocolo, mas um conjunto de princípios que orienta o design de sistemas distribuídos, normalmente implementados sobre HTTP \cite{rfc7231}. Utilizando métodos como \texttt{GET}, \texttt{POST}, \texttt{PUT} e \texttt{DELETE}, conseguimos padronizar a forma como os dados são enviados e recebidos. 
+
+        \subsection{Representational State Transfer}
+        A interface entre o backend e o aplicativo é feita por meio de uma API. Adotamos o estilo arquitetural \textit{Representational State Transfer} (REST), proposto por Roy Fielding em sua tese de doutorado \cite{fielding2000}. O REST não é um protocolo, mas um conjunto de princípios que orienta o design de sistemas distribuídos, normalmente implementados sobre o \textit{Hypertext Transfer Protocol} (HTTP) \cite{rfc7231}. Utilizando métodos como \texttt{GET}, \texttt{POST}, \texttt{PUT} e \texttt{DELETE}, conseguimos padronizar a forma como os dados são enviados e recebidos. 
         Entre suas vantagens estão a simplicidade de implementação, a compatibilidade com diferentes clientes e a escalabilidade\footnote{A escalabilidade é favorecida quando o serviço é \textit{stateless}, ou seja, não mantém estado entre requisições. Isso permite que diferentes servidores atendam às requisições de forma independente, facilitando balanceamento e réplica.}. Em resumo, o REST equilibra praticidade e robustez, atendendo às necessidades atuais do projeto com baixo atrito de integração e amplo suporte no mercado.
 
     \section{Ambiente de desenvolvimento e qualidade de código}
@@ -65,26 +68,26 @@
 
     \section{Banco de dados}
 
-        O armazenamento e a gestão das informações do sistema foram concebidos de acordo com o paradigma relacional, tendo o PostgreSQL como Sistema Gerenciador de Banco de Dados (SGBD) escolhido. Antes da definição da tecnologia, foram analisados dois paradigmas amplamente utilizados na modelagem de dados: os bancos de dados SQL e NoSQL.
+        O armazenamento e a gestão das informações do sistema foram concebidos de acordo com o paradigma relacional, tendo o PostgreSQL como Sistema Gerenciador de Banco de Dados (SGBD) escolhido. Antes da definição da tecnologia, foram analisados dois paradigmas amplamente utilizados na modelagem de dados: os bancos de dados \textit{Structured Query Language} (SQL) e \textit{Not Only SQL} (NoSQL).
 
         \subsection{Paradigmas de modelagem de dados}
 
-        Os bancos de dados SQL (\textit{Structured Query Language}) são baseados em um modelo relacional, no qual as informações são organizadas em tabelas interconectadas por chaves primárias e estrangeiras. Esse modelo é amplamente utilizado em sistemas que demandam integridade referencial, consistência transacional e consultas complexas com junções entre múltiplas entidades \cite{elmasri2016fundamentals}. Já os bancos de dados NoSQL (\textit{Not Only SQL}) utilizam modelos mais flexíveis, como documentos, grafos ou pares chave–valor, e são recomendados em cenários de alta escala horizontal ou quando os dados são semiestruturados \cite{cattell2011scalable}.
+        Os bancos de dados SQL são baseados em um modelo relacional, no qual as informações são organizadas em tabelas interconectadas por chaves primárias e estrangeiras. Esse modelo é amplamente utilizado em sistemas que demandam integridade referencial, consistência transacional e consultas complexas com junções entre múltiplas entidades \cite{elmasri2016fundamentals}. Já os bancos de dados NoSQL utilizam modelos mais flexíveis, como documentos, grafos ou pares chave–valor, e são recomendados em cenários de alta escala horizontal ou quando os dados são semiestruturados \cite{cattell2011scalable}.
 
         Considerando a natureza do sistema proposto, que envolve relações bem definidas entre dados estruturados e pouco suscetíveis a variações de formato, optou-se pela adoção de um banco de dados relacional. O modelo SQL mostra-se mais adequado para representar entidades como usuários, quadras e partidas, que seguem esquemas fixos e relações estáveis. Além disso, a aplicação requer operações transacionais seguras, como confirmações de presença, atualizações de estatísticas e sincronização de dados em tempo real, o que demanda consistência e controle de concorrência confiáveis. Dessa forma, o modelo SQL se apresenta como a escolha mais robusta e coerente com os objetivos do sistema, garantindo alta integridade, rastreabilidade e desempenho no tratamento das informações.
 
         \subsection{Sistema Gerenciador de Banco de Dados}
 
-        Como SGBD, foi adotado o PostgreSQL, por se tratar de uma solução de código aberto, madura e amplamente utilizada no meio acadêmico e corporativo. O PostgreSQL segue o padrão SQL ANSI, oferece mecanismos de controle de acesso robustos e dispõe de extensões geoespaciais, como o PostGIS, úteis para o armazenamento de coordenadas geográficas. Além disso, sua compatibilidade com serviços em nuvem e a disponibilidade na camada gratuita da AWS (\textit{Free Tier}) tornam a solução adequada para o contexto do projeto, garantindo baixo custo e alta confiabilidade.
+        Como SGBD, foi adotado o PostgreSQL, por se tratar de uma solução de código aberto, madura e amplamente utilizada no meio acadêmico e corporativo. O PostgreSQL segue o padrão SQL \textit{American National Standards Institute} (ANSI), oferece mecanismos de controle de acesso robustos e dispõe de extensões geoespaciais, como o PostGIS, úteis para o armazenamento de coordenadas geográficas. Além disso, sua compatibilidade com serviços em nuvem e a disponibilidade na camada gratuita da \textit{Amazon Web Services} (AWS) tornam a solução adequada para o contexto do projeto, garantindo baixo custo e alta confiabilidade.
 
     % ESCREVER ESSA SEÇÃO POR ULTIMO
 
-    \section{Integrações e serviços externos}
+    % \section{Integrações e serviços externos}
 
-        \subsection{APIs e SDKs}
+        % \subsection{APIs e SDKs}
         % Google Maps SDK e Reverse Geocoding; deep link para Google Maps ou Waze
 
-        \subsection{Autenticação e notificações}
+        % \subsection{Autenticação e notificações}
         % Firebase Auth (e-mail e código); Expo Notifications para push
 
     \section{Ferramentas de projeto e colaboração}
@@ -103,7 +106,7 @@
         \subsection{Google Drive}
     O Google Drive é um serviço de armazenamento em nuvem para documentos, planilhas e apresentações \cite{drive_workspace}. Utilizamos para guardar e compartilhar materiais do projeto, como questionários, identidade visual, análises e atas, garantindo acesso rápido e organização em pastas.
 
-    \section{Segurança e LGPD no nível tecnológico}
+    % \section{Segurança e LGPD no nível tecnológico}
     % Confirmação de idade mínima (16+); aceite de Termos/Política; uso responsável de localização
 
 
