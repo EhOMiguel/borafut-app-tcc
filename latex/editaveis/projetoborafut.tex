@@ -72,11 +72,10 @@
       No nosso contexto, o diagrama foi utilizado para alinhar rapidamente o MVP: esclarecer quais capacidades precisam estar disponíveis desde o primeiro ciclo e quais podem evoluir depois. Ele evidencia três perfis de uso: Usuário Não Registrado (explora o mapa e consulta informações públicas de quadras e partidas), Usuário Registrado (assume ações pessoais, como autenticação, favoritos, avaliação e confirmação/cancelamento de presença) e Organizador (especialização do usuário registrado que conduz a partida, isto é, cria e gerencia o “fut”). Também ficam explícitas as integrações necessárias: API de E-mail (envio/validação de códigos para login e cadastro), API de Mapas (localização e rotas) e API Push (lembretes e notificações).
     
       \begin{figure}[h]
-      \centering
-      % Coloque a imagem em figs/uc-borafut.png
-      % \includegraphics[width=\linewidth]{figuras/uc-borafut.png}
-    \caption{Diagrama de casos de uso do BORAFUT (gerado no Lucid).}
-      \label{fig:uc-borafut}
+        \centering
+        \includegraphics[width=0.3\textwidth]{figuras/uc-borafut.jpg}
+        \caption{Diagrama de casos de uso do BORAFUT. Fonte: elaborado pelo autor.}
+        \label{fig:uc-borafut}
       \end{figure}
 
   \section{Fluxos principais}
@@ -120,19 +119,32 @@
     Para facilitar o deslocamento até o local do jogo, o aplicativo disponibiliza um botão “Como chegar” em cada perfil de quadra. Ao ser acionado, o sistema gera um \textit{deep link} que abre automaticamente o aplicativo de mapas padrão do dispositivo com a rota traçada até o endereço da quadra, facilitando o deslocamento até o local da partida.
 
   \section{Design de interface e experiência do usuário}
-    O design de interface do BORAFUT reflete a identidade visual definida no documento interno Manual de Identidade Visual do BORAFUT~\cite{borafut_visual2025}, desenvolvido pela equipe do projeto. Esse guia estabelece os elementos fundamentais da marca, como paleta de cores, tipografia, ícones e diretrizes de uso, garantindo unidade estética e coerência entre o aplicativo e suas demais comunicações.
+    O design de interface do BORAFUT reflete a identidade visual definida no documento interno Manual de Identidade Visual do BORAFUT~\cite{borafut_visual2025}, desenvolvido pela equipe do projeto. Esse guia estabelece os elementos fundamentais da marca, como paleta de cores, tipografia, ícones e diretrizes de uso, garantindo unidade estética e coerência entre o aplicativo e suas demais comunicações. A Figura~\ref{fig:manual-identidade-visual} apresenta uma parte do manual de identidade visual.
+
+    \begin{figure}[h]
+      \centering
+      \includegraphics[width=0.7\textwidth]{figuras/manual-identidade-visual.jpeg}
+      \caption{Parte do Manual de Identidade Visual do BORAFUT.}
+      \label{fig:manual-identidade-visual}
+    \end{figure}
 
     \subsection{Princípios de Identidade Visual}
       A identidade visual foi planejada para transmitir energia, simplicidade e senso de comunidade, valores centrais do BORAFUT. 
       
-      A Figura~\ref{fig:logotipo-borafut} apresenta o logotipo do BORAFUT, que utiliza proporções uniformes e formas geométricas simples,
-      reforçando o equilíbrio e a clareza visual. O logotipo adota uma fonte monoespaçada de traços arredondados, inspirada na tipografia \textit{Dune Rise}, de Jesta Designs, ajustada para criar uma sensação mais próxima e acolhedora ao contexto esportivo e comunitário.
+      O logotipo do BORAFUT utiliza proporções uniformes e formas geométricas simples, reforçando o equilíbrio e a clareza visual. O logotipo adota uma fonte monoespaçada de traços arredondados, inspirada na tipografia \textit{Dune Rise}, de Jesta Designs, ajustada para criar uma sensação mais próxima e acolhedora ao contexto esportivo e comunitário. As Figuras~\ref{fig:logotipo-borafut-claro} e~\ref{fig:logotipo-borafut-escuro} apresentam as variantes do logotipo.
 
       \begin{figure}[h]
         \centering
-        % \includegraphics[width=\linewidth]{figuras/identidade-visual.png}
-    \caption{Logotipo do BORAFUT.}
-        \label{fig:logotipo-borafut}
+        \includegraphics[width=0.9\textwidth]{figuras/logotipo-borafut-claro.png}
+        \caption{Logotipo do BORAFUT em versão clara.}
+        \label{fig:logotipo-borafut-claro}
+      \end{figure}
+
+      \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.9\textwidth]{figuras/logotipo-borafut-escuro.png}
+        \caption{Logotipo do BORAFUT em versão escura.}
+        \label{fig:logotipo-borafut-escuro}
       \end{figure}
 
       Para orientar as escolhas estéticas, foram consultados princípios de teoria das cores, que relacionam tonalidades a percepções emocionais e valores simbólicos no design. Embora o verde seja tradicionalmente associado a energia, vitalidade e confiança, sua presença é recorrente em produtos esportivos concorrentes. Para diferenciar a identidade visual, optou-se por uma variação ciano-esverdeada como cor primária, que preserva significados positivos dessa paleta,
@@ -140,7 +152,7 @@
       
       \begin{figure}[h]
           \centering
-          % \includegraphics[width=\linewidth]{figuras/paleta-cores-borafut.png}
+          \includegraphics[width=1\textwidth]{figuras/paleta-borafut.png}
           \caption{Paleta de cores utilizada na interface do BORAFUT.}
           \label{fig:paleta-borafut}
       \end{figure}
@@ -182,7 +194,7 @@
     
     \begin{figure}[h]
         \centering
-        % \includegraphics[width=\linewidth]{figuras/prototipo-geral.png}
+        \includegraphics[width=1\textwidth]{figuras/prototipo-geral.jpg}
         \caption{Visão geral das telas do protótipo de alta fidelidade desenvolvido no Figma.}
         \label{fig:prot-geral}
     \end{figure}
@@ -191,7 +203,7 @@
     
     \begin{figure}[h]
         \centering
-        % \includegraphics[width=0.55\linewidth]{figuras/prototipo-login.png}
+        \includegraphics[width=1\textwidth]{figuras/prototipo-login.png}
         \caption{Tela de login do protótipo de alta fidelidade.}
         \label{fig:prot-login}
     \end{figure}
@@ -200,7 +212,7 @@
     
     \begin{figure}[h]
         \centering
-        % \includegraphics[width=0.55\linewidth]{figuras/prototipo-mapa.png}
+        \includegraphics[width=0.3\textwidth]{figuras/prototipo-mapa.png}
         \caption{Tela de visualização de mapa com quadras próximas.}
         \label{fig:prot-mapa}
     \end{figure}
@@ -211,7 +223,7 @@
     
     \begin{figure}[h]
         \centering
-      % \includegraphics[width=0.55\linewidth]{figuras/prototipo-fut-marcado.png}
+      \includegraphics[width=0.3\textwidth]{figuras/prototipo-fut-marcado.png}
     \caption{Tela de detalhes de um jogo marcado (“fut”).}
           \label{fig:prot-fut}
       \end{figure}
@@ -235,7 +247,7 @@
 
         \begin{figure}[h]
             \centering
-            % \includegraphics[width=0.8\textwidth]{figures/c4-contexto.png}
+            % \includegraphics[width=0.8\textwidth]{figuras/c4-contexto.png}
             \caption{Diagrama C4 nível contexto do BORAFUT.}
             \label{fig:c4-contexto}
         \end{figure}
@@ -253,7 +265,7 @@
 
         \begin{figure}[h]
             \centering
-            % \includegraphics[width=0.8\textwidth]{figures/c4-conteineres.png}
+            % \includegraphics[width=0.8\textwidth]{figuras/c4-conteineres.png}
             \caption{Diagrama C4 nível contêineres do BORAFUT.}
             \label{fig:c4-conteineres}
         \end{figure}
@@ -275,10 +287,12 @@
 
       \begin{figure}[h]
           \centering
-          % \includegraphics[width=0.9\textwidth]{figures/modelo-dados.png}
+          \includegraphics[width=1\textwidth]{figuras/modelo-dados.png}
           \caption{Modelo entidade-relacionamento do banco \textit{PostgreSQL}.}
           \label{fig:modelo-dados}
       \end{figure}
+
+      Na figura, as partes coloridas representam as entidades principais e seus relacionamentos: em vermelho, a entidade \textbf{Jogador} e seus relacionamentos; em verde, a entidade \textbf{Partida} e seus relacionamentos; e em azul, a entidade \textbf{Quadra} e seus relacionamentos.
 
       O MER completo encontra-se no Apêndice \ref{apendice:MER} que apresenta o modelo lógico do banco de dados.
 
@@ -292,7 +306,7 @@
     % Incluir público participante, cenários de uso, métricas e resultados observados
     % Sumário de ADRs
 
-  \section{Prova de conceito}
+  % \section{Prova de conceito}
     % Demonstração mínima: mapa com pins da API Express; ação de abrir rota por deep link; prints e repositório
 
 
