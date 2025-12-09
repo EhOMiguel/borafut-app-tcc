@@ -69,7 +69,7 @@
 
       O diagrama de casos de uso (UML) oferece uma visão externa do sistema: mostra quem interage com o BORAFUT (atores) e quais serviços o sistema disponibiliza a essas pessoas, sem entrar em detalhes de interface ou implementação. Em outras palavras, ele descreve o que o sistema oferece do ponto de vista do usuário e quais fronteiras existem com serviços externos, funcionando como um mapa de alto nível para o escopo funcional.
 
-      No nosso contexto, o diagrama foi utilizado para alinhar rapidamente o MVP: esclarecer quais capacidades precisam estar disponíveis desde o primeiro ciclo e quais podem evoluir depois. Ele evidencia três perfis de uso: Usuário Não Registrado (explora o mapa e consulta informações públicas de quadras e partidas), Usuário Registrado (assume ações pessoais, como autenticação, favoritos, avaliação e confirmação/cancelamento de presença) e Organizador (especialização do usuário registrado que conduz a partida, isto é, cria e gerencia o “fut”). Também ficam explícitas as integrações necessárias: API de E-mail (envio/validação de códigos para login e cadastro), API de Mapas (localização e rotas) e API Push (lembretes e notificações).
+      No nosso contexto, o diagrama foi utilizado para alinhar rapidamente o MVP: esclarecer quais capacidades precisam estar disponíveis desde o primeiro ciclo e quais podem evoluir depois. Ele evidencia três perfis de uso: Usuário Não Registrado (explora o mapa e consulta informações públicas de quadras e partidas), Usuário Registrado (assume ações pessoais, como autenticação, favoritos, avaliação e confirmação/cancelamento de presença) e Organizador (especialização do usuário registrado que conduz a partida, isto é, cria e gerencia o jogo). Também ficam explícitas as integrações necessárias: Serviços de e-mail e serviços de geolocalização e mapas.
     
       \begin{figure}[h]
         \centering
@@ -255,7 +255,7 @@
       \subsubsection{Diagrama de contêineres (C2).}
         O diagrama de contêineres representa a decomposição interna do sistema em suas principais partes executáveis, chamadas de contêineres. Cada contêiner abriga um conjunto de responsabilidades técnicas ou funcionais, comunicando-se com os demais por interfaces bem definidas.  
 
-        A Figura~\ref{fig:c4-conteineres} apresenta os principais contêineres do BORAFUT:
+        A Figura~\ref{fig:c4-containers} apresenta os principais contêineres do BORAFUT:
         \begin{itemize}
             \item o \textbf{aplicativo móvel}, responsável pela interação com o usuário e envio das requisições à API;
             \item o \textbf{API}, que concentra a lógica de negócio, autenticação e orquestração de dados;
