@@ -74,7 +74,7 @@
       \begin{figure}[h]
         \centering
         \includegraphics[width=0.3\textwidth]{figuras/uc-borafut.jpg}
-        \caption{Diagrama de casos de uso do BORAFUT. Fonte: elaborado pelo autor.}
+        \caption{Diagrama de casos de uso do BORAFUT.}
         \label{fig:uc-borafut}
       \end{figure}
 
@@ -243,11 +243,11 @@
       O modelo C4, proposto por Brown~\cite{brown2018}, é um método visual para documentar arquitetura de software em quatro níveis de abstração: contexto, contêineres, componentes e código, que permitem descrever a arquitetura de software em diferentes graus de detalhe. Neste trabalho, optou-se por representar apenas os dois primeiros níveis (contexto e contêineres), por serem suficientes para comunicar a visão geral e a organização técnica do BORAFUT no estágio atual do projeto. 
 
       \subsubsection{Diagrama de contexto (C1).}
-        O diagrama de contexto mostra o BORAFUT como um sistema inserido em seu ambiente de uso. Ele representa as interações entre os usuários e os sistemas externos que fornecem serviços complementares. Na Figura~\ref{fig:c4-contexto}, observa-se que o aplicativo é utilizado por jogadores amadores e administradores de quadra, comunicando-se com serviços responsáveis por autenticação e geolocalização.
+        O diagrama de contexto apresenta o BORAFUT como um sistema inserido em seu ambiente de uso. Ele representa as interações entre os usuários e os sistemas externos que fornecem serviços complementares. Na Figura~\ref{fig:c4-contexto}, observa-se que o aplicativo é utilizado por jogadores amadores, seu usuário principal, comunicando-se com serviços responsáveis por autenticação e geolocalização.
 
         \begin{figure}[h]
             \centering
-            % \includegraphics[width=0.8\textwidth]{figuras/c4-contexto.png}
+            \includegraphics[width=0.7\textwidth]{figuras/c4-contexto.png}
             \caption{Diagrama C4 nível contexto do BORAFUT.}
             \label{fig:c4-contexto}
         \end{figure}
@@ -257,17 +257,17 @@
 
         A Figura~\ref{fig:c4-conteineres} apresenta os principais contêineres do BORAFUT:
         \begin{itemize}
-            \item o \textbf{aplicativo móvel} (React Native), responsável pela interação com o usuário e envio das requisições à API;
-            \item o \textbf{backend} (Node.js + Express), que concentra a lógica de negócio, autenticação e orquestração de dados;
-            \item o \textbf{banco de dados relacional} (PostgreSQL), que armazena as informações persistentes;
-            \item e as \textbf{APIs externas}, usadas para autenticação (Google Identity), geolocalização (Google Maps Platform) e armazenamento de mídia.
+            \item o \textbf{aplicativo móvel}, responsável pela interação com o usuário e envio das requisições à API;
+            \item o \textbf{API}, que concentra a lógica de negócio, autenticação e orquestração de dados;
+            \item o \textbf{Banco de dados}, que armazena as informações persistentes;
+            \item e as \textbf{APIs externas}, usadas para autenticação e geolocalização.
         \end{itemize}
 
         \begin{figure}[h]
             \centering
-            % \includegraphics[width=0.8\textwidth]{figuras/c4-conteineres.png}
+            \includegraphics[width=0.7\textwidth]{figuras/c4-containers.png}
             \caption{Diagrama C4 nível contêineres do BORAFUT.}
-            \label{fig:c4-conteineres}
+            \label{fig:c4-containers}
         \end{figure}
 
     \subsection{Modelo de dados do PostgreSQL}
