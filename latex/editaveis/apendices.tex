@@ -3,95 +3,236 @@
 \partapendices
 
 \chapter{Modelo Entidade–Relacionamento (MER)}
-\label{apendice:MER}
+    \label{apendice:MER}
+    Este apêndice apresenta o Modelo Entidade–Relacionamento (MER) desenvolvido para o projeto BORAFUT. O diagrama reflete a estrutura lógica dos dados necessários para o funcionamento do sistema, incluindo entidades, atributos e relacionamentos.
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{figuras/mer-completo.png}
+        \caption{Modelo entidade-relacionamento completo.}
+        \label{fig:mer-completo}
+    \end{figure}
 
 \chapter{Project Model Canvas}
-\label{apendice:pmcanvas}
+    \label{apendice:pmcanvas}
+    Este apêndice reúne o Project Model Canvas utilizado no planejamento inicial do projeto. O canvas sintetiza elementos estratégicos como propósito, stakeholders, entregas, recursos e riscos, oferecendo uma visão macro estruturada do escopo e da proposta de valor do BORAFUT. Esse artefato orientou as primeiras etapas de concepção e alinhamento do projeto.
+
     \begin{sidewaysfigure}
         \centering
         \includegraphics[width=1.0\linewidth]{figuras/pmcanvas.png}
-        \caption{Project Model Canvas completo utilizado no planejamento inicial.}
+        \caption{Project Model Canvas completo.}
     \end{sidewaysfigure}
 
 \chapter{User Stories do Projeto}
-\label{apendice:us}
+    \label{apendice:us}
+    Este apêndice apresenta a lista completa de \textit{user stories} organizadas por épicos e \textit{features}, conforme modelagem descrita na metodologia. Os códigos utilizam o padrão \textbf{E\#-F\#-US\#}, que identifica respectivamente o épico, a feature e a user story correspondente.
+
+    % ===============================================================
+    \section*{Épico 1 -- Gerenciamento de Usuários}
+
+    \subsection*{Feature 1 -- Cadastro e pré-cadastro}
+    \begin{itemize}
+        \item \textbf{E1-F1-US1} -- Como potencial usuário, desejo me cadastrar informando e-mail e dados básicos (apelido, região, gênero opcional), para ter acesso completo às funcionalidades do app.
+        \item \textbf{E1-F1-US2} -- Como potencial usuário, desejo receber um e-mail de confirmação com um código de verificação ao me cadastrar, para validar que o e-mail informado realmente me pertence.
+        \item \textbf{E1-F1-US3} -- Como usuário registrado, desejo poder atualizar meu e-mail, desde que eu confirme o novo endereço com um código enviado para ele.
+    \end{itemize}
+
+    \subsection*{Feature 2 -- Login por código e sessão}
+    \begin{itemize}
+        \item \textbf{E1-F2-US1} -- Como usuário registrado, desejo fazer login informando apenas meu e-mail e recebendo um código temporário por e-mail, para acessar minha conta sem precisar lembrar uma senha.
+        \item \textbf{E1-F2-US2} -- Como usuário registrado, desejo que o app mantenha minha sessão ativa por meio de um token seguro no dispositivo, para que eu não precise fazer login toda vez que abrir o aplicativo.
+        \item \textbf{E1-F2-US3} -- Como usuário registrado, desejo ter a opção de sair da minha conta (logout) em um dispositivo, para impedir que outras pessoas acessem meu perfil através daquele aparelho.
+    \end{itemize}
+
+    \subsection*{Feature 3 -- Gestão de conta e privacidade}
+    \begin{itemize}
+        \item \textbf{E1-F3-US1} -- Como usuário registrado, desejo poder excluir minha conta definitivamente, para deixar de utilizar o app e ter meus dados pessoais removidos conforme a política de privacidade.
+        \item \textbf{E1-F3-US2} -- Como usuário registrado, desejo visualizar um resumo dos dados pessoais que o app armazena sobre mim, para ter transparência sobre o uso das minhas informações.
+        \item \textbf{E1-F3-US3} -- Como usuário registrado, desejo poder configurar se autorizo ou não o uso da minha localização em tempo real, para controlar meu nível de exposição no mapa e nos jogos.
+        \item \textbf{E1-F3-US4} -- Como usuário registrado, desejo validar meu número de telefone por meio de código enviado por SMS (opcional), para aumentar a confiança da comunidade na minha autenticidade.
+        \item \textbf{E1-F3-US5} -- Como usuário (registrado ou não), desejo alternar entre modo claro e modo escuro no app, para adequar a interface às minhas preferências.
+    \end{itemize}
+
+    % ===============================================================
+    \section*{Épico 2 -- Mapa e Descoberta de Quadras}
+
+    \subsection*{Feature 1 -- Interação com o mapa}
+    \begin{itemize}
+        \item \textbf{E2-F1-US1} -- Como usuário (registrado ou não), desejo poder aproximar, afastar e navegar pelo mapa, para ter uma visão detalhada das quadras na minha região.
+        \item \textbf{E2-F1-US2} -- Como usuário (registrado ou não), desejo selecionar uma quadra no mapa para abrir seu perfil, para obter mais informações sobre aquele local.
+        \item \textbf{E2-F1-US3} -- Como usuário (registrado ou não), desejo pesquisar quadras ou bairros pelo nome, para encontrar locais específicos de forma rápida.
+        \item \textbf{E2-F1-US4} -- Como usuário (registrado ou não), desejo utilizar um botão de “localizar-me” no mapa, para que o mapa centralize na minha posição atual.
+    \end{itemize}
+
+    \subsection*{Feature 2 -- Filtros e destaque}
+    \begin{itemize}
+        \item \textbf{E2-F2-US1} -- Como usuário (registrado ou não), desejo aplicar filtros no mapa (distância, avaliação, piso, iluminação, status), para encontrar quadras que se encaixem melhor no que procuro.
+        \item \textbf{E2-F2-US2} -- Como usuário registrado, desejo filtrar quadras pelas minhas favoritas.
+        \item \textbf{E2-F2-US3} -- Como usuário (registrado ou não), desejo ver no mapa um indicativo visual das quadras onde há jogos acontecendo ou agendados.
+    \end{itemize}
+
+    % ===============================================================
+    \section*{Épico 3 -- Perfil da Quadra}
+
+    \subsection*{Feature 1 -- Informações e avaliação}
+    \begin{itemize}
+        \item \textbf{E3-F1-US1} -- Como usuário (registrado ou não), desejo visualizar informações básicas da quadra (endereço, tipo de piso, iluminação, se é pública/privada).
+        \item \textbf{E3-F1-US2} -- Como usuário (registrado ou não), desejo visualizar as avaliações gerais da quadra feitas por outros usuários.
+        \item \textbf{E3-F1-US3} -- Como usuário registrado, desejo avaliar uma quadra de forma geral, contribuindo para a comunidade.
+        \item \textbf{E3-F1-US4} -- Como usuário registrado, desejo visualizar quantos jogos já aconteceram naquela quadra.
+    \end{itemize}
+
+    \subsection*{Feature 2 -- Regras e agenda da quadra}
+    \begin{itemize}
+        \item \textbf{E3-F2-US1} -- Como usuário registrado, desejo visualizar os horários em que a quadra costuma estar ocupada ou reservada.
+        \item \textbf{E3-F2-US2} -- Como usuário registrado, desejo visualizar os jogos futuros agendados naquela quadra.
+    \end{itemize}
+
+    \subsection*{Feature 3 -- Favoritos e compartilhamento}
+    \begin{itemize}
+        \item \textbf{E3-F3-US1} -- Como usuário registrado, desejo marcar uma quadra como favorita.
+        \item \textbf{E3-F3-US2} -- Como usuário registrado, desejo abrir o endereço da quadra no aplicativo de navegação do meu telefone.
+    \end{itemize}
+
+    % ===============================================================
+    \section*{Épico 4 -- Perfil do Jogo}
+
+    \subsection*{Feature 1 -- Visualização do jogo}
+    \begin{itemize}
+        \item \textbf{E4-F1-US1} -- Como usuário registrado, desejo visualizar os detalhes completos de um jogo.
+        \item \textbf{E4-F1-US2} -- Como usuário registrado, desejo visualizar quantas pessoas estão confirmadas.
+        \item \textbf{E4-F1-US3} -- Como usuário registrado, desejo visualizar a lista de confirmados e de presentes.
+    \end{itemize}
+
+    \subsection*{Feature 2 -- Confirmação de presença}
+    \begin{itemize}
+        \item \textbf{E4-F2-US1} -- Como usuário registrado, desejo confirmar minha presença em um jogo.
+        \item \textbf{E4-F2-US2} -- Como usuário registrado, desejo cancelar minha presença.
+    \end{itemize}
+
+    \subsection*{Feature 3 -- Compartilhamento}
+    \begin{itemize}
+        \item \textbf{E4-F3-US1} -- Como usuário registrado, desejo compartilhar o jogo com amigos via outros aplicativos.
+    \end{itemize}
+
+    % ===============================================================
+    \section*{Épico 5 -- Organização e Gerenciamento do Jogo}
+
+    \subsection*{Feature 1 -- Criação e edição de jogo}
+    \begin{itemize}
+        \item \textbf{E5-F1-US1} -- Como usuário registrado, desejo criar um jogo.
+        \item \textbf{E5-F1-US2} -- Como organizador, desejo editar as informações do jogo que criei.
+        \item \textbf{E5-F1-US3} -- Como organizador, desejo excluir um jogo criado.
+    \end{itemize}
+
+    \subsection*{Feature 2 -- Check-in e pré-cadastro}
+    \begin{itemize}
+        \item \textbf{E5-F2-US1} -- Como usuário registrado, desejo confirmar minha chegada na quadra.
+        \item \textbf{E5-F2-US2} -- Como organizador, desejo registrar a presença de uma pessoa não cadastrada.
+        \item \textbf{E5-F2-US3} -- Como usuário não registrado, desejo receber um e-mail ao ser adicionado a um jogo.
+    \end{itemize}
+
+    \subsection*{Feature 3 -- Fila e formação automática de times}
+    \begin{itemize}
+        \item \textbf{E5-F3-US1} -- Como usuário registrado, desejo visualizar a fila de jogadores.
+        \item \textbf{E5-F3-US2} -- Como organizador, desejo que o app forme os times automaticamente pela ordem de chegada.
+        \item \textbf{E5-F3-US3} -- Como organizador, desejo que novos jogadores entrem automaticamente no fim da fila.
+    \end{itemize}
+
+    \subsection*{Feature 4 -- Controle da partida}
+    \begin{itemize}
+        \item \textbf{E5-F4-US1} -- Como responsável pela partida, desejo iniciar e pausar um cronômetro.
+        \item \textbf{E5-F4-US2} -- Como responsável pela partida, desejo registrar os gols de cada time, atribuindo-os a jogadores.
+    \end{itemize}
+
+    \subsection*{Feature 5 -- Encerramento e rotação de times}
+    \begin{itemize}
+        \item \textbf{E5-F5-US1} -- Como responsável pela partida, desejo encerrar uma partida registrando o resultado.
+        \item \textbf{E5-F5-US2} -- Como organizador, desejo que o time perdedor vá automaticamente para o fim da fila.
+    \end{itemize}
+
+    \subsection*{Feature 6 -- Estatísticas do jogo}
+    \begin{itemize}
+        \item \textbf{E5-F6-US1} -- Como usuário registrado, desejo visualizar estatísticas simples da minha participação em jogos.
+        \item \textbf{E5-F6-US2} -- Como organizador, desejo visualizar um resumo das partidas realizadas no jogo.
+    \end{itemize}
+
+    % ===============================================================
+    \section*{Épico 6 -- Perfil do Usuário}
+
+    \subsection*{Feature 1 -- Configurações de perfil}
+    \begin{itemize}
+        \item \textbf{E6-F1-US1} -- Como usuário registrado, desejo alterar meu apelido.
+        \item \textbf{E6-F1-US2} -- Como usuário registrado, desejo selecionar ou enviar um avatar para o meu perfil.
+    \end{itemize}
 
 \chapter{Questionário}
-\label{apendice:questionario}
+    \label{apendice:questionario}
 
-O quadro a seguir apresenta as perguntas utilizadas no questionário aplicado aos participantes da pesquisa exploratória sobre o futebol amador no Distrito Federal. Somente as perguntas e alternativas foram transcritas, mantendo-se a estrutura original do formulário.
+   Este apêndice apresenta as perguntas utilizadas no questionário aplicado aos participantes da pesquisa exploratória sobre o futebol amador no Distrito Federal. Somente as perguntas e alternativas foram transcritas, mantendo-se a estrutura original do formulário.
 
-\begin{longtable}{p{0.25\linewidth} p{0.70\linewidth}}
-    \textbf{Pergunta} & \textbf{Alternativas} \\
-    \hline
-    Como você se identifica? &
-    Mulher; Homem; Prefiro não informar; Outro. \\
-    \hline
+    \begin{longtable}{p{0.25\linewidth} p{0.70\linewidth}}
+        \textbf{Pergunta} & \textbf{Alternativas} \\
+        \hline
+        Como você se identifica? &
+        Mulher; Homem; Prefiro não informar; Outro. \\
+        \hline
 
-    Qual é a sua idade, craque? &
-    Novato(a) (<18); Jovem Promessa (18–24); No Auge (25–34); Veterano(a) (35–44); Lenda do Fut (45+). \\
-    \hline
+        Qual é a sua idade, craque? &
+        Novato(a) (<18); Jovem Promessa (18–24); No Auge (25–34); Veterano(a) (35–44); Lenda do Fut (45+). \\
+        \hline
 
-    De qual região você defende as cores? &
-    Arapoanga; Asa Norte; Asa Sul; Águas Claras; Brazlândia; Candangolândia; Ceilândia; Cruzeiro; Guará; Gama; Itapoã; Lago Norte; Lago Sul; Jardim Botânico; Núcleo Bandeirante; Paranoá; Park Way; Planaltina; Recanto das Emas; Riacho Fundo; Samambaia; Santa Maria; São Sebastião; Sobradinho; Sudoeste; Taguatinga; Varjão; Vicente Pires; Outro. \\
-    \hline
+        De qual região você defende as cores? &
+        Arapoanga; Asa Norte; Asa Sul; Águas Claras; Brazlândia; Candangolândia; Ceilândia; Cruzeiro; Guará; Gama; Itapoã; Lago Norte; Lago Sul; Jardim Botânico; Núcleo Bandeirante; Paranoá; Park Way; Planaltina; Recanto das Emas; Riacho Fundo; Samambaia; Santa Maria; São Sebastião; Sobradinho; Sudoeste; Taguatinga; Varjão; Vicente Pires; Outro. \\
+        \hline
 
-    Qual é o seu status no futebol? &
-    Amador(a); Semiprofissional; Profissional. \\
-    \hline
+        Qual é o seu status no futebol? &
+        Amador(a); Semiprofissional; Profissional. \\
+        \hline
 
-    Onde rola a resenha para organizar o jogo? (marque todos) &
-    WhatsApp; Telegram; Redes sociais; Planilhas; Pessoalmente; Outro. \\
-    \hline
+        Onde rola a resenha para organizar o jogo? (marque todos) &
+        WhatsApp; Telegram; Redes sociais; Planilhas; Pessoalmente; Outro. \\
+        \hline
 
-    Frequência de jogo nos últimos 3 meses &
-    4x/semana ou mais; 2–3x/semana; 1x/semana; 2–3x/mês; 1x/mês ou menos; Não joguei. \\
-    \hline
+        Frequência de jogo nos últimos 3 meses &
+        4x/semana ou mais; 2–3x/semana; 1x/semana; 2–3x/mês; 1x/mês ou menos; Não joguei. \\
+        \hline
 
-    Qual estilo de futebol é o seu território? (múltipla escolha) &
-    Futsal; Society; Campo. \\
-    \hline
+        Qual estilo de futebol é o seu território? (múltipla escolha) &
+        Futsal; Society; Campo. \\
+        \hline
 
-    Onde você costuma jogar? &
-    Quadra/campo público; Quadra/campo privado; Escola, clube ou projeto social; Outro. \\
-    \hline
+        Onde você costuma jogar? &
+        Quadra/campo público; Quadra/campo privado; Escola, clube ou projeto social; Outro. \\
+        \hline
 
-    Formação de jogo favorita (futsal) &
-    5x5; 4x4; 3x3. \\
-    \hline
+        Formação de jogo favorita (futsal) &
+        5x5; 4x4; 3x3. \\
+        \hline
 
-    Tamanho do grupo no futsal &
-    5–7; 8–10; Mais de 10. \\
-    \hline
+        Tamanho do grupo no futsal &
+        5–7; 8–10; Mais de 10. \\
+        \hline
 
-    Dificuldades enfrentadas nos últimos 3 meses (escala 1–5) &
-    Falta de pessoas; Desistências; Dificuldade de quadra; Falta de iluminação; Falta de comunicação. \\
-    \hline
+        Dificuldades enfrentadas nos últimos 3 meses (escala 1–5) &
+        Falta de pessoas; Desistências; Dificuldade de quadra; Falta de iluminação; Falta de comunicação. \\
+        \hline
 
-    Com que frequência uma partida marcada não acontece? &
-    Quase nunca; Ocasionalmente; Frequentemente; Quase sempre. \\
-    \hline
+        Com que frequência uma partida marcada não acontece? &
+        Quase nunca; Ocasionalmente; Frequentemente; Quase sempre. \\
+        \hline
 
-    Importância das funcionalidades (1–5) &
-    Criar partidas; Consultar quadras; Avaliações; Ocupação em tempo real; Encontrar grupos; Apostas; Estatísticas pessoais; Campeonatos; Ranqueamento; Notificações. \\
-    \hline
+        Importância das funcionalidades (1–5) &
+        Criar partidas; Consultar quadras; Avaliações; Ocupação em tempo real; Encontrar grupos; Apostas; Estatísticas pessoais; Campeonatos; Ranqueamento; Notificações. \\
+        \hline
 
-    O que mais te motivaria a usar o BoraFut? &
-    Marcar jogos facilmente; Juntar a galera; Manter rotina de atividade física; Acompanhar estatísticas; Recompensas/desafios; Evitar furos; Achar quadra e horário. \\
-    \hline
+        O que mais te motivaria a usar o BORAFUT? &
+        Marcar jogos facilmente; Juntar a galera; Manter rotina de atividade física; Acompanhar estatísticas; Recompensas/desafios; Evitar furos; Achar quadra e horário. \\
+        \hline
 
-    Recurso especial desejado &
-    Resposta aberta. \\
-    \hline
-\end{longtable}
-
-
-% \chapter{Primeiro Apêndice}
-
-% Texto do primeiro apêndice.
-
-% \chapter{Segundo Apêndice}
-
-% Texto do segundo apêndice.
+        Recurso especial desejado &
+        Resposta aberta. \\
+        \hline
+    \end{longtable}
 
 \end{apendicesenv}
