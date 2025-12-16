@@ -69,12 +69,12 @@
 
       O diagrama de casos de uso (UML) oferece uma visão externa do sistema: mostra quem interage com o BORAFUT (atores) e quais serviços o sistema disponibiliza a essas pessoas, sem entrar em detalhes de interface ou implementação. Em outras palavras, ele descreve o que o sistema oferece do ponto de vista do usuário e quais fronteiras existem com serviços externos, funcionando como um mapa de alto nível para o escopo funcional.
 
-      No nosso contexto, o diagrama foi utilizado para alinhar rapidamente o MVP: esclarecer quais capacidades precisam estar disponíveis desde o primeiro ciclo e quais podem evoluir depois. Ele evidencia três perfis de uso: Usuário Não Registrado (explora o mapa e consulta informações públicas de quadras e partidas), Usuário Registrado (assume ações pessoais, como autenticação, favoritos, avaliação e confirmação/cancelamento de presença) e Organizador (especialização do usuário registrado que conduz a partida, isto é, cria e gerencia o jogo). Também ficam explícitas as integrações necessárias: Serviços de e-mail e serviços de geolocalização e mapas.
+      No nosso contexto, o diagrama foi utilizado para alinhar rapidamente o MVP: esclarecer quais capacidades precisam estar disponíveis desde o primeiro ciclo e quais podem evoluir depois. Ele evidencia três perfis de uso: Usuário Não Registrado (explora o mapa e consulta informações públicas de quadras e partidas), Usuário Registrado (assume ações pessoais, como autenticação, favoritos, avaliação e confirmação/cancelamento de presença) e Organizador (especialização do usuário registrado que conduz a partida, isto é, cria e gerencia o “fut”). Também ficam explícitas as integrações necessárias: API de E-mail (envio/validação de códigos para login e cadastro), API de Mapas (localização e rotas) e API Push (lembretes e notificações).
     
       \begin{figure}[h]
         \centering
         \includegraphics[width=0.3\textwidth]{figuras/uc-borafut.jpg}
-        \caption{Diagrama de casos de uso do BORAFUT.}
+        \caption{Diagrama de casos de uso do BORAFUT. Fonte: elaborado pelo autor.}
         \label{fig:uc-borafut}
       \end{figure}
 
@@ -92,7 +92,7 @@
     Ao entrar no aplicativo, o usuário é direcionado ao mapa interativo, centralizado em sua localização atual. As quadras próximas são exibidas como marcadores, permitindo navegação, zoom e movimentação livre no mapa. O usuário pode buscar quadras pelo nome, aplicar filtros e selecionar qualquer marcador para visualizar informações detalhadas sobre a quadra escolhida.
 
     \subsection{Visualizar perfil da quadra}
-    Ao selecionar um marcador no mapa, o usuário acessa o perfil da quadra, onde encontra informações como endereço, características básicas, avaliação média, partidas recentes e partidas agendadas (rotuladas como “futs” no aplicativo). A tela apresenta também o botão ”Como chegar”, que abre o aplicativo de mapas do dispositivo com rota até o local. No perfil da quadra, o usuário pode consultar a agenda com partidas agendadas e eventos recorrentes para os próximos dias, o que auxilia na escolha de horários disponíveis e fornece uma noção da atividade da quadra ao longo da semana. Usuários autenticados podem favoritar a quadra para acessá-la rapidamente no futuro.
+    Ao selecionar um marcador no mapa, o usuário acessa o perfil da quadra, onde encontra informações como endereço, características básicas, avaliação média, partidas recentes e partidas agendadas (rotuladas como “futs” no aplicativo). A tela apresenta também o botão “Como chegar”, que abre o aplicativo de mapas do dispositivo com rota até o local. No perfil da quadra, o usuário pode consultar a agenda com partidas agendadas e eventos recorrentes para os próximos dias, o que auxilia na escolha de horários disponíveis e fornece uma noção da atividade da quadra ao longo da semana. Usuários autenticados podem favoritar a quadra para acessá-la rapidamente no futuro.
 
     \subsection{Criar partida}
     Após selecionar uma quadra, o usuário autenticado pode criar uma partida clicando no botão “Criar fut”. O sistema exibe um formulário solicitando data, horário, modalidade e uma descrição opcional. Ao confirmar, a partida é registrada e passa a estar disponível para visualização no perfil da quadra e no mapa para outros usuários.
@@ -242,13 +242,8 @@
 
       O modelo C4, proposto por Brown~\cite{brown2018}, é um método visual para documentar arquitetura de software em quatro níveis de abstração: contexto, contêineres, componentes e código, que permitem descrever a arquitetura de software em diferentes graus de detalhe. Neste trabalho, optou-se por representar apenas os dois primeiros níveis (contexto e contêineres), por serem suficientes para comunicar a visão geral e a organização técnica do BORAFUT no estágio atual do projeto. 
 
-<<<<<<< HEAD
       \subsubsection*{Diagrama de contexto (C1).}
-        O diagrama de contexto mostra o BORAFUT como um sistema inserido em seu ambiente de uso. Ele representa as interações entre os usuários e os sistemas externos que fornecem serviços complementares. Na Figura~\ref{fig:c4-contexto}, observa-se que o aplicativo é utilizado por jogadores amadores e administradores de quadra, comunicando-se com serviços responsáveis por autenticação e geolocalização.
-=======
-      \subsubsection{Diagrama de contexto (C1).}
         O diagrama de contexto apresenta o BORAFUT como um sistema inserido em seu ambiente de uso. Ele representa as interações entre os usuários e os sistemas externos que fornecem serviços complementares. Na Figura~\ref{fig:c4-contexto}, observa-se que o aplicativo é utilizado por jogadores amadores, seu usuário principal, comunicando-se com serviços responsáveis por autenticação e geolocalização.
->>>>>>> d7d36d87c4aa693f368a4d07c03568bb84143a14
 
         \begin{figure}[h]
             \centering
@@ -260,19 +255,19 @@
       \subsubsection*{Diagrama de contêineres (C2).}
         O diagrama de contêineres representa a decomposição interna do sistema em suas principais partes executáveis, chamadas de contêineres. Cada contêiner abriga um conjunto de responsabilidades técnicas ou funcionais, comunicando-se com os demais por interfaces bem definidas.  
 
-        A Figura~\ref{fig:c4-containers} apresenta os principais contêineres do BORAFUT:
+        A Figura~\ref{fig:c4-conteineres} apresenta os principais contêineres do BORAFUT:
         \begin{itemize}
-            \item o \textbf{aplicativo móvel}, responsável pela interação com o usuário e envio das requisições à API;
-            \item o \textbf{API}, que concentra a lógica de negócio, autenticação e orquestração de dados;
-            \item o \textbf{Banco de dados}, que armazena as informações persistentes;
-            \item e as \textbf{APIs externas}, usadas para autenticação e geolocalização.
+            \item o \textbf{aplicativo móvel} (React Native), responsável pela interação com o usuário e envio das requisições à API;
+            \item o \textbf{backend} (Node.js + Express), que concentra a lógica de negócio, autenticação e orquestração de dados;
+            \item o \textbf{banco de dados relacional} (PostgreSQL), que armazena as informações persistentes;
+            \item e as \textbf{APIs externas}, usadas para autenticação (Google Identity), geolocalização (Google Maps Platform) e armazenamento de mídia.
         \end{itemize}
 
         \begin{figure}[h]
             \centering
-            \includegraphics[width=0.7\textwidth]{figuras/c4-containers.png}
+            % \includegraphics[width=0.8\textwidth]{figuras/c4-conteineres.png}
             \caption{Diagrama C4 nível contêineres do BORAFUT.}
-            \label{fig:c4-containers}
+            \label{fig:c4-conteineres}
         \end{figure}
 
     \subsection{Modelo de dados do PostgreSQL}
