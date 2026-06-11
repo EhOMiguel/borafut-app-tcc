@@ -258,9 +258,9 @@
         A Figura~\ref{fig:c4-conteineres} apresenta os principais contêineres do BORAFUT:
         \begin{itemize}
             \item o \textbf{aplicativo móvel} (React Native), responsável pela interação com o usuário e envio das requisições à API;
-            \item o \textbf{backend} (Node.js + Express), que concentra a lógica de negócio, autenticação e orquestração de dados;
+            \item o \textbf{backend} (Node.js com NestJS e Fastify), que concentra a lógica de negócio, autenticação e orquestração de dados;
             \item o \textbf{banco de dados relacional} (PostgreSQL), que armazena as informações persistentes;
-            \item e as \textbf{APIs externas}, usadas para autenticação (Google Identity), geolocalização (Google Maps Platform) e armazenamento de mídia.
+            \item e as \textbf{APIs e serviços externos}, usados para envio de e-mail de autenticação (Amazon SES), geolocalização (Google Maps Platform) e armazenamento e entrega de mídia (Amazon S3 e CloudFront).
         \end{itemize}
 
         \begin{figure}[h]

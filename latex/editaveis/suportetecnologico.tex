@@ -2,11 +2,11 @@
 
     Neste capítulo são apresentadas as tecnologias, ferramentas e práticas que sustentaram o desenvolvimento do sistema proposto. O objetivo é descrever o suporte tecnológico adotado e justificar as principais decisões de implementação.
 
-    Inicialmente, são expostas as plataformas e tecnologias utilizadas no desenvolvimento do aplicativo móvel e de seu backend. Em seguida, detalham-se as integrações externas, as ferramentas que apoiaram o processo de projeto e as práticas de qualidade aplicadas no ambiente de desenvolvimento. 
+    Inicialmente, são expostas as plataformas e tecnologias utilizadas no desenvolvimento do aplicativo móvel e de seu backend. Em seguida, detalham-se as integrações externas, as ferramentas que apoiaram o processo de projeto e as práticas de qualidade aplicadas no ambiente de desenvolvimento.
     % Por fim, são abordados os mecanismos de segurança e conformidade com a LGPD.
 
     \section{Plataforma e tecnologias de desenvolvimento móvel}
-        A escolha inicial foi pelo Flutter, por permitir uma base única de código para Android e para o \textit{iPhone Operating System} (iOS). O Flutter é um kit de ferramentas de código aberto criado pelo Google para o desenvolvimento de interfaces a partir de uma única base de código, usando a linguagem Dart \cite{flutter_docs}. Contudo, o processo de publicação para iOS exige um ambiente macOS para compilar, assinar e enviar o aplicativo, recurso de que não dispomos no momento. Buscando alternativas, adotamos o React Native em conjunto com o Expo. Além disso, utilizamos o \textit{Expo Application Services} (EAS) para construção e distribuição em nuvem, e adotamos TypeScript como linguagem principal.
+        A escolha inicial foi pelo Flutter, por permitir uma base única de código para Android e para o \textit{iPhone Operating System} (iOS). O Flutter é um kit de ferramentas de código aberto criado pelo Google para o desenvolvimento de interfaces a partir de uma única base de código, usando a linguagem Dart \cite{flutter_docs}. Contudo, a publicação para iOS exige um ambiente macOS para compilar, assinar e enviar o aplicativo, recurso de que a equipe não dispõe localmente. Diante disso, adotou-se o React Native em conjunto com o Expo, cujo \textit{Expo Application Services} (EAS) realiza a construção e a distribuição em nuvem, inclusive das \textit{builds} para iOS, sem depender de um computador com macOS local. A linguagem principal adotada é o TypeScript.
 
         \subsection{React Native}
         O React Native é um framework de código aberto para desenvolvimento de aplicativos nativos a partir do ecossistema React. O React, por sua vez, é uma biblioteca JavaScript criada para construir interfaces de usuário por meio de \textit{componentes} reaproveitáveis, um modo de organizar a tela em partes menores e independentes \cite{react_docs}. O React Native aplica essas mesmas ideias no contexto móvel, permitindo criar aplicativos para Android e iOS usando JavaScript ou TypeScript, com acesso a componentes nativos do sistema e recarga rápida durante o desenvolvimento \cite{reactnative_docs}.
@@ -14,56 +14,70 @@
         \subsection{Expo}
         O Expo é uma plataforma e conjunto de SDKs\footnote{SDK significa \textit{Software Development Kit}, ou conjunto de bibliotecas e ferramentas que facilitam o uso de funcionalidades prontas em um aplicativo.} de código aberto que padroniza o ambiente do React Native e simplifica tarefas comuns do ciclo de desenvolvimento, como inicialização de projetos, acesso a APIs\footnote{Application Programming Interface. Em termos práticos, um conjunto de endpoints que define como clientes podem enviar requisições e receber respostas de um serviço.} de dispositivo e testes em aparelhos físicos \cite{expo_docs}. Na prática, o Expo reduz a fricção de configuração e acelera a iteração de funcionalidades.
 
-
         \subsection{Expo Application Services}
-        O EAS é o conjunto de serviços em nuvem do Expo para construir, assinar, publicar e gerenciar aplicativos React Native. O EAS Build compila binários para Android e iOS na nuvem, o EAS Submit auxilia no envio às lojas\cite{eas_build,eas_suite}. Esse fluxo permite gerar builds para iOS sem a necessidade de um computador com macOS local.
+        O EAS é o conjunto de serviços em nuvem do Expo para construir, assinar, publicar e gerenciar aplicativos React Native. O EAS Build compila binários para Android e iOS na nuvem, e o EAS Submit auxilia no envio às lojas \cite{eas_build,eas_suite}. Esse fluxo permite gerar builds para iOS sem a necessidade de um computador com macOS local.
+
+        \subsection{TanStack Query}
+        A obtenção e o cache dos dados vindos do backend são gerenciados pela biblioteca TanStack Query, que cuida das requisições, da revalidação e da sincronização do estado de servidor no cliente \cite{tanstack_query_docs}. Seu uso reduz código repetitivo de busca de dados, mantém a interface atualizada e melhora a percepção de desempenho ao reaproveitar respostas já carregadas.
 
     \section{Tecnologias de desenvolvimento backend e arquitetura de API}
-        O backend é a camada responsável por processar a lógica de negócio, manipular dados e disponibilizar serviços para o aplicativo móvel. Nesta etapa, optamos por tecnologias consolidadas que oferecem bom desempenho, comunidade ativa e ampla documentação.
+        O backend é a camada responsável por processar a lógica de negócio, manipular dados e disponibilizar serviços para o aplicativo móvel. Para essa camada, optou-se por tecnologias consolidadas que oferecem bom desempenho, comunidade ativa e ampla documentação, mantendo o TypeScript de ponta a ponta.
 
         \subsection{Node.js}
-        O Node.js é um ambiente de execução para JavaScript fora do navegador, construído sobre o motor V8 do Google Chrome \cite{node_docs}. Ele permite criar aplicações escaláveis e de alto desempenho utilizando a mesma linguagem tanto no cliente quanto no servidor. Além disso, conta com o ecossistema NPM\footnote{Node Package Manager, repositório público com milhares de bibliotecas reutilizáveis que aceleram o desenvolvimento.} que disponibiliza pacotes prontos para diversas finalidades, o que reduz tempo de implementação. A familiaridade da equipe com a tecnologia e a possibilidade de adotar TypeScript no servidor reforçaram essa escolha.
+        O Node.js é o ambiente de execução que roda o backend, construído sobre o motor V8 do Google Chrome \cite{node_docs}. Ele permite executar JavaScript e TypeScript fora do navegador e dá acesso ao ecossistema NPM\footnote{Node Package Manager, repositório público com milhares de bibliotecas reutilizáveis que aceleram o desenvolvimento.}, com milhares de bibliotecas reutilizáveis. A familiaridade da equipe com a tecnologia e a possibilidade de usar a mesma linguagem no cliente e no servidor reforçaram essa escolha.
 
-        \subsection{Express}
-        O Express é um framework minimalista para aplicações web no Node.js \cite{express_docs}. Ele fornece recursos como roteamento de \textit{Uniform Resource Locators} (URLs) e organização modular de controladores e serviços. Sua simplicidade, combinada com a flexibilidade, facilita a construção de APIs robustas sem adicionar complexidade desnecessária.
+        \subsection{NestJS}
+        Sobre o Node.js, o backend é estruturado com o NestJS, um framework que organiza a aplicação em módulos, controladores e provedores, com forte integração ao TypeScript e suporte nativo à injeção de dependências \cite{nestjs_docs}. Sua arquitetura opinativa favorece a modularidade, a testabilidade e a manutenção à medida que o sistema cresce, evitando a dispersão de responsabilidades comum em soluções mais minimalistas.
 
+        \subsection{Fastify}
+        Sob o NestJS, a camada HTTP é atendida pelo Fastify, um adaptador de alto desempenho e baixa sobrecarga \cite{fastify_docs}. Ele foi escolhido em lugar do adaptador padrão por seu melhor desempenho no tratamento de grande volume de requisições, característica relevante para as funcionalidades de descoberta e acompanhamento de futs.
 
-        \subsection{Representational State Transfer}
-        A interface entre o backend e o aplicativo é feita por meio de uma API. Adotamos o estilo arquitetural \textit{Representational State Transfer} (REST), proposto por Roy Fielding em sua tese de doutorado \cite{fielding2000}. O REST não é um protocolo, mas um conjunto de princípios que orienta o design de sistemas distribuídos, normalmente implementados sobre o \textit{Hypertext Transfer Protocol} (HTTP) \cite{rfc7231}. Utilizando métodos como \texttt{GET}, \texttt{POST}, \texttt{PUT} e \texttt{DELETE}, conseguimos padronizar a forma como os dados são enviados e recebidos. 
-        Entre suas vantagens estão a simplicidade de implementação, a compatibilidade com diferentes clientes e a escalabilidade\footnote{A escalabilidade é favorecida quando o serviço é \textit{stateless}, ou seja, não mantém estado entre requisições. Isso permite que diferentes servidores atendam às requisições de forma independente, facilitando balanceamento e réplica.}. Em resumo, o REST equilibra praticidade e robustez, atendendo às necessidades atuais do projeto com baixo atrito de integração e amplo suporte no mercado.
+        \subsection{Prisma}
+        O acesso ao banco de dados é mediado pelo Prisma, um ORM\footnote{\textit{Object-Relational Mapping}, ou mapeamento objeto-relacional: técnica que representa tabelas e registros do banco como objetos da linguagem de programação.} orientado a esquema \cite{prisma_docs}. A partir de um \textit{schema} declarativo, o Prisma gera um cliente fortemente tipado e gerencia as migrações do banco, o que reduz erros de consulta em tempo de desenvolvimento e mantém o modelo de dados versionado junto ao código.
+
+        \subsection{Autenticação com JSON Web Token}
+        O controle de acesso é feito sem senha (\textit{passwordless}): o usuário recebe um código de verificação por e-mail (cf. Seção~\ref{sec:integracoes}) e, uma vez validado, recebe um \textit{JSON Web Token} (JWT) de acesso e um token de atualização (\textit{refresh}) \cite{jwt_rfc7519}. O JWT é um padrão compacto e autocontido para transmitir, de forma assinada, informações de identidade entre cliente e servidor; a verificação dos tokens a cada requisição é apoiada pela biblioteca Passport.
+
+        \subsection{Comunicação: REST e tempo real}
+        A interface entre o backend e o aplicativo é feita por meio de uma API. Para as operações convencionais de requisição e resposta, adota-se o estilo arquitetural \textit{Representational State Transfer} (REST), proposto por Roy Fielding em sua tese de doutorado \cite{fielding2000}. O REST não é um protocolo, mas um conjunto de princípios que orienta o design de sistemas distribuídos, normalmente implementados sobre o \textit{Hypertext Transfer Protocol} (HTTP) \cite{rfc7231}. Utilizando métodos como \texttt{GET}, \texttt{POST}, \texttt{PUT} e \texttt{DELETE}, padroniza-se a forma como os dados são enviados e recebidos, com baixo atrito de integração e amplo suporte de mercado\footnote{A escalabilidade é favorecida quando o serviço é \textit{stateless}, ou seja, não mantém estado entre requisições, permitindo que diferentes servidores atendam às requisições de forma independente.}.
+
+        Para as funcionalidades em tempo real, como o acompanhamento ao vivo de um fut (confirmações de presença, chegada, formação de times e placar), o REST é complementado por comunicação bidirecional via \textit{WebSocket}, implementada com a biblioteca Socket.IO \cite{socketio_docs}. Ela mantém um canal persistente entre cliente e servidor e propaga eventos a todos os participantes de um mesmo fut. Quando o canal em tempo real não está disponível, o aplicativo recorre a consultas REST periódicas como mecanismo de contingência, garantindo que a informação continue chegando ao usuário.
 
     \section{Ambiente de desenvolvimento e qualidade de código}
 
         Esta seção apresenta o ambiente e as ferramentas empregadas no desenvolvimento do sistema, bem como os mecanismos utilizados para manter a qualidade e a consistência do código. As escolhas foram orientadas pela busca de eficiência, portabilidade e legibilidade, de modo a garantir um fluxo de trabalho colaborativo e padronizado entre os desenvolvedores.
 
-
         \subsection{TypeScript}
-
         O TypeScript é uma linguagem de programação de código aberto desenvolvida pela Microsoft que estende o JavaScript, adicionando tipagem estática e recursos de orientação a objetos. Ela é amplamente utilizada em grandes aplicações por oferecer maior previsibilidade e robustez ao código \cite{typescript_handbook}.
 
         Sua adoção neste projeto proporcionou maior segurança e manutenção do código, permitindo detectar erros durante o desenvolvimento e facilitando a colaboração entre diferentes partes do sistema. Além disso, o suporte nativo do TypeScript no ecossistema React Native e Node.js favoreceu a integração entre as camadas do aplicativo, reduzindo inconsistências e aumentando a confiabilidade geral.
-        
-        \subsection{ESLint e Prettier}
 
-        O ESLint é uma ferramenta de análise estática de código que identifica padrões problemáticos e erros de estilo em projetos JavaScript e TypeScript. Já o Prettier é um formatador automático que aplica um padrão uniforme de formatação ao código-fonte.  
+        \subsection{ESLint e Prettier}
+        O ESLint é uma ferramenta de análise estática de código que identifica padrões problemáticos e erros de estilo em projetos JavaScript e TypeScript. Já o Prettier é um formatador automático que aplica um padrão uniforme de formatação ao código-fonte.
 
         Essas ferramentas foram configuradas em conjunto para garantir legibilidade, consistência e padronização em toda a base de código \cite{eslint_docs,prettier_docs}.
-        
-        \subsection{Git e GitHub}
 
-        O Git é um sistema distribuído de controle de versão que permite rastrear alterações no código-fonte e gerenciar o trabalho colaborativo entre desenvolvedores. O GitHub, por sua vez, é uma plataforma de hospedagem baseada em Git que oferece repositórios remotos, controle de acesso, integração contínua e ferramentas de revisão de código.  
+        \subsection{Jest}
+        Os testes automatizados do backend usam o Jest, framework de testes para JavaScript e TypeScript \cite{jest_docs}. Ele é empregado para validar regras de negócio e o comportamento dos \textit{endpoints}, contribuindo para a confiabilidade do sistema e para a detecção precoce de regressões durante a evolução do código.
+
+        \subsection{Docker}
+        O ambiente de desenvolvimento é padronizado com o Docker, que executa serviços em contêineres isolados \cite{docker_docs}. No projeto, o banco de dados PostgreSQL é provisionado por meio de um arquivo \textit{docker-compose}, garantindo que todos os desenvolvedores trabalhem sobre a mesma configuração de banco, independentemente do sistema operacional, e reduzindo problemas de divergência entre ambientes.
+
+        \subsection{Automação com Makefile}
+        Para padronizar e simplificar os comandos recorrentes (subir e derrubar o ambiente, aplicar migrações, popular o banco e executar testes), utiliza-se um \textit{Makefile} \cite{gnumake_docs}, que reúne esses comandos sob alvos curtos e memorizáveis (por exemplo, \texttt{make up} e \texttt{make db-migrate}). Isso reduz a curva de configuração para novos integrantes e torna as rotinas do projeto reproduzíveis.
+
+        \subsection{Git e GitHub}
+        O Git é um sistema distribuído de controle de versão que permite rastrear alterações no código-fonte e gerenciar o trabalho colaborativo entre desenvolvedores. O GitHub, por sua vez, é uma plataforma de hospedagem baseada em Git que oferece repositórios remotos, controle de acesso, integração contínua e ferramentas de revisão de código.
 
         Essas ferramentas foram empregadas para gerenciar o ciclo de vida do código, garantindo rastreabilidade, histórico de alterações e colaboração entre os desenvolvedores \cite{git_docs,github_version_control}.
-        
+
         \subsection{Visual Studio Code}
+        O Visual Studio Code é um editor de código-fonte multiplataforma, gratuito e de código aberto, desenvolvido pela Microsoft. Ele oferece recursos como realce de sintaxe, depuração integrada, terminal embutido e um vasto ecossistema de extensões que ampliam suas funcionalidades.
 
-        O Visual Studio Code é um editor de código-fonte multiplataforma, gratuito e de código aberto, desenvolvido pela Microsoft. Ele oferece recursos como realce de sintaxe, depuração integrada, terminal embutido e um vasto ecossistema de extensões que ampliam suas funcionalidades.  
-
-        Foi utilizado como ambiente principal de desenvolvimento devido à sua leveza, extensibilidade e integração nativa com o ecossistema JavaScript e TypeScript. O editor também possui integração direta com o Git, o que facilitou o controle de versão e o trabalho colaborativo. Extensões como ESLint e Prettier foram incorporadas ao ambiente, contribuindo para a padronização e detecção precoce de erros no código, além disso, a decisão também considerou a familiaridade e o conhecimento prévio do time, reduzindo a curva de aprendizado e aumentando a produtividade \cite{vscode_docs}.
+        Foi utilizado como ambiente principal de desenvolvimento devido à sua leveza, extensibilidade e integração nativa com o ecossistema JavaScript e TypeScript. O editor também possui integração direta com o Git, o que facilitou o controle de versão e o trabalho colaborativo. Extensões como ESLint e Prettier foram incorporadas ao ambiente, contribuindo para a padronização e detecção precoce de erros no código; além disso, a decisão também considerou a familiaridade e o conhecimento prévio do time, reduzindo a curva de aprendizado e aumentando a produtividade \cite{vscode_docs}.
 
         \subsection{Android Studio}
-
-        O Android Studio é o ambiente de desenvolvimento integrado (IDE) oficial para o sistema Android, fornecido pelo Google, que inclui emuladores, ferramentas de análise de desempenho e suporte à depuração de aplicativos móveis.  
+        O Android Studio é o ambiente de desenvolvimento integrado (IDE) oficial para o sistema Android, fornecido pelo Google, que inclui emuladores, ferramentas de análise de desempenho e suporte à depuração de aplicativos móveis.
 
         Foi utilizado para executar emuladores e validar o comportamento do aplicativo em diferentes tamanhos e configurações de dispositivos \cite{android_studio}.
 
@@ -79,17 +93,59 @@
 
         \subsection{Sistema Gerenciador de Banco de Dados}
 
-        Como SGBD, foi adotado o PostgreSQL, por se tratar de uma solução de código aberto, madura e amplamente utilizada no meio acadêmico e corporativo. O PostgreSQL segue o padrão SQL \textit{American National Standards Institute} (ANSI), oferece mecanismos de controle de acesso robustos e dispõe de extensões geoespaciais, como o PostGIS, úteis para o armazenamento de coordenadas geográficas. Além disso, sua compatibilidade com serviços em nuvem e a disponibilidade na camada gratuita da \textit{Amazon Web Services} (AWS) tornam a solução adequada para o contexto do projeto, garantindo baixo custo e alta confiabilidade.
+        Como SGBD, foi adotado o PostgreSQL, na versão 16, por se tratar de uma solução de código aberto, madura e amplamente utilizada no meio acadêmico e corporativo. O PostgreSQL segue o padrão SQL \textit{American National Standards Institute} (ANSI), oferece mecanismos robustos de controle de acesso e dispõe de boa compatibilidade com serviços em nuvem, o que se ajusta ao contexto do projeto com baixo custo e alta confiabilidade.
 
-    % ESCREVER ESSA SEÇÃO POR ULTIMO
+        No tratamento de localização, as coordenadas geográficas das quadras e dos usuários são armazenadas como pares de latitude e longitude, e as buscas por proximidade são resolvidas por filtragem em caixa delimitadora (\textit{bounding box}), abordagem suficiente para o escopo atual. O PostgreSQL ainda oferece a extensão geoespacial PostGIS \cite{postgis_docs}, considerada como caminho de evolução para consultas espaciais mais sofisticadas em versões futuras do sistema.
 
-    % \section{Integrações e serviços externos}
+    \section{Integrações e serviços externos}
+    \label{sec:integracoes}
 
-        % \subsection{APIs e SDKs}
-        % Google Maps SDK e Reverse Geocoding; deep link para Google Maps ou Waze
+        Parte das funcionalidades do sistema apoia-se em serviços externos que complementam a aplicação móvel e o backend. Esta seção descreve as principais integrações adotadas.
 
-        % \subsection{Autenticação e notificações}
-        % Firebase Auth (e-mail e código); Expo Notifications para push
+        \subsection{Mapas e geolocalização}
+        A camada de mapas e localização combina bibliotecas do cliente e serviços externos. No aplicativo, o componente de mapa é fornecido pela biblioteca \textit{react-native-maps} \cite{rn_maps_docs}, enquanto a obtenção da posição do dispositivo usa o módulo \textit{expo-location} \cite{expo_location_docs}. A renderização de mapas e a geocodificação reversa (conversão de coordenadas em endereços legíveis) apoiam-se na plataforma Google Maps \cite{google_maps_docs}. Para o deslocamento até a quadra, o aplicativo gera \textit{deep links} de navegação, que abrem aplicativos externos de mapas.
+
+        \subsection{Envio de e-mail (AWS SES)}
+        A autenticação sem senha envia ao usuário um código de verificação por e-mail. Esse envio é realizado pelo \textit{Amazon Simple Email Service} (SES), serviço gerenciado de e-mail transacional da \textit{Amazon Web Services} (AWS) \cite{aws_ses_docs}, escolhido pela integração com a infraestrutura do projeto e pela boa entregabilidade das mensagens.
+
+        \subsection{Armazenamento de mídia (AWS S3 e CloudFront)}
+        As imagens do sistema, como fotos de perfil e de quadras, são armazenadas no \textit{Amazon Simple Storage Service} (S3) \cite{aws_s3_docs} e entregues por meio da rede de distribuição de conteúdo (CDN) \textit{Amazon CloudFront} \cite{aws_cloudfront_docs}. Essa combinação reduz a latência de carregamento e o custo de banda na entrega das mídias.
+
+        \subsection{Notificações push (Expo Notifications)}
+        Lembretes e avisos (convites para futs, lembrete de horário e mudanças no estado de uma partida) são entregues por notificações \textit{push}, viabilizadas pelo serviço Expo Notifications \cite{expo_notifications_docs}, que abstrai o envio para Android e iOS a partir de uma interface única.
+
+    \section{Resumo das tecnologias e versões}
+
+        A Tabela~\ref{tab:tecnologias} sintetiza as principais tecnologias do projeto, sua função e a versão adotada. Os serviços gerenciados (AWS SES, S3, CloudFront e Expo Notifications) e as ferramentas de ambiente (Docker e Make) não possuem versão de aplicação fixada e, por isso, não constam da tabela.
+
+        \begin{table}[!htb]
+            \centering
+            \caption{Principais tecnologias e versões adotadas no projeto.}
+            \label{tab:tecnologias}
+            \begin{tabular}{|l|l|l|}
+                \hline
+                \textbf{Tecnologia} & \textbf{Função no projeto} & \textbf{Versão} \\ \hline
+                React Native & Aplicativo móvel (Android/iOS) & 0.81 \\ \hline
+                Expo (SDK) & Plataforma e serviços para React Native & 54 \\ \hline
+                React & Biblioteca de interface & 19 \\ \hline
+                TanStack Query & Cache e estado de servidor no cliente & 5 \\ \hline
+                react-native-maps & Componente de mapa & 1.20 \\ \hline
+                expo-location & Geolocalização do dispositivo & 19 \\ \hline
+                expo-secure-store & Armazenamento seguro de tokens & 15 \\ \hline
+                Node.js & Ambiente de execução do backend & 22 \\ \hline
+                NestJS & Framework do backend & 11 \\ \hline
+                Fastify & Adaptador HTTP (sob o NestJS) & 11 \\ \hline
+                Prisma & ORM e acesso a dados & 7 \\ \hline
+                PostgreSQL & Sistema gerenciador de banco de dados & 16 \\ \hline
+                Jest & Testes automatizados (backend) & 30 \\ \hline
+                TypeScript & Linguagem (backend / frontend) & 5.7 / 5.9 \\ \hline
+                ESLint & Análise estática de código & 9 \\ \hline
+                Prettier & Formatação de código & 3.4 \\ \hline
+            \end{tabular}
+
+            \vspace{2pt}
+            {\footnotesize Fonte: elaborada pelos autores.}
+        \end{table}
 
     \section{Ferramentas de projeto e colaboração}
 
@@ -109,5 +165,3 @@
 
     % \section{Segurança e LGPD no nível tecnológico}
     % Confirmação de idade mínima (16+); aceite de Termos/Política; uso responsável de localização
-
-
