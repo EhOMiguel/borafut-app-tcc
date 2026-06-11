@@ -182,7 +182,7 @@
         \noindent A versão visual completa do canvas encontra-se no Apêndice~\ref{apendice:pmcanvas}, com a imagem do diagrama consolidado.
 
     \subsection{Análise de mercado}
-        Fizemos uma pesquisa direta sobre apps parecidos com o BORAFUT. Buscamos no Google, na Google Play e na App Store e chegamos a cinco aplicativos: Chega+, Appito, PELADEIROS, FINTTA e Agendei~Quadras. Para cada um, olhamos redes sociais, lemos comentários nas lojas, instalamos e usamos rapidamente para entender pontos fortes, pontos fracos e o que valia adaptar ao contexto de Brasília.
+        Fizemos uma pesquisa direta sobre apps parecidos com o BORAFUT. Buscamos no Google, na Google Play e na App Store e chegamos a cinco aplicativos: Chega+ \cite{chegamais_app}, Appito \cite{appito_app}, PELADEIROS \cite{peladeiros_app}, FINTTA \cite{fintta_app} e Agendei~Quadras \cite{agendei_app}. Para cada um, olhamos redes sociais, lemos comentários nas lojas, instalamos e usamos rapidamente para entender pontos fortes, pontos fracos e o que valia adaptar ao contexto de Brasília. Além desses, tomamos o \textit{WhatsApp} como linha de base, por ser a ferramenta efetivamente usada hoje para organizar as partidas \cite{whatsapp_app}.
 
         \subsubsection*{Chega+}
         Forte na organização de grupos privados de futebol. Tem convite, confirmação de presença, sorteio de times, fila e estatísticas. A base de usuários é grande (500 mil+ downloads) e ativa, com redes sociais bem movimentadas. Comentários críticos citam excesso de bugs e planos pagos percebidos como caros por parte dos usuários. A interface cumpre o papel, mas não se destaca em experiência.
@@ -195,6 +195,44 @@
 
         \subsubsection*{Agendei~Quadras}
         Funciona como um marketplace multiesporte. Donos anunciam as quadras e os usuários agendam e pagam. É ótimo para reserva de infraestrutura, mas não foca na dinâmica espontânea do futebol em quadras públicas.
+
+        \subsubsection*{WhatsApp (referência atual)}
+        Embora não seja um aplicativo dedicado, o WhatsApp é a ferramenta efetivamente usada hoje para organizar as partidas. É universal e gratuito, mas concentra tudo em mensagens textuais: a confirmação de presença é manual, não há descoberta de jogos nem visualização de quadras, e informações importantes se perdem no fluxo da conversa. Por isso, foi tomado como linha de base da comparação \cite{whatsapp_app}.
+
+        A Tabela~\ref{tab:comparativo_mercado} resume a comparação entre as soluções analisadas e a proposta deste trabalho. Os seis critérios, derivados das necessidades identificadas na elicitação, são:
+
+        \begin{itemize}
+            \item \textbf{Organiza partida}: criação do jogo, montagem da lista e confirmação de presença dos jogadores;
+            \item \textbf{Sorteio/gestão}: formação de times e acompanhamento da partida (cronômetro, placar e estatísticas);
+            \item \textbf{Descoberta por localização}: encontrar jogos ou quadras próximos por meio de mapa e geolocalização;
+            \item \textbf{Quadra pública}: foco em quadras públicas de uso livre, e não em quadras privadas ou pagas;
+            \item \textbf{Recorte DF}: solução pensada para a realidade do Distrito Federal, e não de alcance genérico ou nacional;
+            \item \textbf{Gratuito}: uso das funcionalidades essenciais sem necessidade de planos pagos.
+        \end{itemize}
+
+        \begin{table}[!htb]
+        \centering
+        \caption{Comparativo entre as soluções analisadas e a proposta deste trabalho.}
+        \label{tab:comparativo_mercado}
+        \footnotesize
+        \renewcommand{\arraystretch}{1.4}
+        \begin{tabular}{lcccccc}
+        \toprule
+        \textbf{Solução} & \textbf{\shortstack{Organiza\\partida}} & \textbf{\shortstack{Sorteio/\\gestão}} & \textbf{\shortstack{Descoberta\\por local.}} & \textbf{\shortstack{Quadra\\pública}} & \textbf{\shortstack{Recorte\\DF}} & \textbf{Gratuito} \\
+        \midrule
+        WhatsApp & \mparc & \mnao & \mnao & \mnao & \mnao & \msim \\
+        Chega+ & \msim & \msim & \mnao & \mnao & \mnao & \mparc \\
+        Appito & \msim & \msim & \msim & \mnao & \mnao & \mparc \\
+        PELADEIROS & \msim & \mparc & \mnao & \mnao & \mnao & \mparc \\
+        FINTTA & \msim & \mparc & \mnao & \mnao & \mnao & \msim \\
+        Agendei Quadras & \mnao & \mnao & \mparc & \mnao & \mnao & \mnao \\
+        BORAFUT & \msim & \msim & \msim & \msim & \msim & \msim \\
+        \bottomrule
+        \end{tabular}
+
+        \vspace{4pt}
+        {\footnotesize Legenda: \msim{} atende; \mparc{} atende parcialmente; \mnao{} não atende. Fonte: elaborada pelos autores com base nas páginas oficiais das soluções \cite{chegamais_app,appito_app,peladeiros_app,fintta_app,agendei_app,whatsapp_app}.}
+        \end{table}
 
         \subsubsection*{Síntese da análise de mercado}
             \begin{itemize}
@@ -438,9 +476,9 @@
     A camada de apresentação será desenvolvida em React Native, visando portabilidade entre dispositivos Android e iOS. Essa tecnologia possibilita a criação de um aplicativo móvel nativo com reuso de código, integração facilitada com bibliotecas de interface e compatibilidade com serviços externos. O frontend será responsável pela interação direta com o usuário e pela comunicação com o backend via API, utilizando o formato \textit{JavaScript Object Notation} (JSON) sobre o protocolo \textit{Hypertext Transfer Protocol Secure} (HTTPS).
 
     \subsection{Backend}
-    A camada de aplicação será implementada em Node.js, utilizando o framework Express. Essa tecnologia oferece leveza, ampla comunidade e integração simples com bancos de dados relacionais e serviços de nuvem. O backend será responsável pela lógica de negócio, autenticação, controle de acesso e processamento das requisições enviadas pelo aplicativo, além de intermediar a comunicação com o banco de dados e com serviços externos.
+    A camada de aplicação será implementada em Node.js, utilizando o framework NestJS sobre o adaptador Fastify. Essa combinação oferece estrutura modular, bom desempenho e integração simples com bancos de dados relacionais e serviços de nuvem. O backend será responsável pela lógica de negócio, autenticação, controle de acesso e processamento das requisições enviadas pelo aplicativo, além de intermediar a comunicação com o banco de dados e com serviços externos.
 
-    A arquitetura do backend seguirá o padrão RESTful\footnote{O termo RESTful deriva do sufixo inglês ``-ful'', que indica ``caracterizado por'' ou ``que segue os princípios de''. Assim, uma RESTful API é uma API que adota os princípios da arquitetura  REST.}, com endpoints que permitirão operações de leitura, escrita e atualização de informações.
+    A arquitetura do backend seguirá o padrão RESTful\footnote{O termo RESTful deriva do sufixo inglês ``-ful'', que indica ``caracterizado por'' ou ``que segue os princípios de''. Assim, uma RESTful API é uma API que adota os princípios da arquitetura  REST.}, com endpoints que permitirão operações de leitura, escrita e atualização de informações. Para as funcionalidades em tempo real, como o acompanhamento ao vivo das partidas, o REST é complementado por comunicação via WebSocket.
 
     \subsection{Banco de dados}
     A camada de dados será composta por um banco relacional PostgreSQL, escolhido por sua robustez, confiabilidade e compatibilidade com provedores de nuvem. O esquema do banco será modelado de forma normalizada, garantindo integridade e consistência das informações. A modelagem detalhada de dados será apresentada na Seção~\ref{subsec:modelo-dados}, onde é descrito o modelo de dados do PostgreSQL.
@@ -451,7 +489,7 @@
     As integrações planejadas são:
     
     \begin{itemize}
-        \item \textbf{Autenticação por código enviado por e-mail}, utilizando um serviço externo de envio de mensagens (Google Identity). Nesse modelo \textit{passwordless}, o usuário informa o endereço de e-mail e recebe um código temporário para acessar sua conta, eliminando a necessidade de senhas.
+        \item \textbf{Autenticação por código enviado por e-mail}, utilizando um serviço externo de envio de mensagens (Amazon Simple Email Service). Nesse modelo \textit{passwordless}, o usuário informa o endereço de e-mail e recebe um código temporário para acessar sua conta, eliminando a necessidade de senhas.
         
         \item \textbf{Serviços de geolocalização e mapas}, por meio da Google Maps Platform, para consultar, exibir e georreferenciar quadras públicas e privadas no Distrito Federal.
     \end{itemize}
