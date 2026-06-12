@@ -1,0 +1,44 @@
+@startuml c4-componentes
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+Container(app, "Aplicativo Móvel", "React Native + Expo", "")
+ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "")
+System_Ext(ses, "Amazon SES", "E-mail transacional")
+System_Ext(push, "Expo Push Service", "Notificações push")
+
+Container_Boundary(api, "API - Node.js / NestJS / Fastify") {
+  Component(auth, "Auth", "NestJS module", "Login passwordless, JWT + refresh, perfil")
+  Component(courts, "Courts", "NestJS module", "Quadras, busca, favoritos, pins")
+  Component(reviews, "Court Reviews", "NestJS module", "Avaliações versionadas e curtidas")
+  Component(futs, "Futs", "NestJS module", "CRUD do fut, share code, sobreposição")
+  Component(presence, "Presence & Queue", "NestJS module", "Presença, chegada, fila, log de chegada")
+  Component(match, "Match", "NestJS module", "Partidas, eventos, rotação, pênaltis, override")
+  Component(rt, "Realtime Gateway", "Socket.IO", "Rooms por fut, broadcast de eventos")
+  Component(notif, "Notifications", "NestJS module", "E-mail (SES) e push (Expo)")
+  Component(cron, "Scheduler", "@nestjs/schedule", "Cron de backstop: transições e lembretes")
+  Component(prisma, "Prisma Service", "Prisma 7", "Acesso a dados (SQL) e transações")
+  Component(common, "Common", "Guards/Decorators", "JWT guard, ClockService, validadores")
+}
+
+Rel(app, auth, "REST", "JSON/HTTPS")
+Rel(app, courts, "REST", "JSON/HTTPS")
+Rel(app, futs, "REST", "JSON/HTTPS")
+Rel(app, rt, "Eventos ao vivo", "WebSocket")
+Rel(auth, prisma, "SQL")
+Rel(courts, prisma, "SQL")
+Rel(reviews, prisma, "SQL")
+Rel(futs, prisma, "SQL")
+Rel(presence, prisma, "SQL")
+Rel(match, prisma, "SQL")
+Rel(prisma, db, "TCP", "SQL")
+Rel(presence, rt, "Eventos de domínio", "EventEmitter")
+Rel(match, rt, "Eventos de domínio", "EventEmitter")
+Rel(auth, notif, "Código de login")
+Rel(presence, notif, "Convites e avisos")
+Rel(cron, match, "Transições automáticas")
+Rel(cron, notif, "Lembretes agendados")
+Rel(notif, ses, "Envio de e-mail", "HTTPS")
+Rel(notif, push, "Envio de push", "HTTPS")
+
+SHOW_LEGEND()
+@enduml

@@ -1,0 +1,29 @@
+@startuml c4-conteineres
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Person(jogador, "Jogador amador", "Organiza e participa de partidas de futebol amador em quadras públicas do DF")
+
+System_Boundary(borafut, "BORAFUT") {
+  Container(app, "Aplicativo Móvel", "React Native 0.81 + Expo 54", "Mapa de quadras, criação de futs, presença e acompanhamento da partida")
+  Container(api, "API", "Node.js 22, NestJS 11, Fastify 11", "Lógica de negócio, autenticação JWT passwordless, REST, WebSocket e cron de transições")
+  ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "Jogadores, quadras, futs, partidas e avaliações")
+}
+
+System_Ext(maps, "Google Maps Platform", "Mapa, geocodificação e rotas")
+System_Ext(ses, "Amazon SES", "Envio de e-mails transacionais")
+System_Ext(cdn, "Amazon S3 + CloudFront", "Armazenamento e entrega de mídia (CDN)")
+System_Ext(push, "Expo Push Service", "Entrega de notificações push (APNs/FCM)")
+
+Rel(jogador, app, "Organiza e participa de futs", "toques na interface")
+Rel(app, api, "Consome operações de negócio", "JSON/HTTPS, REST")
+Rel(app, api, "Recebe atualizações ao vivo", "WebSocket - Socket.IO")
+Rel(api, db, "Lê e grava dados", "Prisma 7 / SQL")
+Rel(app, maps, "Renderiza mapa e geolocaliza", "SDK react-native-maps / HTTPS")
+Rel(api, ses, "Solicita envio de código de login", "HTTPS, AWS SDK")
+Rel(api, cdn, "Armazena fotos e avatares", "HTTPS, AWS SDK")
+Rel(app, cdn, "Carrega imagens publicadas", "HTTPS via CDN")
+Rel(api, push, "Solicita envio de lembretes", "HTTPS")
+Rel(push, app, "Entrega notificações", "APNs/FCM")
+
+SHOW_LEGEND()
+@enduml

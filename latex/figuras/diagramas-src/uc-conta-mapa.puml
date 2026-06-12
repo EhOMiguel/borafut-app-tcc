@@ -1,0 +1,56 @@
+@startuml uc-conta-mapa
+left to right direction
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam dpi 180
+
+actor "Usuário\nNão Registrado" as UNR
+actor "Usuário\nRegistrado" as R
+R --|> UNR
+actor "Serviço de E-mail\n<<sistema externo>>" as SES
+actor "Serviço de Mapas\n<<sistema externo>>" as MAPS
+
+rectangle BORAFUT {
+  usecase "UC01 Cadastrar-se" as UC01
+  usecase "UC02 Autenticar-se" as UC02
+  usecase "UC03 Validar código\npor e-mail" as UC03
+  usecase "UC04 Encerrar sessão" as UC04
+  usecase "UC05 Gerenciar conta\ne privacidade" as UC05
+  usecase "UC06 Atualizar e-mail" as UC06
+  usecase "UC07 Gerenciar perfil" as UC07
+  usecase "UC08 Explorar mapa\nde quadras" as UC08
+  usecase "UC09 Filtrar quadras\nno mapa" as UC09
+  usecase "UC10 Visualizar perfil\nda quadra" as UC10
+  usecase "UC11 Avaliar quadra" as UC11
+  usecase "UC12 Favoritar quadra" as UC12
+  usecase "UC13 Traçar rota\naté a quadra" as UC13
+}
+
+UNR -- UC01
+UNR -- UC08
+UNR -- UC09
+UNR -- UC10
+UNR -- UC13
+
+R -- UC02
+R -- UC04
+R -- UC05
+R -- UC06
+R -- UC07
+R -- UC11
+R -- UC12
+
+UC01 ..> UC03 : <<include>>
+UC02 ..> UC03 : <<include>>
+UC06 ..> UC03 : <<include>>
+
+UC09 ..> UC08 : <<extend>>
+UC13 ..> UC10 : <<extend>>
+
+UC03 -- SES
+UC08 -- MAPS
+UC13 -- MAPS
+
+note right of UC11 : pré-condição: participação\nelegível em fut da quadra
+note right of UC10 : agenda detalhada\nexige conta
+@enduml
