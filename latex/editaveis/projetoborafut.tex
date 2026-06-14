@@ -134,15 +134,43 @@
 
     \subsection{Diagrama de casos de uso}
 
-      O diagrama de casos de uso (UML) oferece uma visão externa do sistema: mostra quem interage com o BORAFUT (atores) e quais serviços o sistema disponibiliza a essas pessoas, sem entrar em detalhes de interface ou implementação. Em outras palavras, ele descreve o que o sistema oferece do ponto de vista do usuário e quais fronteiras existem com serviços externos, funcionando como um mapa de alto nível para o escopo funcional.
+      O diagrama de casos de uso (UML) oferece uma visão externa do sistema: mostra quem interage com o BORAFUT (atores) e quais serviços o sistema disponibiliza, sem entrar em detalhes de interface ou implementação. A fronteira do sistema delimita o que pertence ao BORAFUT, separando os atores das funcionalidades internas, enquanto as associações ligam cada ator aos casos de uso que ele pode acionar.
 
-      No nosso contexto, o diagrama foi utilizado para alinhar rapidamente o MVP: esclarecer quais capacidades precisam estar disponíveis desde o primeiro ciclo e quais podem evoluir depois. Ele evidencia três perfis de uso: Usuário Não Registrado (explora o mapa e consulta informações públicas de quadras e partidas), Usuário Registrado (assume ações pessoais, como autenticação, favoritos, avaliação e confirmação/cancelamento de presença) e Organizador (especialização do usuário registrado que conduz a partida, isto é, cria e gerencia o “fut”). Também ficam explícitas as integrações necessárias: API de E-mail (envio/validação de códigos para login e cadastro), API de Mapas (localização e rotas) e API Push (lembretes e notificações).
-    
+      Os atores humanos organizam-se em uma hierarquia de generalização, na qual cada perfil herda as capacidades do anterior:
+
+      \begin{itemize}
+          \item \textbf{Usuário Não Registrado:} explora o mapa e consulta informações públicas das quadras, sem acesso aos detalhes dos futs nem a ações que exijam conta.
+
+          \item \textbf{Usuário Registrado:} herda o que o visitante faz e assume ações pessoais, como autenticar-se, favoritar e avaliar quadras, confirmar presença e chegada, criar futs e consultar estatísticas.
+
+          \item \textbf{Organizador:} usuário registrado promovido para ajudar a conduzir um fut, com permissões operacionais como registrar chegadas, gerenciar a fila, conduzir a partida e cadastrar participantes presenciais.
+
+          \item \textbf{Criador:} usuário que criou o fut e detém a autoridade máxima sobre ele, acumulando as permissões do organizador e as exclusivas de editar e cancelar o fut, promover ou revogar organizadores e ativar o gerenciamento pelo aplicativo.
+      \end{itemize}
+
+      Três sistemas externos completam a fronteira: o Serviço de E-mail (envio e validação de códigos de acesso e convites), o Serviço de Mapas (localização e rotas) e o Serviço de Notificações (lembretes e avisos). Além das associações simples, o diagrama emprega as relações \textit{include}, para comportamentos sempre executados como parte de um caso base (por exemplo, autenticar-se inclui validar o código enviado por e-mail), e \textit{extend}, para comportamentos opcionais ou condicionais (por exemplo, a disputa de pênaltis estende o encerramento da partida quando o tempo se esgota empatado). As associações ator–caso de uso seguem a multiplicidade padrão de um ator para zero ou mais execuções de cada caso de uso; no domínio do fut, vale destacar a cardinalidade de papéis, em que cada fut possui exatamente um criador e zero ou mais organizadores promovidos por ele.
+
+      Dada a abrangência do escopo, os casos de uso são apresentados em três diagramas complementares, que compartilham a mesma fronteira e a mesma hierarquia de atores. A Figura~\ref{fig:uc-conta-mapa} reúne os casos de conta, mapa e quadras; a Figura~\ref{fig:uc-fut-organizacao} trata da organização do fut e da presença; e a Figura~\ref{fig:uc-fut-partida} cobre a partida ao vivo, o fut não gerenciado e o pós-fut. A especificação textual dos principais casos de uso, com fluxo principal, fluxos alternativos e exceções, encontra-se no Apêndice~\ref{apendice:casos-uso}.
+
       \begin{figure}[h]
         \centering
-        \includegraphics[width=0.3\textwidth]{figuras/uc-borafut.jpg}
-        \caption{Diagrama de casos de uso do BORAFUT. Fonte: elaborado pelo autor.}
-        \label{fig:uc-borafut}
+        \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{figuras/diagramas-src/render/uc-conta-mapa.png}
+        \caption{Diagrama de casos de uso: conta, mapa e quadras. Fonte: elaborado pelos autores.}
+        \label{fig:uc-conta-mapa}
+      \end{figure}
+
+      \begin{figure}[h]
+        \centering
+        \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{figuras/diagramas-src/render/uc-fut-organizacao.png}
+        \caption{Diagrama de casos de uso: organização do fut e presença. Fonte: elaborado pelos autores.}
+        \label{fig:uc-fut-organizacao}
+      \end{figure}
+
+      \begin{figure}[h]
+        \centering
+        \includegraphics[width=\textwidth,height=0.82\textheight,keepaspectratio]{figuras/diagramas-src/render/uc-fut-partida.png}
+        \caption{Diagrama de casos de uso: partida ao vivo, fut não gerenciado e pós-fut. Fonte: elaborado pelos autores.}
+        \label{fig:uc-fut-partida}
       \end{figure}
 
   \section{Fluxos principais}

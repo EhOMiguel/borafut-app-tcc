@@ -166,6 +166,190 @@
         \item \textbf{E6-F1-US2} -- Como usuário registrado, desejo selecionar ou enviar um avatar para o meu perfil.
     \end{itemize}
 
+\chapter{Especificação dos Casos de Uso}
+    \label{apendice:casos-uso}
+
+    Este apêndice detalha os principais casos de uso do BORAFUT na forma de especificação textual, complementando os diagramas das Figuras~\ref{fig:uc-conta-mapa} a~\ref{fig:uc-fut-partida}. O formato adotado segue a especificação de caso de uso detalhado proposta por Cockburn~\cite{cockburn2001}, na qual cada caso descreve o ator principal, as pré e pós-condições, o fluxo principal (sequência de episódios do caminho de sucesso), os fluxos alternativos (variações válidas) e as exceções (situações de erro e seu tratamento). Foram selecionados os casos de uso mais representativos do escopo, por concentrarem maior densidade de regras de negócio.
+
+    \section*{UC02 -- Autenticar-se}
+        \begin{description}
+            \item[Ator principal] Usuário Registrado.
+            \item[Pré-condições] o usuário possui um endereço de e-mail já cadastrado.
+            \item[Pós-condições] sessão iniciada, com token de acesso e token de renovação emitidos.
+        \end{description}
+
+        \noindent\textbf{Fluxo principal}
+        \begin{enumerate}
+            \item O usuário informa seu e-mail e solicita o código de acesso.
+            \item O sistema gera um código temporário e o envia ao e-mail por meio do Serviço de E-mail.
+            \item O usuário informa o código recebido.
+            \item O sistema valida o código e, estando correto e vigente, inicia a sessão e libera o acesso.
+        \end{enumerate}
+
+        \noindent\textbf{Fluxos alternativos}
+        \begin{itemize}
+            \item \textbf{A1 (primeiro acesso):} se o e-mail ainda não possui perfil completo, após a validação o sistema direciona o usuário ao cadastro de dados básicos antes de liberar o acesso pleno.
+            \item \textbf{A2 (reenvio):} antes de inserir o código, o usuário pode solicitar novo envio, respeitado o limite de solicitações.
+        \end{itemize}
+
+        \noindent\textbf{Exceções}
+        \begin{itemize}
+            \item \textbf{E1 (código incorreto):} o sistema rejeita a tentativa, incrementa o contador e mantém o usuário na etapa de verificação; atingido o número máximo de tentativas, o código é invalidado.
+            \item \textbf{E2 (código expirado):} esgotado o prazo de validade, o sistema informa a expiração e solicita novo envio.
+            \item \textbf{E3 (limite de solicitações):} excedido o número de pedidos no intervalo definido, o sistema bloqueia temporariamente novas solicitações e informa o tempo de espera.
+        \end{itemize}
+
+    \section*{UC15 -- Confirmar presença}
+        \begin{description}
+            \item[Ator principal] Usuário Registrado.
+            \item[Pré-condições] usuário autenticado; fut em estado agendado ou em andamento.
+            \item[Pós-condições] participação registrada como confirmada.
+        \end{description}
+
+        \noindent\textbf{Fluxo principal}
+        \begin{enumerate}
+            \item O usuário abre os detalhes do fut.
+            \item O usuário seleciona confirmar presença.
+            \item O sistema valida a solicitação e registra a participação como confirmada.
+        \end{enumerate}
+
+        \noindent\textbf{Fluxos alternativos}
+        \begin{itemize}
+            \item \textbf{A1 (via convite):} ao abrir o fut por um link de convite, o usuário autentica-se e segue a partir do passo 2.
+        \end{itemize}
+
+        \noindent\textbf{Exceções}
+        \begin{itemize}
+            \item \textbf{E1 (presença sobreposta):} se o usuário já está confirmado ou presente em outro fut em janela inferior a duas horas, o sistema retorna conflito e oferece cancelar a presença anterior para confirmar nesta.
+            \item \textbf{E2 (fut indisponível):} se o fut foi cancelado ou encerrado, o sistema informa a indisponibilidade e não registra a presença.
+        \end{itemize}
+
+    \section*{UC19 -- Criar fut}
+        \begin{description}
+            \item[Ator principal] Usuário Registrado, que se torna o Criador do fut.
+            \item[Pré-condições] usuário autenticado.
+            \item[Pós-condições] fut criado com status agendado, criador incluído como presença confirmada e código de convite gerado.
+        \end{description}
+
+        \noindent\textbf{Fluxo principal}
+        \begin{enumerate}
+            \item O usuário seleciona a quadra, no mapa ou na busca, e a partir do perfil dela inicia a criação de um fut.
+            \item O usuário informa data e horário.
+            \item O usuário define o modo do fut (gerenciado pelo aplicativo, por padrão) e, quando gerenciado, os parâmetros da partida (tempo, gols para vencer, tamanho do time e mínimo de jogadores).
+            \item O usuário confirma a criação.
+            \item O sistema valida os dados, registra o fut como agendado, gera o código de convite e adiciona o criador como presença confirmada.
+        \end{enumerate}
+
+        \noindent\textbf{Fluxos alternativos}
+        \begin{itemize}
+            \item \textbf{A1 (não gerenciado):} ao definir o modo como não gerenciado, os parâmetros de partida não são solicitados, e o fut controla apenas a presença.
+        \end{itemize}
+
+        \noindent\textbf{Exceções}
+        \begin{itemize}
+            \item \textbf{E1 (horário inválido):} se a data não for futura ou ultrapassar o limite de antecedência, o sistema rejeita a criação e solicita correção.
+            \item \textbf{E2 (sobreposição na quadra):} se já houver fut na mesma quadra em janela inferior a duas horas, o sistema bloqueia a criação e informa o conflito.
+            \item \textbf{E3 (sobreposição do criador):} se o criador já está confirmado em outro fut em horário sobreposto, o sistema bloqueia a criação.
+        \end{itemize}
+
+    \section*{UC23 -- Confirmar chegada}
+        \begin{description}
+            \item[Ator principal] Usuário Registrado.
+            \item[Pré-condições] presença confirmada; fut gerenciado; horário do fut já alcançado.
+            \item[Pós-condições] status do participante alterado para chegou, jogador inserido no fim da fila e evento de chegada registrado.
+        \end{description}
+
+        \noindent\textbf{Fluxo principal}
+        \begin{enumerate}
+            \item No horário do fut, o usuário seleciona confirmar chegada.
+            \item O aplicativo tenta verificar a proximidade da quadra por GPS.
+            \item Estando dentro do raio, o sistema registra a chegada, insere o jogador na fila e registra o evento correspondente.
+        \end{enumerate}
+
+        \noindent\textbf{Fluxos alternativos}
+        \begin{itemize}
+            \item \textbf{A1 (GPS fora do raio):} o sistema informa a distância detectada e permite ao usuário confirmar mesmo assim, registrando a chegada sem validação de GPS.
+            \item \textbf{A2 (sem permissão de localização):} o sistema solicita autoconfirmação e registra a chegada sem validação de GPS.
+            \item \textbf{A3 (chegada de terceiro):} um jogador que já chegou confirma a chegada de outro participante presente na quadra; o registro guarda quem realizou a confirmação.
+        \end{itemize}
+
+        \noindent\textbf{Exceções}
+        \begin{itemize}
+            \item \textbf{E1 (antes do horário):} se o horário do fut ainda não chegou, a ação permanece indisponível.
+            \item \textbf{E2 (revogação de chegada):} criador ou organizador pode revogar uma chegada indevida, retornando o jogador ao estado confirmado e removendo-o da fila.
+        \end{itemize}
+
+    \section*{UC27 -- Cadastrar participante manualmente}
+        \begin{description}
+            \item[Ator principal] Organizador ou Criador.
+            \item[Pré-condições] fut em andamento.
+            \item[Pós-condições] participante presencial incluído com status chegou e posicionado no fim da fila.
+        \end{description}
+
+        \noindent\textbf{Fluxo principal}
+        \begin{enumerate}
+            \item Na tela de gerenciamento, o organizador seleciona adicionar participante.
+            \item O organizador informa nome e e-mail.
+            \item O sistema verifica o e-mail e, não havendo conta, cria um perfil incompleto.
+            \item O sistema registra a participação como chegou e insere o jogador no fim da fila.
+        \end{enumerate}
+
+        \noindent\textbf{Fluxos alternativos}
+        \begin{itemize}
+            \item \textbf{A1 (e-mail com perfil incompleto):} havendo um perfil incompleto para o e-mail, o sistema o reutiliza, sem duplicar o cadastro.
+            \item \textbf{A2 (e-mail de conta ativa):} se o e-mail pertence a uma conta ativa, o sistema avisa e sugere o convite por link; confirmada a inclusão, vincula a participação à conta existente.
+        \end{itemize}
+
+        \noindent\textbf{Exceções}
+        \begin{itemize}
+            \item \textbf{E1 (fora do fut em andamento):} fora do período em andamento, o cadastro manual permanece indisponível, pois antes do início a entrada ocorre por presença ou por convite.
+        \end{itemize}
+
+    \section*{UC29 -- Iniciar fut}
+        \begin{description}
+            \item[Ator principal] Organizador ou Criador.
+            \item[Pré-condições] fut gerenciado e agendado; horário alcançado; número mínimo de jogadores na fila.
+            \item[Pós-condições] fut em andamento, primeira partida criada e times formados.
+        \end{description}
+
+        \noindent\textbf{Fluxo principal}
+        \begin{enumerate}
+            \item O organizador seleciona iniciar o fut.
+            \item O sistema confere o horário e o número mínimo de jogadores.
+            \item O sistema cria a primeira partida, forma os dois times pela ordem de chegada e abre a etapa de confirmação dos times.
+        \end{enumerate}
+
+        \noindent\textbf{Exceções}
+        \begin{itemize}
+            \item \textbf{E1 (antes do horário):} a ação permanece indisponível até o horário marcado.
+            \item \textbf{E2 (jogadores insuficientes):} abaixo do mínimo configurado, o sistema impede o início e informa quantos jogadores faltam.
+        \end{itemize}
+
+    \section*{UC34 -- Encerrar partida}
+        \begin{description}
+            \item[Ator principal] Usuário Registrado do próximo time da fila, Organizador ou Criador.
+            \item[Pré-condições] partida em andamento.
+            \item[Pós-condições] partida encerrada e rotação de times aplicada.
+        \end{description}
+
+        \noindent\textbf{Fluxo principal}
+        \begin{enumerate}
+            \item Ao um time atingir o número de gols para vencer, o sistema o marca como vencedor e abre uma janela curta para desfazer o último gol.
+            \item Transcorrida a janela, o sistema encerra a partida e aplica a rotação: o time perdedor vai para o fim da fila e os próximos jogadores entram.
+        \end{enumerate}
+
+        \noindent\textbf{Fluxos alternativos}
+        \begin{itemize}
+            \item \textbf{A1 (encerramento no último lance):} quando o tempo se esgota, a partida entra em último lance e o responsável a encerra manualmente, vencendo o time com mais gols.
+            \item \textbf{A2 (desfazer gol decisivo):} dentro da janela, o gol que encerrou a partida pode ser desfeito, retornando-a ao andamento.
+            \item \textbf{A3 (encerramento forçado):} criador ou organizador pode forçar o encerramento, definindo o vencedor manualmente.
+        \end{itemize}
+
+        \noindent\textbf{Exceções}
+        \begin{itemize}
+            \item \textbf{E1 (empate no encerramento):} se o tempo se esgota empatado, aplica-se o desempate; havendo fila insuficiente para dois times completos, a partida vai para pênaltis, em que os times cobram alternadamente até haver um vencedor.
+        \end{itemize}
+
 \chapter{Questionário}
     \label{apendice:questionario}
 
