@@ -22,6 +22,10 @@
       \item \textbf{formação automática de times} baseada na ordem de chegada dos jogadores.
   \end{itemize}
 
+  Parte do valor do BORAFUT está em reduzir as disputas pelo uso das quadras. Como o aplicativo exibe, no mapa e no perfil de cada quadra, os jogos já marcados e o nível de movimentação do local, o jogador avalia a situação antes de se deslocar e, diante de um horário concorrido, pode optar por outra quadra ou outro horário. Essa visibilidade prévia, hoje inexistente na organização por grupos de mensagens, ajuda a evitar o conflito antes que ele aconteça, em vez de exigir negociação no local.
+
+  O BORAFUT não realiza reserva das quadras: por serem públicas e de uso livre, o aplicativo atua catalogando esses espaços e informando suas características e regras de uso. O desafio, nesse ponto, é menos de controle e mais de catalogação: muitas quadras seguem regras específicas de prioridade (como faixas de horário destinadas a escolas ou projetos sociais autorizados pelo poder público), e o aplicativo se propõe a reunir e comunicar essas informações em melhor esforço, sem assumir a gestão da ocupação física do espaço.
+
   A interface preserva alguns termos populares entre os jogadores, como a abreviação “fut” para partidas de futebol amador. Nesta monografia, empregamos preferencialmente o termo “partida” e utilizamos “fut” apenas entre aspas para indicar, de forma explícita, rótulos exibidos na interface do BORAFUT.
 
   No escopo do MVP, o BORAFUT prioriza apenas funcionalidades essenciais para que os jogos aconteçam de forma mais organizada e previsível. Outros recursos, como estatísticas avançadas, rankings, campeonatos ou análises detalhadas de desempenho, poderão ser incorporados futuramente caso sejam validados como relevantes pelos usuários.
@@ -33,7 +37,34 @@
 
     Os requisitos foram definidos a partir das técnicas de elicitação e priorização apresentadas na Seção~\ref{sec:metodologia-elicitacao}. 
 
-    Os requisitos foram organizados em duas categorias: Requisitos Funcionais (RF), que descrevem os comportamentos esperados do sistema, e Requisitos Não Funcionais (RNF), que estabelecem restrições técnicas e propriedades de qualidade. A seguir, são apresentados alguns dos requisitos mais representativos do MVP.
+    Os requisitos foram organizados em duas categorias: Requisitos Funcionais (RF), que descrevem os comportamentos esperados do sistema, e Requisitos Não Funcionais (RNF), que estabelecem restrições técnicas e propriedades de qualidade. Antes de detalhá-los, a subseção seguinte sintetiza a proposta de valor que orienta todo o escopo; na sequência, são apresentados os requisitos mais representativos do MVP e a rastreabilidade entre eles e os pilares.
+
+    \subsection{Proposta de valor e pilares}
+      A proposta de valor do BORAFUT organiza-se em torno de um propósito maior: fortalecer o futebol comunitário do Distrito Federal, unindo tecnologia e convivência social. Esse propósito se desdobra em pilares concretos, derivados das dores levantadas na elicitação (Seção~\ref{sec:metodologia-elicitacao}), que orientam o escopo do MVP e servem de âncora para os requisitos apresentados nas próximas subseções.
+
+      Os pilares de experiência definem o valor que o aplicativo entrega ao usuário:
+
+      \begin{itemize}
+          \item \textbf{Centralizar a organização:} reunir em um único lugar a marcação de jogos, a confirmação de presença e o gerenciamento da partida, hoje espalhados por grupos de mensagens.
+
+          \item \textbf{Reduzir a dispersão de informação:} consolidar no mapa e no perfil da quadra os dados antes fragmentados sobre locais, horários e jogos.
+
+          \item \textbf{Melhorar a comunicação:} manter os participantes atualizados em tempo real sobre presença, chegada e andamento do jogo.
+
+          \item \textbf{Aumentar a participação:} reduzir as barreiras de entrada e estimular o comparecimento, aproximando os jogadores das partidas próximas.
+
+          \item \textbf{Simplificar a dinâmica do jogo:} automatizar fila, formação de times, rotação e placar, reduzindo as discussões durante a partida.
+
+          \item \textbf{Reduzir conflitos pelo uso das quadras:} dar visibilidade à ocupação antes do deslocamento, ajudando a evitar a disputa presencial por horário.
+      \end{itemize}
+
+      Os pilares de alcance definem a quem e em que contexto esse valor chega:
+
+      \begin{itemize}
+          \item \textbf{Foco nas quadras públicas do Distrito Federal:} priorizar a realidade do futebol comunitário local, em espaços de uso livre e gratuito.
+
+          \item \textbf{Disponibilidade multiplataforma:} oferecer a mesma experiência em Android e iOS, para não excluir parte da comunidade.
+      \end{itemize}
 
     \subsection{Requisitos funcionais}
       Os requisitos funcionais descrevem as ações que o sistema deve ser capaz de executar no escopo do MVP. Alguns exemplos incluem:
@@ -50,20 +81,56 @@
           \item \textbf{RF05 – Formação automática de times:} o sistema deve gerar times com base na ordem de confirmação ou chegada dos jogadores, facilitando o início das partidas.
       \end{itemize}
 
+      Estes são os requisitos funcionais de destaque do MVP. O conjunto completo está decomposto no backlog do produto, organizado em épicos, \textit{features} e histórias de usuário, detalhado no Apêndice~\ref{apendice:us}.
+
     \subsection{Requisitos não funcionais}
-      Os requisitos não funcionais estabelecem propriedades de qualidade, padrões técnicos e restrições obrigatórias para o funcionamento adequado do MVP. Alguns exemplos incluem:
+      Os requisitos não funcionais estabelecem as propriedades de qualidade e as restrições do MVP. Para evitar atributos genéricos, cada um foi derivado de um pilar da proposta de valor do BORAFUT, de modo que toda exigência técnica exista para sustentar um benefício percebido pelo usuário. Os principais são:
 
       \begin{itemize}
-          \item \textbf{RNF01 – Multiplataforma:} o aplicativo deve funcionar nas versões atuais dos sistemas Android e iOS.
+          \item \textbf{RNF01 – Multiplataforma:} o aplicativo deve funcionar nas versões atuais de Android e iOS a partir de uma base de código única.
 
-          \item \textbf{RNF02 – Tempo de resposta:} operações principais devem responder em até 3 segundos em condições normais de rede.
+          \item \textbf{RNF02 – Desempenho:} o mapa deve carregar com indicação visual de progresso e as operações principais devem responder em até 3 segundos em condições normais de rede móvel, limitando os resultados do mapa à área visível.
 
-          \item \textbf{RNF03 – Comunicação segura:} toda interação entre aplicativo e servidor deve ocorrer por meio de API REST sobre HTTPS.
+          \item \textbf{RNF03 – Atualização em tempo real:} confirmações de presença, registro de chegada e placar devem ser refletidos aos participantes em poucos segundos, por meio de WebSocket, com reconsulta REST como contingência.
 
-          \item \textbf{RNF04 – Usabilidade:} a interface deve seguir princípios de usabilidade e heurísticas de Nielsen, priorizando clareza visual, consistência e navegação simples.
+          \item \textbf{RNF04 – Usabilidade:} a interface deve seguir as heurísticas de Nielsen, permitindo realizar as ações centrais em três a cinco toques.
 
-          \item \textbf{RNF05 – LGPD:} o sistema deve coletar consentimento explícito, proteger dados pessoais e restringir o uso a pessoas com 16 anos ou mais.
+          \item \textbf{RNF05 – Baixo atrito de acesso:} o acesso deve usar autenticação \textit{passwordless} por código de e-mail e permitir a inclusão de convidados sem conta, para não excluir participantes.
+
+          \item \textbf{RNF06 – Segurança e privacidade:} a comunicação deve ocorrer sobre HTTPS, com sessão autenticada por JWT, em conformidade com a LGPD, mediante consentimento explícito e idade mínima de 16 anos.
+
+          \item \textbf{RNF07 – Cobertura local:} o sistema deve manter um catálogo georreferenciado de quadras públicas do Distrito Federal, priorizando a descoberta hiperlocal.
       \end{itemize}
+
+    \subsection{Rastreabilidade entre pilares e requisitos}
+      Cada requisito do MVP existe para sustentar ao menos um dos pilares apresentados, o que mantém o escopo ancorado no valor entregue ao usuário, em vez de funcionalidades isoladas. O propósito maior de fortalecer o futebol comunitário é realizado pelo conjunto desses pilares atuando de forma integrada.
+
+      A Tabela~\ref{tab:rastro-valor} relaciona cada pilar aos requisitos que o realizam, evidenciando a rastreabilidade entre a proposta de valor e o escopo do MVP.
+
+      \begin{table}[!htb]
+        \centering
+        \caption{Rastreabilidade entre os pilares da proposta de valor e os requisitos do MVP.}
+        \label{tab:rastro-valor}
+        \footnotesize
+        \renewcommand{\arraystretch}{1.3}
+        \begin{tabular}{p{6cm}p{7.5cm}}
+        \toprule
+        \textbf{Pilar da proposta de valor} & \textbf{Requisitos que o realizam} \\
+        \midrule
+        Centralizar a organização & RF03, RF04, RF05 \\
+        Reduzir a dispersão de informação & RF02, RNF07 \\
+        Melhorar a comunicação & RF04, RNF03 \\
+        Aumentar a participação & RF01, RNF05 \\
+        Simplificar a dinâmica do jogo & RF05, RNF02, RNF04 \\
+        Reduzir conflitos pelo uso das quadras & RF02, RF04, RF05 \\
+        Foco nas quadras públicas do DF & RF02, RNF07 \\
+        Disponibilidade multiplataforma & RNF01 \\
+        \bottomrule
+        \end{tabular}
+
+        \vspace{2pt}
+        {\footnotesize Fonte: elaborada pelos autores.}
+      \end{table}
 
     \subsection{Diagrama de casos de uso}
 
