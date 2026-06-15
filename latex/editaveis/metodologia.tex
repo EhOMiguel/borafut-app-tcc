@@ -351,9 +351,49 @@
     \subsection{Priorização e modelagem de requisitos}
         % Descrever como os requisitos foram analisados e refinados
         
-        Os requisitos identificados na etapa de elicitação foram organizados por meio de um processo de decomposição hierárquica, de acordo com as boas práticas de engenharia de requisitos adotadas em metodologias ágeis. Inicialmente, as necessidades do sistema foram agrupadas em épicos, que representam objetivos de alto nível. Cada épico foi então subdividido em \textit{features}, que correspondem a partes específicas desse objetivo, geralmente associadas a um conjunto de capacidades do sistema. Por fim, cada feature foi formalizada como um conjunto de \textit{user stories}, que descrevem comportamentos observáveis do sistema sob a perspectiva do usuário final.
+        Os requisitos identificados na etapa de elicitação foram organizados por meio de um processo de decomposição hierárquica, prática consolidada na engenharia de requisitos ágil para conectar os objetivos estratégicos do produto aos itens de trabalho efetivamente implementáveis \cite{cohn2004, sommerville2011}. Em vez de uma lista plana de funcionalidades, o backlog foi estruturado em níveis sucessivos de granularidade, do propósito do produto até a tarefa técnica, preservando a rastreabilidade entre o valor pretendido e o que é entregue \cite{wiegers2013}.
 
         Esse processo de refinamento teve por objetivo eliminar redundâncias, ajustar o escopo, identificar dependências e priorizar entregas essenciais para o funcionamento do MVP. As decisões de priorização foram baseadas no valor de negócio, no impacto para o usuário e na complexidade técnica estimada.
+
+        \subsubsection{Granularidade e hierarquia do backlog}
+
+            O backlog do BORAFUT é organizado em seis níveis de granularidade, do mais estratégico ao mais concreto. Os rótulos de cada nível variam entre as fontes da literatura ágil: Cohn \cite{cohn2004} trabalha com temas, épicos e histórias, enquanto o \textit{Scaled Agile Framework} \cite{safe2023} adota temas estratégicos, épicos e \textit{features}. Neste trabalho, adota-se a convenção descrita a seguir.
+
+            \begin{description}
+                \item[Tema] pilar da proposta de valor do produto. É o nível mais estratégico e responde por que o item existe.
+                \item[Épico] grande bloco de funcionalidade que contribui para um tema, amplo demais para uma única entrega.
+                \item[\textit{Feature}] capacidade específica dentro de um épico, que agrupa histórias relacionadas.
+                \item[História de usuário] comportamento observável sob a perspectiva do usuário, no formato ``Como [papel], desejo [ação], para [valor]''.
+                \item[Tarefa] unidade técnica de trabalho necessária para realizar uma história.
+                \item[Subtarefa] desdobramento concreto de uma tarefa, diretamente executável e verificável.
+            \end{description}
+
+            A escolha dos temas como os próprios pilares da proposta de valor do BORAFUT é deliberada. Esses pilares, sintetizados a partir das dores levantadas na elicitação (como centralizar a organização, reduzir a dispersão de informação, aumentar a participação e reduzir conflitos pelo uso das quadras) e detalhados na Seção~\ref{subsec:proposta-valor}, tornam-se o topo do backlog. Assim, a leitura de cima para baixo evidencia como cada benefício pretendido se converte em funcionalidade e, ao final, em trabalho técnico. Esse encadeamento materializa a rastreabilidade entre requisitos e valor recomendada na engenharia de requisitos \cite{sommerville2011, wiegers2013}.
+
+            A Tabela~\ref{tab:decomposicao} ilustra uma decomposição completa, do tema à subtarefa, para um item representativo do backlog.
+
+            \begin{table}[!htb]
+                \centering
+                \caption{Exemplo de decomposição do backlog em seis níveis de granularidade.}
+                \label{tab:decomposicao}
+                \footnotesize
+                \renewcommand{\arraystretch}{1.3}
+                \begin{tabular}{p{3.2cm}p{10cm}}
+                \toprule
+                \textbf{Nível} & \textbf{Item} \\
+                \midrule
+                Tema & Reduzir conflitos pelo uso das quadras \\
+                Épico & Perfil da quadra \\
+                \textit{Feature} & Regras e agenda da quadra \\
+                História de usuário & Como usuário registrado, desejo visualizar os futs agendados em uma quadra, para escolher horário e local e evitar a disputa presencial \\
+                Tarefa & Disponibilizar, no perfil da quadra, a agenda de futs dos próximos dias \\
+                Subtarefa & Consultar os futs agendados e em andamento de uma quadra dentro de um intervalo de datas \\
+                \bottomrule
+                \end{tabular}
+
+                \vspace{2pt}
+                {\footnotesize Fonte: elaborada pelos autores.}
+            \end{table}
 
         \subsubsection{Método MoSCoW}
         % Explicar o método e apresentar a matriz valor x esforço
