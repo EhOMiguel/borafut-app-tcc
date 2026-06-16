@@ -528,14 +528,18 @@
     A camada de dados será composta por um banco relacional PostgreSQL, escolhido por sua robustez, confiabilidade e compatibilidade com provedores de nuvem. O esquema do banco será modelado de forma normalizada, garantindo integridade e consistência das informações. A modelagem detalhada de dados será apresentada na Seção~\ref{subsec:modelo-dados}, onde é descrito o modelo de dados do PostgreSQL.
 
     \subsection{Integrações externas}
-    Além da comunicação direta entre cliente e servidor, o backend realizará integrações com APIs externas essenciais para viabilizar funcionalidades-chave do aplicativo. No estágio de MVP, essas integrações são mínimas e focadas apenas nas necessidades imediatas do projeto.
-    
-    As integrações planejadas são:
-    
+    Além da comunicação direta entre cliente e servidor, o backend realiza integrações com APIs externas essenciais para viabilizar funcionalidades-chave do aplicativo, restritas às necessidades do MVP.
+
+    As integrações adotadas são:
+
     \begin{itemize}
         \item \textbf{Autenticação por código enviado por e-mail}, utilizando um serviço externo de envio de mensagens (Amazon Simple Email Service). Nesse modelo \textit{passwordless}, o usuário informa o endereço de e-mail e recebe um código temporário para acessar sua conta, eliminando a necessidade de senhas.
-        
+
         \item \textbf{Serviços de geolocalização e mapas}, por meio da Google Maps Platform, para consultar, exibir e georreferenciar quadras públicas e privadas no Distrito Federal.
+
+        \item \textbf{Notificações push}, por meio do serviço Expo Notifications, para lembretes e avisos ligados ao fluxo do fut, como presença, chegada e andamento da partida.
+
+        \item \textbf{Armazenamento e entrega de mídia}, com o Amazon S3 e a rede de distribuição de conteúdo CloudFront, para as fotos das quadras.
     \end{itemize}
     
     \subsection{Comunicação e infraestrutura}

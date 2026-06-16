@@ -334,10 +334,10 @@
 
     Esta seção apresenta a arquitetura técnica e a modelagem do banco de dados do BORAFUT, descrevendo como as decisões planejadas na metodologia (Seção~\ref{sec:arquitetura-geral}) foram concretizadas em artefatos. São exibidos dois diagramas baseados no modelo C4, que representam a estrutura do sistema em diferentes níveis de abstração, seguidos do modelo de dados do banco PostgreSQL.
 
-    \subsection{Modelo C4 de contexto e contêineres}
+    \subsection{Modelo C4 de contexto, contêineres e componentes}
       \label{subsec:c4}
 
-      O modelo C4, proposto por Brown~\cite{brown2018}, é um método visual para documentar arquitetura de software em quatro níveis de abstração: contexto, contêineres, componentes e código, que permitem descrever a arquitetura de software em diferentes graus de detalhe. Neste trabalho, optou-se por representar apenas os dois primeiros níveis (contexto e contêineres), por serem suficientes para comunicar a visão geral e a organização técnica do BORAFUT no estágio atual do projeto. 
+      O modelo C4, proposto por Brown~\cite{brown2018}, é um método visual para documentar arquitetura de software em quatro níveis de abstração: contexto, contêineres, componentes e código, que permitem descrever a arquitetura de software em diferentes graus de detalhe. Neste trabalho, representam-se os três primeiros níveis (contexto, contêineres e componentes), suficientes para comunicar tanto a visão geral quanto a organização técnica interna do BORAFUT; o nível de código não é detalhado por já estar expresso no próprio repositório da aplicação.
 
       \subsubsection*{Diagrama de contexto (C1).}
         O diagrama de contexto apresenta o BORAFUT como um sistema inserido em seu ambiente de uso. Ele representa as interações entre os usuários e os sistemas externos que fornecem serviços complementares. Na Figura~\ref{fig:c4-contexto}, observa-se que o aplicativo é utilizado por jogadores amadores, seu usuário principal, comunicando-se com serviços responsáveis por autenticação e geolocalização.
@@ -357,15 +357,27 @@
             \item o \textbf{aplicativo móvel} (React Native), responsável pela interação com o usuário e envio das requisições à API;
             \item o \textbf{backend} (Node.js com NestJS e Fastify), que concentra a lógica de negócio, autenticação e orquestração de dados;
             \item o \textbf{banco de dados relacional} (PostgreSQL), que armazena as informações persistentes;
-            \item e as \textbf{APIs e serviços externos}, usados para envio de e-mail de autenticação (Amazon SES), geolocalização (Google Maps Platform) e armazenamento e entrega de mídia (Amazon S3 e CloudFront).
+            \item e as \textbf{APIs e serviços externos}, usados para envio de e-mail de autenticação (Amazon SES), notificações \textit{push} (Expo), geolocalização (Google Maps Platform) e armazenamento e entrega de mídia (Amazon S3 e CloudFront).
         \end{itemize}
+
+        As comunicações são rotuladas com o protocolo e o propósito: o aplicativo consome a API por requisições REST sobre HTTPS e recebe atualizações ao vivo por WebSocket, enquanto a API acessa o banco de dados por meio do Prisma.
 
         \begin{figure}[h]
             \centering
-            \includegraphics[width=0.8\textwidth]{figuras/c4-containers.png}
+            \includegraphics[width=\textwidth]{figuras/diagramas-src/render/c4-conteineres.png}
             \caption{Diagrama C4 nível contêineres do BORAFUT.}
             \label{fig:c4-conteineres}
         \end{figure}
+
+      \subsubsection*{Diagrama de componentes (C3).}
+        O diagrama de componentes detalha a estrutura interna do contêiner de \textit{backend}, decompondo-o nos módulos que concentram cada domínio da aplicação. A Figura~\ref{fig:c4-componentes} apresenta os principais componentes: autenticação (\textit{login} sem senha e gestão de sessão), quadras e avaliações, futs (criação e presença), partidas (motor do jogo ao vivo), o \textit{gateway} de tempo real (WebSocket), as notificações (e-mail e \textit{push}) e o agendador de rotinas, além do serviço de acesso a dados e dos utilitários compartilhados. Cada componente expõe responsabilidades bem delimitadas e comunica-se com os demais por interfaces internas, enquanto o acesso ao banco é centralizado pelo serviço de dados.
+
+        \begin{sidewaysfigure}
+            \centering
+            \includegraphics[width=1.0\linewidth]{figuras/diagramas-src/render/c4-componentes.png}
+            \caption{Diagrama C4 nível componentes do \textit{backend} do BORAFUT.}
+            \label{fig:c4-componentes}
+        \end{sidewaysfigure}
 
     \subsection{Modelo de dados do PostgreSQL}
       \label{subsec:modelo-dados}
