@@ -15,11 +15,13 @@
   A proposta de valor do BORAFUT é unir tecnologia e convivência social para fortalecer o futebol comunitário. Mais do que apenas organizar partidas, o aplicativo busca tornar o acesso ao esporte mais simples, inclusivo e transparente. Entre as funcionalidades previstas para o MVP, destacam-se:
   \begin{itemize}
       \item \textbf{visualização de quadras públicas próximas} com base em geolocalização;
-      \item \textbf{criação de futs} com definição de horário, quadra e configuração da partida;
+      \item \textbf{avaliação e favoritar de quadras};
+      \item \textbf{criação de futs}, gerenciados ou não pelo aplicativo, com definição de horário, quadra e configuração da partida;
       \item \textbf{confirmação de presença} com acompanhamento em tempo real da quantidade de participantes;
-  \item \textbf{autenticação simplificada por código enviado por e-mail} em modelo \textit{passwordless};
-      \item \textbf{compartilhamento centralizado das informações essenciais da partida};
-      \item \textbf{formação automática de times} baseada na ordem de chegada dos jogadores.
+      \item \textbf{autenticação simplificada por código enviado por e-mail} em modelo \textit{passwordless};
+      \item \textbf{compartilhamento das informações do fut por link};
+      \item \textbf{formação automática de times e gerenciamento da partida ao vivo}, com rotação por ordem de chegada;
+      \item \textbf{resumo pós-fut compartilhável} e estatísticas dos jogadores.
   \end{itemize}
 
   Parte do valor do BORAFUT está em reduzir as disputas pelo uso das quadras. Como o aplicativo exibe, no mapa e no perfil de cada quadra, os jogos já marcados e o nível de movimentação do local, o jogador avalia a situação antes de se deslocar e, diante de um horário concorrido, pode optar por outra quadra ou outro horário. Essa visibilidade prévia, hoje inexistente na organização por grupos de mensagens, ajuda a evitar o conflito antes que ele aconteça, em vez de exigir negociação no local.
@@ -79,7 +81,23 @@
 
           \item \textbf{RF04 – Confirmação de presença:} o sistema deve permitir que usuários confirmem presença em um fut, atualizando em tempo real o total de participantes confirmados.
 
-          \item \textbf{RF05 – Formação automática de times:} o sistema deve gerar times com base na ordem de confirmação ou chegada dos jogadores, facilitando o início das partidas.
+          \item \textbf{RF05 – Formação automática de times:} o sistema deve gerar times com base na ordem de chegada dos jogadores, facilitando o início das partidas.
+
+          \item \textbf{RF06 – Favoritos:} o sistema deve permitir favoritar quadras para acesso rápido.
+
+          \item \textbf{RF07 – Avaliação de quadras:} o sistema deve permitir que jogadores com participação elegível avaliem uma quadra, com nota e comentário, exibindo a média das avaliações.
+
+          \item \textbf{RF08 – Compartilhamento por link:} o sistema deve gerar um link de convite para o fut, compartilhável por aplicativos externos.
+
+          \item \textbf{RF09 – Confirmação de chegada e fila:} o sistema deve registrar a chegada dos jogadores a partir do horário do fut e organizar a fila por ordem de chegada.
+
+          \item \textbf{RF10 – Gerenciamento da partida ao vivo:} o sistema deve controlar cronômetro, placar e gols, encerrar partidas, rotacionar os times e resolver empates por pênaltis.
+
+          \item \textbf{RF11 – Cadastro de participante presencial:} o sistema deve permitir que o criador ou um organizador cadastre, durante o fut, participantes sem conta.
+
+          \item \textbf{RF12 – Notificações:} o sistema deve enviar notificações \textit{push} de lembretes e avisos ligados ao fut.
+
+          \item \textbf{RF13 – Resumo pós-fut:} o sistema deve gerar um resumo compartilhável ao fim do fut e consolidar as estatísticas dos jogadores.
       \end{itemize}
 
       Estes são os requisitos funcionais de destaque do MVP. O conjunto completo está decomposto no backlog do produto, estruturado na hierarquia de granularidade descrita na Seção~\ref{sec:metodologia-elicitacao} e detalhado no Apêndice~\ref{apendice:us}.
@@ -118,13 +136,13 @@
         \toprule
         \textbf{Pilar da proposta de valor} & \textbf{Requisitos que o realizam} \\
         \midrule
-        Centralizar a organização & RF03, RF04, RF05 \\
-        Reduzir a dispersão de informação & RF02, RNF07 \\
-        Melhorar a comunicação & RF04, RNF03 \\
-        Aumentar a participação & RF01, RNF05 \\
-        Simplificar a dinâmica do jogo & RF05, RNF02, RNF04 \\
-        Reduzir conflitos pelo uso das quadras & RF02, RF04, RF05 \\
-        Foco nas quadras públicas do DF & RF02, RNF07 \\
+        Centralizar a organização & RF03, RF04, RF05, RF09, RF11, RF13 \\
+        Reduzir a dispersão de informação & RF02, RF07, RNF07 \\
+        Melhorar a comunicação & RF04, RF08, RF12, RNF03 \\
+        Aumentar a participação & RF01, RF06, RF08, RF12, RNF05 \\
+        Simplificar a dinâmica do jogo & RF05, RF10, RNF02, RNF04 \\
+        Reduzir conflitos pelo uso das quadras & RF02, RF04, RF09 \\
+        Foco nas quadras públicas do DF & RF02, RF07, RNF07 \\
         Disponibilidade multiplataforma & RNF01 \\
         \bottomrule
         \end{tabular}
