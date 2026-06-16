@@ -15,7 +15,7 @@
   A proposta de valor do BORAFUT é unir tecnologia e convivência social para fortalecer o futebol comunitário. Mais do que apenas organizar partidas, o aplicativo busca tornar o acesso ao esporte mais simples, inclusivo e transparente. Entre as funcionalidades previstas para o MVP, destacam-se:
   \begin{itemize}
       \item \textbf{visualização de quadras públicas próximas} com base em geolocalização;
-      \item \textbf{criação de partidas} com definição de horário, local e modalidade;
+      \item \textbf{criação de futs} com definição de horário, quadra e configuração da partida;
       \item \textbf{confirmação de presença} com acompanhamento em tempo real da quantidade de participantes;
   \item \textbf{autenticação simplificada por código enviado por e-mail} em modelo \textit{passwordless};
       \item \textbf{compartilhamento centralizado das informações essenciais da partida};
@@ -75,9 +75,9 @@
           
           \item \textbf{RF02 – Visualização de quadras:} o sistema deve exibir um mapa interativo com quadras públicas próximas ao usuário, permitindo navegação e pesquisa.
 
-          \item \textbf{RF03 – Criação de partidas:} o sistema deve permitir que usuários registrem um fut, informando quadra, horário, modalidade e número de vagas.
+          \item \textbf{RF03 – Criação de futs:} o sistema deve permitir que usuários criem um fut em uma quadra, definindo horário, modo de gerenciamento e os parâmetros da partida (tempo, gols e tamanho do time).
 
-          \item \textbf{RF04 – Confirmação de presença:} o sistema deve permitir que usuários confirmem presença em partidas abertas, exibindo em tempo real as vagas remanescentes.
+          \item \textbf{RF04 – Confirmação de presença:} o sistema deve permitir que usuários confirmem presença em um fut, atualizando em tempo real o total de participantes confirmados.
 
           \item \textbf{RF05 – Formação automática de times:} o sistema deve gerar times com base na ordem de confirmação ou chegada dos jogadores, facilitando o início das partidas.
       \end{itemize}
@@ -176,43 +176,49 @@
 
   \section{Fluxos principais}
     \label{sec:fluxos-principais}
-    Os fluxos de uso representam a sequência de ações realizadas pelos usuários dentro do aplicativo para alcançar seus objetivos. Cada fluxo descreve o caminho percorrido desde a intenção inicial até a conclusão da tarefa, garantindo que as interações do sistema sejam coerentes, intuitivas e acessíveis. A seguir, são descritos os principais fluxos que compõem o escopo do MVP.
+    Os fluxos de uso representam a sequência de ações realizadas pelos usuários dentro do aplicativo para alcançar seus objetivos. Cada fluxo descreve o caminho percorrido desde a intenção inicial até a conclusão da tarefa, de modo que as interações do sistema sejam coerentes, intuitivas e acessíveis. A seguir, são descritos os principais fluxos que compõem o escopo do MVP.
 
     \subsection{Criar conta}
-      Ao abrir o aplicativo, o usuário informa seu endereço de e-mail em um único campo. O sistema envia um código temporário para o e-mail informado e, ao retornar ao aplicativo, o usuário insere esse código para prosseguir. A conta é criada assim que o código é confirmado, em seguida, o usuário é direcionado para a etapa de cadastro, onde preenche informações básicas como nome, apelido e, opcionalmente, posição preferida em quadra. Após concluir essa etapa, o acesso às funcionalidades do aplicativo é liberado.
+      Ao abrir o aplicativo, o usuário informa seu endereço de e-mail em um único campo. O sistema envia um código temporário para o e-mail informado e, ao retornar ao aplicativo, o usuário insere esse código para prosseguir. A conta é criada assim que o código é confirmado; em seguida, o usuário é direcionado para a etapa de cadastro, onde preenche informações básicas como nome, apelido, região e os tipos de fut que costuma jogar. Após concluir essa etapa, o acesso pleno às funcionalidades do aplicativo é liberado.
 
     \subsection{Fazer login}
       Para autenticar-se, o usuário informa seu e-mail registrado e recebe um código temporário enviado automaticamente. Ao inserir o código corretamente, o sistema valida sua identidade e inicia a sessão. A autenticação não utiliza senhas, reduzindo atritos de acesso e eliminando riscos associados ao armazenamento local de credenciais. Uma vez autenticado, o usuário permanece logado até encerrar manualmente a sessão.
 
-    \subsection{Visualizar quadras}
-    Ao entrar no aplicativo, o usuário é direcionado ao mapa interativo, centralizado em sua localização atual. As quadras próximas são exibidas como marcadores, permitindo navegação, zoom e movimentação livre no mapa. O usuário pode buscar quadras pelo nome, aplicar filtros e selecionar qualquer marcador para visualizar informações detalhadas sobre a quadra escolhida.
+    \subsection{Explorar o mapa e as quadras}
+      Ao entrar no aplicativo, o usuário é direcionado ao mapa interativo, centralizado em sua localização atual. As quadras aparecem como marcadores coloridos, cuja cor reflete a situação do fut mais próximo do dia, e o usuário pode navegar, dar zoom, buscar quadras pelo nome e aplicar filtros. Esse fluxo está disponível inclusive para visitantes sem conta, que exploram o mapa e as informações públicas das quadras; as ações que exigem cadastro aparecem sinalizadas, convidando ao login.
 
-    \subsection{Visualizar perfil da quadra}
-    Ao selecionar um marcador no mapa, o usuário acessa o perfil da quadra, onde encontra informações como endereço, características básicas, avaliação média, partidas recentes e partidas agendadas (rotuladas como “futs” no aplicativo). A tela apresenta também o botão “Como chegar”, que abre o aplicativo de mapas do dispositivo com rota até o local. No perfil da quadra, o usuário pode consultar a agenda com partidas agendadas e eventos recorrentes para os próximos dias, o que auxilia na escolha de horários disponíveis e fornece uma noção da atividade da quadra ao longo da semana. Usuários autenticados podem favoritar a quadra para acessá-la rapidamente no futuro.
+    \subsection{Visualizar o perfil da quadra}
+      Ao selecionar um marcador, o usuário acessa o perfil da quadra, com endereço, características, fotos, avaliação média e a agenda de futs dos próximos dias, o que ajuda a escolher horário e a perceber a atividade da quadra ao longo da semana. A tela traz o botão “Como chegar”, que abre o aplicativo de mapas do dispositivo com a rota até o local. Usuários autenticados podem favoritar a quadra e, tendo participado de um fut ali, avaliá-la.
 
-    \subsection{Criar partida}
-    Após selecionar uma quadra, o usuário autenticado pode criar uma partida clicando no botão “Criar fut”. O sistema exibe um formulário solicitando data, horário, modalidade e uma descrição opcional. Ao confirmar, a partida é registrada e passa a estar disponível para visualização no perfil da quadra e no mapa para outros usuários.
+    \subsection{Criar fut}
+      A partir do perfil da quadra, o usuário autenticado cria um fut pelo botão “Criar fut”. O formulário solicita data e horário, o modo do fut (gerenciado pelo aplicativo, por padrão) e, quando gerenciado, os parâmetros da partida: tempo, gols para vencer, tamanho do time e mínimo de jogadores para iniciar; a descrição é opcional. Ao confirmar, o sistema valida o horário e a ausência de outro fut sobreposto na mesma quadra, registra o fut e gera um código de convite. O criador entra automaticamente como presença confirmada, e o fut passa a aparecer no perfil da quadra e no mapa.
 
-    \subsection{Visualizar partida e confirmar presença}
-    Ao explorar o mapa ou o perfil da quadra, o usuário pode selecionar uma partida específica. A tela apresenta informações completas, incluindo horário, vagas disponíveis e regras básicas. Usuários autenticados podem confirmar ou cancelar presença com um toque. A confirmação atualiza imediatamente o total de jogadores e a ordem de chegada virtual.
+    \subsection{Confirmar presença}
+      Ao explorar o mapa ou o perfil da quadra, o usuário seleciona um fut e vê suas informações: horário, configuração, participantes confirmados e status. Com um toque, o usuário autenticado confirma ou cancela presença, e o total de confirmados é atualizado para todos. Para evitar compromissos conflitantes, o sistema impede confirmar presença em dois futs cujos horários estejam a menos de duas horas de distância, oferecendo trocar de um para o outro.
 
-    \subsection{Enviar convite}
-    Jogadores que já confirmaram presença em uma partida podem convidar outras pessoas para participar. A partir da tela do “fut”, o usuário clica em “Enviar convite” e escolhe o aplicativo de sua preferência (como WhatsApp ou Telegram) para compartilhar um link direto para o jogo. Ao clicar no link, o convidado é redirecionado ao aplicativo e pode confirmar presença com poucos toques.
+    \subsection{Compartilhar o fut}
+      Qualquer participante pode convidar outras pessoas para o fut. Pela tela do fut, o usuário aciona “Compartilhar” e escolhe o aplicativo de sua preferência, como o WhatsApp, para enviar um link direto gerado a partir do código de convite. Ao abrir o link, o convidado é levado ao fut e, após autenticar-se, confirma presença com poucos toques.
 
-    \subsection{Confirmar chegada na quadra}
-    No horário agendado, o usuário acessa a tela da partida e seleciona a opção “Confirmar chegada”. O botão fica disponível apenas a partir do horário configurado no “fut”. O registro de chegada atualiza a ordem da fila de jogadores, permitindo que o sistema gere times iniciais e organize futuras rotações. A confirmação é manual, mas pode ser apoiada por verificação de localização, desde que o usuário esteja próximo à quadra.
+    \subsection{Confirmar chegada}
+      Em futs gerenciados, a confirmação de chegada é liberada a partir do horário marcado. Ao confirmar, o aplicativo tenta verificar a proximidade da quadra por GPS: dentro do raio, a chegada é registrada; fora do raio ou sem permissão de localização, o aplicativo apenas avisa e permite confirmar mesmo assim, sem bloquear. A chegada coloca o jogador no fim da fila, que define a ordem de formação dos times. Um jogador que já chegou pode confirmar a chegada de outro que esteja na quadra, e o criador ou um organizador pode revogar uma chegada indevida.
 
-    \subsection{Iniciar a partida}
-    O criador da partida tem permissão para iniciar o jogo assim que o horário agendado é alcançado. Ele pode acessar rapidamente o perfil por meio do popup de destaque e executar o comando “Iniciar fut”, fazendo com que o sistema gere automaticamente os dois times iniciais com base na ordem de chegada e organize os próximos times na fila. Jogadores que chegarem após o início são posicionados no final da lista.
+    \subsection{Iniciar o fut e formar os times}
+      O criador ou um organizador inicia o fut quando o horário é alcançado e há jogadores suficientes na fila. Ao iniciar, o sistema cria a primeira partida e forma dois times a partir da ordem de chegada: os primeiros da fila compõem o primeiro time, os seguintes o segundo, e os demais aguardam a vez. Jogadores que chegam após o início entram no fim da fila.
 
-    \subsection{Gerenciar partida}
-    Durante a partida, os jogadores em espera têm acesso aos controles de jogo, incluindo pausar e retomar o cronômetro, registrar gols e encerrar a partida. Ao finalizar, o sistema atualiza automaticamente a fila de jogadores conforme as regras definidas e registra dados básicos, como placar e participantes. Esses dados são utilizados para gerar estatísticas simples do “fut” e dos jogadores envolvidos.
+    \subsection{Acompanhar a partida ao vivo}
+      Durante a partida, o cronômetro corre de forma sincronizada para todos os participantes. Os gols são registrados tocando no jogador que marcou, com uma janela curta para desfazer em caso de engano; podem registrar gols e conduzir a partida o criador, os organizadores e os jogadores do próximo time da fila. Quando o tempo se esgota, a partida entra em “último lance” até que alguém a encerre; ao final, o time perdedor vai para o fim da fila e os próximos entram, em rotação automática. Havendo empate sem fila suficiente para dois times, a partida é decidida nos pênaltis. O criador e os organizadores dispõem de um controle de ajuste que permite sobrepor qualquer automação, como trocar jogadores, reordenar a fila ou forçar o encerramento.
 
-    \subsection{Cadastro manual de jogadores}
-    Nem todos os participantes possuem aplicativo, internet ou conta ativa. Para esses casos, o sistema permite o cadastro manual. Um jogador já logado pode abrir o perfil da partida e clicar em “Adicionar participante manualmente”, preenchendo nome e e-mail do colega. Dessa forma, mesmo sem conexão, o participante é incluído oficialmente na partida.
+    \subsection{Encerrar o fut e pós-fut}
+      O fut é encerrado pelo criador ou por um organizador, ou automaticamente após um período de inatividade. Ao encerrar um fut gerenciado, o aplicativo gera um card de resumo compartilhável, com as estatísticas da rodada, como número de jogadores, partidas, gols e destaques, e consolida as estatísticas pessoais de cada participante a partir dos registros das partidas.
 
-    \subsection{Rota para a quadra}
-    Para facilitar o deslocamento até o local do jogo, o aplicativo disponibiliza um botão “Como chegar” em cada perfil de quadra. Ao ser acionado, o sistema gera um \textit{deep link} que abre automaticamente o aplicativo de mapas padrão do dispositivo com a rota traçada até o endereço da quadra, facilitando o deslocamento até o local da partida.
+    \subsection{Fut não gerenciado pelo aplicativo}
+      Quando o fut é criado sem gerenciamento pelo aplicativo, o fluxo restringe-se à confirmação de presença e à descoberta, e a organização do jogo acontece presencialmente. O fut passa a “em andamento” automaticamente no horário marcado, e o aplicativo pode coletar, de forma opcional, sinais de presença para alimentar estatísticas. A qualquer momento, o criador pode ativar o gerenciamento, registrando quem está na quadra e passando a usar fila, times e cronômetro.
+
+    \subsection{Cadastrar participante presencial}
+      Nem todos os presentes têm o aplicativo ou uma conta ativa. Durante o fut, o criador ou um organizador cadastra um participante informando nome e e-mail; o sistema reaproveita o cadastro caso o e-mail já exista e inclui a pessoa na fila como presente. O e-mail registrado permite, depois, convidá-la a criar a própria conta.
+
+    \subsection{Traçar rota até a quadra}
+      Para facilitar o deslocamento, cada perfil de quadra traz o botão “Como chegar”. Ao acioná-lo, o aplicativo gera um \textit{deep link} que abre o aplicativo de mapas padrão do dispositivo com a rota traçada até o endereço da quadra.
 
   \section{Design de interface e experiência do usuário}
     O design de interface do BORAFUT reflete a identidade visual definida no documento interno Manual de Identidade Visual do BORAFUT~\cite{borafut_visual2025}, desenvolvido pela equipe do projeto. Esse guia estabelece os elementos fundamentais da marca, como paleta de cores, tipografia, ícones e diretrizes de uso, garantindo unidade estética e coerência entre o aplicativo e suas demais comunicações. A Figura~\ref{fig:manual-identidade-visual} apresenta uma parte do manual de identidade visual.
@@ -296,7 +302,7 @@
         \label{fig:prot-geral}
     \end{figure}
     
-    Os fluxos prototipados foram selecionados a partir dos principais cenários de uso definidos na Seção~\ref{sec:fluxos-principais}, incluindo login e cadastro, criação de partidas (fluxo “Criar fut”), visualização de mapa, acesso a perfis e telas de confirmação. Para fins de documentação, esta seção apresenta três telas representativas que ilustram diferentes tipos de interação e estrutura visual no BORAFUT.
+    Os fluxos prototipados foram selecionados a partir dos principais cenários de uso definidos na Seção~\ref{sec:fluxos-principais}, incluindo login e cadastro, criação de futs, visualização de mapa, acesso a perfis e telas de confirmação. Para fins de documentação, esta seção apresenta três telas representativas que ilustram diferentes tipos de interação e estrutura visual no BORAFUT.
     
     \begin{figure}[h]
         \centering
@@ -316,7 +322,7 @@
     
     A Figura~\ref{fig:prot-mapa} apresenta a tela de visualização de mapa, que integra um mapa interativo, uma barra de pesquisa para busca de locais, filtros de seleção e marcadores que representam as quadras disponíveis, nos quais cada cor indica um status distinto. 
     
-    Na parte inferior da interface, encontra-se um botão flutuante que permite acesso ao menu principal e à funcionalidade de criação de partidas.
+    Na parte inferior da interface, encontra-se um botão flutuante que permite acesso ao menu principal e à funcionalidade de criação de futs.
     
     \begin{figure}[h]
         \centering
