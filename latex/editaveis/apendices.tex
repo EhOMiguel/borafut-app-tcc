@@ -40,8 +40,8 @@
         Aumentar a participação & Gerenciamento de usuários & Login por código e sessão & Fazer login apenas com e-mail e código (E1-F2-US1) & Implementar a autenticação \textit{passwordless} por e-mail & Gerar, enviar e validar o código de verificação \\
         Reduzir a dispersão de informação & Mapa e descoberta de quadras & Interação com o mapa & Selecionar uma quadra no mapa para abrir o perfil (E2-F1-US2) & Exibir as quadras como marcadores no mapa & Carregar as quadras com dados básicos para os marcadores \\
         Reduzir conflitos pelo uso das quadras & Perfil da quadra & Regras e agenda da quadra & Visualizar os futs agendados na quadra (E3-F2-US2) & Disponibilizar a agenda de futs dos próximos dias & Consultar os futs agendados e em andamento por intervalo de datas \\
-        Centralizar a organização & Perfil do jogo & Confirmação de presença & Confirmar presença em um fut (E4-F2-US1) & Disponibilizar confirmar e cancelar presença na tela do fut & Registrar a participação e atualizar a contagem de confirmados \\
-        Simplificar a dinâmica do jogo & Organização e gerenciamento do jogo & Fila e formação de times & Formar os times pela ordem de chegada (E5-F3-US2) & Gerar os times a partir da fila ao iniciar a partida & Selecionar os primeiros jogadores da fila e atribuí-los aos times \\
+        Centralizar a organização & Perfil do fut & Confirmação de presença & Confirmar presença em um fut (E4-F2-US1) & Disponibilizar confirmar e cancelar presença na tela do fut & Registrar a participação e atualizar a contagem de confirmados \\
+        Simplificar a dinâmica do jogo & Organização e gerenciamento do fut & Fila e formação de times & Formar os times pela ordem de chegada (E5-F3-US2) & Gerar os times a partir da fila ao iniciar a partida & Selecionar os primeiros jogadores da fila e atribuí-los aos times \\
         Aumentar a participação & Perfil do usuário & Configurações de perfil & Selecionar ou enviar um avatar (E6-F1-US2) & Permitir a escolha do avatar no perfil & Salvar o avatar escolhido e refleti-lo nas telas \\
         \bottomrule
         \end{tabular}
@@ -72,7 +72,7 @@
     \begin{itemize}
         \item \textbf{E1-F3-US1} -- Como usuário registrado, desejo poder excluir minha conta definitivamente, para deixar de utilizar o app e ter meus dados pessoais removidos conforme a política de privacidade.
         \item \textbf{E1-F3-US2} -- Como usuário registrado, desejo visualizar um resumo dos dados pessoais que o app armazena sobre mim, para ter transparência sobre o uso das minhas informações.
-        \item \textbf{E1-F3-US3} -- Como usuário registrado, desejo poder configurar se autorizo ou não o uso da minha localização em tempo real, para controlar meu nível de exposição no mapa e nos jogos.
+        \item \textbf{E1-F3-US3} -- Como usuário registrado, desejo poder configurar se autorizo ou não o uso da minha localização em tempo real, para controlar meu nível de exposição no mapa e nos futs.
         \item \textbf{E1-F3-US4} -- Como usuário registrado, desejo validar meu número de telefone por meio de código enviado por SMS (opcional), para aumentar a confiança da comunidade na minha autenticidade.
         \item \textbf{E1-F3-US5} -- Como usuário (registrado ou não), desejo alternar entre modo claro e modo escuro no app, para adequar a interface às minhas preferências.
     \end{itemize}
@@ -93,7 +93,7 @@
     \begin{itemize}
         \item \textbf{E2-F2-US1} -- Como usuário (registrado ou não), desejo aplicar filtros no mapa (distância, avaliação, piso, iluminação, status), para encontrar quadras que se encaixem melhor no que procuro.
         \item \textbf{E2-F2-US2} -- Como usuário registrado, desejo filtrar quadras pelas minhas favoritas.
-        \item \textbf{E2-F2-US3} -- Como usuário (registrado ou não), desejo ver no mapa um indicativo visual das quadras onde há jogos acontecendo ou agendados.
+        \item \textbf{E2-F2-US3} -- Como usuário (registrado ou não), desejo ver no mapa um indicativo visual das quadras onde há futs acontecendo ou agendados.
     \end{itemize}
 
     % ===============================================================
@@ -105,13 +105,13 @@
         \item \textbf{E3-F1-US1} -- Como usuário (registrado ou não), desejo visualizar informações básicas da quadra (endereço, tipo de piso, iluminação, se é pública/privada).
         \item \textbf{E3-F1-US2} -- Como usuário (registrado ou não), desejo visualizar as avaliações gerais da quadra feitas por outros usuários.
         \item \textbf{E3-F1-US3} -- Como usuário registrado, desejo avaliar uma quadra de forma geral, contribuindo para a comunidade.
-        \item \textbf{E3-F1-US4} -- Como usuário registrado, desejo visualizar quantos jogos já aconteceram naquela quadra.
+        \item \textbf{E3-F1-US4} -- Como usuário registrado, desejo visualizar quantos futs já aconteceram naquela quadra.
     \end{itemize}
 
     \subsection*{Feature 2 -- Regras e agenda da quadra}
     \begin{itemize}
         \item \textbf{E3-F2-US1} -- Como usuário registrado, desejo visualizar os horários em que a quadra costuma estar ocupada ou reservada.
-        \item \textbf{E3-F2-US2} -- Como usuário registrado, desejo visualizar os jogos futuros agendados naquela quadra.
+        \item \textbf{E3-F2-US2} -- Como usuário registrado, desejo visualizar os próximos futs agendados naquela quadra.
     \end{itemize}
 
     \subsection*{Feature 3 -- Favoritos e compartilhamento}
@@ -121,43 +121,52 @@
     \end{itemize}
 
     % ===============================================================
-    \section*{Épico 4 -- Perfil do Jogo}
+    \section*{Épico 4 -- Perfil do Fut}
     \textit{Tema: centralizar a organização.}
 
-    \subsection*{Feature 1 -- Visualização do jogo}
+    \subsection*{Feature 1 -- Visualização do fut}
     \begin{itemize}
-        \item \textbf{E4-F1-US1} -- Como usuário registrado, desejo visualizar os detalhes completos de um jogo.
+        \item \textbf{E4-F1-US1} -- Como usuário registrado, desejo visualizar os detalhes completos de um fut.
         \item \textbf{E4-F1-US2} -- Como usuário registrado, desejo visualizar quantas pessoas estão confirmadas.
         \item \textbf{E4-F1-US3} -- Como usuário registrado, desejo visualizar a lista de confirmados e de presentes.
     \end{itemize}
 
     \subsection*{Feature 2 -- Confirmação de presença}
     \begin{itemize}
-        \item \textbf{E4-F2-US1} -- Como usuário registrado, desejo confirmar minha presença em um jogo.
+        \item \textbf{E4-F2-US1} -- Como usuário registrado, desejo confirmar minha presença em um fut.
         \item \textbf{E4-F2-US2} -- Como usuário registrado, desejo cancelar minha presença.
     \end{itemize}
 
     \subsection*{Feature 3 -- Compartilhamento}
     \begin{itemize}
-        \item \textbf{E4-F3-US1} -- Como usuário registrado, desejo compartilhar o jogo com amigos via outros aplicativos.
+        \item \textbf{E4-F3-US1} -- Como usuário registrado, desejo compartilhar o fut com amigos via outros aplicativos.
+    \end{itemize}
+
+    \subsection*{Feature 4 -- Lembretes e avisos}
+    \begin{itemize}
+        \item \textbf{E4-F4-US1} -- Como usuário registrado confirmado em um fut, desejo receber lembretes por notificação \textit{push} antes do horário, para não esquecer a partida.
+        \item \textbf{E4-F4-US2} -- Como usuário registrado confirmado em um fut gerenciado, desejo ser avisado quando o fut começa, para confirmar minha chegada.
     \end{itemize}
 
     % ===============================================================
-    \section*{Épico 5 -- Organização e Gerenciamento do Jogo}
+    \section*{Épico 5 -- Organização e Gerenciamento do Fut}
     \textit{Tema: simplificar a dinâmica do jogo.}
 
-    \subsection*{Feature 1 -- Criação e edição de jogo}
+    \subsection*{Feature 1 -- Criação e edição de fut}
     \begin{itemize}
-        \item \textbf{E5-F1-US1} -- Como usuário registrado, desejo criar um jogo.
-        \item \textbf{E5-F1-US2} -- Como criador, desejo editar as informações do jogo que criei.
-        \item \textbf{E5-F1-US3} -- Como criador, desejo excluir um jogo que criei.
+        \item \textbf{E5-F1-US1} -- Como usuário registrado, desejo criar um fut.
+        \item \textbf{E5-F1-US2} -- Como criador, desejo editar as informações do fut que criei.
+        \item \textbf{E5-F1-US3} -- Como criador, desejo excluir um fut que criei.
+        \item \textbf{E5-F1-US4} -- Como criador, desejo promover participantes a organizadores e revogar essa condição, para dividir a condução do fut com pessoas de confiança.
     \end{itemize}
 
     \subsection*{Feature 2 -- Check-in e pré-cadastro}
     \begin{itemize}
         \item \textbf{E5-F2-US1} -- Como usuário registrado, desejo confirmar minha chegada na quadra.
         \item \textbf{E5-F2-US2} -- Como organizador, desejo registrar a presença de uma pessoa não cadastrada.
-        \item \textbf{E5-F2-US3} -- Como usuário não registrado, desejo receber um e-mail ao ser adicionado a um jogo.
+        \item \textbf{E5-F2-US3} -- Como usuário não registrado, desejo receber um e-mail ao ser adicionado a um fut.
+        \item \textbf{E5-F2-US4} -- Como usuário registrado que já confirmou a própria chegada, desejo confirmar a chegada de outro jogador presente na quadra, para agilizar o registro de quem chegou.
+        \item \textbf{E5-F2-US5} -- Como organizador, desejo revogar uma chegada registrada indevidamente, para manter a fila fiel a quem está na quadra.
     \end{itemize}
 
     \subsection*{Feature 3 -- Fila e formação automática de times}
@@ -177,12 +186,23 @@
     \begin{itemize}
         \item \textbf{E5-F5-US1} -- Como responsável pela partida, desejo encerrar uma partida registrando o resultado.
         \item \textbf{E5-F5-US2} -- Como organizador, desejo que o time perdedor vá automaticamente para o fim da fila.
+        \item \textbf{E5-F5-US3} -- Como responsável pela partida, desejo que, ao esgotar o tempo, a partida entre em último lance até o encerramento, para não interromper a jogada em andamento.
+        \item \textbf{E5-F5-US4} -- Como responsável pela partida, desejo que um empate sem fila suficiente para dois times seja decidido nos pênaltis, para definir o vencedor e seguir a rotação.
     \end{itemize}
 
-    \subsection*{Feature 6 -- Estatísticas do jogo}
+    \subsection*{Feature 6 -- Estatísticas do fut}
     \begin{itemize}
-        \item \textbf{E5-F6-US1} -- Como usuário registrado, desejo visualizar estatísticas simples da minha participação em jogos.
-        \item \textbf{E5-F6-US2} -- Como organizador, desejo visualizar um resumo das partidas realizadas no jogo.
+        \item \textbf{E5-F6-US1} -- Como usuário registrado, desejo visualizar estatísticas simples da minha participação em futs.
+        \item \textbf{E5-F6-US2} -- Como organizador, desejo visualizar um resumo das partidas realizadas no fut.
+        \item \textbf{E5-F6-US3} -- Como usuário registrado, desejo receber, ao fim de um fut gerenciado, um card de resumo com os números da rodada, para relembrar e compartilhar o que aconteceu.
+        \item \textbf{E5-F6-US4} -- Como usuário registrado, desejo compartilhar o card de resumo do fut em aplicativos externos, para divulgar a partida ao grupo.
+    \end{itemize}
+
+    \subsection*{Feature 7 -- Modo não gerenciado}
+    \begin{itemize}
+        \item \textbf{E5-F7-US1} -- Como criador, desejo escolher, ao criar o fut, se ele será gerenciado pelo aplicativo, para adequar o app a grupos que organizam a partida presencialmente.
+        \item \textbf{E5-F7-US2} -- Como usuário registrado, desejo informar que estou na quadra durante um fut não gerenciado, para que minha presença alimente as estatísticas e a avaliação da quadra.
+        \item \textbf{E5-F7-US3} -- Como criador, desejo ativar o gerenciamento de um fut não gerenciado durante o fut, registrando quem está na quadra, para passar a usar fila, times e cronômetro.
     \end{itemize}
 
     % ===============================================================
