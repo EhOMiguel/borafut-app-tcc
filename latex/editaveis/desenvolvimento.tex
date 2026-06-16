@@ -1,0 +1,84 @@
+\chapter{Desenvolvimento}
+\label{sec:desenvolvimento}
+
+  Enquanto o capítulo anterior apresentou o projeto da solução, dos requisitos aos artefatos de design e arquitetura, este capítulo descreve a construção do BORAFUT: como as decisões registradas no projeto se concretizaram em software em funcionamento. O objetivo é documentar o processo de desenvolvimento, a arquitetura efetivamente implementada e as principais capacidades já entregues, evidenciando as escolhas de engenharia que sustentam o produto.
+
+  A exposição organiza-se da seguinte forma. Primeiro, descreve-se o processo de desenvolvimento e as iterações de construção, mostrando como os princípios ágeis adotados na metodologia (Seção~\ref{sec:arquitetura-geral}) se traduziram em ciclos concretos de entrega. Em seguida, apresenta-se a arquitetura implementada, detalhando a organização do código em módulos e as convenções adotadas em cada camada. Por fim, as capacidades do sistema são descritas por blocos: a fundação (modelo de dados, autenticação e sessão) e a descoberta (mapa, catálogo de quadras e avaliações).
+
+\section{Processo e iterações de construção}
+  \label{sec:dev-processo}
+
+    O desenvolvimento seguiu os princípios do \textit{Extreme Programming} adotados na metodologia (Seção~\ref{sec:metodologia-elicitacao}), com ciclos curtos e incrementais, cada um produzindo uma fatia funcional do sistema de ponta a ponta, do banco de dados à interface. Em vez de construir todas as camadas de uma funcionalidade isoladamente, cada incremento atravessou o backend, a API e o aplicativo, de modo que o resultado pudesse ser exercitado e revisado a cada passo. Essa abordagem é coerente com a filosofia incremental do MVP e com uma equipe pequena e autogerida.
+
+    A construção foi organizada em blocos de capacidade encadeados por dependência técnica, e não por área de tecnologia. O primeiro bloco estabeleceu a fundação compartilhada por todo o sistema: o esquema do banco de dados, o acesso a dados tipado e a autenticação sem senha, base sobre a qual qualquer funcionalidade autenticada se apoia. O segundo bloco entregou a descoberta, que é o primeiro contato do usuário com o produto: o mapa, o catálogo de quadras e as avaliações. Os blocos seguintes, dedicados ao motor do fut e à camada de tempo real, dependem dessa fundação e da descoberta já consolidadas.
+
+    Cada bloco foi tratado como um incremento entregável, com testes automatizados acompanhando as regras de negócio à medida que eram implementadas. A divisão por capacidade favoreceu o trabalho paralelo entre os integrantes e permitiu validar decisões de produto cedo, mantendo o sistema sempre em estado executável. As convenções técnicas que deram uniformidade a esses incrementos são descritas na seção seguinte.
+
+\section{Arquitetura implementada}
+  \label{sec:dev-arquitetura}
+
+    A arquitetura implementada concretiza o modelo cliente-servidor de três camadas planejado na metodologia (Seção~\ref{sec:arquitetura-geral}) e detalhado nas visões C4 do projeto (Seção~\ref{subsec:c4}). O aplicativo móvel comunica-se com o backend por requisições REST sobre HTTPS, e o backend acessa o banco PostgreSQL por meio do Prisma. Toda a base de código, do cliente ao servidor, é escrita em TypeScript, o que permite compartilhar tipos e convenções entre as camadas; as versões das tecnologias constam na Tabela~\ref{tab:tecnologias}.
+
+    \subsection{Organização do backend}
+      O backend é estruturado segundo o modelo de módulos do NestJS, em que cada domínio reúne seu controlador (responsável pelas rotas HTTP), seu serviço (responsável pela lógica de negócio) e seus objetos de transferência de dados (\textit{Data Transfer Objects}, ou DTOs, que descrevem e validam as entradas). Essa organização materializa o diagrama de componentes apresentado na Seção~\ref{subsec:c4} (Figura~\ref{fig:c4-componentes}), no qual cada módulo concentra um domínio da aplicação.
+
+      Os módulos já implementados são o de autenticação, o de quadras (incluindo avaliações) e o de futs, além dos módulos de apoio de envio de e-mail e de verificação de saúde do serviço. O acesso ao banco é centralizado em um único serviço de dados, baseado no cliente gerado pelo Prisma, de modo que nenhum módulo manipula o banco diretamente. Um conjunto de utilitários compartilhados reúne preocupações transversais, como a validação de datas no fuso horário correto, a geração de códigos de convite e a referência de tempo única do sistema.
+
+      A validação das requisições é declarativa: cada DTO descreve as restrições de seus campos por anotações, e a camada HTTP rejeita entradas inválidas antes que cheguem à lógica de negócio. O controle de acesso é aplicado por \textit{guards}: um exige sessão autenticada, e outro, opcional, identifica o usuário quando há sessão, mas permite o acesso anônimo, atendendo aos fluxos abertos a visitantes sem conta descritos no Capítulo anterior.
+
+    \subsection{Organização do aplicativo}
+      O aplicativo móvel adota navegação baseada em arquivos, na qual a estrutura de diretórios define as rotas do aplicativo, organizando-as em grupos coerentes: as telas de acesso (boas-vindas, login e cadastro), as abas principais (entre elas o mapa) e as telas de detalhe, como o perfil de uma quadra. O código de domínio é organizado por funcionalidade, agrupando, para cada área, suas chamadas à API, seus tipos e sua lógica de apresentação.
+
+      A obtenção e o cache dos dados vindos do backend são gerenciados pelo TanStack Query, que cuida da revalidação e da sincronização do estado de servidor no cliente, reduzindo código repetitivo e melhorando a percepção de desempenho. A interface é composta a partir de uma biblioteca interna de componentes reutilizáveis e de um conjunto de \textit{tokens} de tema (cores, tipografia e espaçamentos) que dão unidade visual e refletem a identidade definida no projeto. Os \textit{tokens} de sessão são guardados no armazenamento seguro do dispositivo.
+
+\section{Fundação: dados, autenticação e sessão}
+  \label{sec:dev-fundacao}
+
+    A fundação reúne os elementos sobre os quais todo o restante do sistema se apoia: o modelo de dados persistente, o mecanismo de autenticação sem senha e a gestão de sessão. Por serem transversais, foram os primeiros a ser implementados e estabilizados.
+
+    \subsection{Modelo de dados}
+      O modelo de dados foi implementado no PostgreSQL a partir do esquema declarativo do Prisma, que mantém o modelo versionado junto ao código e aplica as migrações de forma controlada. A modelagem é relacional e normalizada, organizada em torno das entidades centrais do domínio: jogadores, quadras, futs, participações, partidas e os registros que as conectam. A apresentação detalhada do modelo encontra-se na Seção~\ref{subsec:modelo-dados} e no Apêndice~\ref{apendice:MER}.
+
+      Algumas decisões de modelagem merecem destaque por sustentarem regras de negócio do produto. Os atributos de domínio fechado, como o nível do piso, o tipo de iluminação e o tamanho de uma quadra, são representados por tipos enumerados, o que restringe os valores possíveis no próprio banco. Os estados de futs, participações e partidas são mantidos em tabelas próprias de \textit{status}, favorecendo a integridade e a evolução desses conjuntos. Os instantes relevantes do ciclo de vida de uma participação, como a confirmação, o cancelamento e a chegada, são registrados como marcações temporais, o que torna o histórico reconstituível. Por fim, todas as marcações de tempo são persistidas com fuso horário, seguindo a convenção de armazenar instantes em tempo universal coordenado e aplicar o fuso local apenas nas regras de produto.
+
+    \subsection{Autenticação sem senha}
+      A autenticação adota o modelo sem senha (\textit{passwordless}) descrito no projeto (requisito RNF05), eliminando o armazenamento de credenciais. O fluxo inicia quando o usuário informa o endereço de e-mail; o sistema gera um código de verificação temporário, associado a esse e-mail, e o envia por e-mail (Seção~\ref{sec:integracoes}). O código tem validade curta e um limite de tentativas de uso, de modo a reduzir a janela e o espaço de adivinhação. Durante o desenvolvimento, o envio de e-mail opera em modo simulado, registrando o código no ambiente local; a integração com o serviço de e-mail transacional é descrita no suporte tecnológico (Seção~\ref{sec:integracoes}).
+
+      Validado o código, o sistema emite as credenciais de sessão e, quando se trata de um primeiro acesso, encaminha o usuário ao cadastro de informações básicas de perfil. A verificação do código e a emissão das credenciais concentram-se no serviço de autenticação, acompanhado de testes automatizados que cobrem os principais casos de sucesso e de erro.
+
+    \subsection{Gestão de sessão}
+      A sessão autenticada baseia-se em \textit{JSON Web Tokens} (JWT), conforme descrito no suporte tecnológico (Seção~\ref{sec:integracoes} e subseção sobre autenticação). O servidor emite um \textit{token} de acesso de curta duração, apresentado a cada requisição, e um \textit{token} de atualização (\textit{refresh}) de duração maior, que permite renovar o acesso sem novo código de e-mail. Os \textit{tokens} de atualização são persistidos e podem ser revogados, o que encerra a sessão de forma confiável quando o usuário sai do aplicativo.
+
+      A verificação do \textit{token} a cada requisição é feita por uma estratégia de autenticação que recupera o usuário a partir das credenciais apresentadas e o disponibiliza às rotas protegidas. No cliente, os \textit{tokens} ficam no armazenamento seguro do dispositivo, e toda a comunicação ocorre sobre HTTPS, atendendo às propriedades de segurança e privacidade definidas no projeto (requisito RNF06).
+
+\section{Descoberta: mapa, quadras e avaliações}
+  \label{sec:dev-descoberta}
+
+    A descoberta é o primeiro contato do usuário com o produto e reúne o mapa interativo, o catálogo de quadras e as avaliações. É também o conjunto de funcionalidades acessível a visitantes sem conta, o que reforça o pilar de aumentar a participação ao reduzir as barreiras de entrada.
+
+    \subsection{Mapa e catálogo de quadras}
+      O catálogo de quadras é mantido no backend a partir de um cadastro georreferenciado, em que cada quadra possui coordenadas, endereço, características físicas e fotos. As quadras públicas do Distrito Federal levantadas no projeto foram carregadas por um procedimento de povoamento do banco, formando a base inicial de descoberta. O módulo de quadras expõe a consulta do catálogo e a busca por nome, e fornece os dados que alimentam tanto o mapa quanto o perfil de cada quadra.
+
+      No aplicativo, a tela inicial é o mapa interativo, centralizado na localização do usuário, sobre o qual as quadras aparecem como marcadores. A interface oferece busca por nome, filtros e o acesso ao perfil da quadra a partir de cada marcador. O perfil reúne as características, as fotos, a avaliação média e a agenda da quadra, além do acionamento da rota até o local, que abre o aplicativo de mapas do dispositivo por meio de um \textit{deep link}. A renderização do mapa e a localização do dispositivo apoiam-se nas bibliotecas e serviços descritos no suporte tecnológico (Seção~\ref{sec:integracoes}).
+
+    \subsection{Avaliações e favoritos}
+      Sobre o catálogo, foram implementados dois recursos que aproximam o usuário das quadras. O primeiro são os favoritos, que permitem marcar quadras para acesso rápido. O segundo são as avaliações: um jogador pode atribuir uma nota e um comentário a uma quadra, e o sistema apresenta a média das avaliações no perfil. A criação de avaliações é condicionada à elegibilidade do jogador, regra de negócio aplicada no serviço correspondente, e cada avaliação pode receber curtidas de outros usuários. As avaliações inativadas são preservadas com a marcação do momento da inativação, em vez de removidas, mantendo a consistência do histórico.
+
+      No aplicativo, o perfil da quadra organiza essas informações em abas, separando as características gerais, a agenda e as avaliações, de modo a manter cada tela enxuta e legível, em linha com os princípios de design adotados no projeto.
+
+% ============================================================
+% SEÇÕES GATED ATÉ A IMPLEMENTAÇÃO (regra de freeze, 03/08).
+% NÃO descrever como implementado o que ainda não está no app.
+% Quando os blocos abaixo entrarem (KAN-37/47/48/49/50 etc.),
+% escrever as seções E estender o parágrafo de organização do
+% capítulo (acima) para anunciá-las.
+%
+% \section{Motor do fut}            % 6.5 - presença, chegada, fila posicional,
+%                                   % formação e rotação de times, pênaltis, overrides.
+%                                   % Insumo: fut_in_app_context.md §3-§6, §9.
+% \section{Tempo real}             % 6.6 - gateway WebSocket + contingência REST,
+%                                   % sincronização de cronômetro/placar, cron de backstop.
+% \section{Qualidade de software}  % 6.7 - testes automatizados, validação, padrões.
+% \section{Decisões e trade-offs}  % 6.8 - 3-5 ADRs resumidas (fila nunca resequenciada,
+%                                   % snapshot de regras por partida, WebSocket no MVP).
+% ============================================================
