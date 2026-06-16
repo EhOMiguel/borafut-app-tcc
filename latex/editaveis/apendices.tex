@@ -228,6 +228,32 @@
             \item \textbf{E3 (limite de solicitações):} excedido o número de pedidos no intervalo definido, o sistema bloqueia temporariamente novas solicitações e informa o tempo de espera.
         \end{itemize}
 
+    \section*{UC11 -- Avaliar quadra}
+        \begin{description}
+            \item[Ator principal] Usuário Registrado.
+            \item[Pré-condições] usuário autenticado e elegível, isto é, com participação registrada em ao menos um fut naquela quadra (presença em fut gerenciado, presença em fut não gerenciado já encerrado ou presença informal reconhecida no local).
+            \item[Pós-condições] avaliação registrada com nota e comentário, refletida na média exibida no perfil da quadra.
+        \end{description}
+
+        \noindent\textbf{Fluxo principal}
+        \begin{enumerate}
+            \item O usuário abre o perfil da quadra.
+            \item O usuário seleciona avaliar a quadra.
+            \item O usuário atribui uma nota e, opcionalmente, um comentário.
+            \item O sistema confirma a elegibilidade, registra a avaliação e atualiza a média apresentada.
+        \end{enumerate}
+
+        \noindent\textbf{Fluxos alternativos}
+        \begin{itemize}
+            \item \textbf{A1 (revisão de avaliação):} se o usuário já havia avaliado a quadra, a nova avaliação inativa a versão anterior e registra outra, preservando o histórico.
+            \item \textbf{A2 (curtir avaliação):} o usuário pode curtir avaliações de outros participantes, sem alterar a sua própria.
+        \end{itemize}
+
+        \noindent\textbf{Exceções}
+        \begin{itemize}
+            \item \textbf{E1 (sem elegibilidade):} se o jogador não possui participação que o habilite naquela quadra, a ação de avaliar permanece indisponível, e o sistema indica que a avaliação depende de ter jogado no local.
+        \end{itemize}
+
     \section*{UC15 -- Confirmar presença}
         \begin{description}
             \item[Ator principal] Usuário Registrado.
@@ -251,6 +277,31 @@
         \begin{itemize}
             \item \textbf{E1 (presença sobreposta):} se o usuário já está confirmado ou presente em outro fut em janela inferior a duas horas, o sistema retorna conflito e oferece cancelar a presença anterior para confirmar nesta.
             \item \textbf{E2 (fut indisponível):} se o fut foi cancelado ou encerrado, o sistema informa a indisponibilidade e não registra a presença.
+        \end{itemize}
+
+    \section*{UC18 -- Compartilhar fut}
+        \begin{description}
+            \item[Ator principal] Usuário Registrado participante do fut.
+            \item[Pré-condições] usuário autenticado; fut em estado agendado ou em andamento.
+            \item[Pós-condições] link de convite do fut compartilhado por um aplicativo externo.
+        \end{description}
+
+        \noindent\textbf{Fluxo principal}
+        \begin{enumerate}
+            \item Na tela do fut, o usuário seleciona compartilhar.
+            \item O sistema disponibiliza o link de convite gerado a partir do código do fut.
+            \item O usuário escolhe um aplicativo externo, como um mensageiro, e envia o link.
+        \end{enumerate}
+
+        \noindent\textbf{Fluxos alternativos}
+        \begin{itemize}
+            \item \textbf{A1 (convidado visitante):} ao abrir o link sem sessão, o convidado vê a tela de login antes dos detalhes e, após autenticar-se, segue para confirmar presença.
+            \item \textbf{A2 (aplicativo não instalado):} se o aplicativo não estiver instalado no dispositivo do convidado, o link direciona à instalação e retoma o fut após a autenticação.
+        \end{itemize}
+
+        \noindent\textbf{Exceções}
+        \begin{itemize}
+            \item \textbf{E1 (fut indisponível):} se o fut foi cancelado ou encerrado, o link conduz a uma tela informativa, sem permitir confirmar presença.
         \end{itemize}
 
     \section*{UC19 -- Criar fut}
@@ -354,6 +405,35 @@
             \item \textbf{E2 (jogadores insuficientes):} abaixo do mínimo configurado, o sistema impede o início e informa quantos jogadores faltam.
         \end{itemize}
 
+    \section*{UC32 -- Registrar eventos da partida}
+        \begin{description}
+            \item[Ator principal] Usuário Registrado do próximo time da fila; com a fila de espera vazia, qualquer jogador em quadra; além do Criador e dos Organizadores.
+            \item[Pré-condições] partida em andamento.
+            \item[Pós-condições] evento registrado no histórico da partida e placar atualizado quando aplicável.
+        \end{description}
+
+        \noindent\textbf{Fluxo principal}
+        \begin{enumerate}
+            \item A tela da partida apresenta os jogadores em quadra.
+            \item Quem registra toca no jogador que marcou.
+            \item Em um menu rápido, seleciona o tipo de evento.
+            \item Para um gol, o sistema atribui o gol ao jogador e incrementa o placar do time correspondente.
+            \item Por uma janela curta, o sistema disponibiliza desfazer o último gol.
+        \end{enumerate}
+
+        \noindent\textbf{Fluxos alternativos}
+        \begin{itemize}
+            \item \textbf{A1 (gol contra):} ao selecionar gol contra, o sistema incrementa o placar do time adversário ao jogador e distingue o registro do gol marcado para fins de estatística.
+            \item \textbf{A2 (desfazer último gol):} dentro da janela, desfazer reverte o último gol, decrementa o placar e registra a correção vinculada ao gol original.
+            \item \textbf{A3 (pausa e retomada):} quem conduz a partida pode pausá-la e retomá-la; o cronômetro suspende a contagem, sem reiniciar.
+        \end{itemize}
+
+        \noindent\textbf{Exceções}
+        \begin{itemize}
+            \item \textbf{E1 (condição de vitória atingida):} se o gol leva o time ao número de gols para vencer, a partida é encerrada (UC34), mantida a janela de desfazer antes da rotação.
+            \item \textbf{E2 (sem autorização):} com a fila de espera ocupada, jogadores que não pertencem ao próximo time da fila não registram eventos.
+        \end{itemize}
+
     \section*{UC34 -- Encerrar partida}
         \begin{description}
             \item[Ator principal] Usuário Registrado do próximo time da fila, Organizador ou Criador.
@@ -377,6 +457,32 @@
         \noindent\textbf{Exceções}
         \begin{itemize}
             \item \textbf{E1 (empate no encerramento):} se o tempo se esgota empatado, aplica-se o desempate; havendo fila insuficiente para dois times completos, a partida vai para pênaltis, em que os times cobram alternadamente até haver um vencedor.
+        \end{itemize}
+
+    \section*{UC41 -- Ativar gerenciamento do fut}
+        \begin{description}
+            \item[Ator principal] Criador.
+            \item[Pré-condições] fut não gerenciado, em andamento.
+            \item[Pós-condições] fut convertido em gerenciado, de forma irreversível, com os presentes registrados na fila.
+        \end{description}
+
+        \noindent\textbf{Fluxo principal}
+        \begin{enumerate}
+            \item O criador seleciona ativar o gerenciamento.
+            \item O sistema alerta que a mudança é irreversível e solicita confirmação.
+            \item Confirmada, o sistema apresenta a tela de registro de presentes, com os participantes que confirmaram presença pré-marcados, na ordem em que confirmaram.
+            \item O criador desmarca os ausentes e mantém os presentes.
+            \item Os jogadores mantidos entram na fila, e o fut passa a gerenciado, liberando o início quando o mínimo de jogadores é alcançado.
+        \end{enumerate}
+
+        \noindent\textbf{Fluxos alternativos}
+        \begin{itemize}
+            \item \textbf{A1 (cadastro de presentes adicionais):} na mesma tela, o criador busca por nome e cadastra quem não havia confirmado presença, reaproveitando contas existentes pelo e-mail; cada inclusão entra no fim da fila.
+        \end{itemize}
+
+        \noindent\textbf{Exceções}
+        \begin{itemize}
+            \item \textbf{E1 (mínimo não atingido):} enquanto o número de presentes for inferior ao mínimo configurado, o início do fut permanece indisponível.
         \end{itemize}
 
 \chapter{Questionário}
