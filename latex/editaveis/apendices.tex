@@ -505,6 +505,337 @@
             \item \textbf{E1 (mínimo não atingido):} enquanto o número de presentes for inferior ao mínimo configurado, o início do fut permanece indisponível.
         \end{itemize}
 
+\chapter{Dicionário de Dados}
+    \label{apendice:dicionario}
+
+    Este apêndice descreve o modelo físico de dados do BORAFUT, implementado no PostgreSQL a partir do esquema declarativo do Prisma. Para cada entidade (tabela), listam-se os atributos com seu tipo, descrição e restrições. As convenções adotadas são:
+
+    \begin{itemize}
+        \item \textbf{Tipos:} \textit{UUID} (identificador universal único); \textit{texto}, \textit{inteiro}, \textit{decimal} e \textit{booleano} (tipos primitivos); \textit{data/hora} (instante sem fuso) e \textit{data/hora (UTC)} (instante com fuso, armazenado em tempo universal coordenado); \textit{lista de texto} (vetor de cadeias); \textit{enumerado} (conjunto fechado de valores).
+        \item \textbf{Restrições:} \textbf{PK} (chave primária), \textbf{FK} (chave estrangeira, com a tabela referenciada), \textbf{UQ} (restrição de unicidade), \textit{opcional} (admite valor nulo) e \textit{padrão} (valor assumido quando não informado).
+        \item Os atributos \texttt{created\_at} e \texttt{updated\_at}, recorrentes, registram os instantes de criação e de última atualização do registro.
+    \end{itemize}
+
+    \section*{Autenticação e perfil}
+
+    \subsection*{\texttt{jogador}}
+    Cadastro do jogador, base da autenticação e do perfil.
+    \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+        \hline
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
+        \hline
+        \endhead
+        \texttt{id} & UUID & Identificador do jogador. & PK \\
+        \texttt{nome} & texto & Nome completo. & opcional \\
+        \texttt{apelido} & texto & Apelido exibido nas telas. & opcional \\
+        \texttt{email} & texto & Endereço de e-mail, usado na autenticação. & obrigatório, UQ \\
+        \texttt{data\_nascimento} & data/hora & Data de nascimento. & opcional \\
+        \texttt{telefone} & texto & Telefone de contato. & opcional \\
+        \texttt{genero} & texto & Gênero informado. & opcional \\
+        \texttt{regiao} & texto & Região administrativa. & opcional \\
+        \texttt{avatar\_id} & inteiro & Avatar escolhido. & opcional \\
+        \texttt{tipo\_fut\_preferido} & lista de texto & Modalidades de fut preferidas. & \\
+        \texttt{perfil\_completo} & booleano & Indica se o cadastro básico foi concluído. & padrão falso \\
+        \texttt{ativo} & booleano & Indica se a conta está ativa. & padrão verdadeiro \\
+        \texttt{ultimo\_login} & data/hora (UTC) & Instante do último acesso. & opcional \\
+        \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
+        \texttt{updated\_at} & data/hora (UTC) & Instante da última atualização. & \\
+        \hline
+    \end{longtable}
+
+    \subsection*{\texttt{codigo\_verificacao}}
+    Códigos temporários enviados por e-mail na autenticação sem senha.
+    \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+        \hline
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
+        \hline
+        \endhead
+        \texttt{id} & UUID & Identificador do código. & PK \\
+        \texttt{email} & texto & E-mail destinatário do código. & obrigatório \\
+        \texttt{codigo} & texto & Código temporário de verificação. & obrigatório \\
+        \texttt{expira\_em} & data/hora (UTC) & Instante de expiração do código. & obrigatório \\
+        \texttt{tentativas} & inteiro & Número de tentativas de uso. & padrão 0 \\
+        \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
+        \hline
+    \end{longtable}
+    \noindent Restrição de tabela: UQ (\texttt{email}, \texttt{codigo}).
+
+    \subsection*{\texttt{refresh\_token}}
+    Tokens de renovação de sessão, persistidos e revogáveis.
+    \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+        \hline
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
+        \hline
+        \endhead
+        \texttt{id} & UUID & Identificador do token. & PK \\
+        \texttt{token} & texto & Valor do token de renovação. & UQ \\
+        \texttt{jogador\_id} & UUID & Jogador dono do token. & FK \texttt{jogador} \\
+        \texttt{expira\_em} & data/hora (UTC) & Instante de expiração. & obrigatório \\
+        \texttt{revogado} & booleano & Indica se o token foi revogado. & padrão falso \\
+        \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
+        \hline
+    \end{longtable}
+
+    \section*{Quadras}
+
+    \subsection*{\texttt{quadra}}
+    Catálogo georreferenciado das quadras públicas.
+    \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+        \hline
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
+        \hline
+        \endhead
+        \texttt{id} & UUID & Identificador da quadra. & PK \\
+        \texttt{slug} & texto & Identificador legível e estável. & UQ \\
+        \texttt{nome} & texto & Nome da quadra. & obrigatório \\
+        \texttt{latitude} & decimal & Latitude geográfica. & obrigatório \\
+        \texttt{longitude} & decimal & Longitude geográfica. & obrigatório \\
+        \texttt{endereco} & texto & Endereço da quadra. & opcional \\
+        \texttt{observacao} & texto & Observações e regras de uso. & opcional \\
+        \texttt{nivel\_piso} & enumerado & Estado do piso. & DESTRUIDO, RUIM, MEDIO, BOM \\
+        \texttt{tipo\_iluminacao} & enumerado & Tipo de iluminação. & BRANCA, LARANJA, SEM\_ILUMINACAO \\
+        \texttt{nivel\_movimentacao} & enumerado & Movimentação habitual. & ABANDONADA, VAZIA, TRANQUILA, MOVIMENTADA \\
+        \texttt{nivel\_qualidade} & enumerado & Qualidade geral. & RUIM, MEDIO, BOM \\
+        \texttt{tamanho} & enumerado & Porte da quadra. & GOLZINHO, PEQUENA, MEDIA, GRANDE \\
+        \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
+        \texttt{updated\_at} & data/hora (UTC) & Instante da última atualização. & \\
+        \hline
+    \end{longtable}
+
+    \subsection*{\texttt{foto\_quadra}}
+    Fotos associadas a uma quadra.
+    \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+        \hline
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
+        \hline
+        \endhead
+        \texttt{id} & UUID & Identificador da foto. & PK \\
+        \texttt{quadra\_id} & UUID & Quadra à qual a foto pertence. & FK \texttt{quadra} \\
+        \texttt{url} & texto & Endereço da imagem. & obrigatório \\
+        \texttt{ordem} & inteiro & Ordem de exibição. & obrigatório \\
+        \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
+        \hline
+    \end{longtable}
+
+    \subsection*{\texttt{favorito\_quadra}}
+    Marcação de quadras favoritas por jogador.
+    \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+        \hline
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
+        \hline
+        \endhead
+        \texttt{id} & UUID & Identificador do favorito. & PK \\
+        \texttt{jogador\_id} & UUID & Jogador que favoritou. & FK \texttt{jogador} \\
+        \texttt{quadra\_id} & UUID & Quadra favoritada. & FK \texttt{quadra} \\
+        \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
+        \hline
+    \end{longtable}
+    \noindent Restrição de tabela: UQ (\texttt{jogador\_id}, \texttt{quadra\_id}).
+
+    \subsection*{\texttt{avaliacao\_quadra}}
+    Avaliações de quadra, com nota, comentário e versionamento.
+    \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+        \hline
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
+        \hline
+        \endhead
+        \texttt{id} & UUID & Identificador da avaliação. & PK \\
+        \texttt{quadra\_id} & UUID & Quadra avaliada. & FK \texttt{quadra} \\
+        \texttt{jogador\_id} & UUID & Autor da avaliação. & FK \texttt{jogador} \\
+        \texttt{nota} & inteiro & Nota atribuída. & obrigatório \\
+        \texttt{comentario} & texto & Comentário. & opcional \\
+        \texttt{status} & texto & Situação da avaliação. & padrão ATIVA \\
+        \texttt{inativada\_em} & data/hora (UTC) & Instante de inativação. & opcional \\
+        \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
+        \texttt{updated\_at} & data/hora (UTC) & Instante da última atualização. & \\
+        \hline
+    \end{longtable}
+
+    \subsection*{\texttt{curtida\_avaliacao\_quadra}}
+    Curtidas de avaliações por outros jogadores.
+    \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+        \hline
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
+        \hline
+        \endhead
+        \texttt{id} & UUID & Identificador da curtida. & PK \\
+        \texttt{avaliacao\_id} & UUID & Avaliação curtida. & FK \texttt{avaliacao\_quadra} \\
+        \texttt{jogador\_id} & UUID & Jogador que curtiu. & FK \texttt{jogador} \\
+        \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
+        \hline
+    \end{longtable}
+    \noindent Restrição de tabela: UQ (\texttt{avaliacao\_id}, \texttt{jogador\_id}).
+
+    \section*{Futs, presença e fila}
+
+    \subsection*{\texttt{fut}}
+    Evento de futebol agendado em uma quadra.
+    \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+        \hline
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
+        \hline
+        \endhead
+        \texttt{id} & UUID & Identificador do fut. & PK \\
+        \texttt{quadra\_id} & UUID & Quadra do fut. & FK \texttt{quadra} \\
+        \texttt{criador\_id} & UUID & Jogador criador do fut. & FK \texttt{jogador} \\
+        \texttt{date\_time} & data/hora (UTC) & Data e horário do fut. & obrigatório \\
+        \texttt{descricao} & texto & Descrição opcional. & opcional \\
+        \texttt{status\_fut\_id} & inteiro & Estado do fut. & FK \texttt{status\_fut} \\
+        \texttt{share\_code} & texto & Código de convite e compartilhamento. & UQ \\
+        \texttt{gerenciado\_pelo\_app} & booleano & Indica o modo gerenciado. & padrão verdadeiro \\
+        \texttt{tempo\_partida\_minutos} & inteiro & Duração padrão da partida. & padrão 10 \\
+        \texttt{gols\_para\_vencer} & inteiro & Gols para vencer. & padrão 2 \\
+        \texttt{tamanho\_por\_time} & inteiro & Jogadores por time. & padrão 5 \\
+        \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
+        \texttt{updated\_at} & data/hora (UTC) & Instante da última atualização. & \\
+        \hline
+    \end{longtable}
+
+    \subsection*{\texttt{participacao}}
+    Presença de um jogador em um fut, com marcações do ciclo de vida.
+    \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+        \hline
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
+        \hline
+        \endhead
+        \texttt{id} & UUID & Identificador da participação. & PK \\
+        \texttt{fut\_id} & UUID & Fut da participação. & FK \texttt{fut} \\
+        \texttt{jogador\_id} & UUID & Jogador participante. & FK \texttt{jogador} \\
+        \texttt{status\_participacao\_id} & inteiro & Estado da participação. & FK \texttt{status\_participacao} \\
+        \texttt{organizador} & booleano & Indica se é organizador do fut. & padrão falso \\
+        \texttt{confirmado\_em} & data/hora (UTC) & Instante da confirmação de presença. & padrão agora \\
+        \texttt{cancelado\_em} & data/hora (UTC) & Instante do cancelamento. & opcional \\
+        \texttt{chegou\_em} & data/hora (UTC) & Instante da chegada. & opcional \\
+        \texttt{saiu\_em} & data/hora (UTC) & Instante da saída. & opcional \\
+        \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
+        \texttt{updated\_at} & data/hora (UTC) & Instante da última atualização. & \\
+        \hline
+    \end{longtable}
+    \noindent Restrição de tabela: UQ (\texttt{fut\_id}, \texttt{jogador\_id}).
+
+    \subsection*{\texttt{lista}}
+    Fila do fut, ordenada por posição absoluta crescente.
+    \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+        \hline
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
+        \hline
+        \endhead
+        \texttt{id} & UUID & Identificador do registro na fila. & PK \\
+        \texttt{fut\_id} & UUID & Fut da fila. & FK \texttt{fut} \\
+        \texttt{jogador\_id} & UUID & Jogador na fila. & FK \texttt{jogador} \\
+        \texttt{posicao} & inteiro & Posição absoluta na fila. & obrigatório \\
+        \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
+        \texttt{updated\_at} & data/hora (UTC) & Instante da última atualização. & \\
+        \hline
+    \end{longtable}
+    \noindent Restrições de tabela: UQ (\texttt{fut\_id}, \texttt{jogador\_id}) e UQ (\texttt{fut\_id}, \texttt{posicao}).
+
+    \subsection*{\texttt{log\_chegada}}
+    Registro dos eventos de chegada à quadra, incluindo presença informal.
+    \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+        \hline
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
+        \hline
+        \endhead
+        \texttt{id} & UUID & Identificador do registro. & PK \\
+        \texttt{fut\_id} & UUID & Fut do evento. & FK \texttt{fut} \\
+        \texttt{jogador\_id} & UUID & Jogador que chegou. & FK \texttt{jogador} \\
+        \texttt{evento} & texto & Tipo de evento de chegada. & obrigatório \\
+        \texttt{gps\_validado} & booleano & Indica validação por GPS. & padrão falso \\
+        \texttt{ator\_id} & UUID & Jogador que registrou a chegada. & FK \texttt{jogador} \\
+        \texttt{date\_time} & data/hora (UTC) & Instante do evento. & padrão agora \\
+        \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
+        \hline
+    \end{longtable}
+
+    \section*{Partidas}
+
+    \subsection*{\texttt{partida}}
+    Sessão de disputa dentro de um fut, com cópia das regras vigentes na criação da partida.
+    \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+        \hline
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
+        \hline
+        \endhead
+        \texttt{id} & UUID & Identificador da partida. & PK \\
+        \texttt{fut\_id} & UUID & Fut da partida. & FK \texttt{fut} \\
+        \texttt{status\_partida\_id} & inteiro & Estado da partida. & FK \texttt{status\_partida} \\
+        \texttt{inicio} & data/hora (UTC) & Início da partida. & obrigatório \\
+        \texttt{fim} & data/hora (UTC) & Fim da partida. & opcional \\
+        \texttt{tempo\_partida\_minutos} & inteiro & Duração (cópia da regra do fut na criação). & obrigatório \\
+        \texttt{gols\_para\_vencer} & inteiro & Gols para vencer (cópia da regra do fut). & obrigatório \\
+        \texttt{tempo\_pausado\_ms} & inteiro & Tempo acumulado em pausa, em milissegundos. & padrão 0 \\
+        \texttt{pausado\_em} & data/hora (UTC) & Instante da pausa corrente. & opcional \\
+        \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
+        \texttt{updated\_at} & data/hora (UTC) & Instante da última atualização. & \\
+        \hline
+    \end{longtable}
+
+    \subsection*{\texttt{jogador\_partida}}
+    Composição dos times de cada partida.
+    \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+        \hline
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
+        \hline
+        \endhead
+        \texttt{id} & UUID & Identificador do registro. & PK \\
+        \texttt{partida\_id} & UUID & Partida correspondente. & FK \texttt{partida} \\
+        \texttt{jogador\_id} & UUID & Jogador alocado. & FK \texttt{jogador} \\
+        \texttt{time} & inteiro & Time do jogador na partida. & obrigatório \\
+        \hline
+    \end{longtable}
+    \noindent Restrição de tabela: UQ (\texttt{partida\_id}, \texttt{jogador\_id}).
+
+    \subsection*{\texttt{log\_partida}}
+    Histórico de eventos da partida (gols, pausas e correções).
+    \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+        \hline
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
+        \hline
+        \endhead
+        \texttt{id} & UUID & Identificador do evento. & PK \\
+        \texttt{partida\_id} & UUID & Partida do evento. & FK \texttt{partida} \\
+        \texttt{tipo\_acao\_id} & inteiro & Tipo de ação registrada. & FK \texttt{tipo\_acao} \\
+        \texttt{autor\_id} & UUID & Jogador autor da ação. & FK \texttt{jogador} \\
+        \texttt{registrador\_id} & UUID & Jogador que registrou a ação. & FK \texttt{jogador} \\
+        \texttt{referencia\_log\_id} & UUID & Evento referenciado (ex.: gol desfeito aponta o gol). & FK \texttt{log\_partida}, opcional \\
+        \texttt{date\_time} & data/hora (UTC) & Instante da ação. & obrigatório \\
+        \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
+        \hline
+    \end{longtable}
+
+    \section*{Tabelas de domínio e operacionais}
+
+    As tabelas de domínio padronizam os estados e os tipos de evento referenciados pelas demais entidades. Todas seguem a mesma estrutura: \texttt{id} (inteiro sequencial, PK) e \texttt{nome} (texto, UQ). A Tabela a seguir resume sua finalidade e valores ilustrativos.
+
+    \begin{longtable}{p{3.2cm}p{5.4cm}p{5.1cm}}
+        \hline
+        \textbf{Tabela} & \textbf{Finalidade} & \textbf{Valores ilustrativos} \\
+        \hline
+        \endhead
+        \texttt{status\_fut} & Estados do fut. & agendado, em andamento, encerrado, cancelado \\
+        \texttt{status\_participacao} & Estados da participação. & confirmado, chegou, saiu, cancelado \\
+        \texttt{status\_partida} & Estados da partida. & em andamento, pausada, encerrada, em pênaltis \\
+        \texttt{tipo\_acao} & Tipos de evento da partida. & gol, gol contra, gol desfeito, pausa, retomada \\
+        \hline
+    \end{longtable}
+
+    \subsection*{\texttt{versao}}
+    Controle de versão mínima do aplicativo por plataforma.
+    \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+        \hline
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
+        \hline
+        \endhead
+        \texttt{id} & inteiro & Identificador do registro. & PK \\
+        \texttt{plataforma} & texto & Plataforma alvo (ex.: Android, iOS). & obrigatório \\
+        \texttt{versao\_minima} & texto & Versão mínima suportada. & obrigatório \\
+        \texttt{descricao} & texto & Descrição da exigência. & opcional \\
+        \texttt{ativo} & booleano & Indica se a regra está em vigor. & padrão verdadeiro \\
+        \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
+        \hline
+    \end{longtable}
+
 \chapter{Questionário}
     \label{apendice:questionario}
 
