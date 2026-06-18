@@ -16,7 +16,7 @@
   \begin{itemize}
       \item \textbf{visualização de quadras públicas próximas} com base em geolocalização;
       \item \textbf{avaliação e favoritar de quadras};
-      \item \textbf{criação de futs}, gerenciados ou não pelo aplicativo, com definição de horário, quadra e configuração da partida;
+      \item \textbf{criação de futs}, gerenciados ou não pelo aplicativo, com definição de nome, horário, quadra e configuração da partida;
       \item \textbf{confirmação de presença} com acompanhamento em tempo real da quantidade de participantes;
       \item \textbf{autenticação simplificada por código enviado por e-mail} em modelo \textit{passwordless};
       \item \textbf{compartilhamento das informações do fut por link};
@@ -77,7 +77,7 @@
           
           \item \textbf{RF02 – Visualização de quadras:} o sistema deve exibir um mapa interativo com quadras públicas próximas ao usuário, permitindo navegação e pesquisa.
 
-          \item \textbf{RF03 – Criação de futs:} o sistema deve permitir que usuários criem um fut em uma quadra, definindo horário, modo de gerenciamento e os parâmetros da partida (tempo, gols e tamanho do time).
+          \item \textbf{RF03 – Criação de futs:} o sistema deve permitir que usuários criem um fut em uma quadra, definindo nome, horário, modo de gerenciamento e os parâmetros da partida (tempo, gols e tamanho do time).
 
           \item \textbf{RF04 – Confirmação de presença:} o sistema deve permitir que usuários confirmem presença em um fut, atualizando em tempo real o total de participantes confirmados.
 
@@ -209,7 +209,7 @@
       Ao selecionar um marcador, o usuário acessa o perfil da quadra, com endereço, características, fotos, avaliação média e a agenda de futs dos próximos dias, o que ajuda a escolher horário e a perceber a atividade da quadra ao longo da semana. A tela traz o botão “Como chegar”, que abre o aplicativo de mapas do dispositivo com a rota até o local. Usuários autenticados podem favoritar a quadra e, tendo participado de um fut ali, avaliá-la.
 
     \subsection{Criar fut}
-      A partir do perfil da quadra, o usuário autenticado cria um fut pelo botão “Criar fut”. O formulário solicita data e horário, o modo do fut (gerenciado pelo aplicativo, por padrão) e, quando gerenciado, os parâmetros da partida: tempo, gols para vencer, tamanho do time e mínimo de jogadores para iniciar; a descrição é opcional. Ao confirmar, o sistema valida o horário e a ausência de outro fut sobreposto na mesma quadra, registra o fut e gera um código de convite. O criador entra automaticamente como presença confirmada, e o fut passa a aparecer no perfil da quadra e no mapa.
+      A partir do perfil da quadra, o usuário autenticado cria um fut pelo botão “Criar fut”. O formulário solicita nome, data e horário, o modo do fut (gerenciado pelo aplicativo, por padrão) e, quando gerenciado, os parâmetros da partida: tempo, gols para vencer, tamanho do time e mínimo de jogadores para iniciar; a descrição é opcional. Ao confirmar, o sistema valida o horário e a ausência de outro fut sobreposto na mesma quadra, registra o fut e gera um código de convite. O criador entra automaticamente como presença confirmada, e o fut passa a aparecer no perfil da quadra e no mapa.
 
     \subsection{Confirmar presença}
       Ao explorar o mapa ou o perfil da quadra, o usuário seleciona um fut e vê suas informações: horário, configuração, participantes confirmados e status. Com um toque, o usuário autenticado confirma ou cancela presença, e o total de confirmados é atualizado para todos. Para evitar compromissos conflitantes, o sistema impede confirmar presença em dois futs cujos horários estejam a menos de duas horas de distância, oferecendo trocar de um para o outro.

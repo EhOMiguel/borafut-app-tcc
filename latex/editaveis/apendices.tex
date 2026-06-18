@@ -334,7 +334,7 @@
         \noindent\textbf{Fluxo principal}
         \begin{enumerate}
             \item O usuário seleciona a quadra, no mapa ou na busca, e a partir do perfil dela inicia a criação de um fut.
-            \item O usuário informa data e horário.
+            \item O usuário informa o nome, a data e o horário do fut.
             \item O usuário define o modo do fut (gerenciado pelo aplicativo, por padrão) e, quando gerenciado, os parâmetros da partida (tempo, gols para vencer, tamanho do time e mínimo de jogadores).
             \item O usuário confirma a criação.
             \item O sistema valida os dados, registra o fut como agendado, gera o código de convite e adiciona o criador como presença confirmada.
@@ -676,6 +676,7 @@
         \hline
         \endhead
         \texttt{id} & UUID & Identificador do fut. & PK \\
+        \texttt{nome} & texto & Nome público do fut. & obrigatório, máximo 80 caracteres \\
         \texttt{quadra\_id} & UUID & Quadra do fut. & FK \texttt{quadra} \\
         \texttt{criador\_id} & UUID & Jogador criador do fut. & FK \texttt{jogador} \\
         \texttt{date\_time} & data/hora (UTC) & Data e horário do fut. & obrigatório \\
