@@ -17,12 +17,12 @@
 \section{Arquitetura implementada}
   \label{sec:dev-arquitetura}
 
-    A arquitetura implementada concretiza o modelo cliente-servidor de três camadas planejado na metodologia (Seção~\ref{sec:arquitetura-geral}) e detalhado nas visões C4 do projeto (Seção~\ref{subsec:c4}). O aplicativo móvel comunica-se com o backend por requisições REST sobre HTTPS, e o backend acessa o banco PostgreSQL por meio do Prisma. Toda a base de código, do cliente ao servidor, é escrita em TypeScript, o que permite compartilhar tipos e convenções entre as camadas; as versões das tecnologias constam na Tabela~\ref{tab:tecnologias}.
+    A arquitetura implementada concretiza o modelo cliente-servidor de três camadas planejado na metodologia (Seção~\ref{sec:arquitetura-geral}) e detalhado nas visões C4 do projeto (Seção~\ref{subsec:c4}). O aplicativo móvel comunica-se com o backend por requisições REST sobre HTTPS e, nas telas de acompanhamento ao vivo, por um canal WebSocket que propaga os eventos do fut (Seção~\ref{sec:integracoes}); o backend acessa o banco PostgreSQL por meio do Prisma. Toda a base de código, do cliente ao servidor, é escrita em TypeScript, o que permite compartilhar tipos e convenções entre as camadas; as versões das tecnologias constam na Tabela~\ref{tab:tecnologias}.
 
     \subsection{Organização do backend}
       O backend é estruturado segundo o modelo de módulos do NestJS, em que cada domínio reúne seu controlador (responsável pelas rotas HTTP), seu serviço (responsável pela lógica de negócio) e seus objetos de transferência de dados (\textit{Data Transfer Objects}, ou DTOs, que descrevem e validam as entradas). Essa organização materializa o diagrama de componentes apresentado na Seção~\ref{subsec:c4} (Figura~\ref{fig:c4-componentes}), no qual cada módulo concentra um domínio da aplicação.
 
-      Os módulos já implementados são o de autenticação, o de quadras (incluindo avaliações) e o de futs, além dos módulos de apoio de envio de e-mail e de verificação de saúde do serviço. O acesso ao banco é centralizado em um único serviço de dados, baseado no cliente gerado pelo Prisma, de modo que nenhum módulo manipula o banco diretamente. Um conjunto de utilitários compartilhados reúne preocupações transversais, como a validação de datas no fuso horário correto, a geração de códigos de convite e a referência de tempo única do sistema.
+      Os módulos implementados são os de autenticação, de quadras (incluindo avaliações), de futs, de presença e fila, de partidas, de tempo real, de notificações \textit{push} e o agendador de rotinas, além dos módulos de apoio de envio de e-mail e de verificação de saúde do serviço. O acesso ao banco é centralizado em um único serviço de dados, baseado no cliente gerado pelo Prisma, de modo que nenhum módulo manipula o banco diretamente. Um conjunto de utilitários compartilhados reúne preocupações transversais, como a validação de datas no fuso horário correto, a geração de códigos de convite e a referência de tempo única do sistema.
 
       A validação das requisições é declarativa: cada DTO descreve as restrições de seus campos por anotações, e a camada HTTP rejeita entradas inválidas antes que cheguem à lógica de negócio. O controle de acesso é aplicado por \textit{guards}: um exige sessão autenticada, e outro, opcional, identifica o usuário quando há sessão, mas permite o acesso anônimo, atendendo aos fluxos abertos a visitantes sem conta descritos no Capítulo anterior.
 
@@ -67,18 +67,31 @@
       No aplicativo, o perfil da quadra organiza essas informações em abas, separando as características gerais, a agenda e as avaliações, de modo a manter cada tela enxuta e legível, em linha com os princípios de design adotados no projeto.
 
 % ============================================================
-% SEÇÕES GATED ATÉ A IMPLEMENTAÇÃO (regra de freeze, 03/08).
-% NÃO descrever como implementado o que ainda não está no app.
-% Quando os blocos abaixo entrarem (KAN-37/47/48/49/50 etc.),
-% escrever as seções E estender o parágrafo de organização do
-% capítulo (acima) para anunciá-las.
+% SEÇÕES A ESCREVER (diretriz 13/07: o texto descreve o MVP
+% completo, como aplicativo pronto e recém-publicado nas lojas).
+% Escrever em sessão dedicada E estender o parágrafo de
+% organização do capítulo (acima) para anunciá-las.
+%
+% Prontidão do insumo (auditoria 13/07):
+% - 6.5 Motor do fut: PRONTO para escrever (backend do match na
+%   main; regras estáveis no fut_in_app §3-§6, §9).
+%   Atenção: mínimo p/ iniciar = tamanho do time x 2 (derivado).
+% - 6.6 Tempo real: PRONTO para escrever (gateway WS, cache/ETag,
+%   seq e cron de backstop implementados; fut_in_app §8).
+% - 6.7 Qualidade: PRONTO (CI nos dois repos, ~670 testes unit +
+%   57 e2e no backend, jest-expo no front); ganha força se os
+%   cenários A-M virarem suíte nomeada antes.
+% - 6.8 Decisões/ADRs: PRONTO (candidatas: fila nunca
+%   resequenciada, snapshot de regras por partida, WebSocket no
+%   MVP, transições lazy + cron com fonte única).
+% - Depende de implementação ainda: card pós-fut e estatísticas
+%   (§6.1/§6.2), ativação de gerenciamento (§5.3), coleta passiva
+%   (§5.2), SES real, telas do fut no aplicativo.
 %
 % \section{Motor do fut}            % 6.5 - presença, chegada, fila posicional,
 %                                   % formação e rotação de times, pênaltis, overrides.
-%                                   % Insumo: fut_in_app_context.md §3-§6, §9.
 % \section{Tempo real}             % 6.6 - gateway WebSocket + contingência REST,
 %                                   % sincronização de cronômetro/placar, cron de backstop.
 % \section{Qualidade de software}  % 6.7 - testes automatizados, validação, padrões.
-% \section{Decisões e trade-offs}  % 6.8 - 3-5 ADRs resumidas (fila nunca resequenciada,
-%                                   % snapshot de regras por partida, WebSocket no MVP).
+% \section{Decisões e trade-offs}  % 6.8 - 3-5 ADRs resumidas.
 % ============================================================

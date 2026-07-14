@@ -209,7 +209,7 @@
       Ao selecionar um marcador, o usuário acessa o perfil da quadra, com endereço, características, fotos, avaliação média e a agenda de futs dos próximos dias, o que ajuda a escolher horário e a perceber a atividade da quadra ao longo da semana. A tela traz o botão “Como chegar”, que abre o aplicativo de mapas do dispositivo com a rota até o local. Usuários autenticados podem favoritar a quadra e, tendo participado de um fut ali, avaliá-la.
 
     \subsection{Criar fut}
-      A partir do perfil da quadra, o usuário autenticado cria um fut pelo botão “Criar fut”. O formulário solicita nome, data e horário, o modo do fut (gerenciado pelo aplicativo, por padrão) e, quando gerenciado, os parâmetros da partida: tempo, gols para vencer, tamanho do time e mínimo de jogadores para iniciar; a descrição é opcional. Ao confirmar, o sistema valida o horário e a ausência de outro fut sobreposto na mesma quadra, registra o fut e gera um código de convite. O criador entra automaticamente como presença confirmada, e o fut passa a aparecer no perfil da quadra e no mapa.
+      A partir do perfil da quadra, o usuário autenticado cria um fut pelo botão “Criar fut”. O formulário solicita nome, data e horário, o modo do fut (gerenciado pelo aplicativo, por padrão) e, quando gerenciado, os parâmetros da partida: tempo, gols para vencer e tamanho do time; a descrição é opcional. O mínimo de jogadores para o início corresponde a dois times completos, derivado do tamanho do time. Ao confirmar, o sistema valida o horário e a ausência de outro fut sobreposto na mesma quadra, registra o fut e gera um código de convite. O criador entra automaticamente como presença confirmada, e o fut passa a aparecer no perfil da quadra e no mapa.
 
     \subsection{Confirmar presença}
       Ao explorar o mapa ou o perfil da quadra, o usuário seleciona um fut e vê suas informações: horário, configuração, participantes confirmados e status. Com um toque, o usuário autenticado confirma ou cancela presença, e o total de confirmados é atualizado para todos. Para evitar compromissos conflitantes, o sistema impede confirmar presença em dois futs cujos horários estejam a menos de duas horas de distância, oferecendo trocar de um para o outro.
@@ -409,11 +409,13 @@
       O modelo de dados do BORAFUT foi elaborado com base nas entidades e relacionamentos identificados durante o levantamento de requisitos (Capítulo~\ref{sec:metodologia-elicitacao}). O objetivo é garantir que as informações essenciais, como jogadores, partidas e quadras sejam armazenadas de forma estruturada, mantendo a integridade referencial.
 
       A modelagem seguiu uma abordagem relacional normalizada, organizada em tabelas interconectadas por chaves primárias e estrangeiras. Entre as principais entidades estão:
-    
+
       \begin{itemize}
-          \item \textbf{Jogador} — dados pessoais, preferências e histórico de partidas;
-          \item \textbf{Quadra} — informações sobre localização, disponibilidade e avaliações;
-          \item \textbf{Partida} — definição de horários, participantes e status;
+          \item \textbf{Jogador}: dados pessoais, preferências e histórico de participações;
+          \item \textbf{Quadra}: localização, características físicas, fotos e avaliações;
+          \item \textbf{Fut}: o evento agendado em uma quadra, com horário, configuração e status;
+          \item \textbf{Participação}: o vínculo do jogador com o fut, da confirmação de presença à chegada;
+          \item \textbf{Partida}: cada sessão de jogo dentro de um fut, com times, placar e eventos registrados.
       \end{itemize}
 
       A Figura~\ref{fig:modelo-dados} apresenta o modelo entidade-relacionamento (MER) que representa o modelo lógico do banco de dados planejado.

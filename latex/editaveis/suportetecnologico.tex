@@ -103,7 +103,7 @@
         Parte das funcionalidades do sistema apoia-se em serviços externos que complementam a aplicação móvel e o backend. Esta seção descreve as principais integrações adotadas.
 
         \subsection{Mapas e geolocalização}
-        A camada de mapas e localização combina bibliotecas do cliente e serviços externos. No aplicativo, o componente de mapa é fornecido pela biblioteca \textit{react-native-maps} \cite{rn_maps_docs}, enquanto a obtenção da posição do dispositivo usa o módulo \textit{expo-location} \cite{expo_location_docs}. A renderização de mapas e a geocodificação reversa (conversão de coordenadas em endereços legíveis) apoiam-se na plataforma Google Maps \cite{google_maps_docs}. Para o deslocamento até a quadra, o aplicativo gera \textit{deep links} de navegação, que abrem aplicativos externos de mapas.
+        A camada de mapas e localização combina bibliotecas do cliente e serviços externos. No aplicativo, o componente de mapa é fornecido pela biblioteca \textit{react-native-maps} \cite{rn_maps_docs}, enquanto a obtenção da posição do dispositivo usa o módulo \textit{expo-location} \cite{expo_location_docs}. A renderização dos mapas apoia-se na plataforma Google Maps \cite{google_maps_docs}. Para o deslocamento até a quadra, o aplicativo gera \textit{deep links} de navegação, que abrem aplicativos externos de mapas com a rota até o endereço da quadra, mantido no próprio catálogo.
 
         \subsection{Envio de e-mail (AWS SES)}
         A autenticação sem senha envia ao usuário um código de verificação por e-mail. Esse envio é realizado pelo \textit{Amazon Simple Email Service} (SES), serviço gerenciado de e-mail transacional da \textit{Amazon Web Services} (AWS) \cite{aws_ses_docs}, escolhido pela integração com a infraestrutura do projeto e pela boa entregabilidade das mensagens.
@@ -135,6 +135,7 @@
                 Node.js & Ambiente de execução do backend & 22 \\ \hline
                 NestJS & Framework do backend & 11 \\ \hline
                 Fastify & Adaptador HTTP (sob o NestJS) & 11 \\ \hline
+                Socket.IO & Comunicação em tempo real (WebSocket) & 4.8 \\ \hline
                 Prisma & ORM e acesso a dados & 7 \\ \hline
                 PostgreSQL & Sistema gerenciador de banco de dados & 16 \\ \hline
                 Jest & Testes automatizados (backend) & 30 \\ \hline
