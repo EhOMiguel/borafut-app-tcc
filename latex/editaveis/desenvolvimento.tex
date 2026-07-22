@@ -3,7 +3,7 @@
 
   Enquanto o capítulo anterior apresentou o projeto da solução, dos requisitos aos artefatos de design e arquitetura, este capítulo descreve a construção do BORAFUT: como as decisões registradas no projeto se concretizaram em software em funcionamento. O objetivo é documentar o processo de desenvolvimento, a arquitetura efetivamente implementada e as principais capacidades já entregues, evidenciando as escolhas de engenharia que sustentam o produto.
 
-  A exposição organiza-se da seguinte forma. Primeiro, descreve-se o processo de desenvolvimento e as iterações de construção, mostrando como os princípios ágeis adotados na metodologia (Seção~\ref{sec:arquitetura-geral}) se traduziram em ciclos concretos de entrega. Em seguida, apresenta-se a arquitetura implementada, detalhando a organização do código em módulos e as convenções adotadas em cada camada. Por fim, as capacidades do sistema são descritas por blocos: a fundação (modelo de dados, autenticação e sessão) e a descoberta (mapa, catálogo de quadras e avaliações).
+  A exposição organiza-se da seguinte forma. Primeiro, descreve-se o processo de desenvolvimento e as iterações de construção, mostrando como os princípios ágeis adotados na metodologia (Seção~\ref{sec:arquitetura-geral}) se traduziram em ciclos concretos de entrega. Em seguida, apresenta-se a arquitetura implementada, detalhando a organização do código em módulos e as convenções adotadas em cada camada. As capacidades do sistema são então descritas por blocos: a fundação (modelo de dados, autenticação e sessão), a descoberta (mapa, catálogo de quadras e avaliações), o motor do fut (presença, chegada, fila, formação e rotação de times, condução da partida e pós-fut) e a camada de tempo real (propagação de eventos, sincronização e rotinas agendadas). Por fim, discutem-se a estratégia de qualidade e as principais decisões de engenharia que sustentam o produto.
 
 \section{Processo e iterações de construção}
   \label{sec:dev-processo}
@@ -66,32 +66,54 @@
 
       No aplicativo, o perfil da quadra organiza essas informações em abas, separando as características gerais, a agenda e as avaliações, de modo a manter cada tela enxuta e legível, em linha com os princípios de design adotados no projeto.
 
-% ============================================================
-% SEÇÕES A ESCREVER (diretriz 13/07: o texto descreve o MVP
-% completo, como aplicativo pronto e recém-publicado nas lojas).
-% Escrever em sessão dedicada E estender o parágrafo de
-% organização do capítulo (acima) para anunciá-las.
-%
-% Prontidão do insumo (auditoria 13/07):
-% - 6.5 Motor do fut: PRONTO para escrever (backend do match na
-%   main; regras estáveis no fut_in_app §3-§6, §9).
-%   Atenção: mínimo p/ iniciar = tamanho do time x 2 (derivado).
-% - 6.6 Tempo real: PRONTO para escrever (gateway WS, cache/ETag,
-%   seq e cron de backstop implementados; fut_in_app §8).
-% - 6.7 Qualidade: PRONTO (CI nos dois repos, ~670 testes unit +
-%   57 e2e no backend, jest-expo no front); ganha força se os
-%   cenários A-M virarem suíte nomeada antes.
-% - 6.8 Decisões/ADRs: PRONTO (candidatas: fila nunca
-%   resequenciada, snapshot de regras por partida, WebSocket no
-%   MVP, transições lazy + cron com fonte única).
-% - Depende de implementação ainda: card pós-fut e estatísticas
-%   (§6.1/§6.2), ativação de gerenciamento (§5.3), coleta passiva
-%   (§5.2), SES real, telas do fut no aplicativo.
-%
-% \section{Motor do fut}            % 6.5 - presença, chegada, fila posicional,
-%                                   % formação e rotação de times, pênaltis, overrides.
-% \section{Tempo real}             % 6.6 - gateway WebSocket + contingência REST,
-%                                   % sincronização de cronômetro/placar, cron de backstop.
-% \section{Qualidade de software}  % 6.7 - testes automatizados, validação, padrões.
-% \section{Decisões e trade-offs}  % 6.8 - 3-5 ADRs resumidas.
-% ============================================================
+\section{Motor do fut}
+  \label{sec:dev-motor-fut}
+
+    O motor do fut é o núcleo do BORAFUT e o principal diferencial do aplicativo diante das soluções analisadas: ele traduz em software as regras tácitas do futebol amador em quadra pública, da confirmação de presença à rotação dos times entre partidas. Esta seção descreve como esse motor foi implementado no backend, organizado em torno de três máquinas de estado, do fut, da participação e da partida, e de uma fila de jogadores por ordem de chegada. O fut opera em dois modos definidos no momento da criação: gerenciado pelo aplicativo, no qual o sistema conduz fila, formação de times, cronômetro e placar; e não gerenciado, no qual o aplicativo cuida apenas da presença e da descoberta, deixando a organização do jogo acontecer presencialmente. A única transição admitida entre os modos é de não gerenciado para gerenciado, por ação do criador durante o fut.
+
+    \subsection{Ciclo de vida e máquinas de estado}
+      \label{subsec:dev-maquinas-estado}
+      Cada fut percorre um ciclo de vida representado por estados persistidos: \textit{agendado} ao ser criado, \textit{em andamento} após o início, e \textit{encerrado} ou \textit{cancelado} como estados finais. A participação de um jogador tem ciclo próprio, de \textit{confirmado} (intenção de comparecer) para \textit{chegou} (presença física) e, se o jogador sai antes do fim, para \textit{saiu}; antes da chegada, a presença pode ser desmarcada, levando a participação a \textit{cancelado}. Cada partida disputada dentro de um fut gerenciado, por sua vez, transita entre \textit{em andamento} e \textit{pausada}, podendo ainda entrar em \textit{em penâltis} no desempate ou em um estado intermediário de encerramento provisório, detalhado adiante.
+
+      As transições são aplicadas de forma condicionada ao estado de origem, o que as torna idempotentes e seguras diante de requisições concorrentes: uma operação que já foi efetivada não é reaplicada nem revertida por uma segunda tentativa. Parte das transições depende de uma ação humana, como iniciar ou encerrar o fut; outra parte ocorre automaticamente pela passagem do tempo, como a abertura de um fut não gerenciado no horário marcado ou o encerramento por inatividade. Essas transições automáticas são conduzidas pela camada de tempo real descrita na Seção~\ref{sec:dev-tempo-real}, mas compartilham a mesma função de decisão das transições manuais, de modo que a regra que define qual mudança de estado é devida existe em um único lugar.
+
+    \subsection{Presença, chegada e fila por ordem de chegada}
+      \label{subsec:dev-fila}
+      Presença e chegada são conceitos distintos no BORAFUT. A presença é a intenção de participar, confirmada a qualquer momento antes do fut; a chegada é a confirmação física na quadra, liberada apenas a partir do horário marcado e apenas em futs gerenciados. Ao confirmar a chegada, o aplicativo tenta verificar a proximidade da quadra por geolocalização, mas o resultado não bloqueia a ação: fora do raio ou sem permissão de localização, o sistema apenas registra o dado e permite a confirmação, preservando a inclusão de quem está sem sinal ou sem bateria. Um jogador que já chegou pode confirmar a chegada de outro que esteja na quadra, e o criador ou um organizador pode revogar uma chegada indevida. Todos esses eventos são gravados em um registro de chegada que preserva quem realizou a ação, distinguindo a autoconfirmação da confirmação por terceiro e da intervenção administrativa.
+
+      A chegada insere o jogador na fila, que é a fonte única da ordem de jogo. A fila é mantida por posições inteiras crescentes que nunca são resequenciadas: quando um jogador precisa ir para o fim, recebe uma nova posição igual ao maior valor existente somado de um, e as demais posições permanecem intactas. Essa opção de modelagem evita reordenações em cascata e mantém a fila estável mesmo diante de saídas e reentradas, que apenas deixam lacunas inofensivas entre posições, já que o sistema sempre lê a fila em ordem crescente. Para reduzir compromissos conflitantes, o sistema também impede que um mesmo jogador confirme presença em dois futs cujos horários estejam a menos de duas horas de distância, validação aplicada tanto na confirmação de presença quanto na criação de um fut, já que o criador entra automaticamente como presente. Durante o fut, o criador, um organizador ou qualquer jogador que já tenha chegado pode cadastrar um participante presencial que não tenha conta, informando nome e e-mail; o cadastro reaproveita contas já existentes e inclui a pessoa diretamente na fila.
+
+    \subsection{Formação e rotação de times}
+      \label{subsec:dev-rotacao}
+      O fut gerenciado é iniciado pelo criador ou por um organizador quando o horário marcado é alcançado e há pelo menos dois times completos na fila, ou seja, um número de jogadores igual ao dobro do tamanho do time configurado. A formação dos times é puramente posicional: os primeiros jogadores da fila compõem o primeiro time, os seguintes o segundo, e os demais aguardam a vez. Essa convenção, apoiada na fila estável descrita na subseção anterior, dispensa qualquer estrutura adicional para representar quem está em campo, pois os jogadores em quadra são sempre os que ocupam as primeiras posições.
+
+      Ao fim de cada partida, o sistema aplica uma regra de rotação unificada que substitui as distinções informais que os grupos costumam negociar na quadra. O time perdedor vai inteiro para o fim da fila, preservando a ordem relativa de seus jogadores, e os próximos da fila assumem as posições liberadas; no caso de empate, quando há times suficientes aguardando, ambos os times saem. Recalculam-se então os primeiros da fila para formar a próxima partida. Dois casos particulares são tratados explicitamente: quando não há ninguém aguardando, a mesma composição joga novamente; e quando a fila caiu abaixo do necessário para dois times completos, o sistema oferece a continuidade com times reduzidos, dividindo os jogadores disponíveis da forma mais equilibrada possível. Essa regra única cobre todos os cenários de rotação sem tratamento especial de substituição parcial, o que simplifica a implementação e torna o comportamento previsível.
+
+    \subsection{Condução da partida ao vivo e intervenção manual}
+      \label{subsec:dev-partida}
+      Cada partida guarda, no momento de sua criação, uma cópia do tempo de duração e do número de gols para vencer vigentes no fut. Esse instantâneo de regras garante que alterações feitas durante o fut só valham a partir da partida seguinte e que o cronômetro e a condição de vitória sejam sempre lidos da própria partida, mantendo o histórico íntegro. O cronômetro é regressivo e calculado no cliente a partir de três dados mantidos pelo servidor, o instante de início, o tempo total já pausado e o instante da pausa corrente, o que permite que todos os participantes vejam o mesmo tempo sem que o servidor precise transmiti-lo continuamente.
+
+      Os gols são registrados com atribuição a um jogador específico, e o registro guarda o time do autor no instante da marcação, de modo que o placar sobrevive a trocas de jogadores entre os times. Cada gol abre uma janela curta para desfazer o lançamento em caso de engano; quando o gol é o que decide a partida, o encerramento fica provisório durante essa janela, e a rotação dos times só é efetivada após ela, o que elimina a necessidade de reverter uma rotação já aplicada. Quando o tempo se esgota, a partida não termina automaticamente: entra em um estado de último lance, em que a jogada em curso pode se concluir com um gol antes que alguém a encerre, refletindo o funcionamento real do futebol amador. Persistindo o empate, a partida é decidida por pênaltis, com cobranças alternadas registradas por jogador. As ações de condução da partida, como registrar gol, pausar, retomar e encerrar, podem ser executadas não só pelo criador e pelos organizadores, mas também pelos jogadores do próximo time da fila, que estão parados aguardando a vez, o que evita que o andamento do jogo dependa de uma única pessoa com o aparelho em mãos.
+
+      Como o futebol amador está sujeito a imprevistos, o criador e os organizadores dispõem de um mecanismo de intervenção que sobrepõe qualquer automação. Por meio de um controle de ajuste sempre acessível, é possível trocar dois jogadores entre si, em qualquer combinação entre os times em campo e a fila, mover um jogador na fila, remover um participante ou forçar o encerramento de uma partida com um vencedor definido manualmente. Essas operações mantêm a coerência da fila, pois toda troca também reposiciona os jogadores na estrutura de ordenação. O papel de criador, que detém a autoridade máxima sobre o fut, é preservado mesmo quando ele precisa sair: ao deixar o fut, sua autoridade é transferida a um sucessor, indicado por ele ou escolhido pelo sistema por critério de antiguidade entre os participantes ativos, e o fut só é cancelado por essa via quando não resta nenhum outro participante.
+
+    \subsection{Fut não gerenciado}
+      \label{subsec:dev-nao-gerenciado}
+      No modo não gerenciado, o aplicativo não conduz fila, times nem placar: registra apenas a confirmação de presença e serve à descoberta, enquanto a organização do jogo acontece presencialmente. O fut passa a \textit{em andamento} automaticamente no horário marcado e coleta, de forma passiva e opcional, sinais que alimentam as estatísticas pessoais dos jogadores, como uma confirmação informal de que a pessoa esteve na quadra. A qualquer momento durante o fut, o criador pode ativar o gerenciamento, registrando quem está presente em uma tela de composição rápida que pré-seleciona os que já confirmaram presença; a partir daí, o fut passa a funcionar como um fut gerenciado, com fila, times e cronômetro. Essa transição de mão única reduz a barreira de adoção, permitindo que grupos comecem de maneira leve e passem ao controle completo apenas quando desejarem.
+
+\section{Tempo real}
+  \label{sec:dev-tempo-real}
+
+    O acompanhamento de um fut ao vivo exige que presença, chegada, placar e composição dos times cheguem aos participantes em poucos segundos, atendendo ao requisito de atualização em tempo real (RNF03). Para isso, a comunicação em tempo real foi implementada como um canal WebSocket que transporta os eventos do fut, apoiado em endpoints REST que servem o estado completo para a carga inicial e para a recuperação em caso de falha. O polling periódico não é o caminho principal, mas permanece como mecanismo de contingência, o que garante que a confiabilidade da solução com WebSocket seja sempre igual ou superior à de um esquema baseado apenas em consultas repetidas.
+
+    \subsection{Propagação de eventos por WebSocket}
+      \label{subsec:dev-websocket}
+      O canal de tempo real é provido por um \textit{gateway} construído sobre a biblioteca Socket.IO (Seção~\ref{sec:integracoes}), que autentica a conexão no mesmo padrão de credenciais do REST e organiza os participantes em salas por fut. Toda operação relevante do domínio, como um gol, uma pausa ou uma mudança na fila, emite um evento interno que o \textit{gateway} retransmite apenas para a sala do fut correspondente. Os eventos são emitidos somente após a confirmação da transação no banco, de modo que uma operação que não se concretiza não gera notificação. Cada evento carrega um número de sequência crescente por fut, que permite ao cliente aplicar apenas as atualizações novas e detectar eventuais lacunas para solicitar uma ressincronização. O acesso à sala de um fut ao vivo é restrito a quem confirmou a chegada, alinhando o transporte de tempo real à mesma política de visibilidade das leituras do jogo em andamento.
+
+    \subsection{Sincronização do estado e contingência}
+      \label{subsec:dev-sincronizacao}
+      Os endpoints REST que servem o estado da partida e da fila são a fonte de verdade para a carga inicial das telas e para a ressincronização após uma reconexão, quando o cliente recompõe o estado antes de voltar a confiar nos eventos incrementais. Para suportar o acesso repetido a esses endpoints sem sobrecarregar o banco, o backend mantém um cache de curta duração sobre as leituras do jogo ao vivo e emprega validação condicional por \textit{ETag}, respondendo sem corpo quando o estado não mudou desde a última consulta do cliente. Quando o canal WebSocket fica indisponível, o aplicativo passa automaticamente a consultar esses mesmos endpoints em intervalos curtos, de forma que a degradação é imperceptível para o usuário. Essas duas técnicas, combinadas ao cálculo do cronômetro no próprio cliente, mantêm a experiência ao vivo fluida mesmo sob condições de rede adversas, que são comuns em quadras públicas.
+
+    \subsection{Rotinas agendadas de ciclo de vida}
+      \label{subsec:dev-cron}
+      Algumas transições de estado e todos os avisos por notificação não podem depender de que alguém abra o aplicativo, pois a notificação é o servidor indo até o usuário: se ninguém está com o aplicativo aberto, nada é disparado. Para cobrir esses casos, uma rotina agendada é executada periodicamente dentro do próprio backend e reutiliza a mesma regra de transição das leituras, garantindo convergência sem divergência de comportamento. Essa rotina abre e encerra automaticamente os futs não gerenciados nos horários devidos, cancela um fut gerenciado que nunca foi iniciado, conduz o encerramento por inatividade de um fut que ficou aberto por tempo excessivo e envia os lembretes anteriores ao fut, além dos avisos de encerramento. A entrega de cada notificação é registrada de forma que ela seja enviada exatamente uma vez, mesmo que a rotina execute várias vezes sobre o mesmo fut, o que evita duplicações. A mesma rotina ainda cuida da saúde da entrega de notificações, identificando e descartando os endereços de dispositivo que deixaram de ser válidos, para não desperdiçar envios.
