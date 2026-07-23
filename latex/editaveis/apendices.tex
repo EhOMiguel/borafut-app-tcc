@@ -2,14 +2,14 @@
 
 \partapendices
 
-\chapter{Modelo Entidade–Relacionamento (MER)}
+\chapter{Modelo lógico de dados}
     \label{apendice:MER}
-    Este apêndice apresenta o Modelo Entidade–Relacionamento (MER) desenvolvido para o projeto BORAFUT. O diagrama reflete a estrutura lógica dos dados necessários para o funcionamento do sistema, incluindo entidades, atributos e relacionamentos.
+    Este apêndice apresenta, em página inteira, o modelo lógico de dados do BORAFUT, derivado do modelo conceitual da Seção~\ref{subsec:modelo-dados}. O esquema relacional detalha as tabelas, seus atributos, as chaves primárias e estrangeiras e as demais restrições de integridade implementadas no PostgreSQL. A descrição atributo a atributo encontra-se no dicionário de dados do Apêndice~\ref{apendice:dicionario}.
 
-    \begin{figure}[h]
+    \begin{figure}[p]
         \centering
-        \includegraphics[width=1\textwidth]{figuras/mer-completo.png}
-        \caption{Modelo entidade-relacionamento completo.}
+        \includegraphics[width=\textwidth,height=0.92\textheight,keepaspectratio]{figuras/diagramas-src/render/modelo-logico.png}
+        \caption{Modelo lógico de dados completo (esquema relacional). Fonte: elaborado pelos autores.}
         \label{fig:mer-completo}
     \end{figure}
 
@@ -538,6 +538,7 @@
         \texttt{perfil\_completo} & booleano & Indica se o cadastro básico foi concluído. & padrão falso \\
         \texttt{ativo} & booleano & Indica se a conta está ativa. & padrão verdadeiro \\
         \texttt{ultimo\_login} & data/hora (UTC) & Instante do último acesso. & opcional \\
+        \texttt{expo\_push\_token} & texto & Token de push do dispositivo, para notificações. & opcional, UQ \\
         \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
         \texttt{updated\_at} & data/hora (UTC) & Instante da última atualização. & \\
         \hline
@@ -687,6 +688,9 @@
         \texttt{tempo\_partida\_minutos} & inteiro & Duração padrão da partida. & padrão 10 \\
         \texttt{gols\_para\_vencer} & inteiro & Gols para vencer. & padrão 2 \\
         \texttt{tamanho\_por\_time} & inteiro & Jogadores por time. & padrão 5 \\
+        \texttt{event\_seq} & inteiro & Contador monotônico dos eventos de tempo real do fut. & padrão 0 \\
+        \texttt{motivo\_sistema} & texto & Motivo de transição automática (nunca iniciado, encerrado por inatividade ou encerrado automaticamente). & opcional \\
+        \texttt{inatividade\_reiniciada\_em} & data/hora (UTC) & Base da prorrogação da escalada de inatividade. & opcional \\
         \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
         \texttt{updated\_at} & data/hora (UTC) & Instante da última atualização. & \\
         \hline
@@ -704,6 +708,8 @@
         \texttt{jogador\_id} & UUID & Jogador participante. & FK \texttt{jogador} \\
         \texttt{status\_participacao\_id} & inteiro & Estado da participação. & FK \texttt{status\_participacao} \\
         \texttt{organizador} & booleano & Indica se é organizador do fut. & padrão falso \\
+        \texttt{removido\_por\_admin} & booleano & Indica remoção pelo criador ou organizador (bloqueia a reentrada automática). & padrão falso \\
+        \texttt{gols\_declarados} & inteiro & Gols autodeclarados na coleta pós-fut do modo não gerenciado. & opcional \\
         \texttt{confirmado\_em} & data/hora (UTC) & Instante da confirmação de presença. & padrão agora \\
         \texttt{cancelado\_em} & data/hora (UTC) & Instante do cancelamento. & opcional \\
         \texttt{chegou\_em} & data/hora (UTC) & Instante da chegada. & opcional \\
@@ -800,6 +806,7 @@
         \texttt{autor\_id} & UUID & Jogador autor da ação. & FK \texttt{jogador} \\
         \texttt{registrador\_id} & UUID & Jogador que registrou a ação. & FK \texttt{jogador} \\
         \texttt{referencia\_log\_id} & UUID & Evento referenciado (ex.: gol desfeito aponta o gol). & FK \texttt{log\_partida}, opcional \\
+        \texttt{time} & inteiro & Time do autor no momento do registro, mantendo o placar estável a trocas. & opcional \\
         \texttt{date\_time} & data/hora (UTC) & Instante da ação. & obrigatório \\
         \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
         \hline
@@ -816,8 +823,8 @@
         \endhead
         \texttt{status\_fut} & Estados do fut. & agendado, em andamento, encerrado, cancelado \\
         \texttt{status\_participacao} & Estados da participação. & confirmado, chegou, saiu, cancelado \\
-        \texttt{status\_partida} & Estados da partida. & em andamento, pausada, encerrada, em pênaltis \\
-        \texttt{tipo\_acao} & Tipos de evento da partida. & gol, gol contra, gol desfeito, pausa, retomada \\
+        \texttt{status\_partida} & Estados da partida. & em andamento, pausada, encerrada provisoriamente, em pênaltis, encerrada \\
+        \texttt{tipo\_acao} & Tipos de evento da partida. & gol, gol contra, gol desfeito, pausa, retomada, encerramento, pênalti \\
         \hline
     \end{longtable}
 
@@ -834,6 +841,36 @@
         \texttt{descricao} & texto & Descrição da exigência. & opcional \\
         \texttt{ativo} & booleano & Indica se a regra está em vigor. & padrão verdadeiro \\
         \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
+        \hline
+    \end{longtable}
+
+    \subsection*{\texttt{fut\_notificacao}}
+    Registro das notificações agendadas já enviadas por fut, que garante o envio único de cada tipo.
+    \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+        \hline
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
+        \hline
+        \endhead
+        \texttt{id} & UUID & Identificador do registro. & PK \\
+        \texttt{fut\_id} & UUID & Fut notificado. & FK \texttt{fut} \\
+        \texttt{tipo} & texto & Tipo de notificação (lembrete, aviso de inatividade, cancelamento). & obrigatório \\
+        \texttt{enviada\_em} & data/hora (UTC) & Instante do envio. & padrão agora \\
+        \hline
+    \end{longtable}
+    \noindent Restrição de tabela: UQ (\texttt{fut\_id}, \texttt{tipo}).
+
+    \subsection*{\texttt{push\_receipt}}
+    Recibos de entrega das notificações \textit{push}, usados para invalidar tokens que deixaram de ser válidos.
+    \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+        \hline
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
+        \hline
+        \endhead
+        \texttt{id} & UUID & Identificador do recibo. & PK \\
+        \texttt{receipt\_id} & texto & Identificador do recibo no provedor de \textit{push}. & UQ \\
+        \texttt{expo\_push\_token} & texto & Token de destino do envio. & obrigatório \\
+        \texttt{status} & texto & Situação do recibo. & padrão pendente \\
+        \texttt{enviado\_em} & data/hora (UTC) & Instante do envio. & padrão agora \\
         \hline
     \end{longtable}
 

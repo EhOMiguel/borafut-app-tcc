@@ -21,6 +21,7 @@
         A obtenção e o cache dos dados vindos do backend são gerenciados pela biblioteca TanStack Query, que cuida das requisições, da revalidação e da sincronização do estado de servidor no cliente \cite{tanstack_query_docs}. Seu uso reduz código repetitivo de busca de dados, mantém a interface atualizada e melhora a percepção de desempenho ao reaproveitar respostas já carregadas.
 
     \section{Tecnologias de desenvolvimento backend e arquitetura de API}
+        \label{sec:tec-backend}
         O backend é a camada responsável por processar a lógica de negócio, manipular dados e disponibilizar serviços para o aplicativo móvel. Para essa camada, optou-se por tecnologias consolidadas que oferecem bom desempenho, comunidade ativa e ampla documentação, mantendo o TypeScript de ponta a ponta.
 
         \subsection{Node.js}
@@ -44,6 +45,7 @@
         Para as funcionalidades em tempo real, como o acompanhamento ao vivo de um fut (confirmações de presença, chegada, formação de times e placar), o REST é complementado por comunicação bidirecional via \textit{WebSocket}, implementada com a biblioteca Socket.IO \cite{socketio_docs}. Ela mantém um canal persistente entre cliente e servidor e propaga eventos a todos os participantes de um mesmo fut. Quando o canal em tempo real não está disponível, o aplicativo recorre a consultas REST periódicas como mecanismo de contingência, garantindo que a informação continue chegando ao usuário.
 
     \section{Ambiente de desenvolvimento e qualidade de código}
+        \label{sec:tec-qualidade}
 
         Esta seção apresenta o ambiente e as ferramentas empregadas no desenvolvimento do sistema, bem como os mecanismos utilizados para manter a qualidade e a consistência do código. As escolhas foram orientadas pela busca de eficiência, portabilidade e legibilidade, de modo a garantir um fluxo de trabalho colaborativo e padronizado entre os desenvolvedores.
 

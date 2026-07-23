@@ -23,6 +23,8 @@ Container_Boundary(api, "API - Node.js / NestJS / Fastify") {
 Rel(app, auth, "REST", "JSON/HTTPS")
 Rel(app, courts, "REST", "JSON/HTTPS")
 Rel(app, futs, "REST", "JSON/HTTPS")
+Rel(app, presence, "REST", "JSON/HTTPS")
+Rel(app, match, "REST", "JSON/HTTPS")
 Rel(app, rt, "Eventos ao vivo", "WebSocket")
 Rel(auth, prisma, "SQL")
 Rel(courts, prisma, "SQL")

@@ -406,9 +406,7 @@
     \subsection{Modelo de dados do PostgreSQL}
       \label{subsec:modelo-dados}
 
-      O modelo de dados do BORAFUT foi elaborado com base nas entidades e relacionamentos identificados durante o levantamento de requisitos (Capítulo~\ref{sec:metodologia-elicitacao}). O objetivo é garantir que as informações essenciais, como jogadores, partidas e quadras sejam armazenadas de forma estruturada, mantendo a integridade referencial.
-
-      A modelagem seguiu uma abordagem relacional normalizada, organizada em tabelas interconectadas por chaves primárias e estrangeiras. Entre as principais entidades estão:
+      O modelo de dados do BORAFUT foi elaborado com base nas entidades e relacionamentos identificados durante o levantamento de requisitos (Capítulo~\ref{sec:metodologia-elicitacao}). O objetivo é garantir que as informações essenciais, como jogadores, quadras, futs e partidas, sejam armazenadas de forma estruturada, mantendo a integridade referencial. Entre as principais entidades estão:
 
       \begin{itemize}
           \item \textbf{Jogador}: dados pessoais, preferências e histórico de participações;
@@ -418,18 +416,20 @@
           \item \textbf{Partida}: cada sessão de jogo dentro de um fut, com times, placar e eventos registrados.
       \end{itemize}
 
-      A Figura~\ref{fig:modelo-dados} apresenta o modelo entidade-relacionamento (MER) que representa o modelo lógico do banco de dados planejado.
+      O modelo é apresentado em dois níveis de abstração, seguindo a distinção clássica entre projeto conceitual e projeto lógico de bancos de dados~\cite{elmasri2016fundamentals}. O \textbf{modelo conceitual} descreve as entidades do domínio e seus relacionamentos sem compromisso com a tecnologia de armazenamento, na notação entidade-relacionamento proposta por Chen~\cite{chen1976}. O \textbf{modelo lógico} traduz esse conceito para o modelo relacional, com tabelas, chaves primárias e estrangeiras e restrições de integridade, tal como implementado no PostgreSQL.
 
-      \begin{figure}[h]
+      A Figura~\ref{fig:mer-conceitual} apresenta o modelo conceitual. Além das entidades já citadas, ele registra os eventos do domínio como entidades fracas, dependentes daquela a que se referem: o registro de chegada e o registro de notificação, ligados ao fut, e o evento de partida, ligado à partida. Os relacionamentos capturam as regras centrais do produto: um jogador cria um fut e dele participa; a quadra sedia o fut; o fut gera partidas; e o jogador atua em cada partida, com o time registrado no relacionamento. Os diferentes papéis de um mesmo jogador em um evento, como o autor e o registrador de um gol, ou o alvo e o ator de uma chegada, são modelados por relacionamentos distintos com a entidade Jogador. O diagrama emprega ainda os demais recursos da notação: atributos compostos, como a localização e as características da quadra e as regras do fut; atributos multivalorados, como as fotos da quadra e os tipos de fut preferidos do jogador; e atributos derivados, representados por elipse tracejada, que não são armazenados e sim calculados na consulta, como a nota média da quadra, o total de curtidas de uma avaliação e o placar de uma partida, este último obtido a partir dos eventos registrados.
+
+      \begin{figure}[htbp]
           \centering
-          \includegraphics[width=1\textwidth]{figuras/modelo-dados.png}
-          \caption{Modelo entidade-relacionamento do banco \textit{PostgreSQL}.}
-          \label{fig:modelo-dados}
+          \includegraphics[width=\textwidth,height=0.85\textheight,keepaspectratio]{figuras/diagramas-src/render/mer-conceitual.png}
+          \caption{Modelo conceitual de dados do BORAFUT, na notação entidade-relacionamento de Chen. Fonte: elaborado pelos autores.}
+          \label{fig:mer-conceitual}
       \end{figure}
 
-      Na figura, as partes coloridas representam as entidades principais e seus relacionamentos: em vermelho, a entidade \textbf{Jogador} e seus relacionamentos; em verde, a entidade \textbf{Partida} e seus relacionamentos; e em azul, a entidade \textbf{Quadra} e seus relacionamentos.
+      O modelo lógico correspondente, apresentado no Apêndice~\ref{apendice:MER}, traduz esse conceito em tabelas. As entidades tornam-se tabelas com chave primária; os relacionamentos de um para muitos viram chaves estrangeiras, e os de muitos para muitos, tabelas próprias que carregam os atributos do relacionamento, como a participação (com o estado da presença e as marcações de tempo), a fila (com a posição) e a composição dos times (com o time de cada jogador). Os estados de fut, participação e partida, assim como os tipos de evento, são normalizados em tabelas de referência apontadas por chave estrangeira, o que preserva a integridade desses conjuntos e permite ampliá-los sem alterar o esquema das tabelas que os utilizam.
 
-      O MER completo encontra-se no Apêndice \ref{apendice:MER} que apresenta o modelo lógico do banco de dados. O dicionário de dados, com a descrição detalhada de cada entidade, atributo e restrição, é apresentado no Apêndice~\ref{apendice:dicionario}.
+      Algumas decisões de modelagem sustentam regras de negócio e são detalhadas na construção do sistema (Capítulo~\ref{sec:desenvolvimento}): os atributos de domínio fechado da quadra são representados por tipos enumerados; o tempo e o número de gols de cada partida são copiados para a própria partida no momento de sua criação, o que preserva o histórico diante de mudanças de configuração; e a fila é mantida por posições absolutas que nunca são reatribuídas. O dicionário de dados, com a descrição de cada entidade, atributo e restrição, encontra-se no Apêndice~\ref{apendice:dicionario}.
 
     % \subsection{Contratos de API REST}
     % Endpoints, métodos e esquemas

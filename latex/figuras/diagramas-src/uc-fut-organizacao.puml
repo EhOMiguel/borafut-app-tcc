@@ -37,9 +37,9 @@ R -- UC18
 R -- UC19
 R -- UC23
 R -- UC25
+R -- UC27
 
 O -- UC26
-O -- UC27
 
 C -- UC20
 C -- UC21
@@ -57,5 +57,5 @@ UC15 -- PUSH
 
 note right of UC24 : aviso, não bloqueio;\nrequer consentimento\nde localização
 note right of UC25 : apenas quem já\nconfirmou a própria\nchegada
-note right of UC27 : apenas com o fut\nem andamento
+note right of UC27 : apenas com o fut em andamento;\ncriador, organizador ou quem\njá confirmou a própria chegada
 @enduml

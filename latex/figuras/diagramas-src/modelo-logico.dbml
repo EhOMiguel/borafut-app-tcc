@@ -1,0 +1,474 @@
+// ============================================================
+// BORAFUT - Modelo logico de dados (DBML para dbdiagram.io)
+// Fonte de verdade: BoraFut-Backend/prisma/schema.prisma
+// 22 tabelas. Nomes de tabela e coluna conforme o banco (snake_case).
+// ============================================================
+
+Enum "nivel_piso" {
+  "DESTRUIDO"
+  "RUIM"
+  "MEDIO"
+  "BOM"
+}
+
+Enum "tipo_iluminacao" {
+  "BRANCA"
+  "LARANJA"
+  "SEM_ILUMINACAO"
+}
+
+Enum "nivel_movimentacao" {
+  "ABANDONADA"
+  "VAZIA"
+  "TRANQUILA"
+  "MOVIMENTADA"
+}
+
+Enum "nivel_qualidade" {
+  "RUIM"
+  "MEDIO"
+  "BOM"
+}
+
+Enum "tamanho_quadra" {
+  "GOLZINHO"
+  "PEQUENA"
+  "MEDIA"
+  "GRANDE"
+}
+
+// ============================================================
+// AUTENTICACAO E PERFIL
+// ============================================================
+
+Table "jogador" {
+  "id" uuid [pk, default: `gen_random_uuid()`]
+  "nome" text
+  "apelido" text
+  "email" text [unique, not null]
+  "data_nascimento" timestamptz
+  "telefone" text
+  "genero" text
+  "regiao" text
+  "avatar_id" int
+  "tipo_fut_preferido" "text[]" [not null]
+  "perfil_completo" boolean [not null, default: false]
+  "ativo" boolean [not null, default: true]
+  "ultimo_login" timestamptz
+  "expo_push_token" text [unique]
+  "created_at" timestamptz [not null, default: `now()`]
+  "updated_at" timestamptz [not null]
+
+  Note: 'Usuario do app. Cadastro por e-mail com codigo de verificacao (sem senha).'
+}
+
+Table "codigo_verificacao" {
+  "id" uuid [pk, default: `gen_random_uuid()`]
+  "email" text [not null]
+  "codigo" text [not null]
+  "expira_em" timestamptz [not null]
+  "tentativas" int [not null, default: 0]
+  "created_at" timestamptz [not null, default: `now()`]
+
+  Indexes {
+    (email, codigo) [unique, name: 'uq_codigo_verificacao_email_codigo']
+    (email, expira_em) [name: 'idx_codigo_verificacao_email_expira']
+    (email, created_at) [name: 'idx_codigo_verificacao_email_created']
+  }
+
+  Note: 'Codigo de uso unico do login. Nao referencia jogador: o cadastro pode nao existir ainda.'
+}
+
+Table "refresh_token" {
+  "id" uuid [pk, default: `gen_random_uuid()`]
+  "token" text [unique, not null]
+  "jogador_id" uuid [not null]
+  "expira_em" timestamptz [not null]
+  "revogado" boolean [not null, default: false]
+  "created_at" timestamptz [not null, default: `now()`]
+
+  Indexes {
+    (jogador_id) [name: 'idx_refresh_token_jogador']
+  }
+}
+
+// ============================================================
+// QUADRAS
+// ============================================================
+
+Table "quadra" {
+  "id" uuid [pk, default: `gen_random_uuid()`]
+  "slug" text [unique, not null]
+  "nome" text [not null]
+  "latitude" "double precision" [not null]
+  "longitude" "double precision" [not null]
+  "endereco" text
+  "observacao" text
+  "nivel_piso" nivel_piso [not null]
+  "tipo_iluminacao" tipo_iluminacao [not null]
+  "nivel_movimentacao" nivel_movimentacao [not null]
+  "nivel_qualidade" nivel_qualidade [not null]
+  "tamanho" tamanho_quadra [not null]
+  "created_at" timestamptz [not null, default: `now()`]
+  "updated_at" timestamptz [not null]
+
+  Indexes {
+    (latitude, longitude) [name: 'idx_quadra_lat_lng']
+  }
+
+  Note: 'Quadra publica catalogada. Nota media e derivada de avaliacao_quadra.'
+}
+
+Table "foto_quadra" {
+  "id" uuid [pk, default: `gen_random_uuid()`]
+  "quadra_id" uuid [not null]
+  "url" text [not null]
+  "ordem" int [not null]
+  "created_at" timestamptz [not null, default: `now()`]
+}
+
+Table "favorito_quadra" {
+  "id" uuid [pk, default: `gen_random_uuid()`]
+  "jogador_id" uuid [not null]
+  "quadra_id" uuid [not null]
+  "created_at" timestamptz [not null, default: `now()`]
+
+  Indexes {
+    (jogador_id, quadra_id) [unique, name: 'uq_favorito_jogador_quadra']
+  }
+}
+
+Table "avaliacao_quadra" {
+  "id" uuid [pk, default: `gen_random_uuid()`]
+  "quadra_id" uuid [not null]
+  "jogador_id" uuid [not null]
+  "nota" int [not null]
+  "comentario" text
+  "status" text [not null, default: 'ATIVA']
+  "inativada_em" timestamptz
+  "created_at" timestamptz [not null, default: `now()`]
+  "updated_at" timestamptz [not null]
+
+  Indexes {
+    (quadra_id, status, created_at) [name: 'idx_avaliacao_quadra_listagem']
+    (quadra_id, jogador_id, created_at) [name: 'idx_avaliacao_quadra_historico']
+  }
+
+  Note: 'Historico versionado: editar inativa a versao anterior (status ATIVA / INATIVA).'
+}
+
+Table "curtida_avaliacao_quadra" {
+  "id" uuid [pk, default: `gen_random_uuid()`]
+  "avaliacao_id" uuid [not null]
+  "jogador_id" uuid [not null]
+  "created_at" timestamptz [not null, default: `now()`]
+
+  Indexes {
+    (avaliacao_id, jogador_id) [unique, name: 'uq_curtida_avaliacao_jogador']
+  }
+}
+
+// ============================================================
+// FUTS
+// ============================================================
+
+Table "fut" {
+  "id" uuid [pk, default: `gen_random_uuid()`]
+  "nome" varchar(80) [not null]
+  "quadra_id" uuid [not null]
+  "criador_id" uuid [not null]
+  "date_time" timestamptz [not null]
+  "descricao" text
+  "status_fut_id" int [not null]
+  "share_code" text [unique, not null]
+  "gerenciado_pelo_app" boolean [not null, default: true]
+  "tempo_partida_minutos" int [not null, default: 10]
+  "gols_para_vencer" int [not null, default: 2]
+  "tamanho_por_time" int [not null, default: 5]
+  "event_seq" bigint [not null, default: 0]
+  "motivo_sistema" text
+  "inatividade_reiniciada_em" timestamptz
+  "created_at" timestamptz [not null, default: `now()`]
+  "updated_at" timestamptz [not null]
+
+  Indexes {
+    (quadra_id, date_time) [name: 'idx_fut_quadra_datetime']
+    (status_fut_id, date_time) [name: 'idx_fut_status_datetime']
+  }
+
+  Note: 'Encontro em uma quadra. As regras (tempo, gols, tamanho) sao copiadas para cada partida. event_seq e o contador monotonico dos eventos em tempo real.'
+}
+
+Table "status_fut" {
+  "id" int [pk, increment]
+  "nome" text [unique, not null]
+
+  Note: 'agendado, em andamento, encerrada provisoriamente, encerrada, cancelada.'
+}
+
+// ============================================================
+// PRESENCA E FILA
+// ============================================================
+
+Table "participacao" {
+  "id" uuid [pk, default: `gen_random_uuid()`]
+  "fut_id" uuid [not null]
+  "jogador_id" uuid [not null]
+  "status_participacao_id" int [not null]
+  "organizador" boolean [not null, default: false]
+  "removido_por_admin" boolean [not null, default: false]
+  "gols_declarados" int
+  "confirmado_em" timestamptz [not null, default: `now()`]
+  "cancelado_em" timestamptz
+  "chegou_em" timestamptz
+  "saiu_em" timestamptz
+  "created_at" timestamptz [not null, default: `now()`]
+  "updated_at" timestamptz [not null]
+
+  Indexes {
+    (fut_id, jogador_id) [unique, name: 'uq_participacao_fut_jogador']
+    (fut_id, status_participacao_id) [name: 'idx_participacao_fut_status']
+    (jogador_id, status_participacao_id) [name: 'idx_participacao_jogador_status']
+  }
+
+  Note: 'Vinculo do jogador com o fut: confirmacao, chegada, saida e papel de organizador.'
+}
+
+Table "status_participacao" {
+  "id" int [pk, increment]
+  "nome" text [unique, not null]
+
+  Note: 'confirmado, cancelado, chegou, saiu.'
+}
+
+Table "lista" {
+  "id" uuid [pk, default: `gen_random_uuid()`]
+  "fut_id" uuid [not null]
+  "jogador_id" uuid [not null]
+  "posicao" int [not null]
+  "created_at" timestamptz [not null, default: `now()`]
+  "updated_at" timestamptz [not null]
+
+  Indexes {
+    (fut_id, jogador_id) [unique, name: 'uq_lista_fut_jogador']
+    (fut_id, posicao) [unique, name: 'uq_lista_fut_posicao']
+    (fut_id, posicao) [name: 'idx_lista_fut_posicao']
+  }
+
+  Note: 'Fila de espera posicional. A posicao nunca e reordenada: quem entra recebe MAX(posicao)+1.'
+}
+
+Table "log_chegada" {
+  "id" uuid [pk, default: `gen_random_uuid()`]
+  "fut_id" uuid [not null]
+  "jogador_id" uuid [not null]
+  "evento" text [not null]
+  "gps_validado" boolean [not null, default: false]
+  "ator_id" uuid [not null]
+  "date_time" timestamptz [not null, default: `now()`]
+  "created_at" timestamptz [not null, default: `now()`]
+
+  Indexes {
+    (fut_id, jogador_id) [name: 'idx_log_chegada_fut_jogador']
+    (fut_id, date_time) [name: 'idx_log_chegada_fut_datetime']
+  }
+
+  Note: 'Auditoria de chegada e saida. jogador_id e o sujeito do registro; ator_id e quem registrou (pode ser o organizador).'
+}
+
+// ============================================================
+// PARTIDAS
+// ============================================================
+
+Table "partida" {
+  "id" uuid [pk, default: `gen_random_uuid()`]
+  "fut_id" uuid [not null]
+  "status_partida_id" int [not null]
+  "inicio" timestamptz [not null]
+  "fim" timestamptz
+  "tempo_partida_minutos" int [not null]
+  "gols_para_vencer" int [not null]
+  "tempo_pausado_ms" int [not null, default: 0]
+  "pausado_em" timestamptz
+  "created_at" timestamptz [not null, default: `now()`]
+  "updated_at" timestamptz [not null]
+
+  Indexes {
+    (fut_id, inicio) [name: 'idx_partida_fut_inicio']
+  }
+
+  Note: 'Copia das regras vigentes no inicio, para que alteracoes no fut nao alterem partidas passadas.'
+}
+
+Table "status_partida" {
+  "id" int [pk, increment]
+  "nome" text [unique, not null]
+
+  Note: 'em andamento, pausada, encerrada.'
+}
+
+Table "jogador_partida" {
+  "id" uuid [pk, default: `gen_random_uuid()`]
+  "partida_id" uuid [not null]
+  "jogador_id" uuid [not null]
+  "time" int [not null]
+
+  Indexes {
+    (partida_id, jogador_id) [unique, name: 'uq_jogador_partida']
+  }
+
+  Note: 'Escalacao. time = 1 ou 2.'
+}
+
+Table "log_partida" {
+  "id" uuid [pk, default: `gen_random_uuid()`]
+  "partida_id" uuid [not null]
+  "tipo_acao_id" int [not null]
+  "autor_id" uuid [not null]
+  "registrador_id" uuid [not null]
+  "referencia_log_id" uuid
+  "time" int
+  "date_time" timestamptz [not null]
+  "created_at" timestamptz [not null, default: `now()`]
+
+  Indexes {
+    (referencia_log_id) [name: 'idx_log_partida_referencia_log']
+  }
+
+  Note: 'Eventos da partida. Nada e apagado: desfazer grava um novo log apontando para o original em referencia_log_id.'
+}
+
+Table "tipo_acao" {
+  "id" int [pk, increment]
+  "nome" text [unique, not null]
+
+  Note: 'gol, gol contra, desfazer gol.'
+}
+
+// ============================================================
+// OPERACIONAIS
+// ============================================================
+
+Table "fut_notificacao" {
+  "id" uuid [pk, default: `gen_random_uuid()`]
+  "fut_id" uuid [not null]
+  "tipo" text [not null]
+  "enviada_em" timestamptz [not null, default: `now()`]
+
+  Indexes {
+    (fut_id, tipo) [unique, name: 'uq_fut_notificacao_fut_tipo']
+  }
+
+  Note: 'Livro-razao de idempotencia do cron: a chave unica impede reenvio da mesma notificacao.'
+}
+
+Table "push_receipt" {
+  "id" uuid [pk, default: `gen_random_uuid()`]
+  "receipt_id" text [unique, not null]
+  "expo_push_token" text [not null]
+  "status" text [not null, default: 'pendente']
+  "enviado_em" timestamptz [not null, default: `now()`]
+
+  Indexes {
+    (status, enviado_em) [name: 'idx_push_receipt_pendente']
+  }
+
+  Note: 'Recibos da Expo. Tokens invalidados aqui sao removidos de jogador.expo_push_token.'
+}
+
+Table "versao" {
+  "id" int [pk, increment]
+  "plataforma" text [not null]
+  "versao_minima" text [not null]
+  "descricao" text
+  "ativo" boolean [not null, default: true]
+  "created_at" timestamptz [not null, default: `now()`]
+
+  Note: 'Versao minima exigida por plataforma (force update).'
+}
+
+// ============================================================
+// RELACIONAMENTOS
+// ============================================================
+
+// Autenticacao
+Ref: "jogador"."id" < "refresh_token"."jogador_id" [delete: cascade]
+
+// Quadras
+Ref: "quadra"."id" < "foto_quadra"."quadra_id" [delete: cascade]
+Ref: "quadra"."id" < "favorito_quadra"."quadra_id" [delete: cascade]
+Ref: "jogador"."id" < "favorito_quadra"."jogador_id" [delete: cascade]
+Ref: "quadra"."id" < "avaliacao_quadra"."quadra_id"
+Ref: "jogador"."id" < "avaliacao_quadra"."jogador_id"
+Ref: "avaliacao_quadra"."id" < "curtida_avaliacao_quadra"."avaliacao_id" [delete: cascade]
+Ref: "jogador"."id" < "curtida_avaliacao_quadra"."jogador_id"
+
+// Futs
+Ref: "quadra"."id" < "fut"."quadra_id"
+Ref: "jogador"."id" < "fut"."criador_id"
+Ref: "status_fut"."id" < "fut"."status_fut_id"
+
+// Presenca e fila
+Ref: "fut"."id" < "participacao"."fut_id" [delete: cascade]
+Ref: "jogador"."id" < "participacao"."jogador_id"
+Ref: "status_participacao"."id" < "participacao"."status_participacao_id"
+Ref: "fut"."id" < "lista"."fut_id" [delete: cascade]
+Ref: "jogador"."id" < "lista"."jogador_id"
+Ref: "fut"."id" < "log_chegada"."fut_id" [delete: cascade]
+Ref: "jogador"."id" < "log_chegada"."jogador_id"
+Ref: "jogador"."id" < "log_chegada"."ator_id"
+
+// Partidas
+Ref: "fut"."id" < "partida"."fut_id" [delete: cascade]
+Ref: "status_partida"."id" < "partida"."status_partida_id"
+Ref: "partida"."id" < "jogador_partida"."partida_id" [delete: cascade]
+Ref: "jogador"."id" < "jogador_partida"."jogador_id"
+Ref: "partida"."id" < "log_partida"."partida_id" [delete: cascade]
+Ref: "tipo_acao"."id" < "log_partida"."tipo_acao_id"
+Ref: "jogador"."id" < "log_partida"."autor_id"
+Ref: "jogador"."id" < "log_partida"."registrador_id"
+Ref: "log_partida"."id" < "log_partida"."referencia_log_id" [delete: set null]
+
+// Operacionais
+Ref: "fut"."id" < "fut_notificacao"."fut_id" [delete: cascade]
+
+// ============================================================
+// AGRUPAMENTOS (visualizacao)
+// ============================================================
+
+TableGroup "Autenticacao e perfil" {
+  "jogador"
+  "codigo_verificacao"
+  "refresh_token"
+}
+
+TableGroup "Quadras e avaliacoes" {
+  "quadra"
+  "foto_quadra"
+  "favorito_quadra"
+  "avaliacao_quadra"
+  "curtida_avaliacao_quadra"
+}
+
+TableGroup "Futs, presenca e fila" {
+  "fut"
+  "status_fut"
+  "participacao"
+  "status_participacao"
+  "lista"
+  "log_chegada"
+}
+
+TableGroup "Partidas" {
+  "partida"
+  "status_partida"
+  "jogador_partida"
+  "log_partida"
+  "tipo_acao"
+}
+
+TableGroup "Operacionais" {
+  "fut_notificacao"
+  "push_receipt"
+  "versao"
+}

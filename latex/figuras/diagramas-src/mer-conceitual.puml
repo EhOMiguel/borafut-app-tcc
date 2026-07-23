@@ -1,0 +1,184 @@
+@startchen
+' Modelo conceitual de dados do BORAFUT - notacao de Chen.
+' Fonte: specs-diagramas-banca.md secao 2 (entidades 2.2 e relacionamentos 2.3).
+' Escopo: atributos de dominio. Atributos puramente operacionais (created_at,
+' updated_at, tokens, contadores de sequencia, flags de moderacao) ficam fora do
+' conceitual e aparecem no modelo logico e no dicionario de dados (apendices).
+' Render: java -jar plantuml.jar -tpng -charset UTF-8 -o render mer-conceitual.puml
+
+skinparam dpi 130
+skinparam defaultFontName Arial
+skinparam defaultFontSize 22
+skinparam nodesep 8
+skinparam ranksep 14
+
+entity JOGADOR {
+  id <<key>>
+  email
+  nome
+  apelido
+  dataNascimento
+  telefone
+  genero
+  regiao
+  tiposFutPreferidos <<multi>>
+}
+
+entity QUADRA {
+  id <<key>>
+  nome
+  endereco
+  localizacao {
+    latitude
+    longitude
+  }
+  caracteristicas {
+    piso
+    iluminacao
+    movimentacao
+    qualidade
+    tamanho
+  }
+  fotos <<multi>>
+  notaMedia <<derived>>
+}
+
+entity FUT {
+  id <<key>>
+  nome
+  dataHora
+  descricao
+  status
+  gerenciadoPeloApp
+  codigoConvite
+  regras {
+    tempoPartida
+    golsParaVencer
+    tamanhoPorTime
+  }
+}
+
+entity PARTIDA <<weak>> {
+  inicio <<key>>
+  fim
+  status
+  regras {
+    tempoPartida
+    golsParaVencer
+  }
+  placar <<derived>>
+}
+
+entity "EVENTO DE PARTIDA" as EVENTO <<weak>> {
+  dataHora <<key>>
+  tipo
+  time
+}
+
+entity "REGISTRO DE CHEGADA" as CHEGADA <<weak>> {
+  dataHora <<key>>
+  evento
+  gpsValidado
+}
+
+entity "REGISTRO DE NOTIFICACAO" as NOTIFICACAO <<weak>> {
+  tipo <<key>>
+  enviadaEm
+}
+
+entity AVALIACAO {
+  id <<key>>
+  nota
+  comentario
+  status
+  totalCurtidas <<derived>>
+}
+
+relationship CRIA {
+}
+relationship SEDIA {
+}
+relationship PARTICIPA {
+  status
+  organizador
+  chegouEm
+  golsDeclarados
+}
+relationship "AGUARDA NA FILA DE" as FILA {
+  posicao
+}
+relationship GERA <<identifying>> {
+}
+relationship "ATUA EM" as ATUA {
+  time
+}
+relationship REGISTRA <<identifying>> {
+}
+relationship PROTAGONIZA {
+}
+relationship LANCA {
+}
+relationship DESFAZ {
+}
+relationship "OCORRE EM" as OCORRE <<identifying>> {
+}
+relationship "E ALVO DE" as ALVO {
+}
+relationship EFETUA {
+}
+relationship NOTIFICA <<identifying>> {
+}
+relationship ESCREVE {
+}
+relationship "REFERE-SE A" as REFERE {
+}
+relationship CURTE {
+}
+relationship FAVORITA {
+}
+
+' --- Fut: criacao, sede, participacao e fila ---
+JOGADOR -1- CRIA
+CRIA -N- FUT
+QUADRA -1- SEDIA
+SEDIA -N- FUT
+JOGADOR -N- PARTICIPA
+PARTICIPA -M- FUT
+JOGADOR -N- FILA
+FILA -M- FUT
+
+' --- Partidas e eventos ---
+FUT -1- GERA
+GERA -N- PARTIDA
+JOGADOR -N- ATUA
+ATUA -M- PARTIDA
+PARTIDA -1- REGISTRA
+REGISTRA -N- EVENTO
+JOGADOR -1- PROTAGONIZA
+PROTAGONIZA -N- EVENTO
+JOGADOR -1- LANCA
+LANCA -N- EVENTO
+EVENTO -1- DESFAZ
+DESFAZ -1- EVENTO
+
+' --- Registros de chegada e de notificacao ---
+FUT -1- OCORRE
+OCORRE -N- CHEGADA
+JOGADOR -1- ALVO
+ALVO -N- CHEGADA
+JOGADOR -1- EFETUA
+EFETUA -N- CHEGADA
+FUT -1- NOTIFICA
+NOTIFICA -N- NOTIFICACAO
+
+' --- Avaliacoes e favoritos ---
+JOGADOR -1- ESCREVE
+ESCREVE -N- AVALIACAO
+AVALIACAO -N- REFERE
+REFERE -1- QUADRA
+JOGADOR -N- CURTE
+CURTE -M- AVALIACAO
+JOGADOR -N- FAVORITA
+FAVORITA -M- QUADRA
+
+@endchen
