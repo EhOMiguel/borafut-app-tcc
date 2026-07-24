@@ -346,7 +346,7 @@
             Jovens adultos, entre 18 e 30 anos, predominantemente homens, praticantes amadores de futsal e society, que jogam em grupos autônomos e organizam suas partidas via WhatsApp. Valorizam praticidade, agilidade e confiabilidade na marcação de jogos e demonstram interesse em recursos de descoberta de quadras e confirmação de presença.
         \end{quote}
 
-        O instrumento completo do questionário encontra-se no Apêndice~\ref{apendice:questionario}.
+        O formulário foi precedido de uma tela de termos, na qual o participante era informado do objetivo acadêmico da pesquisa e do uso agregado e anônimo das respostas, e registrava seu aceite antes de iniciar o preenchimento. O tratamento desses dados é detalhado na Seção~\ref{sec:privacidade}. O instrumento completo do questionário encontra-se no Apêndice~\ref{apendice:questionario}.
 
     \subsection{Priorização e modelagem de requisitos}
         % Descrever como os requisitos foram analisados e refinados
@@ -491,9 +491,24 @@
 
         Essas histórias, juntamente com todas as demais estão listadas no Apêndice~\ref{apendice:us}.
 
-% \section{Plano de privacidade e segurança}
-    % Descrever o tratamento de dados pessoais, consentimento, retenção e minimização
-    % Referenciar a LGPD e princípios éticos abordados no Capítulo 2
+\section{Plano de privacidade e segurança}
+    \label{sec:privacidade}
+
+    O BORAFUT trata dados pessoais em duas frentes distintas, que exigem cuidados diferentes: os dados dos usuários do aplicativo e os dados dos participantes das atividades de pesquisa. Ambas seguem a Lei Geral de Proteção de Dados~\cite{LGPD2018} e os princípios discutidos na Seção~\ref{sec:etica-dados}, com a mesma diretriz de fundo, a de coletar o mínimo necessário para que a funcionalidade exista, que é a tradução prática do princípio da necessidade e da abordagem de \textit{Privacy by Design}.
+
+    \subsection{Dados pessoais no aplicativo}
+        A base legal do tratamento é o consentimento do titular, obtido no primeiro acesso, com idade mínima de 16 anos, conforme o requisito não funcional RNF06. O único dado obrigatório é o endereço de e-mail, usado como identificador da conta e como canal de autenticação. Nome, apelido, data de nascimento, telefone, gênero e região são opcionais e servem à composição do perfil e à recomendação de futs próximos, e a sua ausência não impede o uso do aplicativo.
+
+        A autenticação é sem senha: o acesso ocorre por código temporário enviado ao e-mail informado, de modo que o sistema não armazena senhas nem os problemas associados à sua guarda. A sessão é sustentada por um token de acesso de curta duração e um token de renovação revogável, que pode ser invalidado no encerramento de sessão.
+
+        A localização merece nota específica, por ser o dado mais sensível manipulado pelo aplicativo. Ela é utilizada em dois momentos: na busca por quadras próximas, em que a posição do dispositivo é usada apenas para ordenar os resultados da consulta, e na confirmação de chegada ao fut, em que a proximidade da quadra é verificada no momento do registro. Em nenhum dos casos as coordenadas do usuário são persistidas. O registro de chegada guarda somente um indicador booleano de que a validação por localização ocorreu, junto com o instante do evento e a identificação de quem registrou, o que preserva a auditoria da presença sem constituir histórico de deslocamento.
+
+        Os demais dados armazenados decorrem do próprio uso: participações em futs, posições na fila de espera, eventos das partidas, avaliações de quadras e o token de notificação do dispositivo. Todos são vinculados à conta e removidos com ela. O aplicativo oferece a exclusão de conta na tela de perfil, que encerra as sessões ativas e remove os dados pessoais do titular, em atendimento ao direito de eliminação previsto na LGPD e às exigências das lojas de aplicativos. O tráfego entre o aplicativo e a API ocorre sobre HTTPS, com autenticação por token em todas as rotas que manipulam dados de usuário.
+
+    \subsection{Dados dos participantes da pesquisa}
+        As atividades de levantamento e de validação envolveram pessoas, e não apenas o sistema. O questionário de caracterização do público foi precedido de uma tela de termos, em que o participante declarava estar ciente do objetivo acadêmico da pesquisa e do uso agregado das respostas antes de iniciar o preenchimento. Os testes de usabilidade do protótipo de alta fidelidade foram conduzidos mediante Termo de Consentimento Livre e Esclarecido, transcrito no Apêndice~\ref{apendice:tcle}, com aceite registrado no próprio formulário e autorização de gravação solicitada em separado, de forma que a recusa em ser gravado não impedia a participação.
+
+        Em ambos os instrumentos, os dados são tratados de forma agregada e anonimizada: nenhum participante é identificado individualmente nesta monografia. As gravações de tela, áudio e vídeo, quando autorizadas, ficam restritas aos pesquisadores e são eliminadas após a defesa. Os participantes podem solicitar acesso, correção ou exclusão dos seus dados a qualquer momento, pelo contato divulgado no termo.
 
 % \section{Plano de implantação e operação}
     % Descrever o ambiente de operação e infraestrutura de execução
