@@ -9,10 +9,9 @@ actor "Organizador" as O
 actor "Criador" as C
 O --|> R
 C --|> O
-actor "Serviço de E-mail\n<<sistema externo>>" as SES
 actor "Serviço de Push\n<<sistema externo>>" as PUSH
 
-rectangle BORAFUT {
+rectangle Borafut {
   usecase "UC14 Visualizar\ndetalhes do fut" as UC14
   usecase "UC15 Confirmar presença" as UC15
   usecase "UC16 Validar sobreposição\nde horário" as UC16
@@ -27,7 +26,6 @@ rectangle BORAFUT {
   usecase "UC25 Confirmar chegada\nde outro jogador" as UC25
   usecase "UC26 Revogar chegada" as UC26
   usecase "UC27 Registrar participante\nmanualmente" as UC27
-  usecase "UC28 Notificar convidado\npor e-mail" as UC28
 }
 
 R -- UC14
@@ -36,10 +34,10 @@ R -- UC17
 R -- UC18
 R -- UC19
 R -- UC23
-R -- UC25
-R -- UC27
 
+O -- UC25
 O -- UC26
+O -- UC27
 
 C -- UC20
 C -- UC21
@@ -47,15 +45,13 @@ C -- UC22
 
 UC15 ..> UC16 : <<include>>
 UC19 ..> UC16 : <<include>>
-UC27 ..> UC28 : <<include>>
 
 UC18 ..> UC14 : <<extend>>
 UC24 ..> UC23 : <<extend>>
 
-UC28 -- SES
 UC15 -- PUSH
 
 note right of UC24 : aviso, não bloqueio;\nrequer consentimento\nde localização
-note right of UC25 : apenas quem já\nconfirmou a própria\nchegada
-note right of UC27 : apenas com o fut em andamento;\ncriador, organizador ou quem\njá confirmou a própria chegada
+note right of UC25 : apenas criador ou\norganizador que já\nconfirmou a própria chegada
+note right of UC27 : a partir do horário do fut;\napenas criador ou organizador\nque já confirmou a própria chegada
 @enduml

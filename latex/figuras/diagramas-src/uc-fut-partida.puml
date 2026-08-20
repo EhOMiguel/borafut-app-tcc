@@ -11,7 +11,7 @@ O --|> R
 C --|> O
 actor "Serviço de Push\n<<sistema externo>>" as PUSH
 
-rectangle BORAFUT {
+rectangle Borafut {
   usecase "UC29 Iniciar fut" as UC29
   usecase "UC30 Formar times pela\nordem de chegada" as UC30
   usecase "UC31 Visualizar fila" as UC31
@@ -53,6 +53,7 @@ UC29 -- PUSH
 UC38 -- PUSH
 
 note right of UC32 : próximo time da fila;\nou jogadores em quadra\nse a fila estiver vazia
+note right of UC29 : criador ou organizador que já\nconfirmou a própria chegada,\ncondição válida também\npara UC37 e UC38
 note right of UC36 : empate e fila sem\n2 times completos
 note right of UC40 : fut não-gerenciado
 note right of UC41 : transição unidirecional\n(não-gerenciado para\ngerenciado)

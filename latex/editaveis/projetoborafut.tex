@@ -1,18 +1,18 @@
 \chapter{Projeto do aplicativo}
 
-    Neste capítulo, é apresentada a descrição detalhada do aplicativo BORAFUT, incluindo sua proposta de valor, funcionalidades e especificações técnicas. O objetivo é documentar o projeto da solução desenvolvida, desde a concepção até os artefatos de design e arquitetura.
+    Neste capítulo, é apresentada a descrição detalhada do aplicativo Borafut, incluindo sua proposta de valor, funcionalidades e especificações técnicas. O objetivo é documentar o projeto da solução desenvolvida, desde a concepção até os artefatos de design e arquitetura.
 
     Inicialmente, são apresentadas a descrição geral do aplicativo e o escopo do MVP, incluindo requisitos funcionais e não funcionais, além do diagrama de casos de uso. Em seguida, são detalhados os principais fluxos de uso do sistema, que descrevem as interações dos usuários com o aplicativo. Na sequência, são expostos os princípios de design de interface e experiência do usuário, seguidos pela apresentação da prototipação realizada. Por fim, são apresentadas a arquitetura técnica do sistema e o modelo de dados, fundamentados nas decisões metodológicas descritas no Capítulo~\ref{sec:arquitetura-geral}.
 
 \section{Descrição do aplicativo}
 
-  O BORAFUT é um aplicativo móvel multiplataforma desenvolvido para facilitar a organização de partidas de futebol amador no Distrito Federal. A proposta nasce de uma observação recorrente entre os praticantes: apesar da grande quantidade de quadras públicas espalhadas por Brasília, ainda é difícil reunir pessoas, coordenar horários e garantir que o jogo realmente aconteça. Hoje, essa organização ocorre de forma fragmentada, utilizando grupos de mensagens, listas improvisadas e comunicação informal, o que gera cancelamentos, desencontros, baixa ocupação das quadras e dificulta a entrada de novos participantes.
+  O Borafut é um aplicativo móvel multiplataforma desenvolvido para facilitar a organização de partidas de futebol amador no Distrito Federal. A proposta nasce de uma observação recorrente entre os praticantes: apesar da grande quantidade de quadras públicas espalhadas por Brasília, ainda é difícil reunir pessoas, coordenar horários e garantir que o jogo realmente aconteça. Hoje, essa organização ocorre de forma fragmentada, utilizando grupos de mensagens, listas improvisadas e comunicação informal, o que gera cancelamentos, desencontros, baixa ocupação das quadras e dificulta a entrada de novos participantes.
 
-  O BORAFUT busca resolver esse cenário ao oferecer uma plataforma centralizada, prática e acessível para quem deseja jogar. O aplicativo permite visualizar quadras próximas, criar partidas abertas ou fechadas, confirmar presença, acompanhar a quantidade de participantes e compartilhar facilmente as informações do jogo. A solução foi projetada com base nas dores observadas durante a etapa exploratória e reforçadas pelos dados do questionário aplicado a mais de 60 praticantes de futebol amador no Distrito Federal, que relataram dificuldades como desorganização, pouca previsibilidade e dependência de comunicação descentralizada.
+  O Borafut busca resolver esse cenário ao oferecer uma plataforma centralizada, prática e acessível para quem deseja jogar. O aplicativo permite visualizar quadras próximas, criar partidas abertas ou fechadas, confirmar presença, acompanhar a quantidade de participantes e compartilhar facilmente as informações do jogo. A solução foi projetada com base nas dores observadas durante a etapa exploratória e reforçadas pelos dados do questionário aplicado a mais de 60 praticantes de futebol amador no Distrito Federal, que relataram dificuldades como desorganização, pouca previsibilidade e dependência de comunicação descentralizada.
 
-  O público-alvo inicial do BORAFUT é composto principalmente por jovens e adultos entre 16 e 35 anos que jogam futebol de forma recreativa, seja em quadras públicas, escolas, clubes ou campos alugados. Incluem-se tanto grupos já estabelecidos, que mantêm partidas fixas semanais, quanto jogadores que desejam retomar a prática esportiva ou simplesmente encontrar novas oportunidades para jogar. Pessoas recém-chegadas à cidade, que muitas vezes não sabem onde acontecem as partidas, também se beneficiam diretamente da solução.
+  O público-alvo inicial do Borafut é composto principalmente por jovens e adultos entre 16 e 35 anos que jogam futebol de forma recreativa, seja em quadras públicas, escolas, clubes ou campos alugados. Incluem-se tanto grupos já estabelecidos, que mantêm partidas fixas semanais, quanto jogadores que desejam retomar a prática esportiva ou simplesmente encontrar novas oportunidades para jogar. Pessoas recém-chegadas à cidade, que muitas vezes não sabem onde acontecem as partidas, também se beneficiam diretamente da solução.
 
-  A proposta de valor do BORAFUT é unir tecnologia e convivência social para fortalecer o futebol comunitário. Mais do que apenas organizar partidas, o aplicativo busca tornar o acesso ao esporte mais simples, inclusivo e transparente. Entre as funcionalidades previstas para o MVP, destacam-se:
+  A proposta de valor do Borafut é unir tecnologia e convivência social para fortalecer o futebol comunitário. Mais do que apenas organizar partidas, o aplicativo busca tornar o acesso ao esporte mais simples, inclusivo e transparente. Entre as funcionalidades previstas para o MVP, destacam-se:
   \begin{itemize}
       \item \textbf{visualização de quadras públicas próximas} com base em geolocalização;
       \item \textbf{avaliação e favoritar de quadras};
@@ -24,18 +24,18 @@
       \item \textbf{resumo pós-fut compartilhável} e estatísticas dos jogadores.
   \end{itemize}
 
-  Parte do valor do BORAFUT está em reduzir as disputas pelo uso das quadras. Como o aplicativo exibe, no mapa e no perfil de cada quadra, os jogos já marcados e o nível de movimentação do local, o jogador avalia a situação antes de se deslocar e, diante de um horário concorrido, pode optar por outra quadra ou outro horário. Essa visibilidade prévia, hoje inexistente na organização por grupos de mensagens, ajuda a evitar o conflito antes que ele aconteça, em vez de exigir negociação no local.
+  Parte do valor do Borafut está em reduzir as disputas pelo uso das quadras. Como o aplicativo exibe, no mapa e no perfil de cada quadra, os jogos já marcados e o nível de movimentação do local, o jogador avalia a situação antes de se deslocar e, diante de um horário concorrido, pode optar por outra quadra ou outro horário. Essa visibilidade prévia, hoje inexistente na organização por grupos de mensagens, ajuda a evitar o conflito antes que ele aconteça, em vez de exigir negociação no local.
 
-  O BORAFUT não realiza reserva das quadras: por serem públicas e de uso livre, o aplicativo atua catalogando esses espaços e informando suas características e regras de uso. O desafio, nesse ponto, é menos de controle e mais de catalogação: muitas quadras seguem regras específicas de prioridade (como faixas de horário destinadas a escolas ou projetos sociais autorizados pelo poder público), e o aplicativo se propõe a reunir e comunicar essas informações em melhor esforço, sem assumir a gestão da ocupação física do espaço.
+  O Borafut não realiza reserva das quadras: por serem públicas e de uso livre, o aplicativo atua catalogando esses espaços e informando suas características e regras de uso. O desafio, nesse ponto, é menos de controle e mais de catalogação: muitas quadras seguem regras específicas de prioridade (como faixas de horário destinadas a escolas ou projetos sociais autorizados pelo poder público), e o aplicativo se propõe a reunir e comunicar essas informações em melhor esforço, sem assumir a gestão da ocupação física do espaço.
 
-  A interface preserva alguns termos populares entre os jogadores, como a abreviação “fut” para partidas de futebol amador. Nesta monografia, empregamos preferencialmente o termo “partida” e utilizamos “fut” apenas entre aspas para indicar, de forma explícita, rótulos exibidos na interface do BORAFUT.
+  A interface preserva alguns termos populares entre os jogadores, como a abreviação “fut” para partidas de futebol amador. Nesta monografia, empregamos preferencialmente o termo “partida” e utilizamos “fut” apenas entre aspas para indicar, de forma explícita, rótulos exibidos na interface do Borafut.
 
-  No escopo do MVP, o BORAFUT prioriza apenas funcionalidades essenciais para que os jogos aconteçam de forma mais organizada e previsível. Outros recursos, como estatísticas avançadas, rankings, campeonatos ou análises detalhadas de desempenho, poderão ser incorporados futuramente caso sejam validados como relevantes pelos usuários.
+  No escopo do MVP, o Borafut prioriza apenas funcionalidades essenciais para que os jogos aconteçam de forma mais organizada e previsível. Outros recursos, como estatísticas avançadas, rankings, campeonatos ou análises detalhadas de desempenho, poderão ser incorporados futuramente caso sejam validados como relevantes pelos usuários.
 
-  Mais do que um aplicativo, o BORAFUT se propõe a ser um facilitador de encontros, saúde e lazer. Em uma cidade com tantas quadras públicas e uma cultura forte de jogo comunitário, a solução cria uma ponte entre a tecnologia e o futebol que acontece diariamente nas quadras de Brasília, fortalecendo vínculos, ocupando espaços urbanos e valorizando o esporte mais popular do país.
+  Mais do que um aplicativo, o Borafut se propõe a ser um facilitador de encontros, saúde e lazer. Em uma cidade com tantas quadras públicas e uma cultura forte de jogo comunitário, a solução cria uma ponte entre a tecnologia e o futebol que acontece diariamente nas quadras de Brasília, fortalecendo vínculos, ocupando espaços urbanos e valorizando o esporte mais popular do país.
 
   \section{Escopo do MVP}
-  O MVP do BORAFUT foi definido a partir das necessidades prioritárias identificadas durante a fase de elicitação e análise (Capítulo~\ref{sec:metodologia-elicitacao}). Seu objetivo é entregar uma solução funcional mínima que permita organizar partidas de futebol amador de forma simples, confiável e centralizada.
+  O MVP do Borafut foi definido a partir das necessidades prioritárias identificadas durante a fase de elicitação e análise (Capítulo~\ref{sec:metodologia-elicitacao}). Seu objetivo é entregar uma solução funcional mínima que permita organizar partidas de futebol amador de forma simples, confiável e centralizada.
 
     Os requisitos foram definidos a partir das técnicas de elicitação e priorização apresentadas na Seção~\ref{sec:metodologia-elicitacao}. 
 
@@ -43,7 +43,7 @@
 
     \subsection{Proposta de valor e pilares}
       \label{subsec:proposta-valor}
-      A proposta de valor do BORAFUT organiza-se em torno de um propósito maior: fortalecer o futebol comunitário do Distrito Federal, unindo tecnologia e convivência social. Esse propósito se desdobra em pilares concretos, derivados das dores levantadas na elicitação (Seção~\ref{sec:metodologia-elicitacao}), que orientam o escopo do MVP e servem de âncora para os requisitos apresentados nas próximas subseções.
+      A proposta de valor do Borafut organiza-se em torno de um propósito maior: fortalecer o futebol comunitário do Distrito Federal, unindo tecnologia e convivência social. Esse propósito se desdobra em pilares concretos, derivados das dores levantadas na elicitação (Seção~\ref{sec:metodologia-elicitacao}), que orientam o escopo do MVP e servem de âncora para os requisitos apresentados nas próximas subseções.
 
       Os pilares de experiência definem o valor que o aplicativo entrega ao usuário:
 
@@ -75,7 +75,7 @@
       \begin{itemize}
           \item \textbf{RF01 – Autenticação por e-mail:} o sistema deve permitir que usuários realizem login informando apenas o e-mail, recebendo um código temporário para acesso.
           
-          \item \textbf{RF02 – Visualização de quadras:} o sistema deve exibir um mapa interativo com quadras públicas próximas ao usuário, permitindo navegação e pesquisa.
+          \item \textbf{RF02 – Visualização de quadras:} o sistema deve exibir um mapa interativo com as quadras públicas catalogadas, centralizado na posição do usuário, permitindo navegação e pesquisa.
 
           \item \textbf{RF03 – Criação de futs:} o sistema deve permitir que usuários criem um fut em uma quadra, definindo nome, horário, modo de gerenciamento e os parâmetros da partida (tempo, gols e tamanho do time).
 
@@ -93,7 +93,7 @@
 
           \item \textbf{RF10 – Gerenciamento da partida ao vivo:} o sistema deve controlar cronômetro, placar e gols, encerrar partidas, rotacionar os times e resolver empates por pênaltis.
 
-          \item \textbf{RF11 – Cadastro de participante presencial:} o sistema deve permitir que o criador ou um organizador cadastre, durante o fut, participantes sem conta.
+          \item \textbf{RF11 – Cadastro de participante presencial:} o sistema deve permitir que o criador ou um organizador que já confirmou a própria chegada cadastre, a partir do horário marcado, participantes sem conta.
 
           \item \textbf{RF12 – Notificações:} o sistema deve enviar notificações \textit{push} de lembretes e avisos ligados ao fut.
 
@@ -103,12 +103,12 @@
       Estes são os requisitos funcionais de destaque do MVP. O conjunto completo está decomposto no backlog do produto, estruturado na hierarquia de granularidade descrita na Seção~\ref{sec:metodologia-elicitacao} e detalhado no Apêndice~\ref{apendice:us}.
 
     \subsection{Requisitos não funcionais}
-      Os requisitos não funcionais estabelecem as propriedades de qualidade e as restrições do MVP. Para evitar atributos genéricos, cada um foi derivado de um pilar da proposta de valor do BORAFUT, de modo que toda exigência técnica exista para sustentar um benefício percebido pelo usuário. Os principais são:
+      Os requisitos não funcionais estabelecem as propriedades de qualidade e as restrições do MVP. Para evitar atributos genéricos, cada um foi derivado de um pilar da proposta de valor do Borafut, de modo que toda exigência técnica exista para sustentar um benefício percebido pelo usuário. Os principais são:
 
       \begin{itemize}
           \item \textbf{RNF01 – Multiplataforma:} o aplicativo deve funcionar nas versões atuais de Android e iOS a partir de uma base de código única.
 
-          \item \textbf{RNF02 – Desempenho:} o mapa deve carregar com indicação visual de progresso e as operações principais devem responder em até 3 segundos em condições normais de rede móvel, limitando os resultados do mapa à área visível.
+          \item \textbf{RNF02 – Desempenho:} o mapa deve carregar com indicação visual de progresso e as operações principais devem responder em até 3 segundos em condições normais de rede móvel, servindo o catálogo completo da área de cobertura em uma única requisição, dimensionamento adequado ao recorte atual do projeto.
 
           \item \textbf{RNF03 – Atualização em tempo real:} confirmações de presença, registro de chegada e placar devem ser refletidos aos participantes em poucos segundos, por meio de WebSocket, com reconsulta REST como contingência.
 
@@ -116,9 +116,9 @@
 
           \item \textbf{RNF05 – Baixo atrito de acesso:} o acesso deve usar autenticação \textit{passwordless} por código de e-mail e permitir a inclusão de convidados sem conta, para não excluir participantes.
 
-          \item \textbf{RNF06 – Segurança e privacidade:} a comunicação deve ocorrer sobre HTTPS, com sessão autenticada por JWT, em conformidade com a LGPD, mediante consentimento explícito e idade mínima de 16 anos.
+          \item \textbf{RNF06 – Segurança e privacidade:} a comunicação deve ocorrer sobre HTTPS, com sessão autenticada por JWT, em conformidade com a LGPD, com as bases legais de cada tratamento explicitadas na política de privacidade, e idade mínima de 16 anos verificada tanto no aplicativo quanto no servidor, que rejeita data de nascimento incompatível.
 
-          \item \textbf{RNF07 – Cobertura local:} o sistema deve manter um catálogo georreferenciado de quadras públicas do Distrito Federal, priorizando a descoberta hiperlocal.
+          \item \textbf{RNF07 – Cobertura local:} o sistema deve manter um catálogo georreferenciado de quadras públicas, iniciado pelas 32 quadras levantadas na Asa Norte e projetado para expansão por região administrativa, priorizando a descoberta hiperlocal.
       \end{itemize}
 
     \subsection{Rastreabilidade entre pilares e requisitos}
@@ -153,7 +153,7 @@
 
     \subsection{Diagrama de casos de uso}
 
-      O diagrama de casos de uso (UML) oferece uma visão externa do sistema: mostra quem interage com o BORAFUT (atores) e quais serviços o sistema disponibiliza, sem entrar em detalhes de interface ou implementação. A fronteira do sistema delimita o que pertence ao BORAFUT, separando os atores das funcionalidades internas, enquanto as associações ligam cada ator aos casos de uso que ele pode acionar.
+      O diagrama de casos de uso (UML) oferece uma visão externa do sistema: mostra quem interage com o Borafut (atores) e quais serviços o sistema disponibiliza, sem entrar em detalhes de interface ou implementação. A fronteira do sistema delimita o que pertence ao Borafut, separando os atores das funcionalidades internas, enquanto as associações ligam cada ator aos casos de uso que ele pode acionar.
 
       Os atores humanos organizam-se em uma hierarquia de generalização, na qual cada perfil herda as capacidades do anterior:
 
@@ -215,10 +215,10 @@
       Ao explorar o mapa ou o perfil da quadra, o usuário seleciona um fut e vê suas informações: horário, configuração, participantes confirmados e status. Com um toque, o usuário autenticado confirma ou cancela presença, e o total de confirmados é atualizado para todos. Para evitar compromissos conflitantes, o sistema impede confirmar presença em dois futs cujos horários estejam a menos de duas horas de distância, oferecendo trocar de um para o outro.
 
     \subsection{Compartilhar o fut}
-      Qualquer participante pode convidar outras pessoas para o fut. Pela tela do fut, o usuário aciona “Compartilhar” e escolhe o aplicativo de sua preferência, como o WhatsApp, para enviar um link direto gerado a partir do código de convite. Ao abrir o link, o convidado é levado ao fut e, após autenticar-se, confirma presença com poucos toques.
+      Qualquer participante pode convidar outras pessoas para o fut. Pela tela do fut, o usuário aciona “Compartilhar” e escolhe o aplicativo de sua preferência, como o WhatsApp, para enviar um link direto gerado a partir do código de convite. Ao abrir o link, o convidado é levado à tela de autenticação, pois a rota de compartilhamento exige sessão válida; somente depois de autenticar-se ele vê os detalhes do fut e confirma presença com poucos toques.
 
     \subsection{Confirmar chegada}
-      Em futs gerenciados, a confirmação de chegada é liberada a partir do horário marcado. Ao confirmar, o aplicativo tenta verificar a proximidade da quadra por GPS: dentro do raio, a chegada é registrada; fora do raio ou sem permissão de localização, o aplicativo apenas avisa e permite confirmar mesmo assim, sem bloquear. A chegada coloca o jogador no fim da fila, que define a ordem de formação dos times. Um jogador que já chegou pode confirmar a chegada de outro que esteja na quadra, e o criador ou um organizador pode revogar uma chegada indevida.
+      Em futs gerenciados, a confirmação de chegada é liberada a partir do horário marcado. Ao confirmar, o aplicativo tenta verificar a proximidade da quadra por GPS: dentro do raio, a chegada é registrada; fora do raio ou sem permissão de localização, o aplicativo apenas avisa e permite confirmar mesmo assim, sem bloquear. A chegada coloca o jogador no fim da fila, que define a ordem de formação dos times. A chegada de outro participante presente na quadra só pode ser confirmada pelo criador ou por um organizador que já tenha confirmado a própria chegada, e o criador ou um organizador pode revogar uma chegada indevida.
 
     \subsection{Iniciar o fut e formar os times}
       O criador ou um organizador inicia o fut quando o horário é alcançado e há jogadores suficientes na fila. Ao iniciar, o sistema cria a primeira partida e forma dois times a partir da ordem de chegada: os primeiros da fila compõem o primeiro time, os seguintes o segundo, e os demais aguardam a vez. Jogadores que chegam após o início entram no fim da fila.
@@ -233,37 +233,37 @@
       Quando o fut é criado sem gerenciamento pelo aplicativo, o fluxo restringe-se à confirmação de presença e à descoberta, e a organização do jogo acontece presencialmente. O fut passa a “em andamento” automaticamente no horário marcado, e o aplicativo pode coletar, de forma opcional, sinais de presença para alimentar estatísticas. A qualquer momento, o criador pode ativar o gerenciamento, registrando quem está na quadra e passando a usar fila, times e cronômetro.
 
     \subsection{Cadastrar participante presencial}
-      Nem todos os presentes têm o aplicativo ou uma conta ativa. Durante o fut, o criador ou um organizador cadastra um participante informando nome e e-mail; o sistema reaproveita o cadastro caso o e-mail já exista e inclui a pessoa na fila como presente. O e-mail registrado permite, depois, convidá-la a criar a própria conta.
+      Nem todos os presentes têm o aplicativo ou uma conta ativa. A partir do horário marcado, o criador ou um organizador que já confirmou a própria chegada cadastra um participante informando nome e e-mail. O sistema reaproveita um perfil incompleto originado de cadastro anterior e inclui a pessoa na fila como presente; se o endereço pertencer a uma conta ativa, a operação é interrompida e depende de confirmação explícita do organizador, que não recebe do sistema qualquer identificação do titular. O endereço fica registrado como identificação da pessoa dentro do fut, e o envio de convite por e-mail não integra o escopo atual.
 
     \subsection{Traçar rota até a quadra}
       Para facilitar o deslocamento, cada perfil de quadra traz o botão “Como chegar”. Ao acioná-lo, o aplicativo gera um \textit{deep link} que abre o aplicativo de mapas padrão do dispositivo com a rota traçada até o endereço da quadra.
 
   \section{Design de interface e experiência do usuário}
-    O design de interface do BORAFUT reflete a identidade visual definida no documento interno Manual de Identidade Visual do BORAFUT~\cite{borafut_visual2025}, desenvolvido pela equipe do projeto. Esse guia estabelece os elementos fundamentais da marca, como paleta de cores, tipografia, ícones e diretrizes de uso, garantindo unidade estética e coerência entre o aplicativo e suas demais comunicações. A Figura~\ref{fig:manual-identidade-visual} apresenta uma parte do manual de identidade visual.
+    O design de interface do Borafut reflete a identidade visual definida no documento interno Manual de Identidade Visual do Borafut~\cite{borafut_visual2025}, desenvolvido pela equipe do projeto. Esse guia estabelece os elementos fundamentais da marca, como paleta de cores, tipografia, ícones e diretrizes de uso, garantindo unidade estética e coerência entre o aplicativo e suas demais comunicações. A Figura~\ref{fig:manual-identidade-visual} apresenta uma parte do manual de identidade visual.
 
     \begin{figure}[h]
       \centering
       \includegraphics[width=0.7\textwidth]{figuras/manual-identidade-visual.jpeg}
-      \caption{Parte do Manual de Identidade Visual do BORAFUT.}
+      \caption{Parte do Manual de Identidade Visual do Borafut.}
       \label{fig:manual-identidade-visual}
     \end{figure}
 
     \subsection{Princípios de Identidade Visual}
-      A identidade visual foi planejada para transmitir energia, simplicidade e senso de comunidade, valores centrais do BORAFUT. 
+      A identidade visual foi planejada para transmitir energia, simplicidade e senso de comunidade, valores centrais do Borafut. 
       
-      O logotipo do BORAFUT utiliza proporções uniformes e formas geométricas simples, reforçando o equilíbrio e a clareza visual. O logotipo adota uma fonte monoespaçada de traços arredondados, inspirada na tipografia \textit{Dune Rise}, de Jesta Designs, ajustada para criar uma sensação mais próxima e acolhedora ao contexto esportivo e comunitário. As Figuras~\ref{fig:logotipo-borafut-claro} e~\ref{fig:logotipo-borafut-escuro} apresentam as variantes do logotipo.
+      O logotipo do Borafut utiliza proporções uniformes e formas geométricas simples, reforçando o equilíbrio e a clareza visual. O logotipo adota uma fonte monoespaçada de traços arredondados, inspirada na tipografia \textit{Dune Rise}, de Jesta Designs, ajustada para criar uma sensação mais próxima e acolhedora ao contexto esportivo e comunitário. As Figuras~\ref{fig:logotipo-borafut-claro} e~\ref{fig:logotipo-borafut-escuro} apresentam as variantes do logotipo.
 
       \begin{figure}[h]
         \centering
         \includegraphics[width=0.9\textwidth]{figuras/logotipo-borafut-claro.png}
-        \caption{Logotipo do BORAFUT em versão clara.}
+        \caption{Logotipo do Borafut em versão clara.}
         \label{fig:logotipo-borafut-claro}
       \end{figure}
 
       \begin{figure}[h]
         \centering
         \includegraphics[width=0.9\textwidth]{figuras/logotipo-borafut-escuro.png}
-        \caption{Logotipo do BORAFUT em versão escura.}
+        \caption{Logotipo do Borafut em versão escura.}
         \label{fig:logotipo-borafut-escuro}
       \end{figure}
 
@@ -273,7 +273,7 @@
       \begin{figure}[h]
           \centering
           \includegraphics[width=1\textwidth]{figuras/paleta-borafut.png}
-          \caption{Paleta de cores utilizada na interface do BORAFUT.}
+          \caption{Paleta de cores utilizada na interface do Borafut.}
           \label{fig:paleta-borafut}
       \end{figure}
 
@@ -282,8 +282,8 @@
     \subsection{Diretrizes de Acessibilidade}
       O layout foi projetado para oferecer hierarquia visual clara, espaçamentos amplos e elementos interativos bem destacados. O aplicativo também oferece suporte a modo escuro, reduzindo o cansaço visual em uso prolongado, e utiliza linguagem neutra e inclusiva em suas mensagens, rótulos e instruções. Exemplos da aplicação dessas diretrizes podem ser observados nas telas do protótipo apresentadas na Seção~\ref{sec:prototipacao}.
 
-    \subsection{Heurísticas de Usabilidade Aplicadas ao BORAFUT}
-      As decisões de design foram guiadas pelos princípios heurísticos de usabilidade propostos por Jakob Nielsen (1994), já discutidos no referencial teórico deste trabalho. No contexto da etapa de design, as heurísticas foram aplicadas de forma prática, influenciando diretamente a estrutura das telas, os padrões de navegação e os mecanismos de feedback. Entre as aplicações incorporadas ao BORAFUT, destacam-se:
+    \subsection{Heurísticas de Usabilidade Aplicadas ao Borafut}
+      As decisões de design foram guiadas pelos princípios heurísticos de usabilidade propostos por Jakob Nielsen (1994), já discutidos no referencial teórico deste trabalho. No contexto da etapa de design, as heurísticas foram aplicadas de forma prática, influenciando diretamente a estrutura das telas, os padrões de navegação e os mecanismos de feedback. Entre as aplicações incorporadas ao Borafut, destacam-se:
 
       \begin{itemize}
         \item \textbf{Visibilidade do status do sistema}: o usuário recebe feedback imediato ao confirmar presença, criar um jogo ou realizar qualquer ação relevante, por meio de mensagens breves, estados visuais atualizados e animações sutis.
@@ -305,11 +305,11 @@
         \item \textbf{Ajudar usuários a reconhecer, diagnosticar e recuperar erros}: mensagens de erro evitam jargões e destacam visualmente o campo ou ação que precisa ser ajustado, orientando o usuário sobre como prosseguir, reduzindo frustração.
     \end{itemize}
     
-    Com essas aplicações, o BORAFUT cobre diretamente nove das dez heurísticas propostas por Nielsen, aplicando princípios estabelecidos de usabilidade. Isso fortalece o design e torna a experiência mais fluida, intuitiva e acessível para diferentes perfis de usuários.
+    Com essas aplicações, o Borafut cobre diretamente nove das dez heurísticas propostas por Nielsen, aplicando princípios estabelecidos de usabilidade. Isso fortalece o design e torna a experiência mais fluida, intuitiva e acessível para diferentes perfis de usuários.
     
   \section{Prototipação}
     \label{sec:prototipacao}
-    A etapa de prototipação teve como objetivo aplicar as diretrizes de design definidas para o BORAFUT, permitindo visualizar, testar e validar a organização das telas e dos fluxos antes da  implementação. O protótipo funciona como um artefato intermediário fundamental, servindo tanto para avaliação interna quanto como base para futuros testes de usabilidade planejados para fases posteriores do projeto.
+    A etapa de prototipação teve como objetivo aplicar as diretrizes de design definidas para o Borafut, permitindo visualizar, testar e validar a organização das telas e dos fluxos antes da  implementação. O protótipo funciona como um artefato intermediário fundamental, servindo tanto para avaliação interna quanto como base para futuros testes de usabilidade planejados para fases posteriores do projeto.
     
     O protótipo foi desenvolvido no Figma em alta fidelidade, utilizando componentes reutilizáveis, estilos globais e grades consistentes com a identidade visual apresentada anteriormente. A Figura~\ref{fig:prot-geral} apresenta a visão geral das telas do protótipo de alta fidelidade desenvolvido no Figma.
     
@@ -320,7 +320,7 @@
         \label{fig:prot-geral}
     \end{figure}
     
-    Os fluxos prototipados foram selecionados a partir dos principais cenários de uso definidos na Seção~\ref{sec:fluxos-principais}, incluindo login e cadastro, criação de futs, visualização de mapa, acesso a perfis e telas de confirmação. Para fins de documentação, esta seção apresenta três telas representativas que ilustram diferentes tipos de interação e estrutura visual no BORAFUT.
+    Os fluxos prototipados foram selecionados a partir dos principais cenários de uso definidos na Seção~\ref{sec:fluxos-principais}, incluindo login e cadastro, criação de futs, visualização de mapa, acesso a perfis e telas de confirmação. Para fins de documentação, esta seção apresenta três telas representativas que ilustram diferentes tipos de interação e estrutura visual no Borafut.
     
     \begin{figure}[h]
         \centering
@@ -351,32 +351,32 @@
       
     A Figura~\ref{fig:prot-fut} exibe a tela de detalhes de um jogo (“fut”) já marcado, ilustrando o uso da identidade visual e a forma como as informações de participantes, horário e localização são organizadas.
       
-    Essas telas representam apenas parte das dezenas de telas desenvolvidas no protótipo, que contemplam os fluxos centrais do MVP. O protótipo servirá como base consolidada para a avaliação da usabilidade do BORAFUT, permitindo identificar oportunidades de melhoria na navegação, clareza de rótulos e fluidez da experiência antes da implementação final.
+    Essas telas representam apenas parte das dezenas de telas desenvolvidas no protótipo, que contemplam os fluxos centrais do MVP. O protótipo servirá como base consolidada para a avaliação da usabilidade do Borafut, permitindo identificar oportunidades de melhoria na navegação, clareza de rótulos e fluidez da experiência antes da implementação final.
     
   \section{Arquitetura e design}
     \label{sec:arquitetura-design}
 
-    Esta seção apresenta a arquitetura técnica e a modelagem do banco de dados do BORAFUT, descrevendo como as decisões planejadas na metodologia (Seção~\ref{sec:arquitetura-geral}) foram concretizadas em artefatos. São exibidos dois diagramas baseados no modelo C4, que representam a estrutura do sistema em diferentes níveis de abstração, seguidos do modelo de dados do banco PostgreSQL.
+    Esta seção apresenta a arquitetura técnica e a modelagem do banco de dados do Borafut, descrevendo como as decisões planejadas na metodologia (Seção~\ref{sec:arquitetura-geral}) foram concretizadas em artefatos. São exibidos dois diagramas baseados no modelo C4, que representam a estrutura do sistema em diferentes níveis de abstração, seguidos do modelo de dados do banco PostgreSQL.
 
     \subsection{Modelo C4 de contexto, contêineres e componentes}
       \label{subsec:c4}
 
-      O modelo C4, proposto por Brown~\cite{brown2018}, é um método visual para documentar arquitetura de software em quatro níveis de abstração: contexto, contêineres, componentes e código, que permitem descrever a arquitetura de software em diferentes graus de detalhe. Neste trabalho, representam-se os três primeiros níveis (contexto, contêineres e componentes), suficientes para comunicar tanto a visão geral quanto a organização técnica interna do BORAFUT; o nível de código não é detalhado por já estar expresso no próprio repositório da aplicação.
+      O modelo C4, proposto por Brown~\cite{brown2018}, é um método visual para documentar arquitetura de software em quatro níveis de abstração: contexto, contêineres, componentes e código, que permitem descrever a arquitetura de software em diferentes graus de detalhe. Neste trabalho, representam-se os três primeiros níveis (contexto, contêineres e componentes), suficientes para comunicar tanto a visão geral quanto a organização técnica interna do Borafut; o nível de código não é detalhado por já estar expresso no próprio repositório da aplicação.
 
       \subsubsection*{Diagrama de contexto (C1).}
-        O diagrama de contexto apresenta o BORAFUT como um sistema inserido em seu ambiente de uso. Ele representa as interações entre os usuários e os sistemas externos que fornecem serviços complementares. Na Figura~\ref{fig:c4-contexto}, observa-se que o aplicativo é utilizado por jogadores amadores, seu usuário principal, comunicando-se com serviços responsáveis por autenticação e geolocalização.
+        O diagrama de contexto apresenta o Borafut como um sistema inserido em seu ambiente de uso. Ele representa as interações entre os usuários e os sistemas externos que fornecem serviços complementares. Na Figura~\ref{fig:c4-contexto}, observa-se que o aplicativo é utilizado por jogadores amadores, seu usuário principal, comunicando-se com serviços responsáveis por autenticação e geolocalização.
 
         \begin{figure}[h]
             \centering
             \includegraphics[width=0.7\textwidth]{figuras/c4-contexto.png}
-            \caption{Diagrama C4 nível contexto do BORAFUT.}
+            \caption{Diagrama C4 nível contexto do Borafut.}
             \label{fig:c4-contexto}
         \end{figure}
 
       \subsubsection*{Diagrama de contêineres (C2).}
         O diagrama de contêineres representa a decomposição interna do sistema em suas principais partes executáveis, chamadas de contêineres. Cada contêiner abriga um conjunto de responsabilidades técnicas ou funcionais, comunicando-se com os demais por interfaces bem definidas.  
 
-        A Figura~\ref{fig:c4-conteineres} apresenta os principais contêineres do BORAFUT:
+        A Figura~\ref{fig:c4-conteineres} apresenta os principais contêineres do Borafut:
         \begin{itemize}
             \item o \textbf{aplicativo móvel} (React Native), responsável pela interação com o usuário e envio das requisições à API;
             \item o \textbf{backend} (Node.js com NestJS e Fastify), que concentra a lógica de negócio, autenticação e orquestração de dados;
@@ -389,7 +389,7 @@
         \begin{figure}[h]
             \centering
             \includegraphics[width=\textwidth]{figuras/diagramas-src/render/c4-conteineres.png}
-            \caption{Diagrama C4 nível contêineres do BORAFUT.}
+            \caption{Diagrama C4 nível contêineres do Borafut.}
             \label{fig:c4-conteineres}
         \end{figure}
 
@@ -399,14 +399,14 @@
         \begin{sidewaysfigure}
             \centering
             \includegraphics[width=1.0\linewidth]{figuras/diagramas-src/render/c4-componentes.png}
-            \caption{Diagrama C4 nível componentes do \textit{backend} do BORAFUT.}
+            \caption{Diagrama C4 nível componentes do \textit{backend} do Borafut.}
             \label{fig:c4-componentes}
         \end{sidewaysfigure}
 
     \subsection{Modelo de dados do PostgreSQL}
       \label{subsec:modelo-dados}
 
-      O modelo de dados do BORAFUT foi elaborado com base nas entidades e relacionamentos identificados durante o levantamento de requisitos (Capítulo~\ref{sec:metodologia-elicitacao}). O objetivo é garantir que as informações essenciais, como jogadores, quadras, futs e partidas, sejam armazenadas de forma estruturada, mantendo a integridade referencial. Entre as principais entidades estão:
+      O modelo de dados do Borafut foi elaborado com base nas entidades e relacionamentos identificados durante o levantamento de requisitos (Capítulo~\ref{sec:metodologia-elicitacao}). O objetivo é garantir que as informações essenciais, como jogadores, quadras, futs e partidas, sejam armazenadas de forma estruturada, mantendo a integridade referencial. Entre as principais entidades estão:
 
       \begin{itemize}
           \item \textbf{Jogador}: dados pessoais, preferências e histórico de participações;
@@ -423,7 +423,7 @@
       \begin{figure}[htbp]
           \centering
           \includegraphics[width=\textwidth,height=0.85\textheight,keepaspectratio]{figuras/diagramas-src/render/mer-conceitual.png}
-          \caption{Modelo conceitual de dados do BORAFUT, na notação entidade-relacionamento de Chen. Fonte: elaborado pelos autores.}
+          \caption{Modelo conceitual de dados do Borafut, na notação entidade-relacionamento de Chen. Fonte: elaborado pelos autores.}
           \label{fig:mer-conceitual}
       \end{figure}
 

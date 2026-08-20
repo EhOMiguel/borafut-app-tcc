@@ -97,7 +97,7 @@
 
         Como SGBD, foi adotado o PostgreSQL, na versão 16, por se tratar de uma solução de código aberto, madura e amplamente utilizada no meio acadêmico e corporativo. O PostgreSQL segue o padrão SQL \textit{American National Standards Institute} (ANSI), oferece mecanismos robustos de controle de acesso e dispõe de boa compatibilidade com serviços em nuvem, o que se ajusta ao contexto do projeto com baixo custo e alta confiabilidade.
 
-        No tratamento de localização, as coordenadas geográficas das quadras e dos usuários são armazenadas como pares de latitude e longitude, e as buscas por proximidade são resolvidas por filtragem em caixa delimitadora (\textit{bounding box}), abordagem suficiente para o escopo atual. O PostgreSQL ainda oferece a extensão geoespacial PostGIS \cite{postgis_docs}, considerada como caminho de evolução para consultas espaciais mais sofisticadas em versões futuras do sistema.
+        No tratamento de localização, apenas as coordenadas geográficas das quadras são armazenadas, como pares de latitude e longitude. O catálogo é pequeno e restrito ao recorte de cobertura, de modo que a API o serve por inteiro em uma única consulta, sem filtro espacial no banco, e a verificação de proximidade da quadra na confirmação de chegada é calculada no próprio dispositivo, chegando ao servidor apenas como indicador booleano. O PostgreSQL ainda oferece a extensão geoespacial PostGIS \cite{postgis_docs}, considerada como caminho de evolução para consultas espaciais mais sofisticadas em versões futuras do sistema.
 
     \section{Integrações e serviços externos}
     \label{sec:integracoes}
@@ -111,10 +111,10 @@
         A autenticação sem senha envia ao usuário um código de verificação por e-mail. Esse envio é realizado pelo \textit{Amazon Simple Email Service} (SES), serviço gerenciado de e-mail transacional da \textit{Amazon Web Services} (AWS) \cite{aws_ses_docs}, escolhido pela integração com a infraestrutura do projeto e pela boa entregabilidade das mensagens.
 
         \subsection{Armazenamento de mídia (AWS S3 e CloudFront)}
-        As imagens do sistema, como fotos de perfil e de quadras, são armazenadas no \textit{Amazon Simple Storage Service} (S3) \cite{aws_s3_docs} e entregues por meio da rede de distribuição de conteúdo (CDN) \textit{Amazon CloudFront} \cite{aws_cloudfront_docs}. Essa combinação reduz a latência de carregamento e o custo de banda na entrega das mídias.
+        As fotos das quadras são publicadas em um \textit{bucket} do \textit{Amazon Simple Storage Service} (S3) \cite{aws_s3_docs} e entregues por meio da rede de distribuição de conteúdo (CDN) \textit{Amazon CloudFront} \cite{aws_cloudfront_docs}. A publicação ocorre fora do tempo de execução da aplicação, por rotina de preparação do catálogo, e o sistema armazena somente a URL resultante, o que reduz a latência de carregamento e o custo de banda sem acoplar a API ao armazenamento de mídia. Os avatares não são imagens hospedadas: são seis opções predefinidas, renderizadas pelo próprio aplicativo.
 
         \subsection{Notificações push (Expo Notifications)}
-        Lembretes e avisos (convites para futs, lembrete de horário e mudanças no estado de uma partida) são entregues por notificações \textit{push}, viabilizadas pelo serviço Expo Notifications \cite{expo_notifications_docs}, que abstrai o envio para Android e iOS a partir de uma interface única.
+        Lembretes e avisos (lembretes de véspera, de uma hora e do horário do fut, além de aviso de inatividade e de cancelamento) são entregues por notificações \textit{push}, viabilizadas pelo serviço Expo Notifications \cite{expo_notifications_docs}, que abstrai o envio para Android e iOS a partir de uma interface única.
 
     \section{Resumo das tecnologias e versões}
 
@@ -143,7 +143,7 @@
                 Jest & Testes automatizados (backend) & 30 \\ \hline
                 TypeScript & Linguagem (backend / frontend) & 5.7 / 5.9 \\ \hline
                 ESLint & Análise estática de código & 9 \\ \hline
-                Prettier & Formatação de código & 3.4 \\ \hline
+                Prettier & Formatação de código & 3.8 \\ \hline
             \end{tabular}
 
             \vspace{2pt}

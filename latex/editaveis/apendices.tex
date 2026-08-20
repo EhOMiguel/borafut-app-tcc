@@ -4,7 +4,7 @@
 
 \chapter{Modelo lógico de dados}
     \label{apendice:MER}
-    Este apêndice apresenta, em página inteira, o modelo lógico de dados do BORAFUT, derivado do modelo conceitual da Seção~\ref{subsec:modelo-dados}. O esquema relacional detalha as tabelas, seus atributos, as chaves primárias e estrangeiras e as demais restrições de integridade implementadas no PostgreSQL. A descrição atributo a atributo encontra-se no dicionário de dados do Apêndice~\ref{apendice:dicionario}.
+    Este apêndice apresenta, em página inteira, o modelo lógico de dados do Borafut, derivado do modelo conceitual da Seção~\ref{subsec:modelo-dados}. O esquema relacional detalha as tabelas, seus atributos, as chaves primárias e estrangeiras e as demais restrições de integridade implementadas no PostgreSQL. A descrição atributo a atributo encontra-se no dicionário de dados do Apêndice~\ref{apendice:dicionario}.
 
     \begin{figure}[p]
         \centering
@@ -15,7 +15,7 @@
 
 \chapter{Project Model Canvas}
     \label{apendice:pmcanvas}
-    Este apêndice reúne o Project Model Canvas utilizado no planejamento inicial do projeto. O canvas sintetiza elementos estratégicos como propósito, stakeholders, entregas, recursos e riscos, oferecendo uma visão macro estruturada do escopo e da proposta de valor do BORAFUT. Esse artefato orientou as primeiras etapas de concepção e alinhamento do projeto.
+    Este apêndice reúne o Project Model Canvas utilizado no planejamento inicial do projeto. O canvas sintetiza elementos estratégicos como propósito, stakeholders, entregas, recursos e riscos, oferecendo uma visão macro estruturada do escopo e da proposta de valor do Borafut. Esse artefato orientou as primeiras etapas de concepção e alinhamento do projeto.
 
     \begin{sidewaysfigure}
         \centering
@@ -42,7 +42,7 @@
         Reduzir conflitos pelo uso das quadras & Perfil da quadra & Regras e agenda da quadra & Visualizar os futs agendados na quadra (E3-F2-US2) & Disponibilizar a agenda de futs dos próximos dias & Consultar os futs agendados e em andamento por intervalo de datas \\
         Centralizar a organização & Perfil do fut & Confirmação de presença & Confirmar presença em um fut (E4-F2-US1) & Disponibilizar confirmar e cancelar presença na tela do fut & Registrar a participação e atualizar a contagem de confirmados \\
         Simplificar a dinâmica do jogo & Organização e gerenciamento do fut & Fila e formação de times & Formar os times pela ordem de chegada (E5-F3-US2) & Gerar os times a partir da fila ao iniciar a partida & Selecionar os primeiros jogadores da fila e atribuí-los aos times \\
-        Aumentar a participação & Perfil do usuário & Configurações de perfil & Selecionar ou enviar um avatar (E6-F1-US2) & Permitir a escolha do avatar no perfil & Salvar o avatar escolhido e refleti-lo nas telas \\
+        Aumentar a participação & Perfil do usuário & Configurações de perfil & Selecionar um avatar (E6-F1-US2) & Permitir a escolha do avatar na tela de boas-vindas & Salvar o avatar escolhido e refleti-lo nas telas \\
         \bottomrule
         \end{tabular}
 
@@ -51,14 +51,18 @@
     \end{sidewaystable}
 
     % ===============================================================
+    As histórias a seguir compõem o produto planejado. Aquelas que não foram implementadas
+    na versão entregue estão assinaladas com a marcação 	extit{(fora do escopo do MVP)},
+    de modo que o apêndice registre tanto o planejamento quanto o recorte efetivamente construído.
+
     \section*{Épico 1 -- Gerenciamento de Usuários}
     \textit{Tema: aumentar a participação.}
 
     \subsection*{Feature 1 -- Cadastro e pré-cadastro}
     \begin{itemize}
-        \item \textbf{E1-F1-US1} -- Como potencial usuário, desejo me cadastrar informando e-mail e dados básicos (apelido, região, gênero opcional), para ter acesso completo às funcionalidades do app.
+        \item \textbf{E1-F1-US1} -- Como potencial usuário, desejo me cadastrar informando e-mail, nome, data de nascimento e avatar, podendo completar depois apelido, região, gênero e tipos de fut preferidos, para ter acesso completo às funcionalidades do app.
         \item \textbf{E1-F1-US2} -- Como potencial usuário, desejo receber um e-mail de confirmação com um código de verificação ao me cadastrar, para validar que o e-mail informado realmente me pertence.
-        \item \textbf{E1-F1-US3} -- Como usuário registrado, desejo poder atualizar meu e-mail, desde que eu confirme o novo endereço com um código enviado para ele.
+        \item \textbf{E1-F1-US3} -- Como usuário registrado, desejo poder atualizar meu e-mail, desde que eu confirme o novo endereço com um código enviado para ele. \textit{(fora do escopo do MVP)}
     \end{itemize}
 
     \subsection*{Feature 2 -- Login por código e sessão}
@@ -70,11 +74,11 @@
 
     \subsection*{Feature 3 -- Gestão de conta e privacidade}
     \begin{itemize}
-        \item \textbf{E1-F3-US1} -- Como usuário registrado, desejo poder excluir minha conta definitivamente, para deixar de utilizar o app e ter meus dados pessoais removidos conforme a política de privacidade.
-        \item \textbf{E1-F3-US2} -- Como usuário registrado, desejo visualizar um resumo dos dados pessoais que o app armazena sobre mim, para ter transparência sobre o uso das minhas informações.
-        \item \textbf{E1-F3-US3} -- Como usuário registrado, desejo poder configurar se autorizo ou não o uso da minha localização em tempo real, para controlar meu nível de exposição no mapa e nos futs.
-        \item \textbf{E1-F3-US4} -- Como usuário registrado, desejo validar meu número de telefone por meio de código enviado por SMS (opcional), para aumentar a confiança da comunidade na minha autenticidade.
-        \item \textbf{E1-F3-US5} -- Como usuário (registrado ou não), desejo alternar entre modo claro e modo escuro no app, para adequar a interface às minhas preferências.
+        \item \textbf{E1-F3-US1} -- Como usuário registrado, desejo solicitar a exclusão da minha conta pela página pública do serviço, para deixar de utilizar o app e ter meu cadastro anonimizado conforme a política de privacidade, preservando o histórico coletivo dos futs sem identificação.
+        \item \textbf{E1-F3-US2} -- Como usuário registrado, desejo visualizar um resumo dos dados pessoais que o app armazena sobre mim, para ter transparência sobre o uso das minhas informações. \textit{(fora do escopo do MVP)}
+        \item \textbf{E1-F3-US3} -- Como usuário registrado, desejo controlar a permissão de localização concedida ao aplicativo, usada apenas para centralizar o mapa e para verificar, no meu próprio aparelho, a proximidade da quadra na confirmação de chegada.
+        \item \textbf{E1-F3-US4} -- Como usuário registrado, desejo validar meu número de telefone por meio de código enviado por SMS (opcional), para aumentar a confiança da comunidade na minha autenticidade. \textit{(fora do escopo do MVP)}
+        \item \textbf{E1-F3-US5} -- Como usuário (registrado ou não), desejo alternar entre modo claro e modo escuro no app, para adequar a interface às minhas preferências. \textit{(fora do escopo do MVP)}
     \end{itemize}
 
     % ===============================================================
@@ -85,14 +89,14 @@
     \begin{itemize}
         \item \textbf{E2-F1-US1} -- Como usuário (registrado ou não), desejo poder aproximar, afastar e navegar pelo mapa, para ter uma visão detalhada das quadras na minha região.
         \item \textbf{E2-F1-US2} -- Como usuário (registrado ou não), desejo selecionar uma quadra no mapa para abrir seu perfil, para obter mais informações sobre aquele local.
-        \item \textbf{E2-F1-US3} -- Como usuário (registrado ou não), desejo pesquisar quadras ou bairros pelo nome, para encontrar locais específicos de forma rápida.
+        \item \textbf{E2-F1-US3} -- Como usuário (registrado ou não), desejo pesquisar quadras pelo nome, para encontrar locais específicos de forma rápida.
         \item \textbf{E2-F1-US4} -- Como usuário (registrado ou não), desejo utilizar um botão de “localizar-me” no mapa, para que o mapa centralize na minha posição atual.
     \end{itemize}
 
     \subsection*{Feature 2 -- Filtros e destaque}
     \begin{itemize}
-        \item \textbf{E2-F2-US1} -- Como usuário (registrado ou não), desejo aplicar filtros no mapa (distância, avaliação, piso, iluminação, status), para encontrar quadras que se encaixem melhor no que procuro.
-        \item \textbf{E2-F2-US2} -- Como usuário registrado, desejo filtrar quadras pelas minhas favoritas.
+        \item \textbf{E2-F2-US1} -- Como usuário (registrado ou não), desejo aplicar no mapa um filtro por status do fut, para encontrar rapidamente onde há jogo acontecendo ou agendado. Filtros por distância, avaliação, piso e iluminação permanecem no plano de evolução.
+        \item \textbf{E2-F2-US2} -- Como usuário registrado, desejo acessar minhas quadras favoritas em uma lista dedicada.
         \item \textbf{E2-F2-US3} -- Como usuário (registrado ou não), desejo ver no mapa um indicativo visual das quadras onde há futs acontecendo ou agendados.
     \end{itemize}
 
@@ -102,7 +106,7 @@
 
     \subsection*{Feature 1 -- Informações e avaliação}
     \begin{itemize}
-        \item \textbf{E3-F1-US1} -- Como usuário (registrado ou não), desejo visualizar informações básicas da quadra (endereço, tipo de piso, iluminação, se é pública/privada).
+        \item \textbf{E3-F1-US1} -- Como usuário (registrado ou não), desejo visualizar informações básicas da quadra (endereço, tipo de piso, iluminação, movimentação, qualidade e tamanho).
         \item \textbf{E3-F1-US2} -- Como usuário (registrado ou não), desejo visualizar as avaliações gerais da quadra feitas por outros usuários.
         \item \textbf{E3-F1-US3} -- Como usuário registrado, desejo avaliar uma quadra de forma geral, contribuindo para a comunidade.
         \item \textbf{E3-F1-US4} -- Como usuário registrado, desejo visualizar quantos futs já aconteceram naquela quadra.
@@ -164,8 +168,8 @@
     \begin{itemize}
         \item \textbf{E5-F2-US1} -- Como usuário registrado, desejo confirmar minha chegada na quadra.
         \item \textbf{E5-F2-US2} -- Como organizador, desejo registrar a presença de uma pessoa não cadastrada.
-        \item \textbf{E5-F2-US3} -- Como usuário não registrado, desejo receber um e-mail ao ser adicionado a um fut.
-        \item \textbf{E5-F2-US4} -- Como usuário registrado que já confirmou a própria chegada, desejo confirmar a chegada de outro jogador presente na quadra, para agilizar o registro de quem chegou.
+        \item \textbf{E5-F2-US3} -- Como usuário não registrado, desejo receber um e-mail ao ser adicionado a um fut. \textit{(fora do escopo do MVP)}
+        \item \textbf{E5-F2-US4} -- Como criador ou organizador que já confirmou a própria chegada, desejo confirmar a chegada de outro jogador presente na quadra, para agilizar o registro de quem chegou.
         \item \textbf{E5-F2-US5} -- Como organizador, desejo revogar uma chegada registrada indevidamente, para manter a fila fiel a quem está na quadra.
     \end{itemize}
 
@@ -212,18 +216,18 @@
     \subsection*{Feature 1 -- Configurações de perfil}
     \begin{itemize}
         \item \textbf{E6-F1-US1} -- Como usuário registrado, desejo alterar meu apelido.
-        \item \textbf{E6-F1-US2} -- Como usuário registrado, desejo selecionar ou enviar um avatar para o meu perfil.
+        \item \textbf{E6-F1-US2} -- Como usuário registrado, desejo selecionar um avatar entre as opções disponíveis, na tela de boas-vindas.
     \end{itemize}
 
 \chapter{Especificação dos Casos de Uso}
     \label{apendice:casos-uso}
 
-    Este apêndice detalha os principais casos de uso do BORAFUT na forma de especificação textual, complementando os diagramas das Figuras~\ref{fig:uc-conta-mapa} a~\ref{fig:uc-fut-partida}. O formato adotado segue a especificação de caso de uso detalhado proposta por Cockburn~\cite{cockburn2001}, na qual cada caso descreve o ator principal, as pré e pós-condições, o fluxo principal (sequência de episódios do caminho de sucesso), os fluxos alternativos (variações válidas) e as exceções (situações de erro e seu tratamento). Foram selecionados os casos de uso mais representativos do escopo, por concentrarem maior densidade de regras de negócio.
+    Este apêndice detalha os principais casos de uso do Borafut na forma de especificação textual, complementando os diagramas das Figuras~\ref{fig:uc-conta-mapa} a~\ref{fig:uc-fut-partida}. O formato adotado segue a especificação de caso de uso detalhado proposta por Cockburn~\cite{cockburn2001}, na qual cada caso descreve o ator principal, as pré e pós-condições, o fluxo principal (sequência de episódios do caminho de sucesso), os fluxos alternativos (variações válidas) e as exceções (situações de erro e seu tratamento). Foram selecionados os casos de uso mais representativos do escopo, por concentrarem maior densidade de regras de negócio.
 
     \section*{UC02 -- Autenticar-se}
         \begin{description}
             \item[Ator principal] Usuário Registrado.
-            \item[Pré-condições] o usuário possui um endereço de e-mail já cadastrado.
+            \item[Pré-condições] o usuário informa um endereço de e-mail válido. O sistema responde de maneira idêntica para endereços cadastrados e não cadastrados, de modo a não revelar quem possui conta.
             \item[Pós-condições] sessão iniciada, com token de acesso e token de renovação emitidos.
         \end{description}
 
@@ -237,7 +241,7 @@
 
         \noindent\textbf{Fluxos alternativos}
         \begin{itemize}
-            \item \textbf{A1 (primeiro acesso):} se o e-mail ainda não possui perfil completo, após a validação o sistema direciona o usuário ao cadastro de dados básicos antes de liberar o acesso pleno.
+            \item \textbf{A1 (primeiro acesso):} se o e-mail ainda não possui perfil completo, após a validação o sistema direciona o usuário ao cadastro de dados básicos, exigindo nome, data de nascimento e escolha de avatar. A etapa é bloqueante: sem ela o aplicativo não libera as funcionalidades autenticadas. Os demais campos do formulário são opcionais e podem ficar em branco.
             \item \textbf{A2 (reenvio):} antes de inserir o código, o usuário pode solicitar novo envio, respeitado o limite de solicitações.
         \end{itemize}
 
@@ -272,6 +276,7 @@
         \noindent\textbf{Exceções}
         \begin{itemize}
             \item \textbf{E1 (sem elegibilidade):} se o jogador não possui participação que o habilite naquela quadra, a ação de avaliar permanece indisponível, e o sistema indica que a avaliação depende de ter jogado no local.
+            \item \textbf{E2 (conteúdo impróprio):} se o comentário contém termos de uma lista de vocabulário ofensivo mantida pelo sistema, a avaliação é rejeitada e o usuário é convidado a reescrevê-la.
         \end{itemize}
 
     \section*{UC15 -- Confirmar presença}
@@ -370,7 +375,7 @@
         \begin{itemize}
             \item \textbf{A1 (GPS fora do raio):} o sistema informa a distância detectada e permite ao usuário confirmar mesmo assim, registrando a chegada sem validação de GPS.
             \item \textbf{A2 (sem permissão de localização):} o sistema solicita autoconfirmação e registra a chegada sem validação de GPS.
-            \item \textbf{A3 (chegada de terceiro):} um jogador que já chegou confirma a chegada de outro participante presente na quadra; o registro guarda quem realizou a confirmação.
+            \item \textbf{A3 (chegada de terceiro):} o criador ou um organizador que já confirmou a própria chegada registra a chegada de outro participante presente na quadra; o registro guarda quem realizou a confirmação.
         \end{itemize}
 
         \noindent\textbf{Exceções}
@@ -381,8 +386,8 @@
 
     \section*{UC27 -- Cadastrar participante manualmente}
         \begin{description}
-            \item[Ator principal] Organizador ou Criador.
-            \item[Pré-condições] fut em andamento.
+            \item[Ator principal] Organizador ou Criador que já confirmou a própria chegada.
+            \item[Pré-condições] fut agendado ou em andamento, a partir do horário marcado.
             \item[Pós-condições] participante presencial incluído com status chegou e posicionado no fim da fila.
         \end{description}
 
@@ -397,17 +402,17 @@
         \noindent\textbf{Fluxos alternativos}
         \begin{itemize}
             \item \textbf{A1 (e-mail com perfil incompleto):} havendo um perfil incompleto para o e-mail, o sistema o reutiliza, sem duplicar o cadastro.
-            \item \textbf{A2 (e-mail de conta ativa):} se o e-mail pertence a uma conta ativa, o sistema avisa e sugere o convite por link; confirmada a inclusão, vincula a participação à conta existente.
+            \item \textbf{A2 (e-mail de conta ativa):} se o e-mail pertence a uma conta ativa, o sistema interrompe a operação e pede confirmação explícita, sem devolver qualquer identificação do titular; confirmada a inclusão, vincula a participação à conta existente.
         \end{itemize}
 
         \noindent\textbf{Exceções}
         \begin{itemize}
-            \item \textbf{E1 (fora do fut em andamento):} fora do período em andamento, o cadastro manual permanece indisponível, pois antes do início a entrada ocorre por presença ou por convite.
+            \item \textbf{E1 (fora do fut em andamento):} antes do horário marcado, o cadastro manual permanece indisponível, pois até ali a entrada ocorre por confirmação de presença ou pelo link de compartilhamento.
         \end{itemize}
 
     \section*{UC29 -- Iniciar fut}
         \begin{description}
-            \item[Ator principal] Organizador ou Criador.
+            \item[Ator principal] Organizador ou Criador que já confirmou a própria chegada.
             \item[Pré-condições] fut gerenciado e agendado; horário alcançado; número mínimo de jogadores na fila.
             \item[Pós-condições] fut em andamento, primeira partida criada e times formados.
         \end{description}
@@ -508,10 +513,10 @@
 \chapter{Dicionário de Dados}
     \label{apendice:dicionario}
 
-    Este apêndice descreve o modelo físico de dados do BORAFUT, implementado no PostgreSQL a partir do esquema declarativo do Prisma. Para cada entidade (tabela), listam-se os atributos com seu tipo, descrição e restrições. As convenções adotadas são:
+    Este apêndice descreve o modelo físico de dados do Borafut, implementado no PostgreSQL a partir do esquema declarativo do Prisma. Para cada entidade (tabela), listam-se os atributos com seu tipo, descrição e restrições. As convenções adotadas são:
 
     \begin{itemize}
-        \item \textbf{Tipos:} \textit{UUID} (identificador universal único); \textit{texto}, \textit{inteiro}, \textit{decimal} e \textit{booleano} (tipos primitivos); \textit{data/hora} (instante sem fuso) e \textit{data/hora (UTC)} (instante com fuso, armazenado em tempo universal coordenado); \textit{lista de texto} (vetor de cadeias); \textit{enumerado} (conjunto fechado de valores).
+        \item \textbf{Tipos:} \textit{UUID} (identificador universal único); \textit{texto}, \textit{inteiro}, \textit{inteiro longo}, \textit{ponto flutuante} e \textit{booleano} (tipos primitivos); \textit{data/hora} (instante sem fuso) e \textit{data/hora (UTC)} (instante com fuso, armazenado em tempo universal coordenado); \textit{lista de texto} (vetor de cadeias); \textit{enumerado} (conjunto fechado de valores).
         \item \textbf{Restrições:} \textbf{PK} (chave primária), \textbf{FK} (chave estrangeira, com a tabela referenciada), \textbf{UQ} (restrição de unicidade), \textit{opcional} (admite valor nulo) e \textit{padrão} (valor assumido quando não informado).
         \item Os atributos \texttt{created\_at} e \texttt{updated\_at}, recorrentes, registram os instantes de criação e de última atualização do registro.
     \end{itemize}
@@ -530,15 +535,16 @@
         \texttt{apelido} & texto & Apelido exibido nas telas. & opcional \\
         \texttt{email} & texto & Endereço de e-mail, usado na autenticação. & obrigatório, UQ \\
         \texttt{data\_nascimento} & data/hora & Data de nascimento. & opcional \\
-        \texttt{telefone} & texto & Telefone de contato. & opcional \\
+        \texttt{telefone} & texto & Telefone de contato. Coluna reservada, não preenchida pelo aplicativo no escopo atual. & opcional \\
         \texttt{genero} & texto & Gênero informado. & opcional \\
         \texttt{regiao} & texto & Região administrativa. & opcional \\
         \texttt{avatar\_id} & inteiro & Avatar escolhido. & opcional \\
-        \texttt{tipo\_fut\_preferido} & lista de texto & Modalidades de fut preferidas. & \\
+        \texttt{tipo\_fut\_preferido} & lista de texto & Modalidades de fut preferidas. & obrigatório, padrão lista vazia \\
         \texttt{perfil\_completo} & booleano & Indica se o cadastro básico foi concluído. & padrão falso \\
         \texttt{ativo} & booleano & Indica se a conta está ativa. & padrão verdadeiro \\
         \texttt{ultimo\_login} & data/hora (UTC) & Instante do último acesso. & opcional \\
-        \texttt{expo\_push\_token} & texto & Token de push do dispositivo, para notificações. & opcional, UQ \\
+        \texttt{expo\_push\_token} & texto & Token de push do dispositivo, para notificações. & opcional, UQ \
+        \texttt{termos\_aceitos\_em} & data/hora (UTC) & Instante do aceite dos termos de uso, registrado na criação da conta. & opcional \\
         \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
         \texttt{updated\_at} & data/hora (UTC) & Instante da última atualização. & \\
         \hline
@@ -589,8 +595,8 @@
         \texttt{id} & UUID & Identificador da quadra. & PK \\
         \texttt{slug} & texto & Identificador legível e estável. & UQ \\
         \texttt{nome} & texto & Nome da quadra. & obrigatório \\
-        \texttt{latitude} & decimal & Latitude geográfica. & obrigatório \\
-        \texttt{longitude} & decimal & Longitude geográfica. & obrigatório \\
+        \texttt{latitude} & ponto flutuante & Latitude geográfica. & obrigatório \\
+        \texttt{longitude} & ponto flutuante & Longitude geográfica. & obrigatório \\
         \texttt{endereco} & texto & Endereço da quadra. & opcional \\
         \texttt{observacao} & texto & Observações e regras de uso. & opcional \\
         \texttt{nivel\_piso} & enumerado & Estado do piso. & DESTRUIDO, RUIM, MEDIO, BOM \\
@@ -643,8 +649,8 @@
         \texttt{id} & UUID & Identificador da avaliação. & PK \\
         \texttt{quadra\_id} & UUID & Quadra avaliada. & FK \texttt{quadra} \\
         \texttt{jogador\_id} & UUID & Autor da avaliação. & FK \texttt{jogador} \\
-        \texttt{nota} & inteiro & Nota atribuída. & obrigatório \\
-        \texttt{comentario} & texto & Comentário. & opcional \\
+        \texttt{nota} & inteiro & Nota atribuída. & obrigatório, de 1 a 5 \\
+        \texttt{comentario} & texto & Comentário. & opcional, até 500 caracteres \\
         \texttt{status} & texto & Situação da avaliação. & padrão ATIVA \\
         \texttt{inativada\_em} & data/hora (UTC) & Instante de inativação. & opcional \\
         \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
@@ -688,7 +694,7 @@
         \texttt{tempo\_partida\_minutos} & inteiro & Duração padrão da partida. & padrão 10 \\
         \texttt{gols\_para\_vencer} & inteiro & Gols para vencer. & padrão 2 \\
         \texttt{tamanho\_por\_time} & inteiro & Jogadores por time. & padrão 5 \\
-        \texttt{event\_seq} & inteiro & Contador monotônico dos eventos de tempo real do fut. & padrão 0 \\
+        \texttt{event\_seq} & inteiro longo & Contador monotônico dos eventos de tempo real do fut. & padrão 0 \\
         \texttt{motivo\_sistema} & texto & Motivo de transição automática (nunca iniciado, encerrado por inatividade ou encerrado automaticamente). & opcional \\
         \texttt{inatividade\_reiniciada\_em} & data/hora (UTC) & Base da prorrogação da escalada de inatividade. & opcional \\
         \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
@@ -772,7 +778,8 @@
         \texttt{tempo\_partida\_minutos} & inteiro & Duração (cópia da regra do fut na criação). & obrigatório \\
         \texttt{gols\_para\_vencer} & inteiro & Gols para vencer (cópia da regra do fut). & obrigatório \\
         \texttt{tempo\_pausado\_ms} & inteiro & Tempo acumulado em pausa, em milissegundos. & padrão 0 \\
-        \texttt{pausado\_em} & data/hora (UTC) & Instante da pausa corrente. & opcional \\
+        \texttt{pausado\_em} & data/hora (UTC) & Instante da pausa corrente. & opcional \
+        \texttt{rotacao\_em} & data/hora (UTC) & Instante agendado para efetivar a rotação de times após o encerramento provisório. & opcional \\
         \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
         \texttt{updated\_at} & data/hora (UTC) & Instante da última atualização. & \\
         \hline
@@ -814,17 +821,17 @@
 
     \section*{Tabelas de domínio e operacionais}
 
-    As tabelas de domínio padronizam os estados e os tipos de evento referenciados pelas demais entidades. Todas seguem a mesma estrutura: \texttt{id} (inteiro sequencial, PK) e \texttt{nome} (texto, UQ). A Tabela a seguir resume sua finalidade e valores ilustrativos.
+    As tabelas de domínio padronizam os estados e os tipos de evento referenciados pelas demais entidades. Todas seguem a mesma estrutura: \texttt{id} (inteiro sequencial, PK) e \texttt{nome} (texto, UQ). A Tabela a seguir resume sua finalidade e o conjunto completo de valores povoados pela carga inicial.
 
     \begin{longtable}{p{3.2cm}p{5.4cm}p{5.1cm}}
         \hline
-        \textbf{Tabela} & \textbf{Finalidade} & \textbf{Valores ilustrativos} \\
+        \textbf{Tabela} & \textbf{Finalidade} & \textbf{Valores} \\
         \hline
         \endhead
         \texttt{status\_fut} & Estados do fut. & agendado, em andamento, encerrado, cancelado \\
         \texttt{status\_participacao} & Estados da participação. & confirmado, chegou, saiu, cancelado \\
         \texttt{status\_partida} & Estados da partida. & em andamento, pausada, encerrada provisoriamente, em pênaltis, encerrada \\
-        \texttt{tipo\_acao} & Tipos de evento da partida. & gol, gol contra, gol desfeito, pausa, retomada, encerramento, pênalti \\
+        \texttt{tipo\_acao} & Tipos de evento da partida. & gol, pênalti convertido, pênalti perdido, gol contra, gol desfeito, pausa, retomada, encerramento da partida, edição de regras \\
         \hline
     \end{longtable}
 
@@ -934,7 +941,7 @@
         Criar partidas; Consultar quadras; Avaliações; Ocupação em tempo real; Encontrar grupos; Apostas; Estatísticas pessoais; Campeonatos; Ranqueamento; Notificações. \\
         \hline
 
-        O que mais te motivaria a usar o BORAFUT? &
+        O que mais te motivaria a usar o Borafut? &
         Marcar jogos facilmente; Juntar a galera; Manter rotina de atividade física; Acompanhar estatísticas; Recompensas/desafios; Evitar furos; Achar quadra e horário. \\
         \hline
 
@@ -950,7 +957,7 @@
 
     \section*{Identificação da pesquisa}
         \begin{description}
-            \item[Título do projeto] Aplicativo para Organização de Partidas de Futebol Amador (BORAFUT).
+            \item[Título do projeto] Aplicativo para Organização de Partidas de Futebol Amador (Borafut).
             \item[Instituição] Universidade de Brasília (UnB), Faculdade de Ciências e Tecnologias em Engenharia (FCTE).
             \item[Curso] Engenharia de Software.
             \item[Pesquisadores responsáveis] Arthur Carneiro Trindade e Miguel Moreira da Silva de Oliveira.
@@ -959,7 +966,7 @@
         \end{description}
 
     \section*{Convite e objetivo}
-        Você está sendo convidado(a) a participar voluntariamente de um teste de usabilidade do protótipo de alta fidelidade do aplicativo BORAFUT, desenvolvido como parte de um Trabalho de Conclusão de Curso em Engenharia de Software na Universidade de Brasília.
+        Você está sendo convidado(a) a participar voluntariamente de um teste de usabilidade do protótipo de alta fidelidade do aplicativo Borafut, desenvolvido como parte de um Trabalho de Conclusão de Curso em Engenharia de Software na Universidade de Brasília.
 
         O objetivo deste teste é avaliar a facilidade de uso, a clareza da interface e a eficiência dos principais fluxos de interação do aplicativo, com base nos princípios de Interação Humano-Computador. Os resultados serão utilizados para identificar oportunidades de melhoria na experiência do usuário antes da implementação final do sistema.
 
@@ -967,7 +974,7 @@
         A sua participação consistirá em:
 
         \begin{enumerate}
-            \item realizar um conjunto de tarefas utilizando o protótipo interativo do BORAFUT, acessível via Figma, por compartilhamento de tela em videoconferência (modalidade remota) ou presencialmente, com um dispositivo fornecido pelos pesquisadores;
+            \item realizar um conjunto de tarefas utilizando o protótipo interativo do Borafut, acessível via Figma, por compartilhamento de tela em videoconferência (modalidade remota) ou presencialmente, com um dispositivo fornecido pelos pesquisadores;
             \item verbalizar seus pensamentos durante a realização das tarefas (protocolo \textit{think-aloud}), descrevendo o que está fazendo, o que espera que aconteça e eventuais dificuldades encontradas;
             \item responder a um questionário pós-teste (\textit{System Usability Scale}, SUS) para avaliar sua percepção geral sobre a usabilidade do sistema;
             \item responder a perguntas abertas sobre sua experiência com o protótipo.
@@ -981,7 +988,7 @@
         \textbf{Benefícios.} Você contribuirá diretamente para a melhoria de um aplicativo voltado à comunidade de futebol amador de Brasília. Não há compensação financeira pela participação.
 
     \section*{Confidencialidade e proteção de dados}
-        O projeto BORAFUT encontra-se em fase de desenvolvimento e não foi publicado. Solicitamos que o(a) participante trate como confidenciais todas as informações, telas, fluxos e funcionalidades apresentadas durante o teste, e que não compartilhe capturas de tela, gravações, descrições detalhadas ou qualquer material do protótipo com terceiros.
+        O projeto Borafut encontra-se em fase de desenvolvimento e não foi publicado. Solicitamos que o(a) participante trate como confidenciais todas as informações, telas, fluxos e funcionalidades apresentadas durante o teste, e que não compartilhe capturas de tela, gravações, descrições detalhadas ou qualquer material do protótipo com terceiros.
 
         Em relação ao tratamento dos seus dados pessoais, em conformidade com a Lei Geral de Proteção de Dados (LGPD, Lei nº 13.709/2018)~\cite{LGPD2018}:
 

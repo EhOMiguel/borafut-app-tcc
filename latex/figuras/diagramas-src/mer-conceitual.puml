@@ -1,5 +1,5 @@
 @startchen
-' Modelo conceitual de dados do BORAFUT - notacao de Chen.
+' Modelo conceitual de dados do Borafut - notacao de Chen.
 ' Fonte: specs-diagramas-banca.md secao 2 (entidades 2.2 e relacionamentos 2.3).
 ' Escopo: atributos de dominio. Atributos puramente operacionais (created_at,
 ' updated_at, tokens, contadores de sequencia, flags de moderacao) ficam fora do
@@ -16,9 +16,9 @@ entity JOGADOR {
   id <<key>>
   email
   nome
-  apelido
   dataNascimento
-  telefone
+  avatar
+  apelido
   genero
   regiao
   tiposFutPreferidos <<multi>>
