@@ -1,5 +1,6 @@
 \chapter{Metodologia}
-% Escrever quando finalizar o capitulo.
+
+    Este capítulo descreve como o BoraFut foi conduzido, do método de trabalho à estratégia de avaliação. Inicialmente, apresenta-se a abordagem de desenvolvimento adotada e os critérios que levaram ao modelo híbrido, seguida do processo de desenvolvimento fundamentado no \textit{Extreme Programming}. Em seguida, descreve-se o planejamento inicial, com o \textit{Project Model Canvas} e a análise de mercado, e o levantamento e a análise de requisitos, da elicitação à priorização e à modelagem do \textit{backlog}. Na sequência, expõe-se a estratégia de validação em duas etapas e o plano de privacidade e segurança que rege o tratamento dos dados de usuários e de participantes da pesquisa. Por fim, registram-se as decisões metodológicas que orientaram a arquitetura geral do sistema, cuja concretização é apresentada nos capítulos seguintes.
 
 \section{Abordagem de desenvolvimento}
     % Descrever a abordagem metodológica utilizada (ex: ágil, incremental, MVP-driven)
@@ -8,7 +9,7 @@
 
     O desenvolvimento de sistemas de software requer a definição de uma abordagem metodológica que oriente o processo de trabalho e estabeleça o equilíbrio entre previsibilidade, qualidade e flexibilidade. Essa escolha depende das características do projeto, da equipe e do ambiente organizacional, influenciando diretamente a forma como requisitos, tempo e recursos são gerenciados \cite{pressman2019}.
 
-    O projeto Borafut foi fundamentado em uma abordagem híbrida, combinando elementos de processos dirigidos a plano e de metodologias ágeis. Essa escolha busca conciliar a estruturação necessária ao contexto acadêmico do Trabalho de Conclusão de Curso (TCC) com a adaptabilidade e o foco em valor característicos das metodologias ágeis.
+    O projeto BoraFut foi fundamentado em uma abordagem híbrida, combinando elementos de processos dirigidos a plano e de metodologias ágeis. Essa escolha busca conciliar a estruturação necessária ao contexto acadêmico do Trabalho de Conclusão de Curso (TCC) com a adaptabilidade e o foco em valor característicos das metodologias ágeis.
 
     \subsection{Abordagens dirigidas a plano e ágeis}
 
@@ -24,7 +25,7 @@
             \label{fig:plan-vs-agile}
         \end{figure}
 
-        No contexto do Borafut, o tempo de execução e os recursos disponíveis são fixos, delimitados pelos semestres letivos e pela equipe reduzida. A necessidade de adaptar o escopo e priorizações durante o desenvolvimento caracteriza um cenário tipicamente orientado a valor, justificando a adoção de princípios ágeis.
+        No contexto do BoraFut, o tempo de execução e os recursos disponíveis são fixos, delimitados pelos semestres letivos e pela equipe reduzida. A necessidade de adaptar o escopo e priorizações durante o desenvolvimento caracteriza um cenário tipicamente orientado a valor, justificando a adoção de princípios ágeis.
 
         Entretanto, o projeto também apresenta certas características de um processo dirigido a plano, pois, neste trabalho, optou-se organizacionalmente por tratar o TCC 1 como uma etapa de planejamento estruturado, dedicada à definição de requisitos, arquitetura e critérios de desenvolvimento. O TCC 2, por sua vez, concentra-se na implementação incremental e validação do MVP, com possibilidade de ajustes de escopo e priorização. Essa decisão organizacional, alinhada às necessidades do projeto, permite uma combinação coerente entre planejamento e adaptabilidade.
 
@@ -36,7 +37,7 @@
 
         De forma complementar, Gupta et al. propõem quatro dimensões analíticas: projeto, pessoas, produto e processo, que orientam a escolha do modelo de desenvolvimento. Projetos com escopo exploratório, produtos inovadores e requisitos voláteis, conduzidos por equipes pequenas e autônomas, tendem a se beneficiar de processos ágeis e iterativos. Além disso, fatores sociais e culturais, como a proximidade entre desenvolvedores e usuários, também favorecem a agilidade, por viabilizarem ciclos curtos de feedback e validação contínua.
 
-        No caso do Borafut, essas condições estão presentes. O sistema possui requisitos voláteis e evolutivos, definidos de forma colaborativa entre os próprios desenvolvedores e usuários, que pertencem ao mesmo grupo social. A equipe é pequena e estável, o produto é inovador e o ambiente de trabalho é autogerido e não hierárquico. A baixa criticidade do sistema também reforça a adequação de uma abordagem predominantemente ágil. A Tabela~\ref{tab:criterios-abordagem} sintetiza esses critérios e suas implicações metodológicas para o Borafut.
+        No caso do BoraFut, essas condições estão presentes. O sistema possui requisitos voláteis e evolutivos, definidos de forma colaborativa entre os próprios desenvolvedores e usuários, que pertencem ao mesmo grupo social. A equipe é pequena e estável, o produto é inovador e o ambiente de trabalho é autogerido e não hierárquico. A baixa criticidade do sistema também reforça a adequação de uma abordagem predominantemente ágil. A Tabela~\ref{tab:criterios-abordagem} sintetiza esses critérios e suas implicações metodológicas para o BoraFut.
 
         \begin{table}[h]
         \centering
@@ -44,7 +45,7 @@
         \label{tab:criterios-abordagem}
         \begin{tabular}{p{4cm} p{5cm} p{5cm}}
         \toprule
-        \textbf{Critério} & \textbf{Característica do Borafut} & \textbf{Implicação metodológica} \\ 
+        \textbf{Critério} & \textbf{Característica do BoraFut} & \textbf{Implicação metodológica} \\
         \midrule
         Estabilidade dos requisitos & Requisitos mutáveis e evolutivos & Favorece abordagem ágil \\
         Tamanho da equipe & Pequena e coesa & Favorece abordagem ágil \\
@@ -69,12 +70,13 @@
             \item \textbf{Validar continuamente}: o sucesso do processo é avaliado pelo valor entregue a cada incremento, não pela aderência rígida ao plano inicial.
         \end{itemize}
 
-        Em síntese, a abordagem de desenvolvimento do Borafut combina a previsibilidade necessária à avaliação acadêmica com a adaptabilidade das práticas ágeis. Essa configuração caracteriza um modelo de processo \textbf{híbrido}, no qual o planejamento fornece estrutura e as iterações sucessivas garantem adaptabilidade e foco em valor.
+        Em síntese, a abordagem de desenvolvimento do BoraFut combina a previsibilidade necessária à avaliação acadêmica com a adaptabilidade das práticas ágeis. Essa configuração caracteriza um modelo de processo \textbf{híbrido}, no qual o planejamento fornece estrutura e as iterações sucessivas garantem adaptabilidade e foco em valor.
 
 \section{Processo de desenvolvimento}
+    \label{sec:processo-desenvolvimento}
 
-    Com base na abordagem híbrida apresentada na seção anterior, o processo de desenvolvimento do Borafut será fundamentado nos princípios do \textit{Extreme Programming} (XP), metodologia ágil proposta por Beck \cite{beck2000} que enfatiza simplicidade, colaboração e qualidade técnica. O XP foi escolhido por sua adequação a equipes pequenas e por priorizar práticas de engenharia de software em detrimento de estruturas organizacionais complexas, tornando-se mais apropriado ao contexto de um projeto acadêmico de escopo limitado.
-    A escolha pelo XP reflete uma decisão consciente de privilegiar práticas de engenharia e iteração contínua, em vez de adotar frameworks de gestão mais estruturados, como o Scrum. Embora o Scrum ofereça mecanismos formais de planejamento, papéis definidos e rituais de acompanhamento, essas características são menos relevantes no contexto do Borafut, que será desenvolvido por uma equipe pequena e autogerida.
+    Com base na abordagem híbrida apresentada na seção anterior, o processo de desenvolvimento do BoraFut foi fundamentado nos princípios do \textit{Extreme Programming} (XP), metodologia ágil proposta por Beck \cite{beck2000} que enfatiza simplicidade, colaboração e qualidade técnica. O XP foi escolhido por sua adequação a equipes pequenas e por priorizar práticas de engenharia de software em detrimento de estruturas organizacionais complexas, tornando-se mais apropriado ao contexto de um projeto acadêmico de escopo limitado.
+    A escolha pelo XP refletiu uma decisão consciente de privilegiar práticas de engenharia e iteração contínua, em vez de adotar frameworks de gestão mais estruturados, como o Scrum. Embora o Scrum ofereça mecanismos formais de planejamento, papéis definidos e rituais de acompanhamento, essas características foram menos relevantes no contexto do BoraFut, desenvolvido por uma equipe pequena e autogerida.
 
     Além disso, conforme Boehm e Turner \cite{boehm2003}, a seleção de um processo ágil deve considerar o equilíbrio entre disciplina e adaptabilidade. Nesse sentido, o XP se mostra mais adequado, pois fornece um conjunto de práticas técnicas que podem ser aplicadas de forma incremental e flexível, sem comprometer a simplicidade operacional necessária em um projeto acadêmico.
 
@@ -92,11 +94,11 @@
             \item \textbf{Respeito}: a colaboração e o compartilhamento de responsabilidades foram valorizados como elementos centrais da dinâmica de trabalho.
         \end{itemize}
 
-        Esses princípios serão aplicados de forma pragmática, guiando decisões técnicas e o ritmo de trabalho sem a necessidade de estruturas rígidas de papéis ou cerimônias formais.
+        Esses princípios foram aplicados de forma pragmática, orientando decisões técnicas e o ritmo de trabalho sem estruturas rígidas de papéis ou cerimônias formais.
 
 \section{Planejamento inicial}
 
-    O planejamento inicial do projeto Borafut teve como objetivo consolidar a visão estratégica e o posicionamento da solução antes do início do desenvolvimento técnico. Nessa etapa, foram utilizados dois instrumentos principais: o \textit{Project Model Canvas} (PM Canvas), para estruturar a proposta de valor e os elementos centrais do projeto, e a Análise de Mercado, voltada à identificação de soluções similares, lacunas existentes e diferenciais competitivos.
+    O planejamento inicial do projeto BoraFut teve como objetivo consolidar a visão estratégica e o posicionamento da solução antes do início do desenvolvimento técnico. Nessa etapa, foram utilizados dois instrumentos principais: o \textit{Project Model Canvas} (PM Canvas), para estruturar a proposta de valor e os elementos centrais do projeto, e a Análise de Mercado, voltada à identificação de soluções similares, lacunas existentes e diferenciais competitivos.
 
     \subsection{Project Model Canvas}
         \subsubsection*{O que é o PM Canvas}
@@ -138,12 +140,12 @@
                 \end{itemize}
             \end{description}
 
-        \subsubsection*{Síntese do PM Canvas do Borafut}
+        \subsubsection*{Síntese do PM Canvas do BoraFut}
             \begin{description}
                 \item[\textbf{Por quê?}] 
                 \begin{itemize}
                     \item \textbf{Justificativas}: organização de partidas em Brasília é fragmentada e pouco previsível; dificuldade de formar times completos e atrair novos jogadores; subutilização de quadras públicas e oportunidade de fortalecer o futebol de comunidade; caso aplicado de Engenharia de Software com potencial de impacto social e continuidade.
-                    \item \textbf{Objetivos SMART}: até junho de 2026, concluir o MVP funcional com autenticação por e-mail, mapa de quadras públicas, criação/edição de partidas, confirmação de presença e compartilhamento por link, pronto para testes fechados; em setembro de 2026, publicar o aplicativo nas lojas e executar o piloto na Asa Norte, recorte adotado por concentrar o levantamento de campo e por permitir acompanhamento presencial das primeiras partidas. A expansão para outras regiões administrativas foi deslocada para depois do piloto, decisão analisada no capítulo de resultados.
+                    \item \textbf{Objetivos SMART}: até junho de 2026, concluir o MVP funcional com autenticação por e-mail, mapa de quadras públicas, criação/edição de partidas, confirmação de presença e compartilhamento por link, pronto para testes fechados; em setembro de 2026, publicar o aplicativo nas lojas e executar o piloto na Asa Norte, recorte adotado por concentrar o levantamento de campo e por permitir acompanhamento presencial das primeiras partidas.
                     \item \textbf{Benefícios}: estímulo à prática esportiva e ao convívio comunitário; uso mais eficiente das quadras públicas; visibilidade para grupos e jogadores; base de aprendizado e potencial de monetização no futuro.
                 \end{itemize}
 
@@ -151,7 +153,7 @@
                 \begin{itemize}
                     \item \textbf{Produto/solução}: aplicativo móvel multiplataforma que conecta jogadores, quadras e partidas, simplificando criação de jogos, confirmação de presença e gerenciamento de partidas.
                     \item \textbf{Requisitos do MVP}: autenticação por e-mail com verificação; mapa com quadras públicas e detalhes básicos; criação, edição e exclusão de partidas; confirmação de presença e compartilhamento por link; identidade visual aplicada e protótipo validado com 5 a 8 usuários; gerenciamento completo do futebol através do app.
-                    \item \textbf{Requisitos pós-MVP}: estatísticas de jogadores e partidas; gamificação inicial; organização de campeonatos; API de pagamentos para inscrição de campeonatos; chat/recursos comunitários.
+                    \item \textbf{Requisitos pós-MVP}: estatísticas avançadas e comparativas; gamificação; organização de campeonatos; API de pagamentos para inscrição de campeonatos; chat e recursos comunitários.
                 \end{itemize}
 
                 \item[\textbf{Quem?}] 
@@ -179,22 +181,22 @@
                 \end{itemize}
         \end{description}
 
-        \noindent A versão visual completa do canvas encontra-se no Apêndice~\ref{apendice:pmcanvas}, com a imagem do diagrama consolidado.
+        \noindent A versão visual completa do canvas encontra-se na Figura~\ref{fig:pmcanvas}, no Apêndice~\ref{apendice:pmcanvas}, com a imagem do diagrama consolidado.
 
     \subsection{Análise de mercado}
-        Fizemos uma pesquisa direta sobre apps parecidos com o Borafut. Buscamos no Google, na Google Play e na App Store e chegamos a cinco aplicativos: Chega+ \cite{chegamais_app}, Appito \cite{appito_app}, PELADEIROS \cite{peladeiros_app}, FINTTA \cite{fintta_app} e Agendei~Quadras \cite{agendei_app}. Para cada um, olhamos redes sociais, lemos comentários nas lojas, instalamos e usamos rapidamente para entender pontos fortes, pontos fracos e o que valia adaptar ao contexto de Brasília. Além desses, tomamos o \textit{WhatsApp} como linha de base, por ser a ferramenta efetivamente usada hoje para organizar as partidas \cite{whatsapp_app}.
+        Foi realizada uma pesquisa direta sobre aplicativos semelhantes ao BoraFut. A busca no Google, na Google Play e na App Store levou a cinco aplicativos: Chega+ \cite{chegamais_app}, Appito \cite{appito_app}, PELADEIROS \cite{peladeiros_app}, FINTTA \cite{fintta_app} e Agendei~Quadras \cite{agendei_app}. Para cada um, foram examinadas as redes sociais e as avaliações nas lojas, e cada aplicativo foi instalado e utilizado para identificar pontos fortes, pontos fracos e o que valia adaptar ao contexto de Brasília. Além desses, foi tomado o \textit{WhatsApp} como linha de base, por ser a ferramenta efetivamente usada hoje para organizar as partidas \cite{whatsapp_app}.
 
         \subsubsection*{Chega+}
         Forte na organização de grupos privados de futebol. Tem convite, confirmação de presença, sorteio de times, fila e estatísticas. A base de usuários é grande (500 mil+ downloads) e ativa, com redes sociais bem movimentadas. Comentários críticos citam excesso de bugs e planos pagos percebidos como caros por parte dos usuários. A interface cumpre o papel, mas não se destaca em experiência.
 
         \subsubsection*{Appito}
-        É o app com maior número de downloads entre os analisados (1 milhão+ downloads). No começo, também focava em grupos privados, mas permite deixar o jogo público para outras pessoas encontrarem pelo app. Hoje o foco principal parece ser a gestão de arenas próprias e a reserva de quadras dessas arenas (concentradas em São Paulo). Usa gamificação (rankings, estatísticas) aproximando a experiência do universo de jogos.
+        É o aplicativo com maior número de downloads entre os analisados (1 milhão+ downloads). No começo, também focava em grupos privados, mas permite deixar o jogo público para outras pessoas encontrarem pelo aplicativo. Hoje o foco principal parece ser a gestão de arenas próprias e a reserva de quadras dessas arenas (concentradas em São Paulo). Usa gamificação (rankings, estatísticas) aproximando a experiência do universo de jogos.
 
         \subsubsection*{PELADEIROS e FINTTA}
         Seguem a linha “grupo privado organiza o futebol”. Ambos têm alcance menor que os líderes (100 mil+ downloads).
 
         \subsubsection*{Agendei~Quadras}
-        Funciona como um marketplace multiesporte. Donos anunciam as quadras e os usuários agendam e pagam. É ótimo para reserva de infraestrutura, mas não foca na dinâmica espontânea do futebol em quadras públicas.
+        Funciona como um \textit{marketplace} multiesporte. Donos anunciam as quadras e os usuários agendam e pagam. É ótimo para reserva de infraestrutura, mas não foca na dinâmica espontânea do futebol em quadras públicas.
 
         \subsubsection*{WhatsApp (referência atual)}
         Embora não seja um aplicativo dedicado, o WhatsApp é a ferramenta efetivamente usada hoje para organizar as partidas. É universal e gratuito, mas concentra tudo em mensagens textuais: a confirmação de presença é manual, não há descoberta de jogos nem visualização de quadras, e informações importantes se perdem no fluxo da conversa. Por isso, foi tomado como linha de base da comparação \cite{whatsapp_app}.
@@ -226,7 +228,7 @@
         PELADEIROS & \msim & \mparc & \mnao & \mnao & \mnao & \mparc \\
         FINTTA & \msim & \mparc & \mnao & \mnao & \mnao & \msim \\
         Agendei Quadras & \mnao & \mnao & \mparc & \mnao & \mnao & \mnao \\
-        Borafut & \msim & \msim & \msim & \msim & \msim & \msim \\
+        BoraFut & \msim & \msim & \msim & \msim & \msim & \msim \\
         \bottomrule
         \end{tabular}
 
@@ -236,39 +238,39 @@
 
         \subsubsection*{Síntese da análise de mercado}
             \begin{itemize}
-                \item \textbf{Funcionalidades úteis}: não vimos um “grande diferencial” exclusivo, e sim boas jornadas espalhadas entre os apps. Para o Borafut, trouxemos confirmação simples, convite por link e formação de times, combinados com mapa hiperlocal e descoberta de partidas em quadras públicas.
-                \item \textbf{Mercado existe}: há demanda real por organizar o futebol amador, comprovada por alto número de downloads e engajamento nos líderes.
-                \item \textbf{Aderência em Brasília é baixa}: os grandes apps aparecem pouco no Distrito Federal, abrindo espaço para uma solução pensada desde o início para quadras públicas brasilienses.
+                \item \textbf{Funcionalidades úteis}: não se identificou um diferencial exclusivo, e sim boas jornadas espalhadas entre os aplicativos. Para o BoraFut, foram incorporadas confirmação simples, convite por link e formação de times, combinados com mapa hiperlocal e descoberta de partidas em quadras públicas.
+                \item \textbf{Mercado existe}: o volume de downloads e o engajamento observados nos aplicativos líderes indicam demanda por ferramentas de organização do futebol amador.
+                \item \textbf{Aderência em Brasília é baixa}: os grandes aplicativos aparecem pouco no Distrito Federal, abrindo espaço para uma solução pensada desde o início para quadras públicas brasilienses.
                 \item \textbf{Onde dá para diferenciar}: reduzir barreiras de entrada (fluxos rápidos, incluir convidados sem conta), priorizar jogos públicos no mapa e evitar travar o uso atrás de planos pagos no começo.
             \end{itemize}
 
         \subsubsection*{Contexto de Brasília}
-            Brasília tem um jeito próprio de jogar. A cidade possui um ecossistema único de esporte público: por causa do seu planejamento urbano, concentra uma quantidade excepcional de quadras poliesportivas e campos de futebol de acesso livre. Desde a idealização do Borafut, pensamos em como ampliar a acessibilidade sem jamais dar a impressão de privatizar o futebol público. Na verdade, buscamos justamente o contrário. Nosso objetivo é organizar, facilitar e fortalecer ainda mais essa cultura de jogo aberto que já existe aqui.
+            Brasília reúne um ecossistema particular de esporte público: em razão de seu planejamento urbano, a cidade concentra uma quantidade expressiva de quadras poliesportivas e campos de futebol de acesso livre. Desde a concepção do BoraFut, a diretriz foi ampliar o acesso sem sugerir qualquer forma de privatização do futebol público, e sim organizar, facilitar e fortalecer a cultura de jogo aberto já existente na cidade.
 
-            Esse contexto também explica por que muitos aplicativos consolidados no Brasil não conseguiram crescer em Brasília. O futebol daqui funciona de um jeito diferente. Isso cria uma oportunidade real para que o Borafut se desenvolva primeiro na capital, valorizando o que Brasília tem de mais forte e leve essa visão de acessibilidade e organização do futebol público para outras regiões do país, contribuindo para unir ainda mais o “país do futebol”.
+            Esse contexto ajuda a compreender a baixa presença, no Distrito Federal, dos aplicativos consolidados em outras regiões: eles se estruturam em torno de grupos fechados e de arenas privadas, enquanto a prática local se organiza em espaços públicos de uso livre. A lacuna cria a oportunidade de desenvolver primeiro na capital uma solução voltada à quadra pública e, depois, levá-la a outras regiões do país.
 
 \section{Levantamento e análise de requisitos}
     \label{sec:metodologia-elicitacao}
         % Descrever a estratégia geral de elicitação e análise de requisitos
 
-        O levantamento e análise de requisitos constituem atividades fundamentais da engenharia de software, responsáveis por estabelecer de forma clara o que o sistema deve fazer, para quem e sob quais condições \cite{pressman2019, sommerville2011}. No Borafut, esse processo foi estruturado em duas etapas principais: a elicitação, dedicada à identificação e coleta das necessidades dos usuários por meio de técnicas diversas, e a priorização e modelagem, voltada à organização, refinamento e formalização dos requisitos identificados.
+        O levantamento e análise de requisitos constituem atividades fundamentais da engenharia de software, responsáveis por estabelecer de forma clara o que o sistema deve fazer, para quem e sob quais condições \cite{pressman2019, sommerville2011}. No BoraFut, esse processo foi estruturado em duas etapas principais: a elicitação, dedicada à identificação e coleta das necessidades dos usuários por meio de técnicas diversas, e a priorização e modelagem, voltada à organização, refinamento e formalização dos requisitos identificados.
 
     \subsection{Elicitação}
         % Apresentar os métodos utilizados
 
-        A elicitação de requisitos consiste no processo de identificação, coleta e documentação das necessidades, expectativas e restrições que orientam o desenvolvimento de um sistema de software \cite{pressman2019, sommerville2011}. Trata-se de uma etapa fundamental da engenharia de requisitos, na qual diversas técnicas e métodos são empregados para extrair informações relevantes junto a stakeholders, usuários e outras fontes de conhecimento sobre o domínio do problema.
+        A elicitação de requisitos consiste no processo de identificação, coleta e documentação das necessidades, expectativas e restrições que orientam o desenvolvimento de um sistema de software \cite{pressman2019, sommerville2011}. Trata-se de uma etapa fundamental da engenharia de requisitos, na qual diversas técnicas e métodos são empregados para extrair informações relevantes junto a \textit{stakeholders}, usuários e outras fontes de conhecimento sobre o domínio do problema.
 
-        No contexto do Borafut, a elicitação foi realizada utilizando múltiplas técnicas para garantir uma compreensão abrangente das necessidades dos usuários. A combinação de diferentes abordagens permitiu capturar aspectos tanto qualitativos quanto quantitativos, oferecendo uma base sólida para a definição dos requisitos do sistema.
+        No contexto do BoraFut, a elicitação foi realizada utilizando múltiplas técnicas para garantir uma compreensão abrangente das necessidades dos usuários. A combinação de diferentes abordagens permitiu capturar aspectos tanto qualitativos quanto quantitativos, oferecendo uma base sólida para a definição dos requisitos do sistema.
 
         \subsubsection{Observação}
 
-            O ponto de partida para o desenvolvimento do Borafut surgiu de uma observação participante, técnica de pesquisa qualitativa em que o investigador integra o grupo estudado e registra suas práticas a partir de dentro \cite{gil2008}, realizada pelos próprios autores em ambientes de prática esportiva amadora. Como praticantes regulares de futsal, os autores acompanharam de dentro a dinâmica de organização das partidas, registrando as dificuldades vivenciadas pelos grupos ao marcar jogos e reunir jogadores. Essa organização depende quase sempre de conversas em grupos de mensagens e de muita coordenação manual entre os participantes, um processo informal que, embora funcione, costuma gerar desencontros, desistências e partidas canceladas.
+            O ponto de partida para o desenvolvimento do BoraFut surgiu de uma observação participante, técnica de pesquisa qualitativa em que o investigador integra o grupo estudado e registra suas práticas a partir de dentro \cite{gil2008}, realizada pelos próprios autores em ambientes de prática esportiva amadora. Como praticantes regulares de futsal, os autores acompanharam de dentro a dinâmica de organização das partidas, registrando as dificuldades vivenciadas pelos grupos ao marcar jogos e reunir jogadores. Essa organização depende quase sempre de conversas em grupos de mensagens e de muita coordenação manual entre os participantes, um processo informal que, embora funcione, costuma gerar desencontros, desistências e partidas canceladas.
 
             Um episódio específico, ocorrido em dezembro de 2023, sintetiza o problema que motivou o projeto e foi registrado como observação fundadora. Naquela ocasião, os autores tentavam reunir uma partida por meio de um grupo de mensagens. A lista havia sido aberta pela manhã para um jogo às 16 horas, mas, no horário marcado, apenas oito pessoas haviam confirmado, número insuficiente para uma partida de futsal, que requer ao menos dez jogadores. Ainda assim, o grupo deslocou-se até a quadra na expectativa de que novos participantes surgissem. Após cerca de uma hora sem que isso ocorresse, parte dos presentes desistiu e foi embora.
 
             Em busca de outro jogo, os autores localizaram, em um segundo grupo de mensagens, uma partida que parecia estar acontecendo em uma quadra vizinha, a cerca de 500 metros de distância. Ao chegarem, encontraram outros oito jogadores. A soma dos dois grupos seria suficiente para uma boa partida, mas o segundo grupo já jogava desde as 16 horas, também desfalcado, e, já cansado, optou por encerrar. O resultado foi que dois grupos, com oito jogadores cada, querendo jogar no mesmo horário e a poucos metros um do outro, terminaram a tarde sem conseguir completar uma partida.
 
-            Essa observação evidenciou o ponto central que o Borafut busca enfrentar: a ausência de visibilidade entre grupos e quadras fragmenta a demanda e faz com que partidas viáveis deixem de acontecer, mesmo havendo jogadores suficientes nas proximidades. A percepção de que uma camada de transparência sobre quem está jogando, onde e quando poderia reunir essa demanda dispersa foi o germe da solução proposta.
+            Essa observação evidenciou o ponto central que o BoraFut busca enfrentar: a ausência de visibilidade entre grupos e quadras fragmenta a demanda e faz com que partidas viáveis deixem de acontecer, mesmo havendo jogadores suficientes nas proximidades. A percepção de que uma camada de transparência sobre quem está jogando, onde e quando poderia reunir essa demanda dispersa foi o germe da solução proposta.
 
             Embora conduzida de maneira naturalística, sem um protocolo formal de pesquisa, essa observação participante foi determinante para delimitar o problema e orientou as etapas seguintes de elicitação.
 
@@ -278,12 +280,12 @@
 
             Entre os formatos mais comuns está o método 6-3-5 descrito por Rohrbach, no qual seis pessoas escrevem três ideias em cinco minutos e, a cada rodada, passam suas fichas adiante para que sejam desenvolvidas, acumulando várias iterações em pouco tempo \cite{rohrbach1969}. Evidências apontam que formatos escritos tendem a produzir maior quantidade e diversidade de ideias do que sessões exclusivamente orais, principalmente em grupos pequenos \cite{paulus2007}.
 
-            \subsubsection*{Aplicação no Borafut}
+            \subsubsection*{Aplicação no BoraFut}
             A dinâmica foi realizada em janeiro de 2024, um mês após a observação fundadora relatada anteriormente, com sete participantes, entre os autores e potenciais usuários do produto. O formato canônico prevê seis participantes; a condução com sete não alterou a mecânica das rodadas nem o encadeamento das fichas. Para orientar e cobrir o problema de forma ampla, as ideias foram organizadas em seis categorias temáticas: Funcionalidades do app, Melhorias na experiência do usuário, Monetização e modelo de negócios, Gamificação, Integrações e parcerias e Marketing e divulgação (Figura~\ref{fig:brainwriting-categorias}).
 
             Cada rodada teve duração aproximada de cinco minutos, com foco deliberado em quantidade; o agrupamento e a análise de itens redundantes ocorreram somente ao final. Foram produzidos 41 cartões, distribuídos de forma desigual entre as categorias: Funcionalidades do app concentrou 18 cartões, seguida por Gamificação, com nove, Melhorias na experiência do usuário, com seis, e Integrações e parcerias, com cinco. As categorias voltadas a modelo de negócio e a divulgação foram as menos exploradas, somando três cartões, o que é coerente com a composição do grupo, formado majoritariamente por praticantes interessados no que o produto faria, e não em como ele se sustentaria.
 
-            Os cartões foram consolidados em temas e alimentaram a construção do backlog, submetida em seguida à priorização descrita na Seção~\ref{sec:priorizacao}. Cabe registrar que a proposta que viria a se tornar o núcleo do produto, o gerenciamento do fut por ordem de chegada com formação e rotação automática de times, foi formulada nessa dinâmica e é reconhecível no sistema entregue. O registro completo da atividade, com o conteúdo dos cartões e o destino de cada tema, foi consolidado em documento à parte, de uso restrito à banca examinadora, por conter propostas de produto, de monetização e de parcerias ainda não publicadas.
+            Os cartões foram consolidados em temas e alimentaram a construção do \textit{backlog}, submetida em seguida à priorização descrita na Seção~\ref{sec:priorizacao}. Cabe registrar que a proposta que viria a se tornar o núcleo do produto, o gerenciamento do fut por ordem de chegada com formação e rotação automática de times, foi formulada nessa dinâmica e é reconhecível no sistema entregue. O registro completo da atividade, com o conteúdo dos cartões e o destino de cada tema, foi consolidado em documento à parte, de uso restrito à banca examinadora, por conter propostas de produto, de monetização e de parcerias ainda não publicadas.
 
             \begin{figure}[h]
                 \centering
@@ -295,20 +297,20 @@
         \subsubsection{Questionário}
         \label{sec:questionario}
 
-        Com base nas ideias geradas na dinâmica de \textit{brainwriting}, foi elaborado um questionário on-line com o objetivo de compreender o perfil dos potenciais usuários e validar hipóteses sobre comportamentos, dores e preferências relacionadas à organização de partidas de futebol amador. O instrumento foi desenvolvido em formato digital, via Google Forms, e distribuído entre diversas universidades, grupos esportivos e comunidades de society\footnote{O futebol society é uma modalidade derivada do futebol tradicional, praticada em campo reduzido e com equipes menores, geralmente de cinco a sete jogadores. Caracteriza-se pelo uso de gramado sintético e regras adaptadas para jogos mais rápidos e dinâmicos.} e futsal do Distrito Federal, alcançando mais de 60 respostas válidas.
+        Com base nas ideias geradas na dinâmica de \textit{brainwriting}, foi elaborado um questionário on-line com o objetivo de compreender o perfil dos potenciais usuários e validar hipóteses sobre comportamentos, dores e preferências relacionadas à organização de partidas de futebol amador. O instrumento foi desenvolvido em formato digital, via Google Forms, e distribuído entre diversas universidades, grupos esportivos e comunidades de society\footnote{O futebol society é uma modalidade derivada do futebol tradicional, praticada em campo reduzido e com equipes menores, geralmente de cinco a sete jogadores. Caracteriza-se pelo uso de gramado sintético e regras adaptadas para jogos mais rápidos e dinâmicos.} e futsal do Distrito Federal, alcançando 64 respostas válidas.
 
         \subsubsection*{Estrutura e objetivos}
-        O questionário combinou perguntas fechadas e de múltipla escolha, distribuídas em quatro eixos:
+        O questionário combinou perguntas fechadas e de múltipla escolha, além de uma pergunta aberta e opcional ao final, distribuídas em quatro eixos:
         \begin{enumerate}[label=(\roman*)]
             \item \textbf{Perfil sociodemográfico}: idade, gênero e região administrativa;
             \item \textbf{Hábitos esportivos}: frequência, local e formato das partidas;
             \item \textbf{Comportamento organizacional}: canais e rotinas usados para marcar jogos;
             \item \textbf{Motivações e dificuldades}: fatores que estimulam ou dificultam a prática esportiva.
         \end{enumerate}
-        Os dados obtidos serviram de base tanto para a definição do público-alvo quanto para a priorização inicial de funcionalidades do Borafut.
+        Os dados obtidos serviram de base tanto para a definição do público-alvo quanto para a priorização inicial de funcionalidades do BoraFut.
 
         \subsubsection*{Perfil dos respondentes}
-        A amostra foi composta majoritariamente por homens (71,9\%) entre 18 e 24 anos (70,3\%), faixa correspondente à população universitária e de jovens adultos. A distribuição geográfica concentrou-se nas regiões de Brasília (17,2\%), Guará (10,9\%) e Gama (10,9\%), além de participações expressivas de Taguatinga, Águas Claras e Santa Maria, indicando forte presença no eixo central do Distrito Federal, o foco inicial do Borafut.
+        A amostra foi composta majoritariamente por homens (71,9\%) entre 18 e 24 anos (70,3\%), faixa correspondente à população universitária e de jovens adultos. A distribuição geográfica concentrou-se no Plano Piloto, somadas as respostas de Asa Norte e Asa Sul (17,2\%), seguido de Guará (10,9\%) e Gama (10,9\%), além de participações expressivas de Taguatinga, Águas Claras e Santa Maria, indicando forte presença no eixo central do Distrito Federal, o foco inicial do BoraFut.
 
         Em relação ao nível de prática, 84,4\% dos participantes se identificaram como jogadores amadores e o restante como semiprofissionais. O formato mais comum de jogo é o futsal (81,3\%), seguido pelo society (51,6\%), e 15,6\% afirmaram praticar futebol de campo. Grupos de maior porte são predominantes: 53,1\% relataram possuir mais de dez jogadores, o que reforça a necessidade de uma ferramenta de coordenação coletiva.
 
@@ -321,10 +323,10 @@
         As respostas evidenciaram problemas recorrentes na organização de partidas: 39,1\% relataram que jogos deixam de acontecer ocasionalmente, e 25\% afirmaram que isso ocorre com frequência. Entre as motivações para uso do aplicativo, destacaram-se:
 
         \begin{itemize}
-            \item \textbf{“Juntar a galera ou achar gente para completar o time”} (84,4\%);
-            \item \textbf{“Marcar jogos sem dor de cabeça”} (73,4\%);
-            \item \textbf{“Achar quadra e horário com facilidade”} (62,5\%);
-            \item \textbf{“Evitar furos e desistências”} (53,1\%).
+            \item \textbf{“Juntar a galera”} (84,4\%);
+            \item \textbf{“Marcar jogos facilmente”} (73,4\%);
+            \item \textbf{“Achar quadra e horário”} (62,5\%);
+            \item \textbf{“Evitar furos”} (53,1\%).
         \end{itemize}
 
         Esses resultados confirmam as hipóteses levantadas na etapa qualitativa: a principal dor do público é a dificuldade de coordenar jogadores e horários, e a motivação central está relacionada à facilitação da organização de partidas e uso eficiente das quadras disponíveis. A Figura~\ref{fig:questionario-resultados} reúne alguns dos resultados obtidos no questionário.
@@ -337,16 +339,16 @@
         \end{figure}
 
         \subsubsection*{Análise e interpretação}
-        Os dados apontam para um público-alvo composto majoritariamente por jovens de 18 a 24 anos, praticantes de futsal e residentes nas regiões centrais do Distrito Federal. Trata-se de um público digitalmente ativo, que já utiliza plataformas de comunicação, mas não possuem soluções especializadas para organização esportiva.
+        Os dados apontam para um público-alvo composto majoritariamente por jovens de 18 a 24 anos, praticantes de futsal e residentes nas regiões centrais do Distrito Federal. Trata-se de um público digitalmente ativo, que já utiliza plataformas de comunicação, mas não dispõe de soluções especializadas para organização esportiva.
 
-        O perfil observado é de grupos pequenos e autogeridos com alta densidade de conexões sociais, um cenário favorável para a propagação do aplicativo.
+        O perfil observado é de grupos autogeridos, na maioria com mais de dez jogadores e com alta densidade de conexões sociais, um cenário favorável para a propagação do aplicativo por indicação entre participantes.
 
         A análise também sugere que o sistema deve priorizar a simplicidade de uso, a integração com canais existentes e funcionalidades voltadas à coordenação de partidas, gestão de presença e descoberta de quadras.
 
         \subsubsection*{Síntese do público-alvo}
-        Com base na análise dos questionários, o público inicial do Borafut pode ser descrito como:
+        Com base na análise dos questionários, o público inicial do BoraFut pode ser descrito como:
         \begin{quote}
-            Jovens adultos, entre 18 e 30 anos, predominantemente homens, praticantes amadores de futsal e society, que jogam em grupos autônomos e organizam suas partidas via WhatsApp. Valorizam praticidade, agilidade e confiabilidade na marcação de jogos e demonstram interesse em recursos de descoberta de quadras e confirmação de presença.
+            Jovens adultos, concentrados na faixa de 18 a 24 anos, predominantemente homens, praticantes amadores de futsal e society, que jogam em grupos autônomos e organizam suas partidas via WhatsApp. Valorizam praticidade, agilidade e confiabilidade na marcação de jogos e demonstram interesse em recursos de descoberta de quadras e confirmação de presença.
         \end{quote}
 
         O formulário foi precedido de uma tela de termos, na qual o participante era informado do objetivo acadêmico da pesquisa e do uso agregado e anônimo das respostas, e registrava seu aceite antes de iniciar o preenchimento. O tratamento desses dados é detalhado na Seção~\ref{sec:privacidade}. O instrumento completo do questionário encontra-se no Apêndice~\ref{apendice:questionario}.
@@ -355,13 +357,13 @@
         \label{sec:priorizacao}
         % Descrever como os requisitos foram analisados e refinados
         
-        Os requisitos identificados na etapa de elicitação foram organizados por meio de um processo de decomposição hierárquica, prática consolidada na engenharia de requisitos ágil para conectar os objetivos estratégicos do produto aos itens de trabalho efetivamente implementáveis \cite{cohn2004, sommerville2011}. Em vez de uma lista plana de funcionalidades, o backlog foi estruturado em níveis sucessivos de granularidade, do propósito do produto até a tarefa técnica, preservando a rastreabilidade entre o valor pretendido e o que é entregue \cite{wiegers2013}.
+        Os requisitos identificados na etapa de elicitação foram organizados por meio de um processo de decomposição hierárquica, prática consolidada na engenharia de requisitos ágil para conectar os objetivos estratégicos do produto aos itens de trabalho efetivamente implementáveis \cite{cohn2004, sommerville2011}. Em vez de uma lista plana de funcionalidades, o \textit{backlog} foi estruturado em níveis sucessivos de granularidade, do propósito do produto até a tarefa técnica, preservando a rastreabilidade entre o valor pretendido e o que é entregue \cite{wiegers2013}.
 
         Esse processo de refinamento teve por objetivo eliminar redundâncias, ajustar o escopo, identificar dependências e priorizar entregas essenciais para o funcionamento do MVP. As decisões de priorização foram baseadas no valor de negócio, no impacto para o usuário e na complexidade técnica estimada.
 
         \subsubsection{Granularidade e hierarquia do backlog}
 
-            O backlog do Borafut é organizado em seis níveis de granularidade, do mais estratégico ao mais concreto. Os rótulos de cada nível variam entre as fontes da literatura ágil: Cohn \cite{cohn2004} trabalha com temas, épicos e histórias, enquanto o \textit{Scaled Agile Framework} \cite{safe2023} adota temas estratégicos, épicos e \textit{features}. Neste trabalho, adota-se a convenção descrita a seguir.
+            O \textit{backlog} do BoraFut é organizado em seis níveis de granularidade, do mais estratégico ao mais concreto. Os rótulos de cada nível variam entre as fontes da literatura ágil: Cohn \cite{cohn2004} trabalha com temas, épicos e histórias, enquanto o \textit{Scaled Agile Framework} \cite{safe2023} adota temas estratégicos, épicos e \textit{features}. Neste trabalho, adota-se a convenção descrita a seguir.
 
             \begin{description}
                 \item[Tema] pilar da proposta de valor do produto. É o nível mais estratégico e responde por que o item existe.
@@ -372,13 +374,13 @@
                 \item[Subtarefa] desdobramento concreto de uma tarefa, diretamente executável e verificável.
             \end{description}
 
-            A escolha dos temas como os próprios pilares da proposta de valor do Borafut é deliberada. Esses pilares, sintetizados a partir das dores levantadas na elicitação (como centralizar a organização, reduzir a dispersão de informação, aumentar a participação e reduzir conflitos pelo uso das quadras) e detalhados na Seção~\ref{subsec:proposta-valor}, tornam-se o topo do backlog. Assim, a leitura de cima para baixo evidencia como cada benefício pretendido se converte em funcionalidade e, ao final, em trabalho técnico. Esse encadeamento materializa a rastreabilidade entre requisitos e valor recomendada na engenharia de requisitos \cite{sommerville2011, wiegers2013}.
+            A escolha dos temas como os próprios pilares da proposta de valor do BoraFut é deliberada. Esses pilares, sintetizados a partir das dores levantadas na elicitação (como centralizar a organização, reduzir a dispersão de informação, aumentar a participação e reduzir conflitos pelo uso das quadras) e detalhados na Seção~\ref{subsec:proposta-valor}, tornam-se o topo do \textit{backlog}. Assim, a leitura de cima para baixo evidencia como cada benefício pretendido se converte em funcionalidade e, ao final, em trabalho técnico. Esse encadeamento materializa a rastreabilidade entre requisitos e valor recomendada na engenharia de requisitos \cite{sommerville2011, wiegers2013}.
 
-            A Tabela~\ref{tab:decomposicao} ilustra uma decomposição completa, do tema à subtarefa, para um item representativo do backlog.
+            A Tabela~\ref{tab:decomposicao} ilustra uma decomposição completa, do tema à subtarefa, para um item representativo do \textit{backlog}.
 
             \begin{table}[!htb]
                 \centering
-                \caption{Exemplo de decomposição do backlog em seis níveis de granularidade.}
+                \caption{Exemplo de decomposição do \textit{backlog} em seis níveis de granularidade.}
                 \label{tab:decomposicao}
                 \footnotesize
                 \renewcommand{\arraystretch}{1.3}
@@ -411,7 +413,7 @@
             \item \textbf{Won't Have} - Requisitos deliberadamente postergados ou fora do escopo atual.
         \end{itemize}
 
-        Durante o processo de priorização, estabeleceu-se que todos os requisitos classificados como \textit{Must Have} fariam parte do escopo mínimo de desenvolvimento, por serem essenciais ao funcionamento do MVP. Alguns requisitos classificados como e \textit{Should Have} e \textit{Could Have} foram incluídos por apresentarem boa relação entre valor entregue e esforço de implementação. Já os requisitos categorizados como \textit{Won't Have} foram deliberadamente excluídos da versão inicial, sendo direcionados para versões futuras.
+        Durante o processo de priorização, estabeleceu-se que todos os requisitos classificados como \textit{Must Have} fariam parte do escopo mínimo de desenvolvimento, por serem essenciais ao funcionamento do MVP. Alguns requisitos classificados como \textit{Should Have} e \textit{Could Have} foram incluídos por apresentarem boa relação entre valor entregue e esforço de implementação. Já os requisitos categorizados como \textit{Won't Have} foram deliberadamente excluídos da versão inicial, sendo direcionados para versões futuras.
 
         A Tabela~\ref{tab:priorizacao} ilustra exemplos representativos.
 
@@ -430,7 +432,7 @@
         
             Fila automática e formação de times &
             Should &
-            Agrega valor significativo à experiência e diferencia o app, com viabilidade técnica no escopo do MVP. \\[0.3em]
+            Agrega valor significativo à experiência e diferencia o aplicativo, com viabilidade técnica no escopo do MVP. \\[0.3em]
             
             Modo claro/escuro &
             Could &
@@ -495,10 +497,29 @@
 
         Essas histórias, juntamente com todas as demais estão listadas no Apêndice~\ref{apendice:us}.
 
+\section{Estratégia de validação}
+    \label{sec:estrategia-validacao}
+
+    A validação foi organizada em duas etapas complementares. A primeira, de caráter formativo, avaliou a usabilidade percebida das principais jornadas antes da implementação integral do produto. A segunda, de caráter exploratório e realizada em campo, verificou se o sistema implementado conseguia sustentar um fut real sem se tornar gargalo da atividade presencial. Essa combinação permitiu observar tanto a compreensão da interface quanto o comportamento do produto diante das contingências próprias de uma quadra.
+
+    \subsection{Teste de usabilidade do protótipo}
+
+        Entre 3 e 19 de maio de 2026 foram conduzidas cinco sessões individuais com praticantes de futebol amador. Utilizou-se o protótipo interativo de alta fidelidade construído no Figma, com cenários que percorriam as jornadas centrais do aplicativo. Um dos autores mediou as tarefas e incentivou o participante a verbalizar seu raciocínio, enquanto o outro registrou observações ao longo da sessão. As sessões tiveram tela e áudio gravados mediante autorização específica no Termo de Consentimento Livre e Esclarecido; a autorização de câmera foi solicitada separadamente.
+
+        Ao final, cada participante respondeu à \textit{System Usability Scale} (SUS), instrumento de dez itens alternadamente positivos e negativos, avaliados em escala de um a cinco \cite{brooke1996sus}. Para os itens ímpares, a contribuição é a resposta menos um; para os itens pares, é cinco menos a resposta. A soma das dez contribuições é multiplicada por 2,5, produzindo um escore de zero a cem. Foram preservadas todas as respostas originais. Como um participante declarou posteriormente ter marcado cinco em todos os itens por interpretar que o maior número seria sempre a avaliação mais favorável, a análise apresenta tanto o resultado bruto quanto uma análise de sensibilidade sem essa resposta, sem substituí-la ou corrigi-la retroativamente.
+
+    \subsection{Teste de campo em ambiente de produção}
+
+        Em 29 de agosto de 2026 foi realizado o primeiro fut do BoraFut em ambiente integralmente de produção. O aplicativo ainda era distribuído nas faixas de teste externo das lojas, mas a API, o banco de dados, os serviços externos e os aplicativos utilizados no evento correspondiam à infraestrutura de produção. O recrutamento inicial ocorreu pelo próprio aplicativo e resultou em dezesseis convidados presentes. Outras onze pessoas chegaram ao longo do evento e foram incluídas pelo cadastro manual, formando um total de 27 chegadas registradas.
+
+        A avaliação combinou observação direta dos autores, comentários espontâneos dos participantes e os registros estruturados produzidos pelo próprio sistema. Foram analisados os ciclos de chegada, formação de times, operação de placar e cronômetro, rotação e encerramento. Para evitar confundir uma partida apenas preparada pelo sistema com uma partida jogada, considerou-se efetivamente iniciada aquela que possuía ao menos um evento de retomada após sua criação pausada. Os indicadores foram agregados e não identificam participantes individualmente.
+
+        Por não haver grupo de controle, amostragem probabilística ou operação independente dos pesquisadores, essa etapa é caracterizada como teste exploratório de campo, e não como experimento controlado. Seu propósito foi reunir evidência ecológica sobre viabilidade operacional, problemas de interação e adesão no contexto real de uso.
+
 \section{Plano de privacidade e segurança}
     \label{sec:privacidade}
 
-    O Borafut trata dados pessoais em duas frentes distintas, que exigem cuidados diferentes: os dados dos usuários do aplicativo e os dados dos participantes das atividades de pesquisa. Ambas seguem a Lei Geral de Proteção de Dados~\cite{LGPD2018} e os princípios discutidos na Seção~\ref{sec:etica-dados}, com a mesma diretriz de fundo, a de coletar o mínimo necessário para que a funcionalidade exista, que é a tradução prática do princípio da necessidade e da abordagem de \textit{Privacy by Design}.
+    O BoraFut trata dados pessoais em duas frentes distintas, que exigem cuidados diferentes: os dados dos usuários do aplicativo e os dados dos participantes das atividades de pesquisa. Ambas seguem a Lei Geral de Proteção de Dados~\cite{LGPD2018} e os princípios discutidos na Seção~\ref{sec:etica-dados}, com a mesma diretriz de fundo, a de coletar o mínimo necessário para que a funcionalidade exista, que é a tradução prática do princípio da necessidade e da abordagem de \textit{Privacy by Design}.
 
     \subsection{Dados pessoais no aplicativo}
         O tratamento se apoia em três bases legais previstas na Lei Geral de Proteção de Dados. A execução do contrato de prestação do serviço ampara os dados indispensáveis ao funcionamento: o endereço de e-mail, que identifica a conta e serve de canal de autenticação, e o nome, a data de nascimento e a escolha de um avatar, exigidos para concluir o cadastro. Sem esses três últimos o aplicativo não libera as funcionalidades autenticadas, pois a jornada de primeiro acesso é bloqueante. O consentimento ampara os dados opcionais de perfil, que são o apelido, a região, o gênero e os tipos de fut preferidos, e que podem ser respondidos depois, ou não respondidos. O legítimo interesse ampara duas finalidades específicas: a análise agregada da região e do tipo de fut preferido, empregada apenas para identificar onde há demanda e planejar a expansão do catálogo de quadras, e o registro de participantes sem conta, descrito adiante. Em ambas o titular pode se opor, solicitando a remoção desses campos sem perder a conta. A idade mínima de 16 anos, prevista no requisito não funcional RNF06, é verificada tanto no aplicativo quanto no servidor, que rejeita data de nascimento incompatível.
@@ -507,7 +528,7 @@
 
         A localização merece nota específica, por ser o dado mais sensível manipulado pelo aplicativo. Ela é utilizada em dois momentos: na exibição do mapa, em que a posição do dispositivo serve apenas para centralizar a visualização inicial, e na confirmação de chegada ao fut, em que a distância até a quadra é calculada no próprio aparelho. Em nenhum dos casos as coordenadas do usuário deixam o dispositivo ou são persistidas. O registro de chegada guarda somente um indicador booleano de que a validação por localização ocorreu, junto com o instante do evento e a identificação de quem registrou, o que preserva a auditoria da presença sem constituir histórico de deslocamento.
 
-        Os demais dados armazenados decorrem do próprio uso: participações em futs, posições na fila de espera, eventos das partidas, avaliações de quadras e o token de notificação do dispositivo. A exclusão da conta é solicitada por página pública mantida fora do aplicativo, escolha que a torna acessível inclusive a quem perdeu o acesso à própria conta. O procedimento encerra as sessões ativas e anonimiza o cadastro, preservando as participações, os eventos de partida e as avaliações já desvinculados de identificação, por integrarem o histórico coletivo dos futs e das quadras. Contas sem qualquer acesso por vinte e quatro meses são encerradas pelo mesmo procedimento, após aviso por e-mail com trinta dias de antecedência. O desenho atende ao direito de eliminação previsto na LGPD, que ressalva a manutenção de dados anonimizados, e às exigências das lojas de aplicativos. O tráfego entre o aplicativo e a API ocorre sobre HTTPS, com autenticação por token em todas as rotas que manipulam dados de usuário.
+        Os demais dados armazenados decorrem do próprio uso: participações em futs, posições na fila de espera, eventos das partidas, avaliações de quadras e o token de notificação do dispositivo. A exclusão pode ser iniciada diretamente na tela de configurações do aplicativo ou solicitada pela página pública do serviço, alternativa acessível inclusive a quem perdeu o acesso à própria conta. O procedimento encerra as sessões ativas e anonimiza o cadastro, preservando as participações, os eventos de partida e as avaliações já desvinculados de identificação, por integrarem o histórico coletivo dos futs e das quadras. Na saída de um criador, os futs ativos são transferidos a um sucessor elegível; se não houver outro participante ativo, o fut é cancelado. Contas sem qualquer acesso por vinte e quatro meses são encerradas pelo mesmo procedimento, após aviso por e-mail com trinta dias de antecedência. O desenho atende ao direito de eliminação previsto na LGPD, que ressalva a manutenção de dados anonimizados, e às exigências das lojas de aplicativos. O tráfego entre o aplicativo e a API ocorre sobre HTTPS, com autenticação por token em todas as rotas que manipulam dados de usuário.
 
         Duas situações fogem ao padrão e merecem registro. A primeira é o cadastro manual de participante, que grava nome e endereço de e-mail de alguém que sequer abriu o aplicativo. O formulário adverte o organizador de que só deve cadastrar quem autorizou, e esses registros permanecem no fut mesmo quando a conta de quem os criou é excluída, por serem dados de outra pessoa. A segunda é o aceite dos termos de uso, registrado em coluna própria da tabela de jogadores no momento da criação da conta, de modo que o consentimento tenha prova documental e data. O aplicativo mantém ainda uma tela dedicada que remete às versões públicas da política de privacidade, dos termos de uso e do procedimento de exclusão, atendendo à exigência das lojas de que esses documentos sejam alcançáveis também fora do aplicativo.
 
@@ -526,42 +547,17 @@
     % (Ex: simplicidade de manutenção, custos, curva de aprendizado)
     % Referenciar que os diagramas e detalhes técnicos serão apresentados no Capítulo 5
 
-    A arquitetura planejada para o Borafut segue o padrão cliente-servidor de três camadas (\textit{three-tier architecture}), modelo amplamente adotado em sistemas web e móveis modernos por promover a separação clara de responsabilidades, escalabilidade e manutenção simplificada \cite{pressman2019}. Nesse padrão, o sistema é dividido em três níveis principais: frontend (camada de apresentação), backend (camada de aplicação) e banco de dados (camada de dados), com a possibilidade de comunicação com serviços externos (APIs e SDKs) para funcionalidades complementares.
+    A arquitetura adotada para o BoraFut segue o padrão cliente-servidor de três camadas (\textit{three-tier architecture}), modelo amplamente adotado em sistemas web e móveis modernos por promover a separação clara de responsabilidades, escalabilidade e manutenção simplificada \cite{pressman2019}. Nesse padrão, o sistema é dividido em três níveis principais: frontend (camada de apresentação), backend (camada de aplicação) e banco de dados (camada de dados), com comunicação com serviços externos (APIs e SDKs) para funcionalidades complementares.
 
-    Essa estrutura foi escolhida por se adequar às necessidades de um projeto acadêmico em formato de MVP: permite o desenvolvimento incremental, facilita o trabalho paralelo da equipe e simplifica a implantação em serviços de nuvem. A Figura~\ref{fig:arquitetura-geral} apresenta uma visão geral da organização planejada.
+    Essa estrutura foi escolhida por se adequar às necessidades de um projeto acadêmico em formato de MVP: permite o desenvolvimento incremental, facilita o trabalho paralelo da equipe e simplifica a implantação em serviços de nuvem. A Figura~\ref{fig:arquitetura-geral} apresenta uma visão geral da organização adotada.
 
     \begin{figure}[h]
         \centering
         \includegraphics[width=0.8\textwidth]{figuras/arquitetura-geral.jpeg}
-        \caption{Visão geral da arquitetura planejada do sistema.}
+        \caption{Visão geral da arquitetura do sistema.}
         \label{fig:arquitetura-geral}
     \end{figure}
 
-    \subsection{Frontend}
-    A camada de apresentação será desenvolvida em React Native, visando portabilidade entre dispositivos Android e iOS. Essa tecnologia possibilita a criação de um aplicativo móvel nativo com reuso de código, integração facilitada com bibliotecas de interface e compatibilidade com serviços externos. O frontend será responsável pela interação direta com o usuário e pela comunicação com o backend via API, utilizando o formato \textit{JavaScript Object Notation} (JSON) sobre o protocolo \textit{Hypertext Transfer Protocol Secure} (HTTPS).
+    As tecnologias que materializam cada camada são as descritas no Capítulo~\ref{cap:suporte-tecnologico}; a arquitetura resultante, com seus diagramas C4 e o modelo de dados, é apresentada na Seção~\ref{sec:arquitetura-design}, e a organização efetiva do código, no Capítulo~\ref{sec:desenvolvimento}.
 
-    \subsection{Backend}
-    A camada de aplicação será implementada em Node.js, utilizando o framework NestJS sobre o adaptador Fastify. Essa combinação oferece estrutura modular, bom desempenho e integração simples com bancos de dados relacionais e serviços de nuvem. O backend será responsável pela lógica de negócio, autenticação, controle de acesso e processamento das requisições enviadas pelo aplicativo, além de intermediar a comunicação com o banco de dados e com serviços externos.
-
-    A arquitetura do backend seguirá o padrão RESTful\footnote{O termo RESTful deriva do sufixo inglês ``-ful'', que indica ``caracterizado por'' ou ``que segue os princípios de''. Assim, uma RESTful API é uma API que adota os princípios da arquitetura  REST.}, com endpoints que permitirão operações de leitura, escrita e atualização de informações. Para as funcionalidades em tempo real, como o acompanhamento ao vivo das partidas, o REST é complementado por comunicação via WebSocket.
-
-    \subsection{Banco de dados}
-    A camada de dados será composta por um banco relacional PostgreSQL, escolhido por sua robustez, confiabilidade e compatibilidade com provedores de nuvem. O esquema do banco será modelado de forma normalizada, garantindo integridade e consistência das informações. A modelagem detalhada de dados será apresentada na Seção~\ref{subsec:modelo-dados}, onde é descrito o modelo de dados do PostgreSQL.
-
-    \subsection{Integrações externas}
-    Além da comunicação direta entre cliente e servidor, o backend realiza integrações com APIs externas essenciais para viabilizar funcionalidades-chave do aplicativo, restritas às necessidades do MVP.
-
-    As integrações adotadas são:
-
-    \begin{itemize}
-        \item \textbf{Autenticação por código enviado por e-mail}, utilizando um serviço externo de envio de mensagens (Amazon Simple Email Service). Nesse modelo \textit{passwordless}, o usuário informa o endereço de e-mail e recebe um código temporário para acessar sua conta, eliminando a necessidade de senhas.
-
-        \item \textbf{Serviços de geolocalização e mapas}, por meio da Google Maps Platform, para consultar, exibir e georreferenciar quadras públicas no Distrito Federal.
-
-        \item \textbf{Notificações push}, por meio do serviço Expo Notifications, para lembretes e avisos ligados ao fluxo do fut, como presença, chegada e andamento da partida.
-
-        \item \textbf{Armazenamento e entrega de mídia}, com o Amazon S3 e a rede de distribuição de conteúdo CloudFront, para as fotos das quadras.
-    \end{itemize}
-    
-    \subsection{Comunicação e infraestrutura}
-    A comunicação entre o aplicativo e o servidor será feita por meio de requisições HTTPS, com autenticação baseada em \textit{JSON Web Tokens} (JWT). Tanto o backend quanto o banco de dados serão hospedados no ambiente de nuvem da AWS.
+    As decisões metodológicas e arquiteturais registradas neste capítulo são o ponto de partida do projeto da solução, detalhado a seguir.

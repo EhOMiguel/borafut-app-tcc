@@ -1,0 +1,54 @@
+@startuml
+' Regra de rotacao unificada do BoraFut: como a fila posicional determina quem
+' entra em campo ao fim de cada partida.
+' Fonte: desenvolvimento.tex, subsecoes "Presenca, chegada e fila por ordem de
+' chegada" e "Formacao e rotacao de times".
+' Render: java -jar plantuml.jar -tpng -charset UTF-8 -o render rotacao-fila.puml
+
+skinparam dpi 150
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundcorner 6
+skinparam rectangle {
+  BorderColor #17693f
+  BackgroundColor #ffffff
+  FontColor #14181c
+}
+skinparam ArrowColor #40474d
+
+title Rotação por ordem de chegada em um fut de três por time
+
+rectangle "**Antes da partida**" as ANTES {
+  rectangle "Time A\npos. 1, 2, 3" as A1 #eaf3ee
+  rectangle "Time B\npos. 4, 5, 6" as B1 #eaf3ee
+  rectangle "Fila de espera\npos. 7, 8, 9, ..." as F1 #f5f5f4
+  A1 -[hidden]right-> B1
+  B1 -[hidden]right-> F1
+}
+
+rectangle "**Fim da partida**\nTime A vence" as FIM #fdf8e6
+
+rectangle "**Depois da partida**" as DEPOIS {
+  rectangle "Time A\npermanece em campo" as A2 #eaf3ee
+  rectangle "Time C\nex-pos. 7, 8, 9" as C2 #eaf3ee
+  rectangle "Fila de espera\nTime B vai ao fim" as F2 #f5f5f4
+  A2 -[hidden]right-> C2
+  C2 -[hidden]right-> F2
+}
+
+ANTES --> FIM
+FIM --> DEPOIS
+
+note bottom of DEPOIS
+  As posições da fila não são renumeradas: quem sai
+  recebe uma posição a partir do maior valor corrente.
+  Os jogadores em campo são sempre os que ocupam as
+  primeiras posições, o que dispensa estrutura própria
+  para representar a escalação.
+
+  Quando a fila não completa um time inteiro, a mesma
+  regra vale com times reduzidos.
+end note
+
+@enduml

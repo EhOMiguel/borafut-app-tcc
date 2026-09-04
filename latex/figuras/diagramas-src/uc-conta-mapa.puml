@@ -10,7 +10,7 @@ R --|> UNR
 actor "Serviço de E-mail\n<<sistema externo>>" as SES
 actor "Serviço de Mapas\n<<sistema externo>>" as MAPS
 
-rectangle Borafut {
+rectangle BoraFut {
   usecase "UC01 Cadastrar-se" as UC01
   usecase "UC02 Autenticar-se" as UC02
   usecase "UC03 Validar código\npor e-mail" as UC03
@@ -52,6 +52,6 @@ UC13 -- MAPS
 
 note right of UC11 : pré-condição: participação\nelegível em fut da quadra
 note right of UC10 : agenda detalhada\nexige conta
-note right of UC05 : solicitada por página pública,\nfora do aplicativo
+note right of UC05 : disponível nas configurações do app;\na página pública é alternativa
 note right of UC06 : abre no navegador as versões\npúblicas dos documentos
 @enduml

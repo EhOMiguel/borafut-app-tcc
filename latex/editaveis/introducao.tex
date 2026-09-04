@@ -10,11 +10,11 @@
 
   Essas quadras públicas representam espaços populares, acessíveis a todas as classes sociais, nos quais acontecem desde jogos informais até atividades de “escolinhas” e projetos sociais. Em horários de maior demanda, como fins de tarde ou finais de semana, existem jogos organizados de maneira colaborativa entre os participantes, muitas vezes utilizando grupos de serviços de mensageria instantânea, como o WhatsApp ou redes sociais para combinar os encontros. Em alguns casos, especialmente em regiões como o Plano Piloto, foram implementadas regras formais de uso, com faixas de horário reservadas a escolas ou projetos sociais, exigindo agendamento junto à administração pública para outros horários \cite{peixoto2025}. Mesmo com essas medidas, a organização dos jogos segue, em sua maioria, informal e baseada no diálogo direto entre os jogadores.
 
-  Nesse cenário, a crescente presença de smartphones e o uso cotidiano de ferramentas digitais abrem espaço para soluções tecnológicas que otimizem a vivência do futebol amador. A proposta deste trabalho é justamente apresentar o desenvolvimento de um aplicativo móvel que facilite a organização de partidas de futebol entre amigos, utilizando as quadras públicas disponíveis em Brasília.
+  Nesse cenário, a crescente presença de \textit{smartphones} e o uso cotidiano de ferramentas digitais abrem espaço para soluções tecnológicas que otimizem a vivência do futebol amador. A proposta deste trabalho é justamente apresentar o desenvolvimento de um aplicativo móvel que facilite a organização de partidas de futebol entre amigos, utilizando as quadras públicas disponíveis em Brasília.
 
 \section{Justificativa}
 
-  A organização de partidas de futebol amador em Brasília enfrenta desafios recorrentes, especialmente nas quadras públicas distribuídas pela cidade. A marcação dos jogos costuma depender de grupos dispersos em aplicativos de mensagens, com confirmações inconsistentes e pouca clareza sobre a disponibilidade dos espaços. Essa dificuldade, inicialmente observada pelos autores, foi posteriormente comprovada através de questionário aplicado a jogadores de diferentes regiões do Distrito Federal (detalhado na Seção~\ref{sec:questionario} e apresentado no Apêndice~\ref{apendice:questionario}), revelando uma fragilidade na forma como atividades esportivas comunitárias são articuladas, mesmo diante de uma infraestrutura urbana que favorece esse tipo de prática. Ao explorar essa análise, percebe-se que o problema ultrapassa a dimensão organizacional e se conecta a questões estruturais, de saúde pública e urbanismo.
+  A organização de partidas de futebol amador em Brasília enfrenta desafios recorrentes, especialmente nas quadras públicas distribuídas pela cidade. A marcação dos jogos costuma depender de grupos dispersos em aplicativos de mensagens, com confirmações inconsistentes e pouca clareza sobre a disponibilidade dos espaços. Essa dificuldade, inicialmente observada pelos autores, foi posteriormente corroborada por questionário aplicado a jogadores de diferentes regiões do Distrito Federal (detalhado na Seção~\ref{sec:questionario} e apresentado no Apêndice~\ref{apendice:questionario}), revelando uma fragilidade na forma como atividades esportivas comunitárias são articuladas, mesmo diante de uma infraestrutura urbana que favorece esse tipo de prática. Ao explorar essa análise, percebe-se que o problema ultrapassa a dimensão organizacional e se conecta a questões estruturais, de saúde pública e urbanismo.
 
   O Brasil apresenta índices alarmantes de sedentarismo. De acordo com o Ministério da Saúde, cerca de 47\% dos adultos brasileiros não praticam atividade física suficiente, e entre os jovens esse índice chega a 84\% \cite{ministerio2023,saraiva2024}. Esses números colocam o país como o mais sedentário da América Latina e o quinto no mundo em inatividade física \cite{oms2023,bvsms2023}. O sedentarismo é considerado atualmente um dos maiores desafios de saúde pública, estando associado ao aumento de doenças crônicas como obesidade, diabetes tipo 2, hipertensão, além de transtornos mentais \cite{bvsms2023,oms2023}. Estima-se que a inatividade física seja responsável por aproximadamente 5 milhões de mortes anuais em todo o mundo \cite{oms2023}.
 
@@ -26,17 +26,20 @@
 
   No caso do Plano Piloto, por exemplo, a regulamentação vigente determina que, de segunda a sexta-feira, as quadras sejam priorizadas para escolas e projetos sociais durante o dia, ficando abertas à comunidade apenas entre 20h e 22h \cite{peixoto2025}\footnote{Essa regulamentação estabelece que, caso um projeto social com autorização formal esteja em andamento, ele terá prioridade no uso da quadra, podendo inclusive solicitar a saída de usuários presentes. Contudo, tais situações são pouco frequentes, uma vez que até mesmo projetos sociais têm presença escassa nas quadras públicas.}. Essa informação, porém, nem sempre é divulgada de forma clara, dificultando o planejamento da comunidade. Além disso, sem um sistema integrado que reúna e divulgue essas informações, muitas quadras permanecem ociosas, enquanto a concentração de jogadores em horários de pico, sem conhecimento prévio sobre a ocupação, pode gerar disputas pelo uso do espaço \cite{agenciabrasilia2025}.
 
-  Outro problema comum é conseguir reunir o número ideal de jogadores. A comunicação informal, baseada em mensagens em grupos de WhatsApp, muitas vezes resulta em partidas desmarcadas, desistências de última hora e exclusão de novos participantes. Pessoas recém-chegadas na cidade ou que não fazem parte dos grupos de amigos locais tem dificuldade para encontrar partidas, o que acaba desestimulando a prática esportiva.
+  Outro problema comum é conseguir reunir o número ideal de jogadores. A comunicação informal, baseada em mensagens em grupos de WhatsApp, muitas vezes resulta em partidas desmarcadas, desistências de última hora e exclusão de novos participantes. Pessoas recém-chegadas à cidade ou que não fazem parte dos grupos de amigos locais têm dificuldade para encontrar partidas, o que acaba desestimulando a prática esportiva.
 
   Diante dessa problemática, a proposta deste trabalho é o desenvolvimento de uma solução mobile voltada à organização do futebol amador em Brasília. A aplicação centraliza informações sobre partidas, jogadores e quadras públicas, incluindo localização, características e regras de uso, permitindo organizar partidas, confirmar presença e gerenciar listas de participantes, de modo a otimizar o aproveitamento dos espaços públicos e incentivar a prática esportiva local.
 
-  Cabe delimitar o escopo desta proposta. O aplicativo atua na organização das partidas e na divulgação de informações sobre as quadras públicas (localização, características e regras de uso), mas não realiza a reserva nem o agendamento desses espaços junto à administração pública. As quadras tratadas são, em sua maioria, de uso livre e gratuito, e algumas estão sujeitas a regras específicas de prioridade definidas pelo poder público, como ocorre no Plano Piloto; nesses casos, o aplicativo limita-se a informar tais regras aos usuários. Geograficamente, o trabalho concentra-se em Regiões Administrativas do Distrito Federal selecionadas para o piloto. Por fim, aspectos de monetização e de modelo de negócio não constituem objeto deste trabalho, cujo foco está na contribuição social e técnica da solução, ficando registrados como perspectiva futura. As funcionalidades centrais (organizar partidas, descobrir quadras e consultar sua ocupação) são gratuitas e assim permanecerão; eventual sustentação financeira futura recairia sobre recursos complementares, sem afetar o fluxo principal de uso.
+  Cabe fixar desde já dois termos que percorrem toda a monografia e nomeiam conceitos distintos. Denomina-se \textbf{fut} o encontro combinado em uma quadra, com data, hora e lista de participantes, que é a unidade em torno da qual gira a organização; denomina-se \textbf{partida} cada jogo disputado dentro desse encontro, com times escalados, cronômetro e placar próprios. Um fut comporta, portanto, várias partidas sucessivas. O vocabulário é o dos próprios praticantes, e a monografia o preserva por ser essa distinção que sustenta o modelo de dados e as regras de rotação apresentados adiante.
 
-  Essa solução será referida ao longo desta monografia como Borafut, denominação oficial do aplicativo desenvolvido pelos autores. O nome sintetiza a proposta “Bora jogar futebol” e é grafado com inicial maiúscula, sem negrito nem itálico, na mesma forma com que a marca é publicada nas lojas de aplicativos, garantindo coerência entre o texto da monografia e o produto entregue.
+  Cabe delimitar o escopo desta proposta. O aplicativo atua na organização das partidas e na divulgação de informações sobre as quadras públicas (localização, características e regras de uso), mas não realiza a reserva nem o agendamento desses espaços junto à administração pública. As quadras tratadas são, em sua maioria, de uso livre e gratuito, e algumas estão sujeitas a regras específicas de prioridade definidas pelo poder público, como ocorre no Plano Piloto; nesses casos, o aplicativo limita-se a informar tais regras aos usuários. Geograficamente, o trabalho concentra-se na Asa Norte, região administrativa selecionada para o piloto. Por fim, aspectos de monetização e de modelo de negócio não constituem objeto deste trabalho, cujo foco está na contribuição social e técnica da solução, ficando registrados como perspectiva futura. As funcionalidades centrais (organizar partidas, descobrir quadras e consultar sua ocupação) são gratuitas e assim permanecerão; eventual sustentação financeira futura recairia sobre recursos complementares, sem afetar o fluxo principal de uso.
 
-  Sob o ponto de vista acadêmico, o projeto também se justifica por proporcionar uma aplicação prática dos fundamentos da Engenharia de Software a um problema social real. Seu desenvolvimento envolve levantamento e análise de requisitos, escolha de tecnologias multiplataforma, definição de arquitetura, implementação iterativa e validação com usuários reais. O produto final não apenas oferece impacto comunitário mensurável, como também contribui para a formação técnica e científica de seus autores, documentando métodos e resultados com potencial de replicação em outras regiões e contextos.
+  Essa solução será referida ao longo desta monografia como BoraFut, denominação oficial do aplicativo desenvolvido pelos autores. O nome sintetiza a proposta “Bora jogar futebol” e é grafado com as iniciais de ``Bora'' e ``Fut'' em maiúsculas, sem negrito nem itálico, na mesma forma com que a marca é publicada nas lojas de aplicativos, garantindo coerência entre o texto da monografia e o produto entregue.
+
+  Sob o ponto de vista acadêmico, o projeto também se justifica por proporcionar uma aplicação prática dos fundamentos da Engenharia de Software a um problema social real. Seu desenvolvimento envolve levantamento e análise de requisitos, escolha de tecnologias multiplataforma, definição de arquitetura, implementação iterativa e validação com usuários reais. O produto final possui potencial de impacto comunitário, cuja mensuração exige acompanhamento longitudinal, e contribui para a formação técnica e científica de seus autores ao documentar métodos e resultados com potencial de replicação em outras regiões e contextos.
 
 \section{Objetivos}
+  \label{sec:objetivos}
 
   Seguem os objetivos geral e específicos atrelados a esse trabalho.
 
@@ -46,13 +49,13 @@
 
   \subsection{Objetivos Específicos}
 
-    Para alcançar o objetivo geral proposto, o desenvolvimento do aplicativo será conduzido por meio dos seguintes objetivos específicos:
+    Para alcançar o objetivo geral proposto, o desenvolvimento do aplicativo foi conduzido segundo os seguintes objetivos específicos:
 
     \begin{enumerate}
       \item Projetar o software segundo princípios e boas práticas de Engenharia de Software.
-      \item Instrumentar o registro estruturado de eventos de domínio no serviço de retaguarda.
+      \item Instrumentar o registro estruturado de eventos de domínio no backend.
       \item Promover a qualidade de uso por meio de design e avaliação de usabilidade.
-      \item Mapear e qualificar quadras públicas nas Regiões Administrativas (RAs) alvo.
+      \item Mapear e qualificar quadras públicas na região administrativa alvo do piloto.
       \item Disponibilizar o Produto Mínimo Viável (\textit{Minimum Viable Product} (MVP)) em ambiente piloto.
       \item Documentar o processo e as decisões do projeto.
       \item Avaliar os resultados e indicar melhorias e perspectivas futuras.
@@ -60,16 +63,20 @@
 
 \section{Organização dos capítulos}
 
-  Esta monografia está estruturada em seis capítulos. A organização segue uma progressão lógica que parte dos fundamentos teóricos e metodológicos até a apresentação detalhada do projeto desenvolvido.
+  Esta monografia está estruturada em oito capítulos. A organização segue uma progressão lógica que parte dos fundamentos teóricos e metodológicos, passa pela construção e pela avaliação do produto e termina com as conclusões do trabalho.
 
   O Capítulo 2, Referencial Teórico, apresenta os fundamentos conceituais que sustentam o trabalho.
 
-  O Capítulo 3, Suporte Tecnológico, descreve as tecnologias e ferramentas que serão utilizadas no desenvolvimento da solução proposta.
+  O Capítulo 3, Suporte Tecnológico, descreve as tecnologias e ferramentas utilizadas no desenvolvimento da solução proposta.
 
-  O Capítulo 4, Metodologia, apresenta a abordagem de desenvolvimento, os processos utilizados no projeto e a análise dos resultados obtidos.
+  O Capítulo 4, Metodologia, apresenta a abordagem de desenvolvimento, os processos utilizados no projeto e a estratégia de validação adotada.
 
   O Capítulo 5, Projeto do aplicativo, apresenta a descrição detalhada da solução proposta.
 
   O Capítulo 6, Desenvolvimento, descreve a construção da solução, abrangendo o processo de desenvolvimento, a arquitetura implementada e as principais funcionalidades entregues.
+
+  O Capítulo 7, Validação e resultados, apresenta a avaliação do protótipo de alta fidelidade e o primeiro teste de campo do aplicativo em ambiente de produção.
+
+  O Capítulo 8, Considerações finais, discute o alcance dos objetivos, as limitações da pesquisa e os trabalhos futuros.
 
   Por fim, os elementos pós-textuais incluem as referências bibliográficas e os apêndices com materiais complementares.

@@ -4,7 +4,7 @@
 
 \chapter{Modelo lógico de dados}
     \label{apendice:MER}
-    Este apêndice apresenta, em página inteira, o modelo lógico de dados do Borafut, derivado do modelo conceitual da Seção~\ref{subsec:modelo-dados}. O esquema relacional detalha as tabelas, seus atributos, as chaves primárias e estrangeiras e as demais restrições de integridade implementadas no PostgreSQL. A descrição atributo a atributo encontra-se no dicionário de dados do Apêndice~\ref{apendice:dicionario}.
+    A Figura~\ref{fig:mer-completo} apresenta, em página inteira, o modelo lógico de dados do BoraFut, derivado do modelo conceitual da Seção~\ref{subsec:modelo-dados}. O esquema relacional detalha as tabelas, seus atributos, as chaves primárias e estrangeiras e as demais restrições de integridade implementadas no PostgreSQL. A descrição atributo a atributo encontra-se no dicionário de dados do Apêndice~\ref{apendice:dicionario}.
 
     \begin{figure}[p]
         \centering
@@ -15,12 +15,13 @@
 
 \chapter{Project Model Canvas}
     \label{apendice:pmcanvas}
-    Este apêndice reúne o Project Model Canvas utilizado no planejamento inicial do projeto. O canvas sintetiza elementos estratégicos como propósito, stakeholders, entregas, recursos e riscos, oferecendo uma visão macro estruturada do escopo e da proposta de valor do Borafut. Esse artefato orientou as primeiras etapas de concepção e alinhamento do projeto.
+    Este apêndice reúne o Project Model Canvas utilizado no planejamento inicial do projeto. O canvas sintetiza elementos estratégicos como propósito, stakeholders, entregas, recursos e riscos, oferecendo uma visão macro estruturada do escopo e da proposta de valor do BoraFut. Esse artefato orientou as primeiras etapas de concepção e alinhamento do projeto.
 
     \begin{sidewaysfigure}
         \centering
         \includegraphics[width=1.0\linewidth]{figuras/pmcanvas.png}
         \caption{Project Model Canvas completo.}
+        \label{fig:pmcanvas}
     \end{sidewaysfigure}
 
 \chapter{User Stories do Projeto}
@@ -52,7 +53,7 @@
 
     % ===============================================================
     As histórias a seguir compõem o produto planejado. Aquelas que não foram implementadas
-    na versão entregue estão assinaladas com a marcação 	extit{(fora do escopo do MVP)},
+    na versão entregue estão assinaladas com a marcação \textit{(fora do escopo do MVP)},
     de modo que o apêndice registre tanto o planejamento quanto o recorte efetivamente construído.
 
     \section*{Épico 1 -- Gerenciamento de Usuários}
@@ -74,11 +75,11 @@
 
     \subsection*{Feature 3 -- Gestão de conta e privacidade}
     \begin{itemize}
-        \item \textbf{E1-F3-US1} -- Como usuário registrado, desejo solicitar a exclusão da minha conta pela página pública do serviço, para deixar de utilizar o app e ter meu cadastro anonimizado conforme a política de privacidade, preservando o histórico coletivo dos futs sem identificação.
+        \item \textbf{E1-F3-US1} -- Como usuário registrado, desejo excluir minha conta diretamente nas configurações do aplicativo ou solicitar a exclusão pela página pública do serviço, para deixar de utilizar o app e ter meu cadastro anonimizado conforme a política de privacidade, preservando o histórico coletivo dos futs sem identificação.
         \item \textbf{E1-F3-US2} -- Como usuário registrado, desejo visualizar um resumo dos dados pessoais que o app armazena sobre mim, para ter transparência sobre o uso das minhas informações. \textit{(fora do escopo do MVP)}
         \item \textbf{E1-F3-US3} -- Como usuário registrado, desejo controlar a permissão de localização concedida ao aplicativo, usada apenas para centralizar o mapa e para verificar, no meu próprio aparelho, a proximidade da quadra na confirmação de chegada.
         \item \textbf{E1-F3-US4} -- Como usuário registrado, desejo validar meu número de telefone por meio de código enviado por SMS (opcional), para aumentar a confiança da comunidade na minha autenticidade. \textit{(fora do escopo do MVP)}
-        \item \textbf{E1-F3-US5} -- Como usuário (registrado ou não), desejo alternar entre modo claro e modo escuro no app, para adequar a interface às minhas preferências. \textit{(fora do escopo do MVP)}
+        \item \textbf{E1-F3-US5} -- Como usuário (registrado ou não), desejo alternar entre modo claro e modo escuro no app, para adequar a interface às minhas preferências.
     \end{itemize}
 
     % ===============================================================
@@ -114,7 +115,7 @@
 
     \subsection*{Feature 2 -- Regras e agenda da quadra}
     \begin{itemize}
-        \item \textbf{E3-F2-US1} -- Como usuário registrado, desejo visualizar os horários em que a quadra costuma estar ocupada ou reservada.
+        \item \textbf{E3-F2-US1} -- Como usuário registrado, desejo visualizar os horários em que a quadra costuma estar ocupada ou sujeita a uso prioritário de escolas e projetos sociais.
         \item \textbf{E3-F2-US2} -- Como usuário registrado, desejo visualizar os próximos futs agendados naquela quadra.
     \end{itemize}
 
@@ -222,7 +223,7 @@
 \chapter{Especificação dos Casos de Uso}
     \label{apendice:casos-uso}
 
-    Este apêndice detalha os principais casos de uso do Borafut na forma de especificação textual, complementando os diagramas das Figuras~\ref{fig:uc-conta-mapa} a~\ref{fig:uc-fut-partida}. O formato adotado segue a especificação de caso de uso detalhado proposta por Cockburn~\cite{cockburn2001}, na qual cada caso descreve o ator principal, as pré e pós-condições, o fluxo principal (sequência de episódios do caminho de sucesso), os fluxos alternativos (variações válidas) e as exceções (situações de erro e seu tratamento). Foram selecionados os casos de uso mais representativos do escopo, por concentrarem maior densidade de regras de negócio.
+    Este apêndice detalha os principais casos de uso do BoraFut na forma de especificação textual, complementando os diagramas das Figuras~\ref{fig:uc-conta-mapa} a~\ref{fig:uc-fut-partida}. O formato adotado segue a especificação de caso de uso detalhado proposta por Cockburn~\cite{cockburn2001}, na qual cada caso descreve o ator principal, as pré e pós-condições, o fluxo principal (sequência de episódios do caminho de sucesso), os fluxos alternativos (variações válidas) e as exceções (situações de erro e seu tratamento). Foram selecionados os casos de uso mais representativos do escopo, por concentrarem maior densidade de regras de negócio.
 
     \section*{UC02 -- Autenticar-se}
         \begin{description}
@@ -448,7 +449,7 @@
 
         \noindent\textbf{Fluxos alternativos}
         \begin{itemize}
-            \item \textbf{A1 (gol contra):} ao selecionar gol contra, o sistema incrementa o placar do time adversário ao jogador e distingue o registro do gol marcado para fins de estatística.
+            \item \textbf{A1 (gol contra):} ao selecionar gol contra, o sistema credita o gol ao time adversário e distingue o registro do gol marcado, para fins de estatística.
             \item \textbf{A2 (desfazer último gol):} dentro da janela, desfazer reverte o último gol, decrementa o placar e registra a correção vinculada ao gol original.
             \item \textbf{A3 (pausa e retomada):} quem conduz a partida pode pausá-la e retomá-la; o cronômetro suspende a contagem, sem reiniciar.
         \end{itemize}
@@ -468,7 +469,7 @@
 
         \noindent\textbf{Fluxo principal}
         \begin{enumerate}
-            \item Ao um time atingir o número de gols para vencer, o sistema o marca como vencedor e abre uma janela curta para desfazer o último gol.
+            \item Quando um time atinge o número de gols para vencer, o sistema o marca como vencedor e abre uma janela curta para desfazer o último gol.
             \item Transcorrida a janela, o sistema encerra a partida e aplica a rotação: o time perdedor vai para o fim da fila e os próximos jogadores entram.
         \end{enumerate}
 
@@ -513,11 +514,11 @@
 \chapter{Dicionário de Dados}
     \label{apendice:dicionario}
 
-    Este apêndice descreve o modelo físico de dados do Borafut, implementado no PostgreSQL a partir do esquema declarativo do Prisma. Para cada entidade (tabela), listam-se os atributos com seu tipo, descrição e restrições. As convenções adotadas são:
+    Este apêndice descreve o modelo físico de dados do BoraFut, implementado no PostgreSQL a partir do esquema declarativo do Prisma. Para cada entidade (tabela), listam-se os atributos com seu tipo, descrição e restrições. As convenções adotadas são:
 
     \begin{itemize}
         \item \textbf{Tipos:} \textit{UUID} (identificador universal único); \textit{texto}, \textit{inteiro}, \textit{inteiro longo}, \textit{ponto flutuante} e \textit{booleano} (tipos primitivos); \textit{data/hora} (instante sem fuso) e \textit{data/hora (UTC)} (instante com fuso, armazenado em tempo universal coordenado); \textit{lista de texto} (vetor de cadeias); \textit{enumerado} (conjunto fechado de valores).
-        \item \textbf{Restrições:} \textbf{PK} (chave primária), \textbf{FK} (chave estrangeira, com a tabela referenciada), \textbf{UQ} (restrição de unicidade), \textit{opcional} (admite valor nulo) e \textit{padrão} (valor assumido quando não informado).
+        \item \textbf{Restrições:} \textbf{PK} (chave primária), \textbf{FK} (chave estrangeira, com a tabela referenciada), \textbf{UQ} (restrição de unicidade), \textit{obrigatório} (não admite valor nulo), \textit{opcional} (admite valor nulo) e \textit{padrão} (valor assumido quando não informado). Alguns atributos são nulos no esquema por serem preenchidos em etapa posterior à criação da conta, ainda que obrigatórios pela regra de produto; é o caso de \texttt{nome}, \texttt{data\_nascimento} e \texttt{avatar\_id}, cuja exigência é imposta pela jornada de primeiro acesso e sinalizada por \texttt{perfil\_completo}.
         \item Os atributos \texttt{created\_at} e \texttt{updated\_at}, recorrentes, registram os instantes de criação e de última atualização do registro.
     \end{itemize}
 
@@ -526,6 +527,7 @@
     \subsection*{\texttt{jogador}}
     Cadastro do jogador, base da autenticação e do perfil.
     \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+    \caption*{Dicionário de dados: entidade \texttt{jogador}.}\\
         \hline
         \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
         \hline
@@ -543,7 +545,7 @@
         \texttt{perfil\_completo} & booleano & Indica se o cadastro básico foi concluído. & padrão falso \\
         \texttt{ativo} & booleano & Indica se a conta está ativa. & padrão verdadeiro \\
         \texttt{ultimo\_login} & data/hora (UTC) & Instante do último acesso. & opcional \\
-        \texttt{expo\_push\_token} & texto & Token de push do dispositivo, para notificações. & opcional, UQ \
+        \texttt{expo\_push\_token} & texto & Token de push do dispositivo, para notificações. & opcional, UQ \\
         \texttt{termos\_aceitos\_em} & data/hora (UTC) & Instante do aceite dos termos de uso, registrado na criação da conta. & opcional \\
         \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
         \texttt{updated\_at} & data/hora (UTC) & Instante da última atualização. & \\
@@ -553,6 +555,7 @@
     \subsection*{\texttt{codigo\_verificacao}}
     Códigos temporários enviados por e-mail na autenticação sem senha.
     \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+    \caption*{Dicionário de dados: entidade \texttt{codigo\_verificacao}.}\\
         \hline
         \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
         \hline
@@ -570,6 +573,7 @@
     \subsection*{\texttt{refresh\_token}}
     Tokens de renovação de sessão, persistidos e revogáveis.
     \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+    \caption*{Dicionário de dados: entidade \texttt{refresh\_token}.}\\
         \hline
         \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
         \hline
@@ -588,6 +592,7 @@
     \subsection*{\texttt{quadra}}
     Catálogo georreferenciado das quadras públicas.
     \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+    \caption*{Dicionário de dados: entidade \texttt{quadra}.}\\
         \hline
         \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
         \hline
@@ -612,6 +617,7 @@
     \subsection*{\texttt{foto\_quadra}}
     Fotos associadas a uma quadra.
     \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+    \caption*{Dicionário de dados: entidade \texttt{foto\_quadra}.}\\
         \hline
         \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
         \hline
@@ -627,6 +633,7 @@
     \subsection*{\texttt{favorito\_quadra}}
     Marcação de quadras favoritas por jogador.
     \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+    \caption*{Dicionário de dados: entidade \texttt{favorito\_quadra}.}\\
         \hline
         \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
         \hline
@@ -642,6 +649,7 @@
     \subsection*{\texttt{avaliacao\_quadra}}
     Avaliações de quadra, com nota, comentário e versionamento.
     \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+    \caption*{Dicionário de dados: entidade \texttt{avaliacao\_quadra}.}\\
         \hline
         \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
         \hline
@@ -661,6 +669,7 @@
     \subsection*{\texttt{curtida\_avaliacao\_quadra}}
     Curtidas de avaliações por outros jogadores.
     \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+    \caption*{Dicionário de dados: entidade \texttt{curtida\_avaliacao\_quadra}.}\\
         \hline
         \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
         \hline
@@ -678,6 +687,7 @@
     \subsection*{\texttt{fut}}
     Evento de futebol agendado em uma quadra.
     \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+    \caption*{Dicionário de dados: entidade \texttt{fut}.}\\
         \hline
         \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
         \hline
@@ -685,7 +695,8 @@
         \texttt{id} & UUID & Identificador do fut. & PK \\
         \texttt{nome} & texto & Nome público do fut. & obrigatório, máximo 80 caracteres \\
         \texttt{quadra\_id} & UUID & Quadra do fut. & FK \texttt{quadra} \\
-        \texttt{criador\_id} & UUID & Jogador criador do fut. & FK \texttt{jogador} \\
+        \texttt{criador\_id} & UUID & Jogador que detém atualmente o papel de criador do fut. & FK \texttt{jogador} \\
+        \texttt{criador\_original\_id} & UUID & Jogador que criou originalmente o fut, preservado após sucessões ou anonimização. & FK \texttt{jogador} \\
         \texttt{date\_time} & data/hora (UTC) & Data e horário do fut. & obrigatório \\
         \texttt{descricao} & texto & Descrição opcional. & opcional \\
         \texttt{status\_fut\_id} & inteiro & Estado do fut. & FK \texttt{status\_fut} \\
@@ -705,6 +716,7 @@
     \subsection*{\texttt{participacao}}
     Presença de um jogador em um fut, com marcações do ciclo de vida.
     \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+    \caption*{Dicionário de dados: entidade \texttt{participacao}.}\\
         \hline
         \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
         \hline
@@ -727,8 +739,9 @@
     \noindent Restrição de tabela: UQ (\texttt{fut\_id}, \texttt{jogador\_id}).
 
     \subsection*{\texttt{lista}}
-    Fila do fut, ordenada por posição absoluta crescente.
+    Fila do fut, ordenada por posição inteira crescente e sem compactação global automática.
     \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+    \caption*{Dicionário de dados: entidade \texttt{lista}.}\\
         \hline
         \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
         \hline
@@ -736,7 +749,7 @@
         \texttt{id} & UUID & Identificador do registro na fila. & PK \\
         \texttt{fut\_id} & UUID & Fut da fila. & FK \texttt{fut} \\
         \texttt{jogador\_id} & UUID & Jogador na fila. & FK \texttt{jogador} \\
-        \texttt{posicao} & inteiro & Posição absoluta na fila. & obrigatório \\
+        \texttt{posicao} & inteiro & Chave de ordenação da fila; pode mudar em movimentos, trocas e rotações. & obrigatório \\
         \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
         \texttt{updated\_at} & data/hora (UTC) & Instante da última atualização. & \\
         \hline
@@ -746,6 +759,7 @@
     \subsection*{\texttt{log\_chegada}}
     Registro dos eventos de chegada à quadra, incluindo presença informal.
     \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+    \caption*{Dicionário de dados: entidade \texttt{log\_chegada}.}\\
         \hline
         \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
         \hline
@@ -766,6 +780,7 @@
     \subsection*{\texttt{partida}}
     Sessão de disputa dentro de um fut, com cópia das regras vigentes na criação da partida.
     \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+    \caption*{Dicionário de dados: entidade \texttt{partida}.}\\
         \hline
         \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
         \hline
@@ -778,7 +793,7 @@
         \texttt{tempo\_partida\_minutos} & inteiro & Duração (cópia da regra do fut na criação). & obrigatório \\
         \texttt{gols\_para\_vencer} & inteiro & Gols para vencer (cópia da regra do fut). & obrigatório \\
         \texttt{tempo\_pausado\_ms} & inteiro & Tempo acumulado em pausa, em milissegundos. & padrão 0 \\
-        \texttt{pausado\_em} & data/hora (UTC) & Instante da pausa corrente. & opcional \
+        \texttt{pausado\_em} & data/hora (UTC) & Instante da pausa corrente. & opcional \\
         \texttt{rotacao\_em} & data/hora (UTC) & Instante agendado para efetivar a rotação de times após o encerramento provisório. & opcional \\
         \texttt{created\_at} & data/hora (UTC) & Instante de criação. & \\
         \texttt{updated\_at} & data/hora (UTC) & Instante da última atualização. & \\
@@ -788,6 +803,7 @@
     \subsection*{\texttt{jogador\_partida}}
     Composição dos times de cada partida.
     \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+    \caption*{Dicionário de dados: entidade \texttt{jogador\_partida}.}\\
         \hline
         \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
         \hline
@@ -803,6 +819,7 @@
     \subsection*{\texttt{log\_partida}}
     Histórico de eventos da partida (gols, pausas e correções).
     \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+    \caption*{Dicionário de dados: entidade \texttt{log\_partida}.}\\
         \hline
         \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
         \hline
@@ -821,9 +838,10 @@
 
     \section*{Tabelas de domínio e operacionais}
 
-    As tabelas de domínio padronizam os estados e os tipos de evento referenciados pelas demais entidades. Todas seguem a mesma estrutura: \texttt{id} (inteiro sequencial, PK) e \texttt{nome} (texto, UQ). A Tabela a seguir resume sua finalidade e o conjunto completo de valores povoados pela carga inicial.
+    As tabelas de domínio padronizam os estados e os tipos de evento referenciados pelas demais entidades. Todas seguem a mesma estrutura: \texttt{id} (inteiro sequencial, PK) e \texttt{nome} (texto, UQ). O quadro a seguir resume sua finalidade e o conjunto completo de valores povoados pela carga inicial.
 
     \begin{longtable}{p{3.2cm}p{5.4cm}p{5.1cm}}
+    \caption*{Tabelas de domínio: finalidade e valores povoados pela carga inicial.}\\
         \hline
         \textbf{Tabela} & \textbf{Finalidade} & \textbf{Valores} \\
         \hline
@@ -836,14 +854,16 @@
     \end{longtable}
 
     \subsection*{\texttt{versao}}
-    Controle de versão mínima do aplicativo por plataforma.
+    Controle das versões recomendada e mínima do aplicativo por plataforma.
     \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+    \caption*{Dicionário de dados: entidade \texttt{versao}.}\\
         \hline
         \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
         \hline
         \endhead
         \texttt{id} & inteiro & Identificador do registro. & PK \\
         \texttt{plataforma} & texto & Plataforma alvo (ex.: Android, iOS). & obrigatório \\
+        \texttt{versao} & texto & Última versão publicada; abaixo dela o aplicativo exibe aviso de atualização, que o usuário pode dispensar. & obrigatório \\
         \texttt{versao\_minima} & texto & Versão mínima suportada. & obrigatório \\
         \texttt{descricao} & texto & Descrição da exigência. & opcional \\
         \texttt{ativo} & booleano & Indica se a regra está em vigor. & padrão verdadeiro \\
@@ -854,6 +874,7 @@
     \subsection*{\texttt{fut\_notificacao}}
     Registro das notificações agendadas já enviadas por fut, que garante o envio único de cada tipo.
     \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+    \caption*{Dicionário de dados: entidade \texttt{fut\_notificacao}.}\\
         \hline
         \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
         \hline
@@ -869,6 +890,7 @@
     \subsection*{\texttt{push\_receipt}}
     Recibos de entrega das notificações \textit{push}, usados para invalidar tokens que deixaram de ser válidos.
     \begin{longtable}{p{2.5cm}p{2.1cm}p{5.8cm}p{2.9cm}}
+    \caption*{Dicionário de dados: entidade \texttt{push\_receipt}.}\\
         \hline
         \textbf{Atributo} & \textbf{Tipo} & \textbf{Descrição} & \textbf{Restrições} \\
         \hline
@@ -887,6 +909,7 @@
    Este apêndice apresenta as perguntas utilizadas no questionário aplicado aos participantes da pesquisa exploratória sobre o futebol amador no Distrito Federal. Somente as perguntas e alternativas foram transcritas, mantendo-se a estrutura original do formulário.
 
     \begin{longtable}{p{0.25\linewidth} p{0.70\linewidth}}
+    \caption*{Perguntas e alternativas do questionário aplicado.}\\
         \textbf{Pergunta} & \textbf{Alternativas} \\
         \hline
         Como você se identifica? &
@@ -938,10 +961,10 @@
         \hline
 
         Importância das funcionalidades (1–5) &
-        Criar partidas; Consultar quadras; Avaliações; Ocupação em tempo real; Encontrar grupos; Apostas; Estatísticas pessoais; Campeonatos; Ranqueamento; Notificações. \\
+        Criar partidas; Consultar quadras; Avaliações; Ocupação em tempo real; Encontrar grupos; Estatísticas pessoais; Campeonatos; Ranqueamento; Notificações. \\
         \hline
 
-        O que mais te motivaria a usar o Borafut? &
+        O que mais te motivaria a usar o BoraFut? &
         Marcar jogos facilmente; Juntar a galera; Manter rotina de atividade física; Acompanhar estatísticas; Recompensas/desafios; Evitar furos; Achar quadra e horário. \\
         \hline
 
@@ -957,7 +980,7 @@
 
     \section*{Identificação da pesquisa}
         \begin{description}
-            \item[Título do projeto] Aplicativo para Organização de Partidas de Futebol Amador (Borafut).
+            \item[Título do projeto] Aplicativo para Organização de Partidas de Futebol Amador (BoraFut).
             \item[Instituição] Universidade de Brasília (UnB), Faculdade de Ciências e Tecnologias em Engenharia (FCTE).
             \item[Curso] Engenharia de Software.
             \item[Pesquisadores responsáveis] Arthur Carneiro Trindade e Miguel Moreira da Silva de Oliveira.
@@ -966,7 +989,7 @@
         \end{description}
 
     \section*{Convite e objetivo}
-        Você está sendo convidado(a) a participar voluntariamente de um teste de usabilidade do protótipo de alta fidelidade do aplicativo Borafut, desenvolvido como parte de um Trabalho de Conclusão de Curso em Engenharia de Software na Universidade de Brasília.
+        Você está sendo convidado(a) a participar voluntariamente de um teste de usabilidade do protótipo de alta fidelidade do aplicativo BoraFut, desenvolvido como parte de um Trabalho de Conclusão de Curso em Engenharia de Software na Universidade de Brasília.
 
         O objetivo deste teste é avaliar a facilidade de uso, a clareza da interface e a eficiência dos principais fluxos de interação do aplicativo, com base nos princípios de Interação Humano-Computador. Os resultados serão utilizados para identificar oportunidades de melhoria na experiência do usuário antes da implementação final do sistema.
 
@@ -974,7 +997,7 @@
         A sua participação consistirá em:
 
         \begin{enumerate}
-            \item realizar um conjunto de tarefas utilizando o protótipo interativo do Borafut, acessível via Figma, por compartilhamento de tela em videoconferência (modalidade remota) ou presencialmente, com um dispositivo fornecido pelos pesquisadores;
+            \item realizar um conjunto de tarefas utilizando o protótipo interativo do BoraFut, acessível via Figma, por compartilhamento de tela em videoconferência (modalidade remota) ou presencialmente, com um dispositivo fornecido pelos pesquisadores;
             \item verbalizar seus pensamentos durante a realização das tarefas (protocolo \textit{think-aloud}), descrevendo o que está fazendo, o que espera que aconteça e eventuais dificuldades encontradas;
             \item responder a um questionário pós-teste (\textit{System Usability Scale}, SUS) para avaliar sua percepção geral sobre a usabilidade do sistema;
             \item responder a perguntas abertas sobre sua experiência com o protótipo.
@@ -988,7 +1011,7 @@
         \textbf{Benefícios.} Você contribuirá diretamente para a melhoria de um aplicativo voltado à comunidade de futebol amador de Brasília. Não há compensação financeira pela participação.
 
     \section*{Confidencialidade e proteção de dados}
-        O projeto Borafut encontra-se em fase de desenvolvimento e não foi publicado. Solicitamos que o(a) participante trate como confidenciais todas as informações, telas, fluxos e funcionalidades apresentadas durante o teste, e que não compartilhe capturas de tela, gravações, descrições detalhadas ou qualquer material do protótipo com terceiros.
+        O projeto BoraFut encontra-se em fase de desenvolvimento e não foi publicado. Solicitamos que o(a) participante trate como confidenciais todas as informações, telas, fluxos e funcionalidades apresentadas durante o teste, e que não compartilhe capturas de tela, gravações, descrições detalhadas ou qualquer material do protótipo com terceiros.
 
         Em relação ao tratamento dos seus dados pessoais, em conformidade com a Lei Geral de Proteção de Dados (LGPD, Lei nº 13.709/2018)~\cite{LGPD2018}:
 
@@ -1018,5 +1041,11 @@
         \end{itemize}
 
         \noindent Os campos de resposta do formulário, todos de preenchimento obrigatório, são: nome completo; autorização para gravação da sessão (tela e áudio), com as opções sim e não; autorização para gravação do vídeo da câmera durante a sessão, com as opções sim e não; e a declaração de leitura e aceite dos termos acima.
+
+\chapter{Telas do protótipo}
+    \label{apendice:telas}
+    Este apêndice reúne as telas do protótipo de alta fidelidade construído no Figma, que serviu de base para o teste de usabilidade descrito no Capítulo~\ref{cap:validacao-resultados}. As telas cobrem os fluxos centrais do MVP, do primeiro acesso à condução da partida ao vivo.
+
+    % TODO: inserir as telas exportadas do Figma em grade de duas a tres por linha.
 
 \end{apendicesenv}

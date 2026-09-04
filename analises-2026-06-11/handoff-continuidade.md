@@ -1,73 +1,104 @@
-# Handoff de continuidade (escrito em 11/06/2026; ATUALIZADO em 13/07/2026)
+# Handoff de continuidade (escrito em 11/06/2026; ATUALIZADO em 23/07/2026)
 
 > Documento de passagem de bastão. Quem está lendo isto (humano ou IA) assume o trabalho
 > do TCC2 + produto BoraFut exatamente do ponto em que parou, com as mesmas regras.
 > Leitura obrigatória ANTES de qualquer edição: este arquivo, depois `04-plano-tcc-v2.md`
 > (plano mestre, incluindo o Adendo §0 e as Regras §8).
-> A seção §8 (abaixo) traz o **estado em 13/07/2026** — em conflito com o corpo antigo,
+> A seção §8 (abaixo) traz o **estado em 23/07/2026** — em conflito com o corpo antigo,
 > vale a §8.
 
-## 8. ESTADO EM 13/07/2026 (auditoria completa — sobrepõe o que estiver desatualizado acima)
+## 8. ESTADO EM 23/07/2026 (sobrepõe o que estiver desatualizado acima)
 
-### Dev — backend (muito à frente do plano)
-Mergeado em `main`: auth + refactor menores (M1/M2/M4), courts/reviews/favoritos,
-futs CRUD+share, **schema/papéis (KAN-46)**, **presença/chegada/fila + organizadores +
-sucessão de criador**, **tempo real (gateway Socket.IO + cache 2s + ETag + seq)**,
-**lifecycle read-path (transições lazy)**, push infra (token/dispatcher), CI verde.
-Também na main (PR #26): `feat/gestao-partidas` (**fut ao vivo completo**: iniciar fut,
-vamos-lá, gol/gol contra/desfazer 15s, último lance, pênaltis, force-end, rotação
-unificada + times reduzidos, swap, regras-snapshot, encerrar fut, pushes).
-Em PR pendente: `feat/fut-lifecycle-cron` (cron 5min: transições backstop, escalada de
-inatividade T+2h/2h15/2h30 + prorrogação, lembretes 24h/1h/horário, ledger idempotente,
-receipts Expo) — correções da review 001 + auditoria APLICADAS em 13/07 (commit
-`dcd7735`), branch pushada; falta abrir/mergear a PR.
-670 testes unit + 57 e2e verdes. Novo doc de contratos:
-`BoraFut-ia/api-rotas-contratos.md (cópias em .ia/shared/)`.
+### Dev — backend (fluxo do fut fechado)
+Tudo na `main`: auth + refactor menores (M1/M2/M4), courts/reviews/favoritos, futs
+CRUD+share, schema/papéis (KAN-46), presença/chegada/fila + organizadores + sucessão de
+criador, tempo real (gateway Socket.IO + cache 2s + ETag + seq), lifecycle read-path,
+push infra, **fut ao vivo completo** (PR #26: iniciar fut, vamos-lá, gol/gol contra/
+desfazer 15s, último lance, pênaltis, force-end, rotação unificada + times reduzidos,
+swap, regras-snapshot, encerrar fut, pushes), **cron de backstop** (PR #28: transições,
+escalada de inatividade, lembretes, ledger idempotente, receipts Expo) e **fut
+não-gerenciado** (PR #31: presença/chegada informal, stepper de gols declarados,
+ativação "Quem está aqui", escalada de inatividade unificada em ciclos de 1h).
 
-### Dev — frontend (gargalo atual)
+Também na main (PR #32, B9): suíte de integração contra **Postgres real** (banco de teste
+dedicado, truncate entre casos) e o **fix F1 de auth**, achado por ela: o contador de
+tentativas do verify-code era perdido no rollback da transação, anulando o lockout de
+força bruta. 698 testes unitários + 71 e2e verdes contra banco real.
+
+**Não há trabalho de backend fora da `main`.**
+
+Doc de contratos: `BoraFut-ia/api-rotas-contratos.md` (cópias em `.ia/shared/`).
+
+### Dev — frontend (gargalo atual, sem mudança relevante desde 13/07)
 Feito: onboarding/auth, mapa+pins, busca, perfil da quadra (abas, reviews, favoritos),
-push (token/banner/deep-link), jest-expo (25 specs), CI.
-Placeholders: create-fut, profile, settings. **Não existe a feature de futs inteira**
+push (token/banner/deep-link), jest-expo, CI, landing page.
+Última atividade do Arthur: 18/07, na branch `feat/fut-crud-share` (só "destacar futs em
+andamento na aba da quadra" + merge da main). **A feature de futs continua inexistente**
 (detalhe do fut, presença, chegada, fila, partida ao vivo, share link, cliente WS —
-`socket.io-client` nem está instalado).
-**BUG:** `CourtScheduleTab` consome `futsDoDia`/`organizador`; o backend responde
+`socket.io-client` nem está instalado). Isso é o caminho crítico do beta e da demo.
+**BUG aberto:** `CourtScheduleTab` consome `futsDoDia`/`organizador`; o backend responde
 `futsSemanais`/`criador` — agenda da quadra vazia no app.
 
-### Pendências P0 (13/07; decisões do Miguel aplicadas na mesma data)
-1. **SES real** (C1 do doc 02) — segue inexistente. DECISÃO: aguardar mais um pouco
-   (registrado); é o gate do beta com usuário externo.
-2. Contrato `futsSemanais` no frontend — correção já prevista em card.
-3. ~~Correções da review do cron~~ FEITAS 13/07 (commit `dcd7735`, branch pushada);
-   falta abrir/mergear a PR do `feat/fut-lifecycle-cron`.
-4. Frontend do fluxo de fut — previsto em card; caminho crítico do beta e da demo.
-5. Sync das specs — FEITO 13/07 (fut_in_app_context.md §3.4/3.8/3.9/4.15.2/5.4/6.3/
-   7.5/8.5/9.10 + ponte do contexto §8.2 para `api-rotas-contratos.md (BoraFut-ia / .ia/shared)`), nas 3
-   cópias; commit no BoraFut-ia pendente de revisão do Miguel.
+### Pendências P0
+1. **SES real** — segue inexistente. DECISÃO do Miguel: aguardar; é o gate do beta com
+   usuário externo.
+2. **Frontend do fluxo de fut** — caminho crítico; depende do Arthur.
+3. Contrato `futsSemanais` no frontend — previsto em card.
+4. **Instrumentação (B5)** — reescopada em 23/07 e movida para o fim da fila. O funil de
+   adoção foi descartado: o beta será fechado, com participantes recrutados, e sob viés de
+   seleção nenhuma métrica de escolha voluntária mede o que promete. Ficam a verificação
+   dos RNFs em campo, a robustez operacional e a divergência entre a decisão automática do
+   app e a decisão social do grupo. Ainda precisa preceder o primeiro fut do beta.
 
 ### Não implementado em lado nenhum (gates do freeze de 03/08)
-Ativação de gerenciamento (§5.3), coleta passiva do não-gerenciado (§5.2 +
-elegibilidade cond. 3), card pós-fut + estatísticas (§6.1/§6.2), SES, S3/CloudFront em
-produção (KAN-45), hardening HTTP, GET /version + exclusão de conta (LGPD),
-aba conscientização (P18).
+Card pós-fut + estatísticas (§6.1/§6.2 da monografia dependem dele), SES, S3/CloudFront
+em produção (KAN-45), hardening HTTP, `GET /version` + exclusão de conta (LGPD), aba
+conscientização (P18), instrumentação do beta (B5, reescopada).
+(Ativação de gerenciamento e coleta passiva do não-gerenciado saíram desta lista: foram
+implementadas no PR #31.)
 
-### Monografia (working tree, 15 commits desde 11/06)
-Feito além do plano de 11/06: Cap6 "Desenvolvimento" criado (processo, arquitetura,
-fundação, descoberta; seções motor-do-fut/tempo-real corretamente comentadas até o
-freeze), C4 contexto+contêineres+componentes, fluxos do Cap5 reescritos (D09),
-13 RFs (D10), granularidade 6 níveis (P12), dicionário de dados (P20 parcial),
-specs de 11 UCs, US novas (NV1/NV2), observação (P05).
-Pendências de texto: ver plano mestre §3/§4 com os status atualizados em 13/07 e o
-relatório da auditoria de 13/07 (correções pontuais em Cap3/Cap6).
-MER Chen no brModelo continua com o Miguel.
+### Monografia
+Capítulo 6 "Desenvolvimento" **completo**: processo, arquitetura, fundação, descoberta,
+§6.5 motor do fut, §6.6 tempo real, §6.7 qualidade (com os testes de integração contra
+Postgres real) e §6.8 decisões e trade-offs em cinco ADRs. Também prontos: C4
+contexto/contêineres/componentes, fluxos do Cap5 (D09), 13 RFs (D10), granularidade
+6 níveis (P12), specs de 11 UCs, US novas (NV1/NV2), observação (P05).
+
+**Modelo de dados (P20) fechado:** dicionário de dados regenerado do `schema.prisma`,
+MER conceitual em PlantUML `@startchen` (`mer-conceitual.puml`, com entidades fracas,
+relacionamentos identificadores e atributos compostos, multivalorados e derivados),
+modelo lógico em DBML desenhado no dbdiagram (`modelo-logico.dbml` → `render/
+modelo-logico.png`, 22 tabelas) e a §Modelo de dados reescrita com a distinção
+conceitual/lógico (Chen, Elmasri). Diagramas corrigidos após as mudanças de
+implementação: UC27 passou a ser do Usuário Registrado; o C4 de componentes ganhou as
+setas app→Presence e app→Match.
+
+**B8 feito (23/07):** apêndice do TCLE transcrito do formulário aplicado, §Plano de
+privacidade e segurança escrita na metodologia (dados do app e dados de pesquisa,
+incluindo a exclusão de conta na tela de perfil, que é compromisso de implementação antes
+da defesa) e menção à tela de termos do questionário. Fecha o KAN-16.
+
+**B7 feito (30/07):** registro completo da dinâmica de brainwriting (janeiro de 2024, sete
+participantes, 41 cartões consolidados em 27 temas, com a ponte de cada tema até o MVP) em
+`BoraFut-ia/documentos-banca/brainwriting-registro.pdf`. O documento vive no repo de IA, que
+é **privado**, porque `borafut-app-tcc` é **público** e o registro contém propostas de
+monetização e parcerias não publicadas. Subseção *Brainwriting* da metodologia reescrita.
+Fecha o KAN-9. Achado: dos 47 itens do quadro do Miro, 6 são histórias de usuário
+acrescentadas depois, na construção do backlog; a dinâmica produziu 41.
+
+Pendente de texto: **B6** (apêndice de protótipos), **B4**
+(Cap 7.1-7.3, travado por dado: não existe roteiro de entrevista nem resposta de SUS no
+repositório, é coleta a fazer) e os bloqueados B10-B12. O Miguel ainda não compilou o PDF
+com o Cap 6 e o modelo de dados novos.
 
 ### Specs (BoraFut-ia)
-D1-D7 aplicados E COMMITADOS. Contexto atualizado com real-time chegou-only e §8.3.
-As defasagens achadas na auditoria foram **sincronizadas em 13/07** (working tree do
-BoraFut-ia + cópias dos submodules; commit pendente do Miguel): sucessão de criador
-(novo §3.9), decisões do cron (§4.15.2 notas, §7.5, §8.5), e-mail obrigatório no
-cadastro manual (§3.4, "email opcional" adiado pós-MVP), elegibilidade exigindo fut
-encerrado (§6.3), push final do auto-encerramento marcado como previsto-para-MVP junto
-do card pós-fut (§4.15.2/§9.10), e ponte do contexto base §8.2 para o doc de rotas.
+Sincronizadas e commitadas: sucessão de criador (§3.9), decisões do cron (§4.15.2, §7.5,
+§8.5), e-mail obrigatório no cadastro manual (§3.4), elegibilidade exigindo fut encerrado
+(§6.3), ponte do contexto §8.2 para o doc de rotas, e as rotas/modelo de dados do fut
+não-gerenciado. Repositório `BoraFut-ia` em dia com o `origin/main`, submódulos dos dois
+repos de código apontando para o commit atual. O gate de sincronização foi endurecido:
+todo plano de tasks termina obrigatoriamente com a task de sincronização dos documentos
+de contexto.
 
 ## 1. Contexto em uma frase
 

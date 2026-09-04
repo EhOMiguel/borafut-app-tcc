@@ -1,5 +1,5 @@
 // ============================================================
-// Borafut - Modelo logico de dados (DBML para dbdiagram.io)
+// BoraFut - Modelo logico de dados (DBML para dbdiagram.io)
 // Fonte de verdade: BoraFut-Backend/prisma/schema.prisma
 // 22 tabelas. Nomes de tabela e coluna conforme o banco (snake_case).
 // ============================================================
@@ -178,6 +178,7 @@ Table "fut" {
   "nome" varchar(80) [not null]
   "quadra_id" uuid [not null]
   "criador_id" uuid [not null]
+  "criador_original_id" uuid [not null]
   "date_time" timestamptz [not null]
   "descricao" text
   "status_fut_id" int [not null]
@@ -194,6 +195,7 @@ Table "fut" {
 
   Indexes {
     (quadra_id, date_time) [name: 'idx_fut_quadra_datetime']
+    (criador_original_id) [name: 'idx_fut_criador_original']
     (status_fut_id, date_time) [name: 'idx_fut_status_datetime']
   }
 
@@ -256,7 +258,7 @@ Table "lista" {
     (fut_id, posicao) [name: 'idx_lista_fut_posicao']
   }
 
-  Note: 'Fila de espera posicional. A posicao nunca e reordenada: quem entra recebe MAX(posicao)+1.'
+  Note: 'Fila posicional sem compactacao global. Entradas usam MAX(posicao)+1; movimentos, trocas e rotacoes podem atribuir novas posicoes aos jogadores envolvidos.'
 }
 
 Table "log_chegada" {
@@ -382,12 +384,13 @@ Table "push_receipt" {
 Table "versao" {
   "id" int [pk, increment]
   "plataforma" text [not null]
+  "versao" text [not null]
   "versao_minima" text [not null]
   "descricao" text
   "ativo" boolean [not null, default: true]
   "created_at" timestamptz [not null, default: `now()`]
 
-  Note: 'Versao minima exigida por plataforma (force update).'
+  Note: 'Versao recomendada gera aviso dispensavel; versao minima bloqueia o uso abaixo do piso.'
 }
 
 // ============================================================
@@ -409,6 +412,7 @@ Ref: "jogador"."id" < "curtida_avaliacao_quadra"."jogador_id"
 // Futs
 Ref: "quadra"."id" < "fut"."quadra_id"
 Ref: "jogador"."id" < "fut"."criador_id"
+Ref: "jogador"."id" < "fut"."criador_original_id"
 Ref: "status_fut"."id" < "fut"."status_fut_id"
 
 // Presenca e fila

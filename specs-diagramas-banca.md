@@ -13,9 +13,8 @@
 >
 > **Revisão v2.1 (13/07/2026), após auditoria do código:**
 > - UC/C4 renderizados e inseridos no Cap5; a spec dos UCs continua fiel ao produto.
-> - Seção 4 (C3): coluna "Estado" atualizada — os módulos reais do backend batem com o
->   desenho (`auth`, `courts`(+reviews), `futs`, `presence`, `match`, `realtime`, `push`
->   +`email`, `scheduler`, `prisma`, `common`); ponto em aberto 4 RESOLVIDO.
+> - Seção 4 (C3): coluna "Estado" atualizada — além dos domínios originais, o desenho
+>   inclui `profile`, `users` e `version`, presentes no backend atual.
 > - Ponto em aberto 2 RESOLVIDO: status inativo de AVALIACAO no código é **'INATIVA'**
 >   (default 'ATIVA').
 > - MER (seção 2): continua pendente de desenho pelo Miguel. Escopo (DECISÃO 13/07,
@@ -39,7 +38,7 @@
 **Estrutura final: TRÊS diagramas** (validada por renderização em 11/06 - acima de ~15
 elipses o layout degrada): Diagrama I "Conta, mapa e quadras" (grupos A-B), Diagrama II
 "Fut: organização e presença" (grupo C) e Diagrama III "Partida, não-gerenciado e pós-fut"
-(grupos D-E). Todos repetem a fronteira BORAFUT e os atores pertinentes.
+(grupos D-E). Todos repetem a fronteira BoraFut e os atores pertinentes.
 
 **Status: RENDERIZADOS.** Fontes em `latex/figuras/diagramas-src/*.puml`; PNGs verificados
 em `latex/figuras/diagramas-src/render/` (uc-conta-mapa, uc-fut-organizacao,
@@ -116,8 +115,8 @@ NR = Não Registrado, R = Registrado, O = Organizador, C = Criador.
 | UC24 | Verificar proximidade por GPS | (extensão) | fut_in_app §4.1 (aviso, não bloqueio) |
 | UC25 | Confirmar chegada de outro jogador | R {que já chegou} | fut_in_app §4.1 (testemunha presencial) (NOVO) |
 | UC26 | Revogar chegada | O | fut_in_app §4.1 (anti-furo) (NOVO) |
-| UC27 | Registrar participante manualmente | O | E5-F2-US2; fut_in_app §3.4 (SÓ durante o fut) |
-| UC28 | Notificar convidado por e-mail | (incluído; assoc. Serviço de E-mail) | E5-F2-US3 |
+| UC27 | Registrar participante manualmente | R {criador ou organizador que já chegou} | E5-F2-US2; fut_in_app §3.4; disponível a partir do horário do fut, inclusive antes da primeira partida |
+| UC28 | Notificar convidado por e-mail | (planejado, não implementado) | E5-F2-US3; não associar ao serviço de e-mail no estado atual |
 
 **Grupo D - Fut gerenciado: partida** (Diagrama II)
 
@@ -183,7 +182,7 @@ direita com estereótipo `<<sistema externo>>`.
 
 ### 1.5 Layout
 
-- **Diagrama I (Conta, mapa e quadras):** fronteira BORAFUT ao centro; à esquerda, NR no
+- **Diagrama I (Conta, mapa e quadras):** fronteira BoraFut ao centro; à esquerda, NR no
   topo e R abaixo (seta de generalização R→NR); faixa superior interna: UC08-UC10, UC01,
   UC13; faixa inferior: UC02-UC07, UC11, UC12; UC03 encostado à direita perto do Serviço
   de E-mail; Serviço de Mapas à direita no topo.
@@ -211,7 +210,7 @@ C --|> O
 actor "Serviço de E-mail\n<<sistema externo>>" as SES
 actor "Serviço de Push\n<<sistema externo>>" as PUSH
 
-rectangle BORAFUT {
+rectangle BoraFut {
   usecase "UC14 Visualizar\ndetalhes do fut" as UC14
   usecase "UC15 Confirmar presença" as UC15
   usecase "UC16 Validar sobreposição\nde horário" as UC16
@@ -296,10 +295,29 @@ note right of UC36 : empate e fila sem\n2 times completos
 
 ## 2. MER CONCEITUAL (notação de Chen) - v2
 
-Ferramenta: brModelo (desenho manual do Miguel). Notação: entidade = retângulo; fraca =
-retângulo duplo; relacionamento = losango (identificador = duplo); atributo = elipse
-(identificador sublinhado; multivalorado = elipse dupla; composto = sub-elipses);
-cardinalidades 1/N/M nas linhas.
+Notação: entidade = retângulo; fraca = retângulo duplo; relacionamento = losango
+(identificador = duplo); atributo = elipse (identificador sublinhado; multivalorado =
+elipse dupla; composto = sub-elipses); cardinalidades 1/N/M nas linhas.
+
+**Ferramenta:** os dois modelos são mantidos **como código**, versionados junto com os demais
+diagramas do repositório, dispensando o brModelo:
+
+- **Conceitual (Chen):** `latex/figuras/diagramas-src/mer-conceitual.puml`, em PlantUML com
+  `@startchen` (suporte nativo à notação de Chen: entidade fraca em retângulo duplo,
+  relacionamento identificador em losango duplo, atributo composto, multivalorado, derivado
+  em elipse tracejada e chave sublinhada). Validado no PlantUML 1.2025.4. Render (mesmo
+  comando dos demais diagramas): `java -jar plantuml.jar -tpng -charset UTF-8 -o render
+  mer-conceitual.puml`; o layout interno do PlantUML resolve o diagrama sem depender do
+  Graphviz. O PNG sai em `render/mer-conceitual.png`.
+- **Lógico (esquema relacional):** `latex/figuras/diagramas-src/modelo-logico.dbml`, em DBML,
+  gerado a partir do `schema.prisma` (as 22 tabelas com PK, FK, restrições de unicidade,
+  índices, tipos enumerados e comportamento de exclusão). O desenho é feito no dbdiagram.io
+  colando o DBML; a exportação em PNG substitui `render/modelo-logico.png`, que é o arquivo
+  referenciado pelo apêndice da monografia.
+- Escopo do conceitual: entidades, relacionamentos e atributos de domínio. Os atributos
+  puramente operacionais (carimbos de criação e atualização, tokens, contadores de sequência,
+  sinalizadores de moderação) e o detalhe atributo a atributo ficam no modelo lógico e no
+  dicionário de dados, para manter o diagrama legível em página A4.
 
 ### 2.1 Conceitual × lógico (texto-base para a monografia)
 
@@ -310,26 +328,39 @@ Inalterado da v1 (tabela comparativa + 7 decisões de abstração), com 3 acrés
   fut já enviados: lembretes, avisos de inatividade, cancelamento). `push_receipt` entra
   no lógico e no dicionário; no conceitual fica a critério do desenho (sem relacionamento
   com entidade de domínio).
-- A tabela de telemetria `evento_produto` (instrumentação do beta, card 6) NÃO entra
+- A tabela de telemetria `evento_produto` (instrumentação do beta) NÃO entra
   (não existe no schema; se for implementada, reavaliar).
+
+**Fora do conceitual, mas presentes no lógico e no dicionário** (apoio de autenticação e
+de controle, não conceitos de domínio): `codigo_verificacao`, `refresh_token` e `versao`.
+No conceitual, ficam a critério do desenho; recomendo omiti-los para não poluir o MER de
+domínio. As tabelas de lookup de status (`status_fut`, `status_participacao`,
+`status_partida`, `tipo_acao`) também não viram entidades no conceitual: seus valores são
+os domínios enumerados dos atributos `status`/`tipo` (vão em legenda lateral).
 
 ### 2.2 Entidades e atributos
 
 **JOGADOR** - id (ID); email (único); nome, apelido, dataNascimento, telefone, genero,
-regiao, avatar, ativo; {tiposFutPreferidos} multivalorado. [schema Jogador]
+regiao, avatarId, perfilCompleto, ativo, ultimoLogin; {tiposFutPreferidos} multivalorado.
+O token de push (expoPushToken) é dado operacional de dispositivo: entra no lógico e no
+dicionário, não no conceitual. [schema Jogador]
 
 **QUADRA** - id (ID); slug (único); nome, endereco, observacao; localizacao (composto:
 latitude, longitude); nivelPiso, tipoIluminacao, nivelMovimentacao, nivelQualidade,
-tamanho (domínios enumerados do schema); {fotos} multivalorado. [schema Quadra/FotoQuadra]
+tamanho (domínios enumerados do schema); {fotos} multivalorado; notaMedia (derivado: média
+das avaliações ativas, calculada na consulta). [schema Quadra/FotoQuadra]
 
-**FUT** - id (ID); codigoCompartilhamento (único); dataHora; descricao; status {agendado,
-em_andamento, encerrado, cancelado}; gerenciadoPeloApp; minimoJogadores; regrasPadrao
-(composto: tempoPartidaMinutos, golsParaVencer, tamanhoPorTime). [schema Fut + fut_in_app §3.1]
+**FUT** - id (ID); nome; codigoCompartilhamento (único, é o `share_code`); dataHora;
+descricao; status {agendado, em_andamento, encerrado, cancelado}; gerenciadoPeloApp;
+regrasPadrao (composto: tempoPartidaMinutos, golsParaVencer, tamanhoPorTime). Não há
+atributo de mínimo de jogadores: o mínimo para iniciar é derivado (tamanhoPorTime × 2). Os
+atributos operacionais do ciclo de vida (eventSeq, motivoSistema, inatividadeReiniciadaEm)
+entram no lógico e no dicionário, não no conceitual. [schema Fut]
 
 **PARTIDA** (fraca de FUT) - inicio (discriminador); fim; tempoPausado; status
 {em_andamento, pausada, encerrada, em_penaltis, encerrada_provisoriamente};
 regrasAplicadas (composto: tempoPartidaMinutos, golsParaVencer - snapshot copiado do fut
-na criação). [fut_in_app §7.1]
+na criação); placar (derivado: apurado a partir dos eventos de gol). [fut_in_app §7.1]
 
 **EVENTO DE PARTIDA** (fraca de PARTIDA) - dataHora (discriminador); tipo {gol, gol_contra,
 gol_desfeito, pausa, retomada, encerramento_partida, penalti_gol, penalti_erro,
@@ -343,23 +374,24 @@ revogado_admin, revogado_self, presenca_informal, cadastro_manual}; gpsValidado.
 lembrete_1h, lembrete_horario, inatividade_aviso, inatividade_aviso_final,
 nao_gerenciado_aviso, nunca_iniciado_cancelado); enviadaEm. [fut_in_app §7.5]
 
-**AVALIACAO** - id (ID); nota; comentario; status {ATIVA, INATIVADA - a confirmar nome
-exato}; data. [schema AvaliacaoQuadra]
+**AVALIACAO** - id (ID); nota (1-5); comentario (opcional); status {ATIVA, INATIVA};
+inativadaEm; createdAt; totalCurtidas (derivado: contagem de curtidas). Liga-se a QUADRA e
+JOGADOR (R14/R15). [schema AvaliacaoQuadra]
 
 ### 2.3 Relacionamentos
 
 | # | A | losango | B | Card. | Atributos do relacionamento | Fonte |
 |---|---|---|---|---|---|---|
-| R1 | JOGADOR | **cria** | FUT | 1:N | - (papel: criador) | Fut.criadorId (pós-KAN-46) |
+| R1 | JOGADOR | **cria** | FUT | 1:N | - (papel: criador) | Fut.criadorId |
 | R2 | QUADRA | sedia | FUT | 1:N | - | Fut.quadraId |
-| R3 | JOGADOR | participa | FUT | N:M | status {confirmado, cancelado, chegou, saiu}; organizador (booleano); confirmadoEm; canceladoEm; chegouEm; saiuEm | participacao + KAN-46 |
+| R3 | JOGADOR | participa | FUT | N:M | status {confirmado, cancelado, chegou, saiu}; organizador (booleano); removidoPorAdmin (booleano); golsDeclarados (opcional, coleta pós-fut do não-gerenciado); confirmadoEm; canceladoEm; chegouEm; saiuEm | participacao |
 | R4 | JOGADOR | aguarda na fila de | FUT | N:M | posicao | lista |
 | R5 | FUT | gera | PARTIDA | 1:N identificador | - | partida |
 | R6 | JOGADOR | atua em | PARTIDA | N:M | time | jogador_partida |
 | R7 | PARTIDA | registra | EVENTO DE PARTIDA | 1:N identificador | - | log_partida |
 | R8 | JOGADOR | protagoniza | EVENTO DE PARTIDA | 1:N | (papel: autor) | log_partida.autorId |
 | R9 | JOGADOR | lança | EVENTO DE PARTIDA | 1:N | (papel: registrador) | log_partida.registradorId |
-| R10 | EVENTO DE PARTIDA | **desfaz** | EVENTO DE PARTIDA | 1:1 parcial (auto-relacionamento) | - (só gol_desfeito→gol no MVP) | referencia_log_id (KAN-46) |
+| R10 | EVENTO DE PARTIDA | **desfaz** | EVENTO DE PARTIDA | 1:1 parcial (auto-relacionamento) | - (só gol_desfeito→gol no MVP) | referencia_log_id |
 | R11 | FUT | ocorre chegada em | REGISTRO DE CHEGADA | 1:N identificador | - | log_chegada.futId |
 | R12 | JOGADOR | é alvo de | REGISTRO DE CHEGADA | 1:N | (papel: jogador) | log_chegada.jogadorId |
 | R13 | JOGADOR | efetua | REGISTRO DE CHEGADA | 1:N | (papel: ator; ator≠jogador = confirmação por terceiro/ação administrativa) | log_chegada.atorId |
@@ -372,24 +404,28 @@ exato}; data. [schema AvaliacaoQuadra]
 Participação total: FUT em R1/R2; PARTIDA em R5; EVENTO em R7/R8/R9; REGISTRO DE CHEGADA
 em R11/R12/R13; REGISTRO DE NOTIFICAÇÃO em R18; AVALIACAO em R14/R15. Demais parciais.
 
-### 2.4 Layout (brModelo)
+### 2.4 Layout (referência)
 
 JOGADOR à esquerda (entidade mais conectada); FUT ao centro com os losangos cria/participa/
 aguarda empilhados entre JOGADOR e FUT; QUADRA à direita (sedia); AVALIACAO no topo entre
 JOGADOR e QUADRA (escreve/refere-se a/curte; favorita por rota paralela); PARTIDA (duplo)
 abaixo de FUT (gera duplo); EVENTO DE PARTIDA (duplo) abaixo de PARTIDA com auto-laço
 "desfaz"; REGISTRO DE CHEGADA (duplo) abaixo-esquerda de FUT, com dois losangos para
-JOGADOR (é alvo de / efetua - escrever os papéis nas linhas). Domínios enumerados podem
-ir em legenda lateral para não poluir. Cardinalidades em notação Chen (1, N, M), sem
-pé-de-galinha.
+JOGADOR (é alvo de / efetua - escrever os papéis nas linhas); REGISTRO DE NOTIFICAÇÃO
+(duplo) abaixo-direita de FUT, com um único losango identificador "notifica" ligando-o a
+FUT (não se relaciona com JOGADOR). Domínios enumerados podem ir em legenda lateral para
+não poluir. Cardinalidades em notação Chen (1, N, M), sem pé-de-galinha.
 
 ### 2.5 Modelo lógico (atualização) e dicionário
 
-O lógico (brModelo ou equivalente) reflete o **schema completo atual** do
+O lógico (`modelo-logico.dbml`, desenhado no dbdiagram.io) reflete o **schema completo atual** do
 `BoraFut-Backend/prisma/schema.prisma`: renames (criador_id, participacao.organizador),
-colunas novas (confirmado_em/cancelado_em/chegou_em/saiu_em, removido_por_admin;
-partida.tempo_partida_minutos/gols_para_vencer; log_partida.referencia_log_id e time;
-fut.event_seq/motivo_sistema/inatividade_reiniciada_em; jogador.expo_push_token),
+preservação do criador original (`fut.criador_original_id`) e contrato de versão recomendado
+e mínimo (`versao.versao` e `versao.versao_minima`),
+colunas novas (participacao: confirmado_em/cancelado_em/chegou_em/saiu_em,
+removido_por_admin e gols_declarados; partida.tempo_partida_minutos/gols_para_vencer;
+log_partida.referencia_log_id e time; fut.event_seq/motivo_sistema/inatividade_reiniciada_em;
+jogador.expo_push_token),
 tabelas log_chegada, fut_notificacao e push_receipt, seeds novos
 (encerrada_provisoriamente; tipos de ação ampliados — sem saida_jogador, que não existe).
 Dicionário de dados (apêndice da monografia) REGERADO do schema.prisma atual: entidade,
@@ -401,7 +437,7 @@ atributo, tipo, obrigatoriedade, descrição, restrições.
 
 Convenções C4: pessoa = caixa azul-escura; contêiner = caixa com nome, `[Contêiner:
 tecnologia]` e descrição de uma linha; sistema externo = caixa cinza; setas com rótulo
-"propósito [protocolo]"; fronteira tracejada "BORAFUT [Sistema de Software]".
+"propósito [protocolo]"; fronteira tracejada "BoraFut [Sistema de Software]".
 
 ### 3.1 Elementos
 
@@ -409,7 +445,7 @@ tecnologia]` e descrição de uma linha; sistema externo = caixa cinza; setas co
 |---|---|---|
 | Pessoa | Jogador amador | Organiza e participa de partidas em quadras públicas do DF |
 | Contêiner | Aplicativo Móvel [React Native 0.81 + Expo 54] | Mapa de quadras, criação de futs, presença e acompanhamento da partida; tokens seguros no dispositivo |
-| Contêiner | API [Node.js 22, NestJS 11, Fastify 11] | Lógica de negócio, autenticação JWT passwordless, REST e WebSocket, cron de transições e lembretes |
+| Contêiner | API [Node.js 22, NestJS 11, Fastify 5.11] | Lógica de negócio, autenticação JWT passwordless, REST e WebSocket, cron de transições e lembretes |
 | Contêiner | Banco de Dados [PostgreSQL 16] | Persistência relacional: jogadores, quadras, futs, partidas, avaliações |
 | Externo | Google Maps Platform | Mapa, geocodificação e rotas |
 | Externo | Amazon SES | E-mails transacionais (código de login, convites) |
@@ -444,9 +480,9 @@ legenda no rodapé.
 
 Person(jogador, "Jogador amador", "Organiza e participa de partidas de futebol amador em quadras públicas do DF")
 
-System_Boundary(borafut, "BORAFUT") {
+System_Boundary(borafut, "BoraFut") {
   Container(app, "Aplicativo Móvel", "React Native 0.81 + Expo 54", "Mapa de quadras, criação de futs, presença e acompanhamento da partida")
-  Container(api, "API", "Node.js 22, NestJS 11, Fastify 11", "Lógica de negócio, autenticação JWT passwordless, REST, WebSocket e cron de transições")
+  Container(api, "API", "Node.js 22, NestJS 11, Fastify 5.11", "Lógica de negócio, autenticação JWT passwordless, REST, WebSocket e cron de transições")
   ContainerDb(db, "Banco de Dados", "PostgreSQL 16", "Jogadores, quadras, futs, partidas e avaliações")
 }
 
@@ -478,17 +514,20 @@ externos aparecem como referências fora da fronteira.
 
 ### 4.1 Componentes
 
-| Componente | Responsabilidade | Estado (13/07/2026) |
+| Componente | Responsabilidade | Estado (01/09/2026) |
 |---|---|---|
-| Auth | Login passwordless (códigos), JWT + refresh rotacionado, perfil | implementado |
+| Auth | Login passwordless (códigos), JWT + refresh rotacionado | implementado |
+| Profile | Leitura e atualização do perfil, preferências e avatar | implementado |
+| Users | Consulta de usuários e dados públicos necessários aos fluxos | implementado |
+| Version | Contrato da versão recomendada e da versão mínima do aplicativo | implementado |
 | Courts | Catálogo de quadras, busca, favoritos, cor dos pins | implementado |
 | Court Reviews | Avaliações versionadas + curtidas, elegibilidade | implementado |
 | Futs | CRUD do fut, share code, validação de sobreposição | implementado |
 | Presence & Queue | Presença, chegada (GPS/terceiro/revogação), fila, cadastro manual, log de chegada, organizadores, sucessão de criador | implementado (módulo `presence`) |
 | Match | Partidas, eventos (gol/pausa/pênaltis), último lance, rotação unificada, overrides | implementado (módulo `match`, na main via PR #26) |
 | Realtime Gateway | Socket.IO: rooms por fut, broadcast dos eventos de domínio, auth JWT no handshake | implementado (módulo `realtime`) |
-| Notifications | EmailService (mock; SES pendente) e PushService (Expo): códigos, convites, lembretes | push implementado; **SES pendente (card 1; espera decidida em 13/07)** |
-| Scheduler | Cron de backstop: transições automáticas, encerramentos, lembretes, receipts | implementado (branch pushada, PR pendente) |
+| Notifications | Abstração de e-mail transacional e PushService (Expo): códigos e lembretes | implementado; SMTP é o provedor operacional e SES permanece no desenho arquitetural do TCC |
+| Scheduler | Cron de backstop: transições automáticas, encerramentos, lembretes, receipts | implementado |
 | Prisma Service | Acesso a dados via SQL (tagged templates), transações serializáveis | implementado |
 | Common | Guards JWT, decorators, ClockService, validadores, membership, lifecycle, cache/ETag | implementado |
 
@@ -518,6 +557,9 @@ System_Ext(push, "Expo Push Service", "Notificações push")
 
 Container_Boundary(api, "API - Node.js / NestJS / Fastify") {
   Component(auth, "Auth", "NestJS module", "Login passwordless, JWT + refresh, perfil")
+  Component(profile, "Profile", "NestJS module", "Perfil, preferências e avatar")
+  Component(users, "Users", "NestJS module", "Consulta de usuários e dados públicos")
+  Component(version, "Version", "NestJS module", "Versões recomendada e mínima do app")
   Component(courts, "Courts", "NestJS module", "Quadras, busca, favoritos, pins")
   Component(reviews, "Court Reviews", "NestJS module", "Avaliações versionadas e curtidas")
   Component(futs, "Futs", "NestJS module", "CRUD do fut, share code, sobreposição")
@@ -531,10 +573,16 @@ Container_Boundary(api, "API - Node.js / NestJS / Fastify") {
 }
 
 Rel(app, auth, "REST", "JSON/HTTPS")
+Rel(app, profile, "REST", "JSON/HTTPS")
+Rel(app, users, "REST", "JSON/HTTPS")
+Rel(app, version, "REST", "JSON/HTTPS")
 Rel(app, courts, "REST", "JSON/HTTPS")
 Rel(app, futs, "REST", "JSON/HTTPS")
 Rel(app, rt, "Eventos ao vivo", "WebSocket")
 Rel(auth, prisma, "SQL")
+Rel(profile, prisma, "SQL")
+Rel(users, prisma, "SQL")
+Rel(version, prisma, "SQL")
 Rel(courts, prisma, "SQL")
 Rel(reviews, prisma, "SQL")
 Rel(futs, prisma, "SQL")

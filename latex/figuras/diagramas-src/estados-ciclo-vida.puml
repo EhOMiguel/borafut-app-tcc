@@ -1,0 +1,73 @@
+@startuml
+' Maquinas de estado do BoraFut: fut, participacao e partida.
+' Fonte: desenvolvimento.tex secao "Ciclo de vida e maquinas de estado" e as
+' tabelas de dominio do dicionario de dados (status_fut, status_participacao,
+' status_partida).
+' Render: java -jar plantuml.jar -tpng -charset UTF-8 -o render estados-ciclo-vida.puml
+
+skinparam dpi 150
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam ArrowColor #40474d
+skinparam state {
+  BackgroundColor #f2f5f3
+  BorderColor #17693f
+  FontColor #14181c
+  ArrowFontSize 11
+}
+skinparam NoteBackgroundColor #fdf8e6
+skinparam NoteBorderColor #b9a44c
+
+title Ciclos de vida persistidos do fut, da participação e da partida
+
+' ============ FUT ============
+state "Fut" as FUT {
+  state "agendado" as f1
+  state "em andamento" as f2
+  state "encerrado" as f3
+  state "cancelado" as f4
+
+  [*] --> f1 : criação
+  f1 --> f2 : início pelo criador\nou organizador
+  f1 --> f4 : cancelamento
+  f1 --> f4 : nunca iniciado\n(rotina agendada)
+  f2 --> f3 : encerramento manual
+  f2 --> f3 : inatividade\n(rotina agendada)
+}
+
+' ============ PARTICIPACAO ============
+state "Participação do jogador" as PART {
+  state "confirmado" as p1
+  state "chegou" as p2
+  state "saiu" as p3
+  state "cancelado" as p4
+
+  [*] --> p1 : confirmação de presença
+  p1 --> p2 : registro de chegada
+  p1 --> p4 : desmarca antes de chegar
+  p2 --> p3 : saída durante o fut
+}
+
+' ============ PARTIDA ============
+state "Partida" as PDA {
+  state "em andamento" as m1
+  state "pausada" as m2
+  state "em pênaltis" as m3
+  state "encerrada" as m4
+
+  [*] --> m1 : início da partida
+  m1 --> m2 : pausa
+  m2 --> m1 : retomada
+  m1 --> m3 : empate no tempo regulamentar
+  m3 --> m4 : desempate concluído
+  m1 --> m4 : gols para vencer\nou tempo esgotado
+  m1 --> m4 : encerramento forçado
+}
+
+note bottom of PDA
+  As partidas existem apenas em futs
+  gerenciados pelo aplicativo.
+end note
+
+@enduml

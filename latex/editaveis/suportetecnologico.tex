@@ -1,8 +1,9 @@
 \chapter{Suporte Tecnológico}
+    \label{cap:suporte-tecnologico}
 
-    Neste capítulo são apresentadas as tecnologias, ferramentas e práticas que sustentaram o desenvolvimento do sistema proposto. O objetivo é descrever o suporte tecnológico adotado e justificar as principais decisões de implementação.
+    Definidos os fundamentos conceituais, este capítulo desce ao plano concreto das ferramentas que os viabilizam. Neste capítulo são apresentadas as tecnologias, ferramentas e práticas que sustentaram o desenvolvimento do sistema proposto. O objetivo é descrever o suporte tecnológico adotado e justificar as principais decisões de implementação.
 
-    Inicialmente, são expostas as plataformas e tecnologias utilizadas no desenvolvimento do aplicativo móvel e de seu backend. Em seguida, detalham-se as integrações externas, as ferramentas que apoiaram o processo de projeto e as práticas de qualidade aplicadas no ambiente de desenvolvimento.
+    Inicialmente, são expostas as plataformas e tecnologias utilizadas no desenvolvimento do aplicativo móvel e de seu backend, seguidas do ambiente de desenvolvimento e das práticas de qualidade de código. Na sequência, apresenta-se o banco de dados e as integrações e serviços externos, incluindo a borda que dá entrada à API. Por fim, reúnem-se as versões adotadas em uma tabela-resumo e as ferramentas que apoiaram o processo de projeto e a colaboração.
     % Por fim, são abordados os mecanismos de segurança e conformidade com a LGPD.
 
     \section{Plataforma e tecnologias de desenvolvimento móvel}
@@ -37,6 +38,7 @@
         O acesso ao banco de dados é mediado pelo Prisma, um ORM\footnote{\textit{Object-Relational Mapping}, ou mapeamento objeto-relacional: técnica que representa tabelas e registros do banco como objetos da linguagem de programação.} orientado a esquema \cite{prisma_docs}. A partir de um \textit{schema} declarativo, o Prisma gera um cliente fortemente tipado e gerencia as migrações do banco, o que reduz erros de consulta em tempo de desenvolvimento e mantém o modelo de dados versionado junto ao código.
 
         \subsection{Autenticação com JSON Web Token}
+        \label{subsec:tec-jwt}
         O controle de acesso é feito sem senha (\textit{passwordless}): o usuário recebe um código de verificação por e-mail (cf. Seção~\ref{sec:integracoes}) e, uma vez validado, recebe um \textit{JSON Web Token} (JWT) de acesso e um token de atualização (\textit{refresh}) \cite{jwt_rfc7519}. O JWT é um padrão compacto e autocontido para transmitir, de forma assinada, informações de identidade entre cliente e servidor; a verificação dos tokens a cada requisição é apoiada pela biblioteca Passport.
 
         \subsection{Comunicação: REST e tempo real}
@@ -47,7 +49,7 @@
     \section{Ambiente de desenvolvimento e qualidade de código}
         \label{sec:tec-qualidade}
 
-        Esta seção apresenta o ambiente e as ferramentas empregadas no desenvolvimento do sistema, bem como os mecanismos utilizados para manter a qualidade e a consistência do código. As escolhas foram orientadas pela busca de eficiência, portabilidade e legibilidade, de modo a garantir um fluxo de trabalho colaborativo e padronizado entre os desenvolvedores.
+        Esta seção apresenta o ambiente e as ferramentas empregadas no desenvolvimento do sistema, bem como os mecanismos utilizados para manter a qualidade e a consistência do código. As escolhas foram orientadas pela busca de eficiência, portabilidade e legibilidade, de modo a sustentar um fluxo de trabalho colaborativo e padronizado entre os desenvolvedores.
 
         \subsection{TypeScript}
         O TypeScript é uma linguagem de programação de código aberto desenvolvida pela Microsoft que estende o JavaScript, adicionando tipagem estática e recursos de orientação a objetos. Ela é amplamente utilizada em grandes aplicações por oferecer maior previsibilidade e robustez ao código \cite{typescript_handbook}.
@@ -57,7 +59,7 @@
         \subsection{ESLint e Prettier}
         O ESLint é uma ferramenta de análise estática de código que identifica padrões problemáticos e erros de estilo em projetos JavaScript e TypeScript. Já o Prettier é um formatador automático que aplica um padrão uniforme de formatação ao código-fonte.
 
-        Essas ferramentas foram configuradas em conjunto para garantir legibilidade, consistência e padronização em toda a base de código \cite{eslint_docs,prettier_docs}.
+        Essas ferramentas foram configuradas em conjunto para manter legibilidade, consistência e padronização em toda a base de código \cite{eslint_docs,prettier_docs}.
 
         \subsection{Jest}
         Os testes automatizados do backend usam o Jest, framework de testes para JavaScript e TypeScript \cite{jest_docs}. Ele é empregado para validar regras de negócio e o comportamento dos \textit{endpoints}, contribuindo para a confiabilidade do sistema e para a detecção precoce de regressões durante a evolução do código.
@@ -71,7 +73,7 @@
         \subsection{Git e GitHub}
         O Git é um sistema distribuído de controle de versão que permite rastrear alterações no código-fonte e gerenciar o trabalho colaborativo entre desenvolvedores. O GitHub, por sua vez, é uma plataforma de hospedagem baseada em Git que oferece repositórios remotos, controle de acesso, integração contínua e ferramentas de revisão de código.
 
-        Essas ferramentas foram empregadas para gerenciar o ciclo de vida do código, garantindo rastreabilidade, histórico de alterações e colaboração entre os desenvolvedores \cite{git_docs,github_version_control}.
+        Essas ferramentas foram empregadas para gerenciar o ciclo de vida do código, preservando rastreabilidade, histórico de alterações e colaboração entre os desenvolvedores \cite{git_docs,github_version_control}.
 
         \subsection{Visual Studio Code}
         O Visual Studio Code é um editor de código-fonte multiplataforma, gratuito e de código aberto, desenvolvido pela Microsoft. Ele oferece recursos como realce de sintaxe, depuração integrada, terminal embutido e um vasto ecossistema de extensões que ampliam suas funcionalidades.
@@ -91,7 +93,7 @@
 
         Os bancos de dados SQL são baseados em um modelo relacional, no qual as informações são organizadas em tabelas interconectadas por chaves primárias e estrangeiras. Esse modelo é amplamente utilizado em sistemas que demandam integridade referencial, consistência transacional e consultas complexas com junções entre múltiplas entidades \cite{elmasri2016fundamentals}. Já os bancos de dados NoSQL utilizam modelos mais flexíveis, como documentos, grafos ou pares chave–valor, e são recomendados em cenários de alta escala horizontal ou quando os dados são semiestruturados \cite{cattell2011scalable}.
 
-        Considerando a natureza do sistema proposto, que envolve relações bem definidas entre dados estruturados e pouco suscetíveis a variações de formato, optou-se pela adoção de um banco de dados relacional. O modelo SQL mostra-se mais adequado para representar entidades como usuários, quadras e partidas, que seguem esquemas fixos e relações estáveis. Além disso, a aplicação requer operações transacionais seguras, como confirmações de presença, atualizações de estatísticas e sincronização de dados em tempo real, o que demanda consistência e controle de concorrência confiáveis. Dessa forma, o modelo SQL se apresenta como a escolha mais robusta e coerente com os objetivos do sistema, garantindo alta integridade, rastreabilidade e desempenho no tratamento das informações.
+        Considerando a natureza do sistema proposto, que envolve relações bem definidas entre dados estruturados e pouco suscetíveis a variações de formato, optou-se pela adoção de um banco de dados relacional. O modelo SQL mostra-se mais adequado para representar entidades como usuários, quadras e partidas, que seguem esquemas fixos e relações estáveis. Além disso, a aplicação requer operações transacionais seguras, como confirmações de presença, atualizações de estatísticas e sincronização de dados em tempo real, o que demanda consistência e controle de concorrência confiáveis. Dessa forma, o modelo SQL se apresenta como a escolha mais robusta e coerente com os objetivos do sistema, sustentando integridade, rastreabilidade e desempenho no tratamento das informações.
 
         \subsection{Sistema Gerenciador de Banco de Dados}
 
@@ -111,14 +113,19 @@
         A autenticação sem senha envia ao usuário um código de verificação por e-mail. Esse envio é realizado pelo \textit{Amazon Simple Email Service} (SES), serviço gerenciado de e-mail transacional da \textit{Amazon Web Services} (AWS) \cite{aws_ses_docs}, escolhido pela integração com a infraestrutura do projeto e pela boa entregabilidade das mensagens.
 
         \subsection{Armazenamento de mídia (AWS S3 e CloudFront)}
-        As fotos das quadras são publicadas em um \textit{bucket} do \textit{Amazon Simple Storage Service} (S3) \cite{aws_s3_docs} e entregues por meio da rede de distribuição de conteúdo (CDN) \textit{Amazon CloudFront} \cite{aws_cloudfront_docs}. A publicação ocorre fora do tempo de execução da aplicação, por rotina de preparação do catálogo, e o sistema armazena somente a URL resultante, o que reduz a latência de carregamento e o custo de banda sem acoplar a API ao armazenamento de mídia. Os avatares não são imagens hospedadas: são seis opções predefinidas, renderizadas pelo próprio aplicativo.
+        As fotos das quadras são publicadas em um \textit{bucket} do \textit{Amazon Simple Storage Service} (S3) \cite{aws_s3_docs} e entregues por meio da rede de distribuição de conteúdo (CDN) \textit{Amazon CloudFront} \cite{aws_cloudfront_docs}. A publicação ocorre fora do tempo de execução da aplicação, por rotina de preparação do catálogo, e o sistema armazena somente a URL resultante, o que reduz a latência de carregamento e o custo de banda sem acoplar a API ao armazenamento de mídia. Os avatares não são imagens hospedadas: são doze opções predefinidas, empacotadas e renderizadas pelo próprio aplicativo.
+
+        \subsection{Borda e entrada da API (Cloudflare)}
+        O domínio do projeto tem sua zona de DNS na Cloudflare, e o acesso à API não ocorre por um endereço de rede publicado. A máquina que executa o backend estabelece um túnel de saída até a borda da Cloudflare, que passa a ser o único ponto por onde o tráfego entra \cite{cloudflare_tunnel_docs}. A origem, portanto, não é alcançável diretamente pela internet, o que dispensa expor endereço de rede e concentra na borda a terminação do tráfego cifrado.
+
+        Essa escolha tem uma consequência de segurança que vale registrar. A API confia no cabeçalho que informa o endereço de origem da requisição para aplicar limites por cliente, e confiar nesse cabeçalho só é seguro porque nenhuma requisição alcança a origem sem passar pela borda: fosse a máquina acessível diretamente, qualquer cliente poderia declarar um endereço falso a cada requisição e escapar do limite. O controle do cadastro manual de participantes, por sua vez, é chaveado pelo identificador do jogador, e não pelo endereço de rede, justamente para não depender da borda.
 
         \subsection{Notificações push (Expo Notifications)}
         Lembretes e avisos (lembretes de véspera, de uma hora e do horário do fut, além de aviso de inatividade e de cancelamento) são entregues por notificações \textit{push}, viabilizadas pelo serviço Expo Notifications \cite{expo_notifications_docs}, que abstrai o envio para Android e iOS a partir de uma interface única.
 
     \section{Resumo das tecnologias e versões}
 
-        A Tabela~\ref{tab:tecnologias} sintetiza as principais tecnologias do projeto, sua função e a versão adotada. Os serviços gerenciados (AWS SES, S3, CloudFront e Expo Notifications) e as ferramentas de ambiente (Docker e Make) não possuem versão de aplicação fixada e, por isso, não constam da tabela.
+        A Tabela~\ref{tab:tecnologias} sintetiza as principais tecnologias do projeto, sua função e a versão adotada. Os serviços gerenciados (AWS SES, S3, CloudFront, Cloudflare e Expo Notifications) e as ferramentas de ambiente (Docker e Make) não possuem versão de aplicação fixada e, por isso, não constam da tabela.
 
         \begin{table}[!htb]
             \centering
@@ -136,7 +143,7 @@
                 expo-secure-store & Armazenamento seguro de tokens & 15 \\ \hline
                 Node.js & Ambiente de execução do backend & 22 \\ \hline
                 NestJS & Framework do backend & 11 \\ \hline
-                Fastify & Adaptador HTTP (sob o NestJS) & 11 \\ \hline
+                Fastify & Servidor HTTP (sob o adaptador do NestJS) & 5.11 \\ \hline
                 Socket.IO & Comunicação em tempo real (WebSocket) & 4.8 \\ \hline
                 Prisma & ORM e acesso a dados & 7 \\ \hline
                 PostgreSQL & Sistema gerenciador de banco de dados & 16 \\ \hline
@@ -152,19 +159,21 @@
 
     \section{Ferramentas de projeto e colaboração}
 
-        Para organizar, visualizar e documentar o trabalho utilizamos um conjunto de ferramentas que se complementam entre si. Cada uma cumpre uma função específica, e em conjunto elas reduzem o atrito no dia a dia, favorecem a comunicação e garantem o registro das principais decisões do projeto.
+        Para organizar, visualizar e documentar o trabalho foi utilizado um conjunto de ferramentas que se complementam entre si. Cada uma cumpre uma função específica, e em conjunto elas reduzem o atrito no dia a dia, favorecem a comunicação e mantêm o registro das principais decisões do projeto.
 
         \subsection{Miro}
-            O Miro é um quadro branco digital colaborativo em tempo real \cite{miro_whiteboard}. Permite rascunhar ideias, construir fluxos, criar mapas visuais e conduzir dinâmicas de ideação de forma coletiva. Usamos como mural central para anotar insights surgidos em reuniões e esboçar protótipos de baixa fidelidade.
+            O Miro é um quadro branco digital colaborativo em tempo real \cite{miro_whiteboard}. Permite rascunhar ideias, construir fluxos, criar mapas visuais e conduzir dinâmicas de ideação de forma coletiva. O quadro foi usado como mural central para anotar \textit{insights} surgidos em reuniões e esboçar protótipos de baixa fidelidade.
 
         \subsection{Jira}
-            O Jira é uma plataforma de gestão ágil que disponibiliza quadros no estilo Kanban \cite{jira_intro}. Foi utilizada para manter o backlog atualizado e acompanhar o andamento das tarefas de desenvolvimento, oferecendo visibilidade ao time sobre o que está em progresso e o que já foi concluído.
+            O Jira é uma plataforma de gestão ágil que disponibiliza quadros no estilo Kanban \cite{jira_intro}. Foi utilizada para manter o \textit{backlog} atualizado e acompanhar o andamento das tarefas de desenvolvimento, oferecendo visibilidade ao time sobre o que está em progresso e o que já foi concluído.
 
         \subsection{Figma}
-            O Figma é uma ferramenta online de design e prototipação de interfaces \cite{figma_site}. Com ela produzimos protótipos de alta fidelidade, registramos fluxos de navegação e validamos escolhas de interface de forma visual e interativa.
+            O Figma é uma ferramenta online de design e prototipação de interfaces \cite{figma_site}. Com ela foram produzidos os protótipos de alta fidelidade, registrados os fluxos de navegação e validadas as escolhas de interface de forma visual e interativa.
 
         \subsection{Google Drive}
-            O Google Drive é um serviço de armazenamento em nuvem para documentos, planilhas e apresentações \cite{drive_workspace}. Utilizamos para guardar e compartilhar materiais do projeto, como questionários, identidade visual, análises e atas, garantindo acesso rápido e organização em pastas.
+            O Google Drive é um serviço de armazenamento em nuvem para documentos, planilhas e apresentações \cite{drive_workspace}. O serviço foi utilizado para guardar e compartilhar materiais do projeto, como questionários, identidade visual, análises e atas, garantindo acesso rápido e organização em pastas.
+
+        Esse conjunto de tecnologias e ferramentas é o substrato sobre o qual o processo de desenvolvimento descrito no capítulo seguinte foi conduzido.
 
     % \section{Segurança e LGPD no nível tecnológico}
     % Confirmação de idade mínima (16+); aceite de Termos/Política; uso responsável de localização

@@ -11,7 +11,7 @@ O --|> R
 C --|> O
 actor "Serviço de Push\n<<sistema externo>>" as PUSH
 
-rectangle Borafut {
+rectangle BoraFut {
   usecase "UC29 Iniciar fut" as UC29
   usecase "UC30 Formar times pela\nordem de chegada" as UC30
   usecase "UC31 Visualizar fila" as UC31

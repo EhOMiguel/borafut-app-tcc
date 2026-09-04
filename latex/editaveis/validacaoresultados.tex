@@ -1,0 +1,134 @@
+\chapter{Validação e resultados}
+\label{cap:validacao-resultados}
+
+Este capítulo apresenta os resultados das duas etapas definidas na Seção~\ref{sec:estrategia-validacao}. Os instrumentos respondem a perguntas diferentes: o teste do protótipo investiga a usabilidade percebida das jornadas projetadas, enquanto o teste de campo observa a capacidade do produto implementado de apoiar um fut real. Os resultados, portanto, são complementares e não devem ser interpretados como uma única medição. A eles soma-se a verificação direta dos requisitos não funcionais mensuráveis, conduzida sobre o produto publicado e apresentada ao final do capítulo.
+
+\section{Teste de usabilidade do protótipo de alta fidelidade}
+
+    \subsection{Caracterização dos participantes}
+
+        Participaram cinco pessoas recrutadas por conveniência. Quatro tinham entre 21 e 25 anos e uma entre 16 e 20 anos. Quatro utilizavam Android e uma utilizava iOS. Quanto à frequência de prática, duas jogavam futebol ao menos duas vezes por semana, duas uma vez por semana e uma raramente. O grupo também reuniu experiências distintas de organização: havia participantes que organizavam futs frequentemente, às vezes, raramente e que não exerciam esse papel. Todos relataram utilizar o WhatsApp para combinar partidas, e um também mencionou comunicação boca a boca.
+
+    \subsection{Resultado da System Usability Scale}
+
+        A Tabela~\ref{tab:sus-resultados} apresenta os escores calculados conforme \citeonline{brooke1996sus}. Os códigos P1 a P5 preservam o anonimato e não correspondem a qualquer ordenação apresentada nos dados de caracterização.
+
+        \begin{table}[htb]
+            \centering
+            \caption{Escores SUS do teste de usabilidade.}
+            \label{tab:sus-resultados}
+            \begin{tabular}{lc}
+                \toprule
+                \textbf{Participante} & \textbf{Escore SUS} \\
+                \midrule
+                P1 & 85,0 \\
+                P2 & 92,5 \\
+                P3 & 100,0 \\
+                P4 & 100,0 \\
+                P5 & 50,0 \\
+                \midrule
+                Média bruta & 85,5 \\
+                Mediana bruta & 92,5 \\
+                \bottomrule
+            \end{tabular}
+
+            \vspace{2pt}
+            {\footnotesize Fonte: elaborada pelos autores a partir dos formulários da pesquisa.}
+        \end{table}
+
+        Considerando as cinco respostas tal como registradas, a média foi 85,5, a mediana 92,5 e a amplitude variou de 50 a 100. O escore de 50 corresponde ao formulário em que todos os dez itens receberam a marcação cinco. Como os itens pares têm redação negativa e pontuação invertida, essa sequência produz simultaneamente contribuições máximas nos itens positivos e nulas nos negativos.
+
+        Após a sessão, o participante informou ter entendido que marcar cinco representaria uma avaliação favorável em todas as afirmações. A resposta não foi alterada: ela permanece no resultado bruto por fazer parte do dado coletado. Como análise de sensibilidade, a média dos quatro formulários sem essa resposta é 94,4, com mediana de 96,25. A diferença de 8,9 pontos entre as duas médias mostra que a amostra pequena é sensível a uma única interpretação equivocada. Assim, o resultado sustenta uma percepção inicial positiva da usabilidade do protótipo, mas não autoriza generalização estatística para toda a população de jogadores.
+
+    \subsection{Limitações da primeira etapa}
+
+        O teste utilizou amostra pequena e de conveniência, e avaliou um protótipo, não a aplicação executando contra serviços reais. A presença de mediador e observador pode ter facilitado as tarefas ou influenciado as respostas. A SUS mede percepção global e não identifica, por si só, em qual tela ocorreu um problema. Por fim, a interpretação equivocada de um dos formulários reforça a necessidade de explicar previamente a alternância entre itens positivos e negativos sem induzir respostas e de conferir se todas as afirmações foram compreendidas antes de encerrar a coleta.
+
+\section{Teste de campo do produto em produção}
+
+    \subsection{Participação e uso do aplicativo}
+
+        O fut de 29 de agosto registrou 27 chegadas. 16 pessoas já estavam no fluxo do fut e 11 foram cadastradas manualmente à medida que chegaram à quadra. Dessas chegadas, 6 foram autoconfirmadas pelo próprio jogador, com validação de proximidade realizada no aparelho, e as demais foram registradas por um organizador presente na quadra, que confirmou a chegada de quem já estava no local, incluindo os 11 participantes cadastrados manualmente. A validação por proximidade aplica-se apenas à autoconfirmação, o que explica a proporção observada: o registro por terceiro é um caminho previsto no produto, em que a presença é atestada por quem está fisicamente com o jogador, e fica distinguido do primeiro no próprio log de chegada, que guarda separadamente o sujeito e o autor do registro. 26 jogadores apareceram em ao menos uma escalação de partida.
+
+        A adesão ao uso contínuo foi menor que a presença física. Segundo a observação da equipe, praticamente todos os 16 participantes recrutados pelo aplicativo o utilizaram antes do evento ou na chegada, e 11 continuaram a utilizá-lo durante o fut. Os logs de partida registram 7 operadores distintos em ações de placar, pausa, retomada e encerramento. Essa distribuição confirma que a condução não ficou restrita a um único aparelho, embora uma parcela relevante dos presentes tenha participado do jogo sem interagir diretamente com o aplicativo durante toda a atividade.
+
+    \subsection{Métricas operacionais}
+
+        A Tabela~\ref{tab:campo-resultados} resume os indicadores derivados dos registros de produção.
+
+        \begin{table}[htb]
+            \centering
+            \caption{Indicadores do teste de campo de 29 de agosto de 2026.}
+            \label{tab:campo-resultados}
+            \begin{tabular}{p{7.3cm}r}
+                \toprule
+                \textbf{Indicador} & \textbf{Resultado} \\
+                \midrule
+                Chegadas registradas & 27 \\
+                Participantes cadastrados manualmente durante o evento & 11 \\
+                Jogadores presentes em ao menos uma escalação & 26 \\
+                Partidas efetivamente iniciadas & 15 \\
+                Gols líquidos registrados & 30 \\
+                Operadores distintos de ações da partida & 7 \\
+                Tempo ativo acumulado das partidas & 1h42min52s \\
+                Mediana entre o fim de uma partida e a retomada da seguinte & 1min48s \\
+                \bottomrule
+            \end{tabular}
+
+            \vspace{2pt}
+            {\footnotesize Fonte: elaborada pelos autores a partir dos registros estruturados do ambiente de produção.}
+        \end{table}
+
+        O banco contém 16 registros de partida encerrados. 15 tiveram evento de retomada e foram efetivamente jogados. O décimo sexto foi criado pausado pela rotação automática, com dois times escalados, mas foi encerrado administrativamente junto com o fut sem chegar a ser retomado; por isso, não é contado como partida iniciada. Os 30 gols líquidos correspondem a 28 registros de gol e cinco de gol contra, descontados três eventos de desfazimento. As cobranças de pênalti são registradas separadamente e não entram nesse total.
+
+        Entre a primeira retomada e o encerramento administrativo transcorreram aproximadamente duas horas e vinte e três minutos. Descontados os períodos em que as partidas permaneceram pausadas, houve cerca de uma hora e quarenta e três minutos de jogo ativo. A mediana de aproximadamente um minuto e quarenta e oito segundos entre o encerramento de uma partida e a retomada da seguinte fornece uma linha de base para avaliar futuras mudanças na comunicação da rotação na interface.
+
+    \subsection{Observações de campo}
+
+        O aplicativo não se tornou gargalo do fut. Problemas operacionais surgiram na quadra, mas puderam ser contornados pelas funções de ajuste de fila, troca, cadastro manual e encerramento disponíveis no produto. Não foi observado nem relatado bug bloqueador durante o evento.
+
+        Os comentários espontâneos foram predominantemente positivos. Participantes que ainda não conheciam a proposta demonstraram surpresa e curiosidade, e as sugestões recebidas foram registradas na esteira de evolução do produto. O principal aprendizado não foi técnico, mas de adoção. O recrutamento inicial exigiu esforço porque a comunidade possui hábitos consolidados de organização. Durante o evento, a redução de cerca de 16 usuários no momento de chegada para 11 usuários ao longo do fut indica que o telefone não é um acessório mantido por todos durante a prática esportiva. O produto já pressupõe operação distribuída por poucos aparelhos, mas o dado reforça a necessidade de ensinar o ritual de uso e evitar fluxos que dependam da interação contínua de cada jogador.
+
+    \subsection{Limitações da segunda etapa}
+
+        O teste de campo observou um único evento, em uma única quadra, com participação ativa dos autores na operação e sem grupo de controle. A ausência de bug bloqueador em uma noite não demonstra ausência de defeitos: antes do teste, o ciclo de desenvolvimento havia registrado e corrigido mais de sessenta ocorrências, e a observação de um evento não substitui telemetria contínua ou testes sistemáticos. Também não é possível, a partir desses dados, afirmar aumento da prática esportiva, melhor ocupação das quadras do Distrito Federal ou retenção de longo prazo, efeitos que dependem de acompanhamento longitudinal, de mais futs e de comparação entre grupos e períodos.
+
+\section{Verificação dos requisitos não funcionais}
+    \label{sec:verificacao-rnf}
+
+    Os requisitos não funcionais declarados na Seção~\ref{subsec:rnf} fixam números, e números pedem verificação. Esta seção confronta cada requisito mensurável com uma medida, declarando em cada caso o método empregado e o seu alcance.
+
+    \textbf{RNF02, tempo de resposta.} As rotas públicas de descoberta, que são as que o requisito nomeia, foram medidas contra o ambiente de produção em 4 de setembro de 2026, com vinte repetições por rota. A consulta que alimenta o mapa apresentou mediana de 0,11 segundo e 95º percentil de 0,23 segundo; a busca textual de quadras, mediana de 0,10 segundo e 95º percentil de 0,11 segundo. Os valores estão uma ordem de grandeza abaixo do teto de três segundos estabelecido pelo requisito. A medida corresponde ao tempo de resposta do servidor observado a partir de uma estação em rede fixa, incluindo a borda e o banco de dados, e não abrange a renderização no aparelho nem as condições de uma rede móvel congestionada.
+
+    \textbf{RNF03, atualização em tempo real.} A propagação foi verificada em campo, com dois aparelhos acompanhando o mesmo fut: o gol registrado em um deles apareceu no outro sem atraso perceptível, comportamento coerente com o que se observou durante o teste de 29 de agosto, em que a condução da partida foi distribuída por sete operadores distintos sem que houvesse divergência de placar relatada.
+
+    \textbf{RNF04, esforço de interação.} A contagem de toques nas tarefas centrais foi feita diretamente sobre o aplicativo publicado, e o resultado consta da Tabela~\ref{tab:rnf04-toques}. Todas as tarefas permanecem na faixa de três a cinco toques estabelecida pelo requisito, com exceção da criação do fut, que exige seis por incluir a etapa obrigatória de configuração das regras. Essa etapa é o que permite ao motor do fut operar sem intervenção posterior, e o custo adicional de um toque recai sobre a tarefa menos frequente do conjunto, executada uma vez por encontro e apenas por quem organiza.
+
+    \begin{table}[htb]
+        \centering
+        \caption{Toques necessários para concluir as tarefas centrais do aplicativo.}
+        \label{tab:rnf04-toques}
+        \begin{tabular}{p{7.3cm}r}
+            \toprule
+            \textbf{Tarefa} & \textbf{Toques} \\
+            \midrule
+            Confirmar presença em um fut & 2 \\
+            Confirmar chegada à quadra & 3 \\
+            Registrar um gol na partida ao vivo & 3 \\
+            Criar um fut, incluindo a configuração das regras & 6 \\
+            \bottomrule
+        \end{tabular}
+
+        \vspace{2pt}
+        {\footnotesize Fonte: elaborada pelos autores a partir da contagem no aplicativo publicado.}
+    \end{table}
+
+    Os demais requisitos não funcionais não são de natureza mensurável por indicador numérico e foram verificados por inspeção: a disponibilidade multiplataforma (RNF01) decorre da base única de código executada nos dois sistemas móveis; o acesso sem senha (RNF05) e a cobertura do catálogo na região do piloto (RNF07) são observáveis no próprio produto; e as propriedades de segurança e privacidade (RNF06) estão descritas na Seção~\ref{sec:privacidade}.
+
+\section{Discussão integrada}
+
+    Somadas à verificação dos requisitos não funcionais da Seção~\ref{sec:verificacao-rnf}, as duas etapas oferecem evidências convergentes, mas de naturezas distintas. O SUS indica que as jornadas do protótipo foram percebidas como fáceis de aprender e usar, ainda que a amostra e o formulário anômalo imponham cautela. O teste de campo mostra que o núcleo implementado sustentou 27 chegadas e 15 partidas reais sem interromper a dinâmica da quadra. Em conjunto, os resultados apoiam a viabilidade do BoraFut como instrumento de organização do futebol amador.
+
+    A validação também delimita o problema seguinte. Superada a dúvida inicial sobre a capacidade de o sistema operar um fut cheio, o desafio passa a ser criar adesão recorrente: convencer grupos habituados ao WhatsApp a experimentar a plataforma e transformar o uso na chegada e durante a partida em um ritual simples. A manutenção do funcionamento com poucos operadores é uma característica importante nesse contexto, não uma exceção a ser eliminada.
+
+    O que os resultados permitem afirmar é mais restrito: houve compreensão positiva das jornadas projetadas e o produto implementado conseguiu apoiar um primeiro evento real em produção sem se tornar o fator limitante da partida.
