@@ -1044,8 +1044,165 @@
 
 \chapter{Telas do protótipo}
     \label{apendice:telas}
-    Este apêndice reúne as telas do protótipo de alta fidelidade construído no Figma, que serviu de base para o teste de usabilidade descrito no Capítulo~\ref{cap:validacao-resultados}. As telas cobrem os fluxos centrais do MVP, do primeiro acesso à condução da partida ao vivo.
+    Este apêndice reúne as telas do protótipo de alta fidelidade construído no Figma e utilizado no teste de usabilidade descrito no Capítulo~\ref{cap:validacao-resultados}. Elas documentam os fluxos centrais avaliados, do primeiro acesso à condução da partida ao vivo.
 
-    % TODO: inserir as telas exportadas do Figma em grade de duas a tres por linha.
+    O aplicativo desenvolvido preserva a proposta visual e os principais fluxos desse protótipo, mantendo-se próximo do que foi avaliado, mas não o reproduz com total fidelidade. Os resultados do teste de usabilidade, as decisões de projeto tomadas durante o desenvolvimento e a evolução do design motivaram ajustes na interface. Além disso, novas telas, estados e detalhes de interação foram incorporados ao produto e não estão representados neste conjunto. Assim, o apêndice registra o protótipo submetido à avaliação, e não um catálogo exaustivo de todas as telas da versão final do aplicativo.
+
+    Para favorecer a leitura, as telas estão agrupadas por jornada. As letras abaixo de cada imagem identificam a ordem adotada nas legendas das figuras.
+
+    \newcommand{\telaprototipo}[3]{%
+        \begin{minipage}[t]{#1\textwidth}
+            \centering
+            \includegraphics[width=\linewidth,height=0.62\textheight,keepaspectratio]{#2}
+            \par\vspace{0.25em}
+            {\footnotesize #3\par}
+        \end{minipage}%
+    }
+
+    \section{Acesso e cadastro}
+
+    \begin{figure}[!htbp]
+        \centering
+        \telaprototipo{0.29}{figuras/prototipos/auth/tela-inicial.png}{(a) Tela inicial}
+        \hfill
+        \telaprototipo{0.29}{figuras/prototipos/auth/login.png}{(b) Entrada por e-mail}
+        \hfill
+        \telaprototipo{0.29}{figuras/prototipos/auth/confirmacao-login.png}{(c) Confirmação do código}
+        \caption[Telas iniciais de acesso ao BoraFut.]{Telas iniciais de acesso ao BoraFut: (a) apresentação da marca e formas de entrada; (b) solicitação do código de acesso por e-mail; e (c) validação do código recebido. Fonte: elaborada pelos autores.}
+        \label{fig:prototipos-acesso-inicial}
+    \end{figure}
+    \clearpage
+
+    \begin{figure}[!htbp]
+        \centering
+        \telaprototipo{0.29}{figuras/prototipos/auth/onboarding-1.png}{(a) Identificação}
+        \hfill
+        \telaprototipo{0.29}{figuras/prototipos/auth/onboarding-2.png}{(b) Dados pessoais}
+        \hfill
+        \telaprototipo{0.29}{figuras/prototipos/auth/onboarding-3.png}{(c) Preferências de jogo}
+        \caption[Cadastro inicial do jogador.]{Cadastro inicial do jogador: (a) preenchimento de nome e apelido; (b) informações pessoais; e (c) escolha das preferências de jogo. Fonte: elaborada pelos autores.}
+        \label{fig:prototipos-cadastro-inicial}
+    \end{figure}
+    \clearpage
+
+    \begin{figure}[!htbp]
+        \centering
+        \telaprototipo{0.35}{figuras/prototipos/auth/boas-vindas.png}{(a) Boas-vindas}
+        \hfill
+        \telaprototipo{0.35}{figuras/prototipos/auth/termos-de-uso.png}{(b) Termos de uso}
+        \caption[Conclusão do acesso e termos de uso.]{Conclusão do acesso e informações legais: (a) acolhimento apresentado após o cadastro das preferências de jogo; e (b) consulta aos termos de uso e à política de privacidade. Fonte: elaborada pelos autores.}
+        \label{fig:prototipos-cadastro-conclusao}
+    \end{figure}
+    \clearpage
+
+    \section{Mapa e quadras}
+
+    \begin{figure}[!htbp]
+        \centering
+        \telaprototipo{0.29}{figuras/prototipos/mapa-quadras/mapa.png}{(a) Mapa de quadras}
+        \hfill
+        \telaprototipo{0.29}{figuras/prototipos/mapa-quadras/perfil-quadra.png}{(b) Perfil da quadra}
+        \hfill
+        \telaprototipo{0.29}{figuras/prototipos/mapa-quadras/cronograma.png}{(c) Cronograma}
+        \caption[Descoberta de quadras e futs.]{Descoberta de quadras e futs: (a) visualização geográfica com pins de disponibilidade; (b) informações gerais da quadra; e (c) programação semanal de futs. Fonte: elaborada pelos autores.}
+        \label{fig:prototipos-mapa-quadra}
+    \end{figure}
+    \clearpage
+
+    \begin{figure}[!htbp]
+        \centering
+        \telaprototipo{0.43}{figuras/prototipos/mapa-quadras/avaliacoes.png}{(a) Avaliações da quadra}
+        \hfill
+        \telaprototipo{0.43}{figuras/prototipos/mapa-quadras/escrever-avaliacao.png}{(b) Nova avaliação}
+        \caption[Avaliação comunitária das quadras.]{Avaliação comunitária das quadras: (a) consulta aos relatos e às notas dos jogadores; e (b) registro de nota e comentário. Fonte: elaborada pelos autores.}
+        \label{fig:prototipos-avaliacoes-quadra}
+    \end{figure}
+    \clearpage
+
+    \section{Criação e detalhes do fut}
+
+    \begin{figure}[!htbp]
+        \centering
+        \telaprototipo{0.29}{figuras/prototipos/fut/criar-1.png}{(a) Informações iniciais}
+        \hfill
+        \telaprototipo{0.29}{figuras/prototipos/fut/criar-2-gerenciado.png}{(b) Fut gerenciado}
+        \hfill
+        \telaprototipo{0.29}{figuras/prototipos/fut/criar-2-nao-gerenciado.png}{(c) Fut não gerenciado}
+        \caption[Fluxo de criação de fut.]{Fluxo de criação de fut: (a) definição de data, horário e descrição; (b) regras da modalidade gerenciada pelo aplicativo; e (c) confirmação da modalidade não gerenciada. Fonte: elaborada pelos autores.}
+        \label{fig:prototipos-criacao-fut}
+    \end{figure}
+    \clearpage
+
+    \begin{figure}[!htbp]
+        \centering
+        \telaprototipo{0.38}{figuras/prototipos/fut/fut-criado.png}{Confirmação da criação}
+        \caption[Confirmação da criação do fut.]{Confirmação da criação, com ações para compartilhar o convite ou consultar os detalhes do fut. Fonte: elaborada pelos autores.}
+        \label{fig:prototipo-fut-criado}
+    \end{figure}
+    \clearpage
+
+    \begin{figure}[!htbp]
+        \centering
+        \telaprototipo{0.29}{figuras/prototipos/fut/perfil-amarelo.png}{(a) Formação incompleta}
+        \hfill
+        \telaprototipo{0.29}{figuras/prototipos/fut/perfil-verde.png}{(b) Formação completa}
+        \hfill
+        \telaprototipo{0.29}{figuras/prototipos/fut/perfil-vermelho.png}{(c) Lotação excedente}
+        \caption[Estados de ocupação no perfil do fut.]{Estados de ocupação no perfil do fut: (a) quantidade insuficiente para formar os times; (b) quantidade suficiente; e (c) participantes excedentes encaminhados à fila. Fonte: elaborada pelos autores.}
+        \label{fig:prototipos-estados-fut}
+    \end{figure}
+    \clearpage
+
+    \section{Presença e chegada}
+
+    \begin{figure}[!htbp]
+        \centering
+        \telaprototipo{0.29}{figuras/prototipos/presenca/confirmada.png}{(a) Presença confirmada}
+        \hfill
+        \telaprototipo{0.29}{figuras/prototipos/presenca/mapa-atalho.png}{(b) Atalho no mapa}
+        \hfill
+        \telaprototipo{0.29}{figuras/prototipos/presenca/mapa-bottom-sheet.png}{(c) Resumo do fut}
+        \caption[Jornada após a confirmação de presença.]{Jornada após a confirmação de presença: (a) retorno imediato da ação; (b) acompanhamento do fut pelo mapa; e (c) resumo contextual para acesso rápido ao evento. Fonte: elaborada pelos autores.}
+        \label{fig:prototipos-presenca}
+    \end{figure}
+    \clearpage
+
+    \section{Gerenciamento da partida}
+
+    \begin{figure}[!htbp]
+        \centering
+        \begin{minipage}[t]{0.29\textwidth}
+            \centering
+            \includegraphics[trim=0 823 0 0,clip,width=\linewidth]{figuras/prototipos/partida/gerenciamento.png}
+            \par\vspace{0.25em}
+            {\footnotesize (a) Placar e times\par}
+        \end{minipage}
+        \hfill
+        \begin{minipage}[t]{0.29\textwidth}
+            \centering
+            \includegraphics[trim=0 0 0 823,clip,width=\linewidth]{figuras/prototipos/partida/gerenciamento.png}
+            \par\vspace{0.25em}
+            {\footnotesize (b) Fila e chegadas\par}
+        \end{minipage}
+        \hfill
+        \telaprototipo{0.29}{figuras/prototipos/partida/registro-gol.png}{(c) Registro de gol}
+        \caption[Operação do fut ao vivo.]{Operação do fut ao vivo: (a) controle de placar, cronômetro e jogadores em campo; (b) acompanhamento da fila e das chegadas pendentes; e (c) seleção do autor para registro de gol ou gol contra. Fonte: elaborada pelos autores.}
+        \label{fig:prototipos-partida-ao-vivo}
+    \end{figure}
+    \clearpage
+
+    \section{Perfil e configurações}
+
+    \begin{figure}[!htbp]
+        \centering
+        \telaprototipo{0.43}{figuras/prototipos/perfil/perfil-usuario.png}{(a) Perfil do jogador}
+        \hfill
+        \telaprototipo{0.43}{figuras/prototipos/perfil/configuracoes.png}{(b) Configurações}
+        \caption[Perfil e configurações da conta.]{Perfil e configurações da conta: (a) indicadores pessoais e histórico recente de atividade; e (b) preferências, suporte, privacidade e ações da conta. Fonte: elaborada pelos autores.}
+        \label{fig:prototipos-perfil-configuracoes}
+    \end{figure}
+    \clearpage
+
+    \let\telaprototipo\undefined
 
 \end{apendicesenv}
