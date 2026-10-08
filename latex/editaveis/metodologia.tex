@@ -1,6 +1,6 @@
 \chapter{Metodologia}
 
-    Este capítulo descreve como o BoraFut foi conduzido, do método de trabalho à estratégia de avaliação. Inicialmente, apresenta-se a abordagem de desenvolvimento adotada e os critérios que levaram ao modelo híbrido, seguida do processo de desenvolvimento fundamentado no \textit{Extreme Programming}. Em seguida, descreve-se o planejamento inicial, com o \textit{Project Model Canvas} e a análise de mercado, e o levantamento e a análise de requisitos, da elicitação à priorização e à modelagem do \textit{backlog}. Na sequência, expõe-se a estratégia de validação em duas etapas e o plano de privacidade e segurança que rege o tratamento dos dados de usuários e de participantes da pesquisa. Por fim, registram-se as decisões metodológicas que orientaram a arquitetura geral do sistema, cuja concretização é apresentada nos capítulos seguintes.
+    Este capítulo descreve como o BoraFut foi conduzido, do método de trabalho à estratégia de avaliação. Inicialmente, apresenta-se a abordagem de desenvolvimento adotada e os critérios que levaram ao modelo híbrido, seguida do processo de desenvolvimento fundamentado no \textit{Extreme Programming}. Registra-se também como modelos de linguagem foram empregados como ferramentas de apoio no projeto e na revisão da monografia. Em seguida, descreve-se o planejamento inicial, com o \textit{Project Model Canvas} e a análise de mercado, e o levantamento e a análise de requisitos, da elicitação à priorização e à modelagem do \textit{backlog}. Na sequência, expõe-se a estratégia de validação em duas etapas e o plano de privacidade e segurança que rege o tratamento dos dados de usuários e de participantes da pesquisa. Por fim, registram-se as decisões metodológicas que orientaram a arquitetura geral do sistema, cuja concretização é apresentada nos capítulos seguintes.
 
 \section{Abordagem de desenvolvimento}
     % Descrever a abordagem metodológica utilizada (ex: ágil, incremental, MVP-driven)
@@ -95,6 +95,21 @@
         \end{itemize}
 
         Esses princípios foram aplicados de forma pragmática, orientando decisões técnicas e o ritmo de trabalho sem estruturas rígidas de papéis ou cerimônias formais.
+
+\section{Uso de modelos de linguagem}
+    \label{sec:uso-llm}
+
+        Modelos de linguagem de grande escala (\textit{Large Language Models}, LLMs), por meio do ChatGPT e do Codex, da OpenAI, e do Claude, da Anthropic, foram empregados como ferramentas de apoio em etapas delimitadas do projeto, sempre sob supervisão e responsabilidade dos autores.
+
+        O principal uso ocorreu na especificação das funcionalidades. Cada funcionalidade partia de uma descrição em texto corrido, redigida pelos autores, com tudo o que ela deveria permitir. Na criação de um fut, por exemplo, a descrição registrava que o usuário escolheria a quadra, a data, o horário e a quantidade de jogadores por time, entre outros parâmetros. O modelo estruturava esse texto em um documento de requisitos de produto (\textit{Product Requirements Document}, PRD) e apontava cenários e casos de borda ainda não contemplados. Os autores revisavam o documento integralmente e o incrementavam em sucessivas iterações, até chegar à versão considerada completa. A partir dela, o refinamento técnico, a criação das tarefas no quadro do projeto e a implementação foram conduzidos pelos autores; nessa etapa, os modelos não produziram código e foram consultados apenas para esclarecer dúvidas, conforme descrito adiante.
+
+        Os modelos voltaram a ser utilizados na conclusão de cada funcionalidade. Após a revisão de código feita pelos próprios autores, solicitava-se ao modelo que confrontasse a implementação com o PRD correspondente, a fim de verificar se todos os casos especificados haviam sido tratados. Essa verificação complementou, sem substituir, a suíte automatizada de testes e o portão de cobertura descritos na Seção~\ref{sec:dev-qualidade}.
+
+        Na elaboração da monografia, os modelos foram utilizados em uma revisão integral do texto. Essa revisão buscou identificar inconsistências internas, divergências entre a descrição do produto, a documentação e o código, além de problemas de clareza, gramática e organização argumentativa. As correções sugeridas foram conferidas pelos autores nos artefatos e nas fontes correspondentes antes de serem aceitas, reformuladas ou rejeitadas.
+
+        De forma acessória, os LLMs apoiaram o esclarecimento de dúvidas técnicas e a compreensão de defeitos, além da geração de elementos gráficos auxiliares e da construção da interface da página institucional do projeto (\url{https://www.borafutapp.com.br/}). Os elementos centrais da identidade visual, como logotipo e marcadores do mapa, e as telas do aplicativo foram produzidos manualmente pelos autores.
+
+        Em todos esses usos, as sugestões dos modelos foram avaliadas pelos autores antes de qualquer adoção, e as decisões de projeto permaneceram sob sua responsabilidade.
 
 \section{Planejamento inicial}
 
@@ -233,7 +248,7 @@
         \end{tabular}
 
         \vspace{4pt}
-        {\footnotesize Legenda: \msim{} atende; \mparc{} atende parcialmente; \mnao{} não atende. Fonte: elaborada pelos autores com base nas páginas oficiais das soluções \cite{chegamais_app,appito_app,peladeiros_app,fintta_app,agendei_app,whatsapp_app}.}
+        {\footnotesize Legenda: \msim{} atende; \mparc{} atende parcialmente; \mnao{} não atende. Fonte: elaborada pelos autores a partir de pesquisa realizada em dezembro de 2025 nas páginas oficiais das soluções \cite{chegamais_app,appito_app,peladeiros_app,fintta_app,agendei_app,whatsapp_app}.}
         \end{table}
 
         \subsubsection*{Síntese da análise de mercado}
@@ -500,7 +515,7 @@
 \section{Estratégia de validação}
     \label{sec:estrategia-validacao}
 
-    A validação foi organizada em duas etapas complementares. A primeira, de caráter formativo, avaliou a usabilidade percebida das principais jornadas antes da implementação integral do produto. A segunda, de caráter exploratório e realizada em campo, verificou se o sistema implementado conseguia sustentar um fut real sem se tornar gargalo da atividade presencial. Essa combinação permitiu observar tanto a compreensão da interface quanto o comportamento do produto diante das contingências próprias de uma quadra.
+    A validação foi organizada em duas etapas complementares. A primeira, de caráter formativo, avaliou a usabilidade percebida das principais jornadas antes da implementação integral do produto. A segunda, de caráter exploratório e realizada em campo, verificou se o tempo atribuível ao sistema limitava as transições entre as partidas de um fut real. Essa combinação permitiu observar tanto a compreensão da interface quanto o comportamento do produto diante das contingências próprias de uma quadra.
 
     \subsection{Teste de usabilidade do protótipo}
 
