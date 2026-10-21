@@ -10,3 +10,39 @@
 	\fi}%
 % ---
 
+% ---
+% Figuras em página deitada (paisagem)
+% O pdflscape gira a página no leitor de PDF. Como o cabeçalho do abnTeX2 é
+% desenhado na orientação retrato, ele é suprimido nessas páginas e redesenhado
+% girado, na margem que fica no topo quando a página é lida deitada, com o mesmo
+% conteúdo do cabeçalho comum (título da seção, número da página e filete).
+% ---
+% Dentro do ambiente landscape, \textheight e \textwidth trocam de valor; por
+% isso a altura do corpo de texto em retrato é guardada no início do documento.
+\newlength{\alturacorporetrato}
+\AtBeginDocument{\setlength{\alturacorporetrato}{\textheight}}
+\makeatletter
+\newcommand{\cabecalhopaisagem}{%
+	\thispagestyle{empty}%
+	\AddToShipoutPictureFG*{%
+		\AtPageLowerLeft{%
+			\ifodd\value{page}\dimen@=\spinemargin\else\dimen@=\foremargin\fi
+			\hspace*{\dimexpr\dimen@-\headsep\relax}%
+			\raisebox{\dimexpr\paperheight-\uppermargin-\alturacorporetrato\relax}{%
+				\rotatebox{90}{%
+					\rlap{\rule[-3pt]{\alturacorporetrato}{\normalrulethickness}}%
+					\ifodd\value{page}%
+						\makebox[\alturacorporetrato][s]{\ABNTEXfontereduzida\textit{\rightmark}\hfill\thepage}%
+					\else
+						\makebox[\alturacorporetrato][s]{\ABNTEXfontereduzida\thepage\hfill\textit{\leftmark}}%
+					\fi}}}}}
+\makeatother
+
+% Uso: \begin{figurapaisagem} ... \end{figurapaisagem}, com o conteúdo de uma
+% figura (\includegraphics, \caption e \label). Para não deixar espaço em branco
+% antes da figura, envolva o ambiente em \afterpage{...}.
+\newenvironment{figurapaisagem}
+	{\begin{landscape}\cabecalhopaisagem\begin{figure}[p]\centering}
+	{\end{figure}\end{landscape}}
+% ---
+

@@ -1,5 +1,5 @@
 // ============================================================
-// BoraFut - Modelo logico de dados (DBML para dbdiagram.io)
+// BoraFut - Modelo fisico de dados (DBML para dbdiagram.io)
 // Fonte de verdade: BoraFut-Backend/prisma/schema.prisma
 // 22 tabelas. Nomes de tabela e coluna conforme o banco (snake_case).
 // ============================================================

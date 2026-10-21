@@ -35,7 +35,7 @@
 
         Segundo Sommerville, abordagens dirigidas a plano são mais apropriadas quando os requisitos são estáveis e bem definidos, o ambiente é formal e a equipe é grande ou distribuída. Já abordagens ágeis são indicadas para projetos de pequena escala, com requisitos mutáveis, equipes reduzidas e comunicação direta com o cliente.
 
-        De forma complementar, Gupta et al. propõem quatro dimensões analíticas: projeto, pessoas, produto e processo, que orientam a escolha do modelo de desenvolvimento. Projetos com escopo exploratório, produtos inovadores e requisitos voláteis, conduzidos por equipes pequenas e autônomas, tendem a se beneficiar de processos ágeis e iterativos. Além disso, fatores sociais e culturais, como a proximidade entre desenvolvedores e usuários, também favorecem a agilidade, por viabilizarem ciclos curtos de feedback e validação contínua.
+        De forma complementar, Gupta et al. propõem quatro dimensões analíticas: projeto, pessoas, produto e processo, que orientam a escolha do modelo de desenvolvimento. Projetos com escopo exploratório, produtos inovadores e requisitos voláteis, conduzidos por equipes pequenas e autônomas, tendem a se beneficiar de processos ágeis e iterativos. Além disso, fatores sociais e culturais, como a proximidade entre desenvolvedores e usuários, também favorecem a agilidade, por viabilizarem ciclos curtos de \textit{feedback} e validação contínua.
 
         No caso do BoraFut, essas condições estão presentes. O sistema possui requisitos voláteis e evolutivos, definidos de forma colaborativa entre os próprios desenvolvedores e usuários, que pertencem ao mesmo grupo social. A equipe é pequena e estável, o produto é inovador e o ambiente de trabalho é autogerido e não hierárquico. A baixa criticidade do sistema também reforça a adequação de uma abordagem predominantemente ágil. A Tabela~\ref{tab:criterios-abordagem} sintetiza esses critérios e suas implicações metodológicas para o BoraFut.
 
@@ -50,7 +50,7 @@
         Estabilidade dos requisitos & Requisitos mutáveis e evolutivos & Favorece abordagem ágil \\
         Tamanho da equipe & Pequena e coesa & Favorece abordagem ágil \\
         Criticidade do sistema & Baixa criticidade & Permite entregas incrementais \\
-        Disponibilidade do cliente & Alta (usuário = desenvolvedor) & Favorece feedback contínuo \\
+        Disponibilidade do cliente & Alta (usuário = desenvolvedor) & Favorece \textit{feedback} contínuo \\
         Tempo e recursos & Fixos (limitações do TCC) & Exige planejamento inicial estruturado \\
         Contexto organizacional & Acadêmico, com avaliação formal & Requer documentação mínima suficiente \\
         Natureza do produto & Inovadora e exploratória & Favorece adaptabilidade e iteração \\
@@ -76,20 +76,20 @@
     \label{sec:processo-desenvolvimento}
 
     Com base na abordagem híbrida apresentada na seção anterior, o processo de desenvolvimento do BoraFut foi fundamentado nos princípios do \textit{Extreme Programming} (XP), metodologia ágil proposta por Beck \cite{beck2000} que enfatiza simplicidade, colaboração e qualidade técnica. O XP foi escolhido por sua adequação a equipes pequenas e por priorizar práticas de engenharia de software em detrimento de estruturas organizacionais complexas, tornando-se mais apropriado ao contexto de um projeto acadêmico de escopo limitado.
-    A escolha pelo XP refletiu uma decisão consciente de privilegiar práticas de engenharia e iteração contínua, em vez de adotar frameworks de gestão mais estruturados, como o Scrum. Embora o Scrum ofereça mecanismos formais de planejamento, papéis definidos e rituais de acompanhamento, essas características foram menos relevantes no contexto do BoraFut, desenvolvido por uma equipe pequena e autogerida.
+    A escolha pelo XP refletiu uma decisão consciente de privilegiar práticas de engenharia e iteração contínua, em vez de adotar \textit{frameworks} de gestão mais estruturados, como o Scrum. Embora o Scrum ofereça mecanismos formais de planejamento, papéis definidos e rituais de acompanhamento, essas características foram menos relevantes no contexto do BoraFut, desenvolvido por uma equipe pequena e autogerida.
 
     Além disso, conforme Boehm e Turner \cite{boehm2003}, a seleção de um processo ágil deve considerar o equilíbrio entre disciplina e adaptabilidade. Nesse sentido, o XP se mostra mais adequado, pois fornece um conjunto de práticas técnicas que podem ser aplicadas de forma incremental e flexível, sem comprometer a simplicidade operacional necessária em um projeto acadêmico.
 
     A adoção do XP também está alinhada à filosofia incremental do MVP, permitindo que cada ciclo de desenvolvimento produza versões funcionais do sistema, com oportunidades de revisão e refinamento contínuo. O foco não está em seguir um método prescritivo, mas em aplicar seus princípios para orientar um processo iterativo, colaborativo e centrado na entrega de valor.
 
-    \subsection{Princípios do Extreme Programming}
+    \subsection{Princípios do \textit{Extreme Programming}}
 
-        O XP baseia-se em cinco valores fundamentais: comunicação, simplicidade, feedback, coragem e respeito, que orientam tanto o comportamento da equipe quanto a qualidade do produto \cite{beck2000, pressman2019}. Esses valores foram incorporados ao projeto da seguinte forma:
+        O XP baseia-se em cinco valores fundamentais: comunicação, simplicidade, \textit{feedback}, coragem e respeito, que orientam tanto o comportamento da equipe quanto a qualidade do produto \cite{beck2000, pressman2019}. Esses valores foram incorporados ao projeto da seguinte forma:
 
         \begin{itemize}
             \item \textbf{Comunicação}: a equipe manteve comunicação contínua por meio de ferramentas colaborativas (como GitHub, Discord e Jira), eliminando a necessidade de formalismos excessivos;
             \item \textbf{Simplicidade}: priorizaram-se soluções técnicas minimamente suficientes para atender às necessidades do MVP, evitando complexidade desnecessária;
-            \item \textbf{Feedback}: os resultados de cada incremento foram avaliados pelos próprios desenvolvedores e potenciais usuários, permitindo ajustes rápidos;
+            \item \textbf{\textit{Feedback}}: os resultados de cada incremento foram avaliados pelos próprios desenvolvedores e potenciais usuários, permitindo ajustes rápidos;
             \item \textbf{Coragem}: decisões de design e refatoração foram tomadas de forma transparente, com abertura para mudanças quando necessárias;
             \item \textbf{Respeito}: a colaboração e o compartilhamento de responsabilidades foram valorizados como elementos centrais da dinâmica de trabalho.
         \end{itemize}
@@ -103,7 +103,7 @@
 
         O principal uso ocorreu na especificação das funcionalidades. Cada funcionalidade partia de uma descrição em texto corrido, redigida pelos autores, com tudo o que ela deveria permitir. Na criação de um fut, por exemplo, a descrição registrava que o usuário escolheria a quadra, a data, o horário e a quantidade de jogadores por time, entre outros parâmetros. O modelo estruturava esse texto em um documento de requisitos de produto (\textit{Product Requirements Document}, PRD) e apontava cenários e casos de borda ainda não contemplados. Os autores revisavam o documento integralmente e o incrementavam em sucessivas iterações, até chegar à versão considerada completa. A partir dela, o refinamento técnico, a criação das tarefas no quadro do projeto e a implementação foram conduzidos pelos autores.
 
-        Os modelos voltaram a ser utilizados na conclusão de cada funcionalidade. Após a revisão de código feita pelos próprios autores, solicitava-se ao modelo que confrontasse a implementação com o PRD correspondente, a fim de verificar se todos os casos especificados haviam sido tratados. Essa verificação complementou, sem substituir, a suíte automatizada de testes e o portão de cobertura descritos na Seção~\ref{sec:dev-qualidade}.
+        Os modelos voltaram a ser utilizados na conclusão de cada funcionalidade. Após a revisão de código feita pelos próprios autores, solicitava-se ao modelo que confrontasse a implementação com o PRD correspondente, a fim de verificar se todos os casos especificados haviam sido tratados. Essa verificação complementou, sem substituir, a suíte automatizada de testes e o critério mínimo de cobertura descritos na seção~\ref{sec:dev-qualidade}.
 
         Na elaboração da monografia, os modelos foram utilizados em uma revisão integral do texto. Essa revisão buscou identificar inconsistências internas, divergências entre a descrição do produto, a documentação e o código, além de problemas de clareza, gramática e organização argumentativa. As correções sugeridas foram conferidas pelos autores nos artefatos e nas fontes correspondentes antes de serem aceitas, reformuladas ou rejeitadas.
 
@@ -115,9 +115,9 @@
 
     O planejamento inicial do projeto BoraFut teve como objetivo consolidar a visão estratégica e o posicionamento da solução antes do início do desenvolvimento técnico. Nessa etapa, foram utilizados dois instrumentos principais: o \textit{Project Model Canvas} (PM Canvas), para estruturar a proposta de valor e os elementos centrais do projeto, e a Análise de Mercado, voltada à identificação de soluções similares, lacunas existentes e diferenciais competitivos.
 
-    \subsection{Project Model Canvas}
+    \subsection{\textit{Project Model Canvas}}
         \subsubsection*{O que é o PM Canvas}
-        O \textit{Project Model Canvas} (PM Canvas) é um quadro visual criado por José Finocchio Jr. para planejar e comunicar projetos em uma única página. O modelo condensa decisões essenciais em blocos curtos, facilitando o alinhamento entre equipe e partes interessadas e funcionando como referência viva durante a execução \cite{pmcanvas}. O quadro organiza respostas às perguntas fundamentais de um projeto: por que executar, o que entregar, para quem, como realizar, quando e quanto custará. A versão clássica contempla os blocos abaixo.
+        O \textit{Project Model Canvas} (PM Canvas) é um quadro visual criado por José Finocchio Jr. para planejar e comunicar projetos em uma única página. O modelo concentra decisões essenciais em blocos curtos, facilitando o alinhamento entre equipe e partes interessadas e funcionando como referência viva durante a execução \cite{pmcanvas}. O quadro organiza respostas às perguntas fundamentais de um projeto: por que executar, o que entregar, para quem, como realizar, quando e quanto custará. A versão clássica contempla os blocos abaixo.
 
         \subsubsection*{Blocos do PM Canvas por dimensão}
             \begin{description}
@@ -135,7 +135,7 @@
 
                 \item[\textbf{Quem?}] 
                 \begin{itemize}
-                    \item \textbf{Stakeholders}: partes interessadas que influenciam ou são impactadas, com indicação de papéis e relação com o projeto.
+                    \item \textbf{\textit{Stakeholders}}: partes interessadas que influenciam ou são impactadas, com indicação de papéis e relação com o projeto.
                     \item \textbf{Equipe}: responsáveis diretos pela execução e competências essenciais, com papéis-chave necessários ao andamento.
                 \end{itemize}
                 \item[\textbf{Como?}] 
@@ -167,20 +167,20 @@
                 \item[\textbf{O quê?}] 
                 \begin{itemize}
                     \item \textbf{Produto/solução}: aplicativo móvel multiplataforma que conecta jogadores, quadras e partidas, simplificando criação de jogos, confirmação de presença e gerenciamento de partidas.
-                    \item \textbf{Requisitos do MVP}: autenticação por e-mail com verificação; mapa com quadras públicas e detalhes básicos; criação, edição e exclusão de partidas; confirmação de presença e compartilhamento por link; identidade visual aplicada e protótipo validado com 5 a 8 usuários; gerenciamento completo do futebol através do app.
-                    \item \textbf{Requisitos pós-MVP}: estatísticas avançadas e comparativas; gamificação; organização de campeonatos; API de pagamentos para inscrição de campeonatos; chat e recursos comunitários.
+                    \item \textbf{Requisitos do MVP}: autenticação por e-mail com verificação; mapa com quadras públicas e detalhes básicos; criação, edição e exclusão de partidas; confirmação de presença e compartilhamento por link; identidade visual aplicada e protótipo validado com 5 a 8 usuários; gerenciamento completo do futebol através do \textit{app}.
+                    \item \textbf{Requisitos pós-MVP}: estatísticas avançadas e comparativas; gamificação; organização de campeonatos; API de pagamentos para inscrição de campeonatos; \textit{chat} e recursos comunitários.
                 \end{itemize}
 
                 \item[\textbf{Quem?}] 
                 \begin{itemize}
-                    \item \textbf{Stakeholders}: equipe de desenvolvimento e orientação acadêmica; jogadores amadores e organizadores informais de partidas; iniciativas esportivas locais e administrações regionais ligadas às quadras; parceiros potenciais, como a equipe ``Copa na Praça'' de Sobradinho.
+                    \item \textbf{\textit{Stakeholders}}: equipe de desenvolvimento e orientação acadêmica; jogadores amadores e organizadores informais de partidas; iniciativas esportivas locais e administrações regionais ligadas às quadras; parceiros potenciais, como a equipe ``Copa na Praça'' de Sobradinho.
                     \item \textbf{Equipe}: engenheiros de software, coordenador de projetos e designer/UX.
                 \end{itemize}
 
                 \item[\textbf{Como?}] 
                 \begin{itemize}
                     \item \textbf{Premissas}: pessoas aceitarão testar uma ferramenta dedicada em vez de depender exclusivamente de grupos de mensagens; não há entraves jurídicos para desenvolvimento e piloto acadêmico; poucos concorrentes diretos focados em quadras públicas do Distrito Federal.
-                    \item \textbf{Grupos de entregas}: requisitos e arquitetura mínima; identidade visual e protótipos de alta fidelidade; backend/API e banco de dados; aplicativo móvel (MVP funcional); teste de usabilidade e ajustes; pacote de evidências e documentação final.
+                    \item \textbf{Grupos de entregas}: requisitos e arquitetura mínima; identidade visual e protótipos de alta fidelidade; \textit{backend}/API e banco de dados; aplicativo móvel (MVP funcional); teste de usabilidade e ajustes; pacote de evidências e documentação final.
                     \item \textbf{Restrições}: tempo de TCC e equipe reduzida; escopo focado no MVP; conformidade com LGPD e idade mínima de 16 anos; dependência de SDKs/APIs de terceiros (mapas, autenticação, notificações).
                 \end{itemize}
 
@@ -192,7 +192,7 @@
 
                 \item[\textbf{Quanto?}] 
                 \begin{itemize}
-                    \item \textbf{Custos estimados}: publicações/lojas (\textit{host app stores} \(\approx\) R\$~675,45/ano;), hospedagem do backend e banco de dados \(\approx\) US\$~20/mês; eventuais despesas com ferramentas de apoio e divulgação do piloto \(\approx\) R\$~100/mês.
+                    \item \textbf{Custos estimados}: publicações/lojas (\textit{host app stores} \(\approx\) R\$~675,45/ano;), hospedagem do \textit{backend} e banco de dados \(\approx\) US\$~20/mês; eventuais despesas com ferramentas de apoio e divulgação do piloto \(\approx\) R\$~100/mês.
                 \end{itemize}
         \end{description}
 
@@ -202,13 +202,13 @@
         Foi realizada uma pesquisa direta sobre aplicativos semelhantes ao BoraFut. A busca no Google, na Google Play e na App Store levou a cinco aplicativos: Chega+ \cite{chegamais_app}, Appito \cite{appito_app}, PELADEIROS \cite{peladeiros_app}, FINTTA \cite{fintta_app} e Agendei~Quadras \cite{agendei_app}. Para cada um, foram examinadas as redes sociais e as avaliações nas lojas, e cada aplicativo foi instalado e utilizado para identificar pontos fortes, pontos fracos e o que valia adaptar ao contexto de Brasília. Além desses, foi tomado o \textit{WhatsApp} como linha de base, por ser a ferramenta efetivamente usada hoje para organizar as partidas \cite{whatsapp_app}.
 
         \subsubsection*{Chega+}
-        Forte na organização de grupos privados de futebol. Tem convite, confirmação de presença, sorteio de times, fila e estatísticas. A base de usuários é grande (500 mil+ downloads) e ativa, com redes sociais bem movimentadas. Comentários críticos citam excesso de bugs e planos pagos percebidos como caros por parte dos usuários. A interface cumpre o papel, mas não se destaca em experiência.
+        Forte na organização de grupos privados de futebol. Tem convite, confirmação de presença, sorteio de times, fila e estatísticas. A base de usuários é grande (500 mil+ \textit{downloads}) e ativa, com presença expressiva nas redes sociais. Comentários críticos citam excesso de \textit{bugs} e planos pagos percebidos como caros por parte dos usuários. A interface atende às funções propostas, mas não se destaca em experiência de uso.
 
         \subsubsection*{Appito}
-        É o aplicativo com maior número de downloads entre os analisados (1 milhão+ downloads). No começo, também focava em grupos privados, mas permite deixar o jogo público para outras pessoas encontrarem pelo aplicativo. Hoje o foco principal parece ser a gestão de arenas próprias e a reserva de quadras dessas arenas (concentradas em São Paulo). Usa gamificação (rankings, estatísticas) aproximando a experiência do universo de jogos.
+        É o aplicativo com maior número de \textit{downloads} entre os analisados (1 milhão+ \textit{downloads}). No começo, também focava em grupos privados, mas permite deixar o jogo público para outras pessoas encontrarem pelo aplicativo. Atualmente, o foco principal aparenta ser a gestão de arenas próprias e a reserva de quadras dessas arenas (concentradas em São Paulo). Usa gamificação (\textit{rankings}, estatísticas) aproximando a experiência do universo de jogos.
 
         \subsubsection*{PELADEIROS e FINTTA}
-        Seguem a linha “grupo privado organiza o futebol”. Ambos têm alcance menor que os líderes (100 mil+ downloads).
+        Seguem a linha “grupo privado organiza o futebol”. Ambos têm alcance menor que os líderes (100 mil+ \textit{downloads}).
 
         \subsubsection*{Agendei~Quadras}
         Funciona como um \textit{marketplace} multiesporte. Donos anunciam as quadras e os usuários agendam e pagam. É ótimo para reserva de infraestrutura, mas não foca na dinâmica espontânea do futebol em quadras públicas.
@@ -254,7 +254,7 @@
         \subsubsection*{Síntese da análise de mercado}
             \begin{itemize}
                 \item \textbf{Funcionalidades úteis}: não se identificou um diferencial exclusivo, e sim boas jornadas espalhadas entre os aplicativos. Para o BoraFut, foram incorporadas confirmação simples, convite por link e formação de times, combinados com mapa hiperlocal e descoberta de partidas em quadras públicas.
-                \item \textbf{Mercado existe}: o volume de downloads e o engajamento observados nos aplicativos líderes indicam demanda por ferramentas de organização do futebol amador.
+                \item \textbf{Mercado existe}: o volume de \textit{downloads} e o engajamento observados nos aplicativos líderes indicam demanda por ferramentas de organização do futebol amador.
                 \item \textbf{Aderência em Brasília é baixa}: os grandes aplicativos aparecem pouco no Distrito Federal, abrindo espaço para uma solução pensada desde o início para quadras públicas brasilienses.
                 \item \textbf{Onde dá para diferenciar}: reduzir barreiras de entrada (fluxos rápidos, incluir convidados sem conta), priorizar jogos públicos no mapa e evitar travar o uso atrás de planos pagos no começo.
             \end{itemize}
@@ -296,11 +296,11 @@
             Entre os formatos mais comuns está o método 6-3-5 descrito por Rohrbach, no qual seis pessoas escrevem três ideias em cinco minutos e, a cada rodada, passam suas fichas adiante para que sejam desenvolvidas, acumulando várias iterações em pouco tempo \cite{rohrbach1969}. Evidências apontam que formatos escritos tendem a produzir maior quantidade e diversidade de ideias do que sessões exclusivamente orais, principalmente em grupos pequenos \cite{paulus2007}.
 
             \subsubsection*{Aplicação no BoraFut}
-            A dinâmica foi realizada em janeiro de 2024, um mês após a observação fundadora relatada anteriormente, com sete participantes, entre os autores e potenciais usuários do produto. O formato canônico prevê seis participantes; a condução com sete não alterou a mecânica das rodadas nem o encadeamento das fichas. Para orientar e cobrir o problema de forma ampla, as ideias foram organizadas em seis categorias temáticas: Funcionalidades do app, Melhorias na experiência do usuário, Monetização e modelo de negócios, Gamificação, Integrações e parcerias e Marketing e divulgação (Figura~\ref{fig:brainwriting-categorias}).
+            A dinâmica foi realizada em janeiro de 2024, um mês após a observação fundadora relatada anteriormente, com sete participantes, entre os autores e potenciais usuários do produto. O formato canônico prevê seis participantes; a condução com sete não alterou a mecânica das rodadas nem o encadeamento das fichas. Para orientar e cobrir o problema de forma ampla, as ideias foram organizadas em seis categorias temáticas: Funcionalidades do \textit{app}, Melhorias na experiência do usuário, Monetização e modelo de negócios, Gamificação, Integrações e parcerias e Marketing e divulgação (Figura~\ref{fig:brainwriting-categorias}).
 
-            Cada rodada teve duração aproximada de cinco minutos, com foco deliberado em quantidade; o agrupamento e a análise de itens redundantes ocorreram somente ao final. Foram produzidos 41 cartões, distribuídos de forma desigual entre as categorias: Funcionalidades do app concentrou 18 cartões, seguida por Gamificação, com nove, Melhorias na experiência do usuário, com seis, e Integrações e parcerias, com cinco. As categorias voltadas a modelo de negócio e a divulgação foram as menos exploradas, somando três cartões, o que é coerente com a composição do grupo, formado majoritariamente por praticantes interessados no que o produto faria, e não em como ele se sustentaria.
+            Cada rodada teve duração aproximada de cinco minutos, com foco deliberado em quantidade; o agrupamento e a análise de itens redundantes ocorreram somente ao final. Foram produzidos 41 cartões, distribuídos de forma desigual entre as categorias: Funcionalidades do \textit{app} concentrou 18 cartões, seguida por Gamificação, com nove, Melhorias na experiência do usuário, com seis, e Integrações e parcerias, com cinco. As categorias voltadas a modelo de negócio e a divulgação foram as menos exploradas, somando três cartões, o que é coerente com a composição do grupo, formado majoritariamente por praticantes interessados no que o produto faria, e não em como ele se sustentaria.
 
-            Os cartões foram consolidados em temas e alimentaram a construção do \textit{backlog}, submetida em seguida à priorização descrita na Seção~\ref{sec:priorizacao}. Cabe registrar que a proposta que viria a se tornar o núcleo do produto, o gerenciamento do fut por ordem de chegada com formação e rotação automática de times, foi formulada nessa dinâmica e é reconhecível no sistema entregue. O registro completo da atividade, com o conteúdo dos cartões e o destino de cada tema, foi consolidado em documento à parte, de uso restrito à banca examinadora, por conter propostas de produto, de monetização e de parcerias ainda não publicadas.
+            Os cartões foram consolidados em temas e alimentaram a construção do \textit{backlog}, submetida em seguida à priorização descrita na seção~\ref{sec:priorizacao}. Cabe registrar que a proposta que viria a se tornar o núcleo do produto, o gerenciamento do fut por ordem de chegada com formação e rotação automática de times, foi formulada nessa dinâmica e é reconhecível no sistema entregue. O registro completo da atividade, com o conteúdo dos cartões e o destino de cada tema, foi consolidado em documento à parte, de uso restrito à banca examinadora, por conter propostas de produto, de monetização e de parcerias ainda não publicadas.
 
             \begin{figure}[h]
                 \centering
@@ -312,7 +312,7 @@
         \subsubsection{Questionário}
         \label{sec:questionario}
 
-        Com base nas ideias geradas na dinâmica de \textit{brainwriting}, foi elaborado um questionário on-line com o objetivo de compreender o perfil dos potenciais usuários e validar hipóteses sobre comportamentos, dores e preferências relacionadas à organização de partidas de futebol amador. O instrumento foi desenvolvido em formato digital, via Google Forms, e distribuído entre diversas universidades, grupos esportivos e comunidades de society\footnote{O futebol society é uma modalidade derivada do futebol tradicional, praticada em campo reduzido e com equipes menores, geralmente de cinco a sete jogadores. Caracteriza-se pelo uso de gramado sintético e regras adaptadas para jogos mais rápidos e dinâmicos.} e futsal do Distrito Federal, alcançando 64 respostas válidas.
+        Com base nas ideias geradas na dinâmica de \textit{brainwriting}, foi elaborado um questionário on-line com o objetivo de compreender o perfil dos potenciais usuários e validar hipóteses sobre comportamentos, dores e preferências relacionadas à organização de partidas de futebol amador. O instrumento foi desenvolvido em formato digital, via Google Forms, e distribuído entre diversas universidades, grupos esportivos e comunidades de \textit{society}\footnote{O futebol \textit{society} é uma modalidade derivada do futebol tradicional, praticada em campo reduzido e com equipes menores, geralmente de cinco a sete jogadores. Caracteriza-se pelo uso de gramado sintético e regras adaptadas para jogos mais rápidos e dinâmicos.} e futsal do Distrito Federal, alcançando 64 respostas válidas.
 
         \subsubsection*{Estrutura e objetivos}
         O questionário combinou perguntas fechadas e de múltipla escolha, além de uma pergunta aberta e opcional ao final, distribuídas em quatro eixos:
@@ -327,7 +327,7 @@
         \subsubsection*{Perfil dos respondentes}
         A amostra foi composta majoritariamente por homens (71,9\%) entre 18 e 24 anos (70,3\%), faixa correspondente à população universitária e de jovens adultos. A distribuição geográfica concentrou-se no Plano Piloto, somadas as respostas de Asa Norte e Asa Sul (17,2\%), seguido de Guará (10,9\%) e Gama (10,9\%), além de participações expressivas de Taguatinga, Águas Claras e Santa Maria, indicando forte presença no eixo central do Distrito Federal, o foco inicial do BoraFut.
 
-        Em relação ao nível de prática, 84,4\% dos participantes se identificaram como jogadores amadores e o restante como semiprofissionais. O formato mais comum de jogo é o futsal (81,3\%), seguido pelo society (51,6\%), e 15,6\% afirmaram praticar futebol de campo. Grupos de maior porte são predominantes: 53,1\% relataram possuir mais de dez jogadores, o que reforça a necessidade de uma ferramenta de coordenação coletiva.
+        Em relação ao nível de prática, 84,4\% dos participantes se identificaram como jogadores amadores e o restante como semiprofissionais. O formato mais comum de jogo é o futsal (81,3\%), seguido pelo \textit{society} (51,6\%), e 15,6\% afirmaram praticar futebol de campo. Grupos de maior porte são predominantes: 53,1\% relataram possuir mais de dez jogadores, o que reforça a necessidade de uma ferramenta de coordenação coletiva.
 
         \subsubsection*{Hábitos e organização}
         A frequência de jogo mostrou-se heterogênea: cerca de 25\% jogam semanalmente, 23,4\% de duas a três vezes por semana e 17,2\% não jogaram nos últimos três meses. Esses dados sugerem que o público é ativo, mas sujeito a variações de engajamento, o que abre espaço para funcionalidades de estímulo à participação contínua, como notificações, recompensas e estatísticas.
@@ -363,10 +363,10 @@
         \subsubsection*{Síntese do público-alvo}
         Com base na análise dos questionários, o público inicial do BoraFut pode ser descrito como:
         \begin{quote}
-            Jovens adultos, concentrados na faixa de 18 a 24 anos, predominantemente homens, praticantes amadores de futsal e society, que jogam em grupos autônomos e organizam suas partidas via WhatsApp. Valorizam praticidade, agilidade e confiabilidade na marcação de jogos e demonstram interesse em recursos de descoberta de quadras e confirmação de presença.
+            Jovens adultos, concentrados na faixa de 18 a 24 anos, predominantemente homens, praticantes amadores de futsal e \textit{society}, que jogam em grupos autônomos e organizam suas partidas via WhatsApp. Valorizam praticidade, agilidade e confiabilidade na marcação de jogos e demonstram interesse em recursos de descoberta de quadras e confirmação de presença.
         \end{quote}
 
-        O formulário foi precedido de uma tela de termos, na qual o participante era informado do objetivo acadêmico da pesquisa e do uso agregado e anônimo das respostas, e registrava seu aceite antes de iniciar o preenchimento. O tratamento desses dados é detalhado na Seção~\ref{sec:privacidade}. O instrumento completo do questionário encontra-se no Apêndice~\ref{apendice:questionario}.
+        O formulário foi precedido de uma tela de termos, na qual o participante era informado do objetivo acadêmico da pesquisa e do uso agregado e anônimo das respostas, e registrava seu aceite antes de iniciar o preenchimento. O tratamento desses dados é detalhado na seção~\ref{sec:privacidade}. O instrumento completo do questionário encontra-se no Apêndice~\ref{apendice:questionario}.
 
     \subsection{Priorização e modelagem de requisitos}
         \label{sec:priorizacao}
@@ -376,7 +376,7 @@
 
         Esse processo de refinamento teve por objetivo eliminar redundâncias, ajustar o escopo, identificar dependências e priorizar entregas essenciais para o funcionamento do MVP. As decisões de priorização foram baseadas no valor de negócio, no impacto para o usuário e na complexidade técnica estimada.
 
-        \subsubsection{Granularidade e hierarquia do backlog}
+        \subsubsection{Granularidade e hierarquia do \textit{backlog}}
 
             O \textit{backlog} do BoraFut é organizado em seis níveis de granularidade, do mais estratégico ao mais concreto. Os rótulos de cada nível variam entre as fontes da literatura ágil: Cohn \cite{cohn2004} trabalha com temas, épicos e histórias, enquanto o \textit{Scaled Agile Framework} \cite{safe2023} adota temas estratégicos, épicos e \textit{features}. Neste trabalho, adota-se a convenção descrita a seguir.
 
@@ -389,7 +389,7 @@
                 \item[Subtarefa] desdobramento concreto de uma tarefa, diretamente executável e verificável.
             \end{description}
 
-            A escolha dos temas como os próprios pilares da proposta de valor do BoraFut é deliberada. Esses pilares, sintetizados a partir das dores levantadas na elicitação (como centralizar a organização, reduzir a dispersão de informação, aumentar a participação e reduzir conflitos pelo uso das quadras) e detalhados na Seção~\ref{subsec:proposta-valor}, tornam-se o topo do \textit{backlog}. Assim, a leitura de cima para baixo evidencia como cada benefício pretendido se converte em funcionalidade e, ao final, em trabalho técnico. Esse encadeamento materializa a rastreabilidade entre requisitos e valor recomendada na engenharia de requisitos \cite{sommerville2011, wiegers2013}.
+            A escolha dos temas como os próprios pilares da proposta de valor do BoraFut é deliberada. Esses pilares, sintetizados a partir das dores levantadas na elicitação (como centralizar a organização, reduzir a dispersão de informação, aumentar a participação e reduzir conflitos pelo uso das quadras) e detalhados na seção~\ref{subsec:proposta-valor}, tornam-se o topo do \textit{backlog}. Assim, a leitura de cima para baixo evidencia como cada benefício pretendido se converte em funcionalidade e, ao final, em trabalho técnico. Esse encadeamento materializa a rastreabilidade entre requisitos e valor recomendada na engenharia de requisitos \cite{sommerville2011, wiegers2013}.
 
             A Tabela~\ref{tab:decomposicao} ilustra uma decomposição completa, do tema à subtarefa, para um item representativo do \textit{backlog}.
 
@@ -422,10 +422,10 @@
         Para apoiar a priorização, adotou-se o método MoSCoW, amplamente utilizado em metodologias ágeis. O nome do método se refere às quatro categorias de priorização:
 
         \begin{itemize}
-            \item \textbf{Must Have} - Requisitos indispensáveis para o funcionamento mínimo do sistema.
-            \item \textbf{Should Have} - Requisitos importantes, mas não essenciais para a primeira versão.
-            \item \textbf{Could Have} - Requisitos desejáveis, implementados apenas se houver tempo e recursos.
-            \item \textbf{Won't Have} - Requisitos deliberadamente postergados ou fora do escopo atual.
+            \item \textbf{\textit{Must Have}} - Requisitos indispensáveis para o funcionamento mínimo do sistema.
+            \item \textbf{\textit{Should Have}} - Requisitos importantes, mas não essenciais para a primeira versão.
+            \item \textbf{\textit{Could Have}} - Requisitos desejáveis, implementados apenas se houver tempo e recursos.
+            \item \textbf{\textit{Won't Have}} - Requisitos deliberadamente postergados ou fora do escopo atual.
         \end{itemize}
 
         Durante o processo de priorização, estabeleceu-se que todos os requisitos classificados como \textit{Must Have} fariam parte do escopo mínimo de desenvolvimento, por serem essenciais ao funcionamento do MVP. Alguns requisitos classificados como \textit{Should Have} e \textit{Could Have} foram incluídos por apresentarem boa relação entre valor entregue e esforço de implementação. Já os requisitos categorizados como \textit{Won't Have} foram deliberadamente excluídos da versão inicial, sendo direcionados para versões futuras.
@@ -471,11 +471,11 @@
             \end{tabular}
         \end{table}        
 
-        \subsubsection{User Stories}
+        \subsubsection{\textit{User Stories}}
         % Conceito de user story e critérios de aceitação
         % Exemplos de user stories elaboradas
 
-        As \textit{user stories} foram utilizadas como principal artefato para representar requisitos funcionais do sistema. Esse formato coloca o usuário no centro da modelagem e facilita entendimento do valor associado a cada funcionalidade, permitindo que cada requisito seja interpretado como uma interação concreta entre o usuário e o sistema. Cada user story segue o padrão amplamente utilizado:
+        As \textit{user stories} foram utilizadas como principal artefato para representar requisitos funcionais do sistema. Esse formato coloca o usuário no centro da modelagem e facilita entendimento do valor associado a cada funcionalidade, permitindo que cada requisito seja interpretado como uma interação concreta entre o usuário e o sistema. Cada \textit{user story} segue o padrão amplamente utilizado:
 
         \begin{quote}
         “Como [tipo de usuário], desejo [ação], para [valor].”
@@ -485,27 +485,27 @@
 
         \begin{itemize}
             \item \textbf{E\#} identifica o épico ao qual a história pertence;
-            \item \textbf{F\#} identifica a feature dentro daquele épico;
-            \item \textbf{US\#} identifica a user story específica dentro da feature.
+            \item \textbf{F\#} identifica a \textit{feature} dentro daquele épico;
+            \item \textbf{US\#} identifica a \textit{user story} específica dentro da \textit{feature}.
         \end{itemize}
 
         Dessa forma, o código \textbf{E2-F1-US1}, por exemplo, indica:
         \begin{itemize}
             \item Épico 2: Mapa e Descoberta de Quadras;
             \item \textit{Feature} 1: Interação com o mapa;
-            \item \textit{User Story} 1: Primeira história pertencente a essa feature.
+            \item \textit{User Story} 1: Primeira história pertencente a essa \textit{feature}.
         \end{itemize}
 
-        A seguir, alguns exemplos representativos de user stories elaboradas para o projeto:
+        A seguir, alguns exemplos representativos de \textit{user stories} elaboradas para o projeto:
 
         \begin{itemize}
-            \item \textbf{E1-F2-US1} -- Como usuário registrado, desejo fazer login informando apenas meu e-mail e recebendo um código temporário por e-mail, para acessar minha conta sem precisar lembrar uma senha.
+            \item \textbf{E1-F2-US1} -- Como usuário registrado, desejo fazer \textit{login} informando apenas meu e-mail e recebendo um código temporário por e-mail, para acessar minha conta sem precisar lembrar uma senha.
 
             \item \textbf{E2-F1-US2} -- Como usuário, desejo selecionar uma quadra no mapa para abrir seu perfil, para obter mais informações sobre aquele local.
 
             \item \textbf{E4-F2-US1} -- Como usuário registrado, desejo confirmar minha presença em um fut por meio de um botão “Bora”, para que os demais saibam que participarei e o organizador planeje o fut.
 
-            \item \textbf{E5-F3-US2} -- Como organizador de um fut, desejo que o app gere automaticamente os times com base na ordem de chegada, para agilizar o início da partida sem discussões.
+            \item \textbf{E5-F3-US2} -- Como organizador de um fut, desejo que o \textit{app} gere automaticamente os times com base na ordem de chegada, para agilizar o início da partida sem discussões.
 
             \item \textbf{E5-F4-US2} -- Como responsável pela partida, desejo registrar os gols marcados por cada time, atribuindo a um jogador específico, para gerar estatísticas individuais e do time.
         \end{itemize}
@@ -534,16 +534,16 @@
 \section{Plano de privacidade e segurança}
     \label{sec:privacidade}
 
-    O BoraFut trata dados pessoais em duas frentes distintas, que exigem cuidados diferentes: os dados dos usuários do aplicativo e os dados dos participantes das atividades de pesquisa. Ambas seguem a Lei Geral de Proteção de Dados~\cite{LGPD2018} e os princípios discutidos na Seção~\ref{sec:etica-dados}, com a mesma diretriz de fundo, a de coletar o mínimo necessário para que a funcionalidade exista, que é a tradução prática do princípio da necessidade e da abordagem de \textit{Privacy by Design}.
+    O BoraFut trata dados pessoais em duas frentes distintas, que exigem cuidados diferentes: os dados dos usuários do aplicativo e os dados dos participantes das atividades de pesquisa. Ambas seguem a Lei Geral de Proteção de Dados~\cite{LGPD2018} e os princípios discutidos na seção~\ref{sec:etica-dados}, com a mesma diretriz de fundo, a de coletar o mínimo necessário para que a funcionalidade exista, que é a tradução prática do princípio da necessidade e da abordagem de \textit{Privacy by Design}.
 
     \subsection{Dados pessoais no aplicativo}
         O tratamento se apoia em três bases legais previstas na Lei Geral de Proteção de Dados. A execução do contrato de prestação do serviço ampara os dados indispensáveis ao funcionamento: o endereço de e-mail, que identifica a conta e serve de canal de autenticação, e o nome, a data de nascimento e a escolha de um avatar, exigidos para concluir o cadastro. Sem esses três últimos o aplicativo não libera as funcionalidades autenticadas, pois a jornada de primeiro acesso é bloqueante. O consentimento ampara os dados opcionais de perfil, que são o apelido, a região, o gênero e os tipos de fut preferidos, e que podem ser respondidos depois, ou não respondidos. O legítimo interesse ampara duas finalidades específicas: a análise agregada da região e do tipo de fut preferido, empregada apenas para identificar onde há demanda e planejar a expansão do catálogo de quadras, e o registro de participantes sem conta, descrito adiante. Em ambas o titular pode se opor, solicitando a remoção desses campos sem perder a conta. A idade mínima de 16 anos, prevista no requisito não funcional RNF06, é verificada tanto no aplicativo quanto no servidor, que rejeita data de nascimento incompatível.
 
-        A autenticação é sem senha: o acesso ocorre por código temporário enviado ao e-mail informado, de modo que o sistema não armazena senhas nem os problemas associados à sua guarda. A sessão é sustentada por um token de acesso de curta duração e um token de renovação revogável, que pode ser invalidado no encerramento de sessão. A rota que solicita o código responde de maneira idêntica para endereços cadastrados e não cadastrados, decisão deliberada para que ela não possa ser usada como oráculo de quem tem conta no sistema.
+        A autenticação é sem senha: o acesso ocorre por código temporário enviado ao e-mail informado, de modo que o sistema não armazena senhas nem os problemas associados à sua guarda. A sessão é sustentada por um \textit{token} de acesso de curta duração e um \textit{token} de renovação revogável, que pode ser invalidado no encerramento de sessão. A rota que solicita o código responde de maneira idêntica para endereços cadastrados e não cadastrados, decisão deliberada para que ela não possa ser usada como oráculo de quem tem conta no sistema.
 
         A localização merece nota específica, por ser o dado mais sensível manipulado pelo aplicativo. Ela é utilizada em dois momentos: na exibição do mapa, em que a posição do dispositivo serve apenas para centralizar a visualização inicial, e na confirmação de chegada ao fut, em que a distância até a quadra é calculada no próprio aparelho. Em nenhum dos casos as coordenadas do usuário deixam o dispositivo ou são persistidas. O registro de chegada guarda somente um indicador booleano de que a validação por localização ocorreu, junto com o instante do evento e a identificação de quem registrou, o que preserva a auditoria da presença sem constituir histórico de deslocamento.
 
-        Os demais dados armazenados decorrem do próprio uso: participações em futs, posições na fila de espera, eventos das partidas, avaliações de quadras e o token de notificação do dispositivo. A exclusão pode ser iniciada diretamente na tela de configurações do aplicativo ou solicitada pela página pública do serviço, alternativa acessível inclusive a quem perdeu o acesso à própria conta. O procedimento encerra as sessões ativas e anonimiza o cadastro, preservando as participações, os eventos de partida e as avaliações já desvinculados de identificação, por integrarem o histórico coletivo dos futs e das quadras. Na saída de um criador, os futs ativos são transferidos a um sucessor elegível; se não houver outro participante ativo, o fut é cancelado. Contas sem qualquer acesso por vinte e quatro meses são encerradas pelo mesmo procedimento, após aviso por e-mail com trinta dias de antecedência. O desenho atende ao direito de eliminação previsto na LGPD, que ressalva a manutenção de dados anonimizados, e às exigências das lojas de aplicativos. O tráfego entre o aplicativo e a API ocorre sobre HTTPS, com autenticação por token em todas as rotas que manipulam dados de usuário.
+        Os demais dados armazenados decorrem do próprio uso: participações em futs, posições na fila de espera, eventos das partidas, avaliações de quadras e o \textit{token} de notificação do dispositivo. A exclusão pode ser iniciada diretamente na tela de configurações do aplicativo ou solicitada pela página pública do serviço, alternativa acessível inclusive a quem perdeu o acesso à própria conta. O procedimento encerra as sessões ativas e anonimiza o cadastro, preservando as participações, os eventos de partida e as avaliações já desvinculados de identificação, por integrarem o histórico coletivo dos futs e das quadras. Na saída de um criador, os futs ativos são transferidos a um sucessor elegível; se não houver outro participante ativo, o fut é cancelado. Contas sem qualquer acesso por vinte e quatro meses são encerradas pelo mesmo procedimento, após aviso por e-mail com trinta dias de antecedência. O desenho atende ao direito de eliminação previsto na LGPD, que ressalva a manutenção de dados anonimizados, e às exigências das lojas de aplicativos. O tráfego entre o aplicativo e a API ocorre sobre HTTPS, com autenticação por \textit{token} em todas as rotas que manipulam dados de usuário.
 
         Duas situações fogem ao padrão e merecem registro. A primeira é o cadastro manual de participante, que grava nome e endereço de e-mail de alguém que sequer abriu o aplicativo. O formulário adverte o organizador de que só deve cadastrar quem autorizou, e esses registros permanecem no fut mesmo quando a conta de quem os criou é excluída, por serem dados de outra pessoa. A segunda é o aceite dos termos de uso, registrado em coluna própria da tabela de jogadores no momento da criação da conta, de modo que o consentimento tenha prova documental e data. O aplicativo mantém ainda uma tela dedicada que remete às versões públicas da política de privacidade, dos termos de uso e do procedimento de exclusão, atendendo à exigência das lojas de que esses documentos sejam alcançáveis também fora do aplicativo.
 
@@ -562,7 +562,7 @@
     % (Ex: simplicidade de manutenção, custos, curva de aprendizado)
     % Referenciar que os diagramas e detalhes técnicos serão apresentados no Capítulo 5
 
-    A arquitetura adotada para o BoraFut segue o padrão cliente-servidor de três camadas (\textit{three-tier architecture}), modelo amplamente adotado em sistemas web e móveis modernos por promover a separação clara de responsabilidades, escalabilidade e manutenção simplificada \cite{pressman2019}. Nesse padrão, o sistema é dividido em três níveis principais: frontend (camada de apresentação), backend (camada de aplicação) e banco de dados (camada de dados), com comunicação com serviços externos (APIs e SDKs) para funcionalidades complementares.
+    A arquitetura adotada para o BoraFut segue o padrão cliente-servidor de três camadas (\textit{three-tier architecture}), modelo amplamente adotado em sistemas web e móveis modernos por promover a separação clara de responsabilidades, escalabilidade e manutenção simplificada \cite{pressman2019}. Nesse padrão, o sistema é dividido em três níveis principais: \textit{frontend} (camada de apresentação), \textit{backend} (camada de aplicação) e banco de dados (camada de dados), com comunicação com serviços externos (APIs e SDKs) para funcionalidades complementares.
 
     Essa estrutura foi escolhida por se adequar às necessidades de um projeto acadêmico em formato de MVP: permite o desenvolvimento incremental, facilita o trabalho paralelo da equipe e simplifica a implantação em serviços de nuvem. A Figura~\ref{fig:arquitetura-geral} apresenta uma visão geral da organização adotada.
 
@@ -573,6 +573,6 @@
         \label{fig:arquitetura-geral}
     \end{figure}
 
-    As tecnologias que materializam cada camada são as descritas no Capítulo~\ref{cap:suporte-tecnologico}; a arquitetura resultante, com seus diagramas C4 e o modelo de dados, é apresentada na Seção~\ref{sec:arquitetura-design}, e a organização efetiva do código, no Capítulo~\ref{sec:desenvolvimento}.
+    As tecnologias que materializam cada camada são as descritas no Capítulo~\ref{cap:suporte-tecnologico}; a arquitetura resultante, com seus diagramas C4 e o modelo de dados, é apresentada na seção~\ref{sec:arquitetura-design}, e a organização efetiva do código, no Capítulo~\ref{sec:desenvolvimento}.
 
     As decisões metodológicas e arquiteturais registradas neste capítulo são o ponto de partida do projeto da solução, detalhado a seguir.

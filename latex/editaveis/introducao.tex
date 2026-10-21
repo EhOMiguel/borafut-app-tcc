@@ -15,7 +15,7 @@
 
 \section{Justificativa}
 
-  A organização de partidas de futebol amador em Brasília enfrenta desafios recorrentes, especialmente nas quadras públicas distribuídas pela cidade. A marcação dos jogos costuma depender de grupos dispersos em aplicativos de mensagens, com confirmações inconsistentes e pouca clareza sobre a disponibilidade dos espaços. Essa dificuldade, inicialmente observada pelos autores, foi posteriormente corroborada por questionário aplicado a jogadores de diferentes regiões do Distrito Federal (detalhado na Seção~\ref{sec:questionario} e apresentado no Apêndice~\ref{apendice:questionario}), revelando uma fragilidade na forma como atividades esportivas comunitárias são articuladas, mesmo diante de uma infraestrutura urbana que favorece esse tipo de prática. Ao explorar essa análise, percebe-se que o problema ultrapassa a dimensão organizacional e se conecta a questões estruturais, de saúde pública e urbanismo.
+  A organização de partidas de futebol amador em Brasília enfrenta desafios recorrentes, especialmente nas quadras públicas distribuídas pela cidade. A marcação dos jogos costuma depender de grupos dispersos em aplicativos de mensagens, com confirmações inconsistentes e pouca clareza sobre a disponibilidade dos espaços. Essa dificuldade, inicialmente observada pelos autores, foi posteriormente corroborada por questionário aplicado a jogadores de diferentes regiões do Distrito Federal (detalhado na seção~\ref{sec:questionario} e apresentado no Apêndice~\ref{apendice:questionario}), revelando uma fragilidade na forma como atividades esportivas comunitárias são articuladas, mesmo diante de uma infraestrutura urbana que favorece esse tipo de prática. Ao explorar essa análise, percebe-se que o problema ultrapassa a dimensão organizacional e se conecta a questões estruturais, de saúde pública e urbanismo.
 
   O Brasil apresenta índices alarmantes de sedentarismo. De acordo com o Ministério da Saúde, cerca de 47\% dos adultos brasileiros não praticam atividade física suficiente, e entre os jovens esse índice chega a 84\% \cite{ministerio2023,saraiva2024}. Esses números colocam o país como o mais sedentário da América Latina e o quinto no mundo em inatividade física \cite{oms2023,bvsms2023}. O sedentarismo é considerado atualmente um dos maiores desafios de saúde pública, estando associado ao aumento de doenças crônicas como obesidade, diabetes tipo 2, hipertensão, além de transtornos mentais \cite{bvsms2023,oms2023}. Estima-se que a inatividade física seja responsável por aproximadamente 5 milhões de mortes anuais em todo o mundo \cite{oms2023}.
 
@@ -27,9 +27,9 @@
 
   No caso do Plano Piloto, por exemplo, a regulamentação vigente determina que, de segunda a sexta-feira, as quadras sejam priorizadas para escolas e projetos sociais durante o dia, ficando abertas à comunidade apenas entre 20h e 22h \cite{peixoto2025}\footnote{Essa regulamentação estabelece que, caso um projeto social com autorização formal esteja em andamento, ele terá prioridade no uso da quadra, podendo inclusive solicitar a saída de usuários presentes. Contudo, tais situações são pouco frequentes, uma vez que até mesmo projetos sociais têm presença escassa nas quadras públicas.}. Essa informação, porém, nem sempre é divulgada de forma clara, dificultando o planejamento da comunidade. Além disso, sem um sistema integrado que reúna e divulgue essas informações, muitas quadras permanecem ociosas, enquanto a concentração de jogadores em horários de pico, sem conhecimento prévio sobre a ocupação, pode gerar disputas pelo uso do espaço \cite{agenciabrasilia2025}.
 
-  Outro problema comum é conseguir reunir o número ideal de jogadores. A comunicação informal, baseada em mensagens em grupos de WhatsApp, muitas vezes resulta em partidas desmarcadas, desistências de última hora e exclusão de novos participantes. Pessoas recém-chegadas à cidade ou que não fazem parte dos grupos de amigos locais têm dificuldade para encontrar partidas, o que acaba desestimulando a prática esportiva.
+  Outro problema comum é conseguir reunir o número ideal de jogadores. A comunicação informal, baseada em mensagens em grupos de WhatsApp, muitas vezes resulta em partidas desmarcadas, desistências de última hora e exclusão de novos participantes. Pessoas recém-chegadas à cidade ou que não fazem parte dos grupos de amigos locais têm dificuldade para encontrar partidas, o que desestimula a prática esportiva.
 
-  Diante dessa problemática, a proposta deste trabalho é o desenvolvimento de uma solução mobile voltada à organização do futebol amador em Brasília. A aplicação centraliza informações sobre partidas, jogadores e quadras públicas, incluindo localização, características e regras de uso, permitindo organizar partidas, confirmar presença e gerenciar listas de participantes, de modo a otimizar o aproveitamento dos espaços públicos e incentivar a prática esportiva local.
+  Diante dessa problemática, a proposta deste trabalho é o desenvolvimento de uma solução \textit{mobile} voltada à organização do futebol amador em Brasília. A aplicação centraliza informações sobre partidas, jogadores e quadras públicas, incluindo localização, características e regras de uso, permitindo organizar partidas, confirmar presença e gerenciar listas de participantes, de modo a otimizar o aproveitamento dos espaços públicos e incentivar a prática esportiva local.
 
   Cabe fixar desde já dois termos que percorrem toda a monografia e nomeiam conceitos distintos. Denomina-se \textbf{fut} o encontro combinado em uma quadra, com data, hora e lista de participantes, que é a unidade em torno da qual gira a organização; denomina-se \textbf{partida} cada jogo disputado dentro desse encontro, com times escalados, cronômetro e placar próprios. Um fut comporta, portanto, várias partidas sucessivas. O vocabulário é o dos próprios praticantes, e a monografia o preserva por ser essa distinção que sustenta o modelo de dados e as regras de rotação apresentados adiante.
 
@@ -46,20 +46,20 @@
 
   \subsection{Objetivo Geral}
 
-    Desenvolver e avaliar uma solução multiplataforma para apoiar a organização do futebol amador em Brasília, conectando jogadores, quadras e grupos locais por meio de funcionalidades intuitivas e acessíveis.
+    Desenvolver uma solução multiplataforma, avaliada com usuários, para apoiar a organização do futebol amador em Brasília, conectando jogadores, quadras e grupos locais por meio de funcionalidades intuitivas e acessíveis.
 
   \subsection{Objetivos Específicos}
 
     Para alcançar o objetivo geral proposto, o desenvolvimento do aplicativo foi conduzido segundo os seguintes objetivos específicos:
 
     \begin{enumerate}
-      \item Especificar e projetar o software por meio de levantamento de requisitos (observação, \textit{brainwriting} e questionário), priorização MoSCoW, modelagem de casos de uso e arquitetura no modelo C4.
-      \item Instrumentar o registro estruturado de eventos de domínio no backend.
-      \item Realizar o design e a avaliação de usabilidade da solução.
-      \item Mapear e qualificar quadras públicas na região administrativa alvo do piloto.
+      \item Projetar o software com base em levantamento de requisitos (observação, \textit{brainwriting} e questionário), priorização MoSCoW, modelagem de casos de uso e arquitetura no modelo C4.
+      \item Instrumentar o registro estruturado de eventos de domínio no \textit{backend}.
+      \item Avaliar junto a usuários a usabilidade da interface, projetada segundo as heurísticas de Nielsen.
+      \item Mapear as quadras públicas da região administrativa alvo do piloto, com os atributos que as qualificam.
       \item Disponibilizar o Produto Mínimo Viável (\textit{Minimum Viable Product} (MVP)) em ambiente piloto.
       \item Documentar o processo e as decisões do projeto.
-      \item Avaliar os resultados e indicar melhorias e perspectivas futuras.
+      \item Avaliar os resultados obtidos, indicando melhorias e perspectivas futuras.
     \end{enumerate}
 
 \section{Organização dos capítulos}
@@ -78,6 +78,6 @@
 
   O Capítulo 7, Validação e resultados, apresenta a avaliação do protótipo de alta fidelidade e o primeiro teste de campo do aplicativo em ambiente de produção.
 
-  O Capítulo 8, Considerações finais, discute o alcance dos objetivos, as limitações da pesquisa e os trabalhos futuros.
+  O Capítulo 8, Conclusão, discute o alcance dos objetivos, as limitações da pesquisa e os trabalhos futuros.
 
   Por fim, os elementos pós-textuais incluem as referências bibliográficas e os apêndices com materiais complementares.

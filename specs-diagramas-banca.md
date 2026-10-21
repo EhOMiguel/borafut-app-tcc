@@ -309,10 +309,10 @@ diagramas do repositório, dispensando o brModelo:
   comando dos demais diagramas): `java -jar plantuml.jar -tpng -charset UTF-8 -o render
   mer-conceitual.puml`; o layout interno do PlantUML resolve o diagrama sem depender do
   Graphviz. O PNG sai em `render/mer-conceitual.png`.
-- **Lógico (esquema relacional):** `latex/figuras/diagramas-src/modelo-logico.dbml`, em DBML,
+- **Lógico (esquema relacional):** `latex/figuras/diagramas-src/modelo-fisico.dbml`, em DBML,
   gerado a partir do `schema.prisma` (as 22 tabelas com PK, FK, restrições de unicidade,
   índices, tipos enumerados e comportamento de exclusão). O desenho é feito no dbdiagram.io
-  colando o DBML; a exportação em PNG substitui `render/modelo-logico.png`, que é o arquivo
+  colando o DBML; a exportação em PNG substitui `render/modelo-fisico.png`, que é o arquivo
   referenciado pelo apêndice da monografia.
 - Escopo do conceitual: entidades, relacionamentos e atributos de domínio. Os atributos
   puramente operacionais (carimbos de criação e atualização, tokens, contadores de sequência,
@@ -418,7 +418,7 @@ não poluir. Cardinalidades em notação Chen (1, N, M), sem pé-de-galinha.
 
 ### 2.5 Modelo lógico (atualização) e dicionário
 
-O lógico (`modelo-logico.dbml`, desenhado no dbdiagram.io) reflete o **schema completo atual** do
+O lógico (`modelo-fisico.dbml`, desenhado no dbdiagram.io) reflete o **schema completo atual** do
 `BoraFut-Backend/prisma/schema.prisma`: renames (criador_id, participacao.organizador),
 preservação do criador original (`fut.criador_original_id`) e contrato de versão recomendado
 e mínimo (`versao.versao` e `versao.versao_minima`),

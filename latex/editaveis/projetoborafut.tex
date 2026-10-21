@@ -2,7 +2,7 @@
 
     Neste capítulo, é apresentada a descrição detalhada do aplicativo BoraFut, incluindo sua proposta de valor, funcionalidades e especificações técnicas. O objetivo é documentar o projeto da solução desenvolvida, desde a concepção até os artefatos de design e arquitetura.
 
-    Inicialmente, são apresentadas a descrição geral do aplicativo e o escopo do MVP, incluindo requisitos funcionais e não funcionais, além do diagrama de casos de uso. Em seguida, são detalhados os principais fluxos de uso do sistema, que descrevem as interações dos usuários com o aplicativo. Na sequência, são expostos os princípios de design de interface e experiência do usuário, seguidos pela apresentação da prototipação realizada. Por fim, são apresentadas a arquitetura técnica do sistema e o modelo de dados, fundamentados nas decisões metodológicas descritas na Seção~\ref{sec:arquitetura-geral}.
+    Inicialmente, são apresentadas a descrição geral do aplicativo e o escopo do MVP, incluindo requisitos funcionais e não funcionais, além do diagrama de casos de uso. Em seguida, são detalhados os principais fluxos de uso do sistema, que descrevem as interações dos usuários com o aplicativo. Na sequência, são expostos os princípios de design de interface e experiência do usuário, seguidos pela apresentação da prototipação realizada. Por fim, são apresentadas a arquitetura técnica do sistema e o modelo de dados, fundamentados nas decisões metodológicas descritas na seção~\ref{sec:arquitetura-geral}.
 
 \section{Descrição do aplicativo}
 
@@ -29,20 +29,20 @@
 
   O BoraFut não realiza reserva das quadras: por serem públicas e de uso livre, o aplicativo atua catalogando esses espaços e informando suas características e regras de uso. O desafio, nesse ponto, é menos de controle e mais de catalogação: muitas quadras seguem regras específicas de prioridade (como faixas de horário destinadas a escolas ou projetos sociais autorizados pelo poder público), e o aplicativo se propõe a reunir e comunicar essas informações em melhor esforço, sem assumir a gestão da ocupação física do espaço.
 
-  A distinção entre fut e partida, fixada na Introdução, orienta todo este capítulo: o fut é o encontro combinado na quadra e a partida é cada jogo disputado dentro dele, separação que sustenta o modelo de dados (Seção~\ref{subsec:modelo-dados}) e as regras de rotação descritas no Capítulo~\ref{sec:desenvolvimento}.
+  A distinção entre fut e partida, fixada na Introdução, orienta todo este capítulo: o fut é o encontro combinado na quadra e a partida é cada jogo disputado dentro dele, separação que sustenta o modelo de dados (seção~\ref{subsec:modelo-dados}) e as regras de rotação descritas no Capítulo~\ref{sec:desenvolvimento}.
 
-  No escopo do MVP, o BoraFut prioriza apenas funcionalidades essenciais para que os jogos aconteçam de forma mais organizada e previsível. Outros recursos, como estatísticas avançadas, rankings, campeonatos ou análises detalhadas de desempenho, poderão ser incorporados futuramente caso sejam validados como relevantes pelos usuários.
+  No escopo do MVP, o BoraFut prioriza apenas funcionalidades essenciais para que os jogos aconteçam de forma mais organizada e previsível. Outros recursos, como estatísticas avançadas, \textit{rankings}, campeonatos ou análises detalhadas de desempenho, poderão ser incorporados futuramente caso sejam validados como relevantes pelos usuários.
 
   Mais do que um aplicativo, o BoraFut se propõe a ser um facilitador de encontros, saúde e lazer. Em uma cidade com tantas quadras públicas e uma cultura forte de jogo comunitário, a solução cria uma ponte entre a tecnologia e o futebol que acontece diariamente nas quadras de Brasília, fortalecendo vínculos, ocupando espaços urbanos e valorizando o esporte mais popular do país.
 
   \section{Escopo do MVP}
-  O MVP do BoraFut foi definido a partir das necessidades prioritárias identificadas durante a fase de elicitação e análise (Seção~\ref{sec:metodologia-elicitacao}). Seu objetivo é entregar uma solução funcional mínima que permita organizar partidas de futebol amador de forma simples, confiável e centralizada.
+  O MVP do BoraFut foi definido a partir das necessidades prioritárias identificadas durante a fase de elicitação e análise (seção~\ref{sec:metodologia-elicitacao}). Seu objetivo é entregar uma solução funcional mínima que permita organizar partidas de futebol amador de forma simples, confiável e centralizada.
 
     Os requisitos foram organizados em duas categorias: Requisitos Funcionais (RF), que descrevem os comportamentos esperados do sistema, e Requisitos Não Funcionais (RNF), que estabelecem restrições técnicas e propriedades de qualidade. Antes de detalhá-los, a subseção seguinte sintetiza a proposta de valor que orienta todo o escopo; na sequência, são apresentados os requisitos mais representativos do MVP e a rastreabilidade entre eles e os pilares.
 
     \subsection{Proposta de valor e pilares}
       \label{subsec:proposta-valor}
-      A proposta de valor do BoraFut organiza-se em torno de um propósito maior: fortalecer o futebol comunitário do Distrito Federal, unindo tecnologia e convivência social. Esse propósito se desdobra em pilares concretos, derivados das dores levantadas na elicitação (Seção~\ref{sec:metodologia-elicitacao}), que orientam o escopo do MVP e servem de âncora para os requisitos apresentados nas próximas subseções.
+      A proposta de valor do BoraFut organiza-se em torno de um propósito maior: fortalecer o futebol comunitário do Distrito Federal, unindo tecnologia e convivência social. Esse propósito se desdobra em pilares concretos, derivados das dores levantadas na elicitação (seção~\ref{sec:metodologia-elicitacao}), que orientam o escopo do MVP e servem de âncora para os requisitos apresentados nas próximas subseções.
 
       Os pilares de experiência definem o valor que o aplicativo entrega ao usuário:
 
@@ -51,7 +51,7 @@
 
           \item \textbf{Reduzir a dispersão de informação:} consolidar no mapa e no perfil da quadra os dados antes fragmentados sobre locais, horários e jogos.
 
-          \item \textbf{Melhorar a comunicação:} manter os participantes atualizados em tempo real sobre presença, chegada e andamento do jogo. Esse pilar materializa a noção de consciência compartilhada discutida na Seção~\ref{sec:cscw}: tornar visíveis o estado da presença, da fila e do placar reduz a necessidade de comunicação explícita entre os participantes.
+          \item \textbf{Melhorar a comunicação:} manter os participantes atualizados em tempo real sobre presença, chegada e andamento do jogo. Esse pilar materializa a noção de consciência compartilhada discutida na seção~\ref{sec:cscw}: tornar visíveis o estado da presença, da fila e do placar reduz a necessidade de comunicação explícita entre os participantes.
 
           \item \textbf{Aumentar a participação:} reduzir as barreiras de entrada e estimular o comparecimento, aproximando os jogadores das partidas próximas.
 
@@ -72,7 +72,7 @@
       Os requisitos funcionais descrevem as ações que o sistema deve ser capaz de executar no escopo do MVP. Alguns exemplos incluem:
 
       \begin{itemize}
-          \item \textbf{RF01 – Autenticação por e-mail:} o sistema deve permitir que usuários realizem login informando apenas o e-mail, recebendo um código temporário para acesso.
+          \item \textbf{RF01 – Autenticação por e-mail:} o sistema deve permitir que usuários realizem \textit{login} informando apenas o e-mail, recebendo um código temporário para acesso.
           
           \item \textbf{RF02 – Visualização de quadras:} o sistema deve exibir um mapa interativo com as quadras públicas catalogadas, centralizado na posição do usuário, permitindo navegação e pesquisa.
 
@@ -101,7 +101,7 @@
           \item \textbf{RF14 – Espaço de conscientização:} o sistema deve oferecer uma área com conteúdo curado sobre vida ativa, nutrição e riscos do sedentarismo, acessível também a visitantes sem conta.
       \end{itemize}
 
-      Estes são os requisitos funcionais de destaque do MVP. O conjunto completo está decomposto no \textit{backlog} do produto, estruturado na hierarquia de granularidade descrita na Seção~\ref{sec:metodologia-elicitacao} e detalhado no Apêndice~\ref{apendice:us}.
+      Estes são os requisitos funcionais de destaque do MVP. O conjunto completo está decomposto no \textit{backlog} do produto, estruturado na hierarquia de granularidade descrita na seção~\ref{sec:metodologia-elicitacao} e detalhado no Apêndice~\ref{apendice:us}.
 
     \subsection{Requisitos não funcionais}
       \label{subsec:rnf}
@@ -116,7 +116,7 @@
 
           \item \textbf{RNF04 – Usabilidade:} a interface deve seguir as heurísticas de Nielsen, permitindo realizar as ações centrais em três a cinco toques.
 
-          \item \textbf{RNF05 – Baixo atrito de acesso:} o acesso deve usar autenticação \textit{passwordless} por código de e-mail e permitir a inclusão de convidados sem conta, para não excluir participantes.
+          \item \textbf{RNF05 – Facilidade de acesso:} o acesso deve usar autenticação \textit{passwordless} por código de e-mail e permitir a inclusão de convidados sem conta, para não excluir participantes.
 
           \item \textbf{RNF06 – Segurança e privacidade:} a comunicação deve ocorrer sobre HTTPS, com sessão autenticada por JWT, em conformidade com a LGPD, com as bases legais de cada tratamento explicitadas na política de privacidade, e idade mínima de 16 anos verificada tanto no aplicativo quanto no servidor, que rejeita data de nascimento incompatível.
 
@@ -201,11 +201,11 @@
     \subsection{Criar conta}
       Ao abrir o aplicativo, o usuário informa seu endereço de e-mail em um único campo. O sistema envia um código temporário para o e-mail informado e, ao retornar ao aplicativo, o usuário insere esse código para prosseguir. A conta é criada assim que o código é confirmado; em seguida, o usuário é direcionado para a etapa de cadastro. Nome, data de nascimento e escolha de um entre os doze avatares predefinidos são obrigatórios; apelido, região, gênero e tipos de fut preferidos são opcionais. Após concluir os campos obrigatórios, o acesso pleno às funcionalidades autenticadas é liberado.
 
-    \subsection{Fazer login}
-      Para autenticar-se, o usuário informa seu e-mail registrado e recebe um código temporário enviado automaticamente. Ao inserir o código corretamente, o sistema valida sua identidade e inicia a sessão. A autenticação não utiliza senhas, reduzindo atritos de acesso e eliminando riscos associados ao armazenamento local de credenciais. O token de acesso tem curta duração e é renovado de forma transparente por um token revogável, com validade de até trinta dias. A sessão termina no encerramento manual, na revogação ou na expiração desse período.
+    \subsection{Fazer \textit{login}}
+      Para autenticar-se, o usuário informa seu e-mail registrado e recebe um código temporário enviado automaticamente. Ao inserir o código corretamente, o sistema valida sua identidade e inicia a sessão. A autenticação não utiliza senhas, reduzindo atritos de acesso e eliminando riscos associados ao armazenamento local de credenciais. O \textit{token} de acesso tem curta duração e é renovado de forma transparente por um \textit{token} revogável, com validade de até trinta dias. A sessão termina no encerramento manual, na revogação ou na expiração desse período.
 
     \subsection{Explorar o mapa e as quadras}
-      Ao entrar no aplicativo, o usuário é direcionado ao mapa interativo, centralizado em sua localização atual. As quadras aparecem como marcadores coloridos, cuja cor reflete a situação do fut mais próximo do dia, e o usuário pode navegar, dar zoom, buscar quadras pelo nome e aplicar filtros. Esse fluxo está disponível inclusive para visitantes sem conta, que exploram o mapa e as informações públicas das quadras; as ações que exigem cadastro aparecem sinalizadas, convidando ao login.
+      Ao entrar no aplicativo, o usuário é direcionado ao mapa interativo, centralizado em sua localização atual. As quadras aparecem como marcadores coloridos, cuja cor reflete a situação do fut mais próximo do dia, e o usuário pode navegar, dar zoom, buscar quadras pelo nome e aplicar filtros. Esse fluxo está disponível inclusive para visitantes sem conta, que exploram o mapa e as informações públicas das quadras; as ações que exigem cadastro aparecem sinalizadas, convidando ao \textit{login}.
 
     \subsection{Visualizar o perfil da quadra}
       Ao selecionar um marcador, o usuário acessa o perfil da quadra, com endereço, características, fotos, avaliação média e a agenda de futs dos próximos dias, o que ajuda a escolher horário e a perceber a atividade da quadra ao longo da semana. A tela traz o botão “Como chegar”, que abre o aplicativo de mapas do dispositivo com a rota até o local. Usuários autenticados podem favoritar a quadra e, tendo participado de um fut ali, avaliá-la.
@@ -229,7 +229,7 @@
       Durante a partida, o cronômetro corre de forma sincronizada para todos os participantes. Os gols são registrados tocando no jogador que marcou, com uma janela curta para desfazer em caso de engano; podem registrar gols e conduzir a partida o criador, os organizadores e os jogadores do próximo time da fila. Quando o tempo se esgota, a partida entra em “último lance” até que alguém a encerre; ao final, o time perdedor vai para o fim da fila e os próximos entram, em rotação automática. Havendo empate sem fila suficiente para dois times, a partida é decidida nos pênaltis. O criador e os organizadores dispõem de um controle de ajuste que permite sobrepor qualquer automação, como trocar jogadores, reordenar a fila ou forçar o encerramento.
 
     \subsection{Encerrar o fut e pós-fut}
-      O fut é encerrado pelo criador ou por um organizador, ou automaticamente após um período de inatividade. Ao encerrar um fut gerenciado, o aplicativo gera um card de resumo compartilhável, com as estatísticas da rodada, como número de jogadores, partidas, gols e destaques, e consolida as estatísticas pessoais de cada participante a partir dos registros das partidas.
+      O fut é encerrado pelo criador ou por um organizador, ou automaticamente após um período de inatividade. Ao encerrar um fut gerenciado, o aplicativo gera um \textit{card} de resumo compartilhável, com as estatísticas da rodada, como número de jogadores, partidas, gols e destaques, e consolida as estatísticas pessoais de cada participante a partir dos registros das partidas.
 
     \subsection{Fut não gerenciado pelo aplicativo}
       Quando o fut é criado sem gerenciamento pelo aplicativo, o fluxo restringe-se à confirmação de presença e à descoberta, e a organização do jogo acontece presencialmente. O fut passa a “em andamento” automaticamente no horário marcado, e o aplicativo pode coletar, de forma opcional, sinais de presença para alimentar estatísticas. A qualquer momento, o criador pode ativar o gerenciamento, registrando quem está na quadra e passando a usar fila, times e cronômetro.
@@ -282,13 +282,13 @@
       A interface busca minimizar o uso de texto, priorizando ícones representativos com rótulos simples e uma composição visual limpa, permitindo que a maioria das ações centrais possa ser realizada entre três e cinco toques. Essa abordagem foi inspirada em características de design observadas em aplicativos como Nubank, Tinder e produtos do ecossistema Google, conhecidos por valorizarem minimalismo, fluidez e clareza interativa. A tipografia escolhida para a interface é a Open Sans, uma fonte sem serifa frequentemente usada em ambientes digitais.
 
     \subsection{Diretrizes de Acessibilidade}
-      O layout foi projetado para oferecer hierarquia visual clara, espaçamentos amplos e elementos interativos bem destacados. O aplicativo também oferece suporte a modo escuro, reduzindo o cansaço visual em uso prolongado, e utiliza linguagem neutra e inclusiva em suas mensagens, rótulos e instruções. Exemplos da aplicação dessas diretrizes podem ser observados nas telas do protótipo apresentadas na Seção~\ref{sec:prototipacao}.
+      O \textit{layout} foi projetado para oferecer hierarquia visual clara, espaçamentos amplos e elementos interativos bem destacados. O aplicativo também oferece suporte a modo escuro, reduzindo o cansaço visual em uso prolongado, e utiliza linguagem neutra e inclusiva em suas mensagens, rótulos e instruções. Exemplos da aplicação dessas diretrizes podem ser observados nas telas do protótipo apresentadas na seção~\ref{sec:prototipacao}.
 
     \subsection{Heurísticas de Usabilidade Aplicadas ao BoraFut}
-      As decisões de design foram guiadas pelos princípios heurísticos de usabilidade propostos por \citeonline{nielsen1994usability}, já discutidos no referencial teórico deste trabalho. No contexto da etapa de design, as heurísticas foram aplicadas de forma prática, influenciando diretamente a estrutura das telas, os padrões de navegação e os mecanismos de feedback. Entre as aplicações incorporadas ao BoraFut, destacam-se:
+      As decisões de design foram guiadas pelos princípios heurísticos de usabilidade propostos por \citeonline{nielsen1994usability}, já discutidos no referencial teórico deste trabalho. No contexto da etapa de design, as heurísticas foram aplicadas de forma prática, influenciando diretamente a estrutura das telas, os padrões de navegação e os mecanismos de \textit{feedback}. Entre as aplicações incorporadas ao BoraFut, destacam-se:
 
       \begin{itemize}
-        \item \textbf{Visibilidade do status do sistema}: o usuário recebe feedback imediato ao confirmar presença, criar um jogo ou realizar qualquer ação relevante, por meio de mensagens breves, estados visuais atualizados e animações sutis.
+        \item \textbf{Visibilidade do status do sistema}: o usuário recebe \textit{feedback} imediato ao confirmar presença, criar um jogo ou realizar qualquer ação relevante, por meio de mensagens breves, estados visuais atualizados e animações sutis.
     
         \item \textbf{Correspondência entre o sistema e o mundo real}: o aplicativo utiliza termos próximos da linguagem cotidiana dos jogadores, como “fut”, “bora jogar” e “confirmar presença”, reforçando familiaridade e reduzindo barreiras de entendimento.
     
@@ -324,16 +324,16 @@
         \label{fig:prot-geral}
     \end{figure}
     
-    Os fluxos prototipados foram selecionados a partir dos principais cenários de uso definidos na Seção~\ref{sec:fluxos-principais}, incluindo login e cadastro, criação de futs, visualização de mapa, acesso a perfis e telas de confirmação. Para fins de documentação, esta seção apresenta três telas representativas que ilustram diferentes tipos de interação e estrutura visual no BoraFut.
+    Os fluxos prototipados foram selecionados a partir dos principais cenários de uso definidos na seção~\ref{sec:fluxos-principais}, incluindo \textit{login} e cadastro, criação de futs, visualização de mapa, acesso a perfis e telas de confirmação. Para fins de documentação, esta seção apresenta três telas representativas que ilustram diferentes tipos de interação e estrutura visual no BoraFut.
     
     \begin{figure}[h]
         \centering
         \includegraphics[width=1\textwidth]{figuras/prototipo-login.png}
-        \caption{Tela de login do protótipo de alta fidelidade.}
+        \caption{Tela de \textit{login} do protótipo de alta fidelidade.}
         \label{fig:prot-login}
     \end{figure}
     
-    A Figura~\ref{fig:prot-login} apresenta a tela de login, demonstrando o uso da identidade visual e a composição minimalista aplicada ao design da interface.
+    A Figura~\ref{fig:prot-login} apresenta a tela de \textit{login}, demonstrando o uso da identidade visual e a composição minimalista aplicada ao design da interface.
     
     \begin{figure}[h]
         \centering
@@ -360,7 +360,7 @@
   \section{Arquitetura e design}
     \label{sec:arquitetura-design}
 
-    Esta seção apresenta a arquitetura técnica e a modelagem do banco de dados do BoraFut, descrevendo como as decisões planejadas na metodologia (Seção~\ref{sec:arquitetura-geral}) foram concretizadas em artefatos. São exibidos dois diagramas baseados no modelo C4, que representam a estrutura do sistema em diferentes níveis de abstração, seguidos do modelo de dados do banco PostgreSQL.
+    Esta seção apresenta a arquitetura técnica e a modelagem do banco de dados do BoraFut, descrevendo como as decisões planejadas na metodologia (seção~\ref{sec:arquitetura-geral}) foram concretizadas em artefatos. São exibidos dois diagramas baseados no modelo C4, que representam a estrutura do sistema em diferentes níveis de abstração, seguidos do modelo de dados do banco PostgreSQL.
 
     \subsection{Modelo C4 de contexto, contêineres e componentes}
       \label{subsec:c4}
@@ -383,35 +383,35 @@
         A Figura~\ref{fig:c4-conteineres} apresenta os principais contêineres do BoraFut:
         \begin{itemize}
             \item o \textbf{aplicativo móvel} (React Native), responsável pela interação com o usuário e envio das requisições à API;
-            \item o \textbf{backend} (Node.js com NestJS e Fastify), que concentra a lógica de negócio, autenticação e orquestração de dados;
+            \item o \textbf{\textit{backend}} (Node.js com NestJS e Fastify), que concentra a lógica de negócio, autenticação e orquestração de dados;
             \item o \textbf{banco de dados relacional} (PostgreSQL), que armazena as informações persistentes;
-            \item a \textbf{borda de entrada} (Cloudflare), único caminho por onde o tráfego do aplicativo alcança a API: a máquina que executa o backend abre um túnel de dentro para fora, e nenhuma porta de entrada permanece aberta para a internet;
+            \item a \textbf{borda de entrada} (Cloudflare), único caminho por onde o tráfego do aplicativo alcança a API: a máquina que executa o \textit{backend} abre um túnel de dentro para fora, e nenhuma porta de entrada permanece aberta para a internet;
             \item e as \textbf{APIs e serviços externos}, usados para envio de e-mail de autenticação (Amazon SES), notificações \textit{push} (Expo), geolocalização (Google Maps Platform) e armazenamento e entrega de mídia (Amazon S3 e CloudFront).
         \end{itemize}
 
         As comunicações são rotuladas com o protocolo e o propósito: o aplicativo consome a API por requisições REST sobre HTTPS e recebe atualizações ao vivo por WebSocket, enquanto a API acessa o banco de dados por meio do Prisma.
 
-        \begin{figure}[h]
-            \centering
-            \includegraphics[width=\textwidth]{figuras/diagramas-src/render/c4-conteineres.png}
+        \afterpage{%
+        \begin{figurapaisagem}
+            \includegraphics[width=\linewidth,height=0.8\textheight,keepaspectratio]{figuras/diagramas-src/render/c4-conteineres.png}
             \caption{Diagrama C4 nível contêineres do BoraFut.}
             \label{fig:c4-conteineres}
-        \end{figure}
+        \end{figurapaisagem}}
 
       \subsubsection*{Diagrama de componentes (C3).}
         O diagrama de componentes detalha a estrutura interna do contêiner de \textit{backend}, decompondo-o nos módulos que concentram cada domínio da aplicação. A Figura~\ref{fig:c4-componentes} apresenta os principais componentes: autenticação e sessão; perfil e estatísticas pessoais; gestão e exclusão de usuários; controle de versão do aplicativo; quadras e avaliações; futs, presença e fila; partidas; o \textit{gateway} de tempo real; notificações por e-mail e \textit{push}; e o agendador de rotinas, além do serviço de acesso a dados e dos utilitários compartilhados. Cada componente expõe responsabilidades bem delimitadas e comunica-se com os demais por interfaces internas, enquanto o acesso ao banco é centralizado pelo serviço de dados.
 
-        \begin{sidewaysfigure}
-            \centering
-            \includegraphics[width=1.0\linewidth]{figuras/diagramas-src/render/c4-componentes.png}
+        \afterpage{%
+        \begin{figurapaisagem}
+            \includegraphics[width=\linewidth,height=0.8\textheight,keepaspectratio]{figuras/diagramas-src/render/c4-componentes.png}
             \caption{Diagrama C4 nível componentes do \textit{backend} do BoraFut.}
             \label{fig:c4-componentes}
-        \end{sidewaysfigure}
+        \end{figurapaisagem}}
 
     \subsection{Modelo de dados do PostgreSQL}
       \label{subsec:modelo-dados}
 
-      O modelo de dados do BoraFut foi elaborado com base nas entidades e relacionamentos identificados durante o levantamento de requisitos (Seção~\ref{sec:metodologia-elicitacao}). O objetivo é garantir que as informações essenciais, como jogadores, quadras, futs e partidas, sejam armazenadas de forma estruturada, mantendo a integridade referencial. Entre as principais entidades estão:
+      O modelo de dados do BoraFut foi elaborado com base nas entidades e relacionamentos identificados durante o levantamento de requisitos (seção~\ref{sec:metodologia-elicitacao}). O objetivo é garantir que as informações essenciais, como jogadores, quadras, futs e partidas, sejam armazenadas de forma estruturada, mantendo a integridade referencial. Entre as principais entidades estão:
 
       \begin{itemize}
           \item \textbf{Jogador}: dados pessoais, preferências e histórico de participações;
@@ -421,7 +421,7 @@
           \item \textbf{Partida}: cada sessão de jogo dentro de um fut, com times, placar e eventos registrados.
       \end{itemize}
 
-      O modelo é apresentado em dois níveis de abstração, seguindo a distinção clássica entre projeto conceitual e projeto lógico de bancos de dados~\cite{elmasri2016fundamentals}. O \textbf{modelo conceitual} descreve as entidades do domínio e seus relacionamentos sem compromisso com a tecnologia de armazenamento, na notação entidade-relacionamento proposta por Chen~\cite{chen1976}. O \textbf{modelo lógico} traduz esse conceito para o modelo relacional proposto por Codd~\cite{codd1970relational}, com tabelas, chaves primárias e estrangeiras e restrições de integridade, tal como implementado no PostgreSQL.
+      O modelo é apresentado em dois níveis de abstração, seguindo a distinção clássica entre os projetos conceitual, lógico e físico de bancos de dados~\cite{elmasri2016fundamentals}. O \textbf{modelo conceitual} descreve as entidades do domínio e seus relacionamentos sem compromisso com a tecnologia de armazenamento, na notação entidade-relacionamento proposta por Chen~\cite{chen1976}. O \textbf{modelo físico} traduz esse conceito para o modelo relacional proposto por Codd~\cite{codd1970relational}, já especificado para o PostgreSQL, com tabelas, tipos de dados do sistema gerenciador, chaves primárias e estrangeiras e restrições de integridade. Por trazer os tipos próprios do PostgreSQL, esse esquema corresponde ao projeto físico, e não apenas ao lógico, que seria independente do sistema gerenciador.
 
       A Figura~\ref{fig:mer-conceitual} apresenta o modelo conceitual. Além das entidades já citadas, ele registra os eventos do domínio como entidades fracas, dependentes daquela a que se referem: o registro de chegada e o registro de notificação, ligados ao fut, e o evento de partida, ligado à partida. Os relacionamentos capturam as regras centrais do produto: um jogador cria um fut e dele participa; a quadra sedia o fut; o fut gera partidas; e o jogador atua em cada partida, com o time registrado no relacionamento. Os diferentes papéis de um mesmo jogador em um evento, como o autor e o registrador de um gol, ou o alvo e o ator de uma chegada, são modelados por relacionamentos distintos com a entidade Jogador. O diagrama emprega ainda os demais recursos da notação: atributos compostos, como a localização e as características da quadra e as regras do fut; atributos multivalorados, como as fotos da quadra e os tipos de fut preferidos do jogador; e atributos derivados, representados por elipse tracejada, que não são armazenados e sim calculados na consulta, como a nota média da quadra, o total de curtidas de uma avaliação e o placar de uma partida, este último obtido a partir dos eventos registrados.
 
@@ -432,7 +432,7 @@
           \label{fig:mer-conceitual}
       \end{figure}
 
-      O modelo lógico correspondente, apresentado no Apêndice~\ref{apendice:MER}, traduz esse conceito em tabelas. As entidades tornam-se tabelas com chave primária; os relacionamentos de um para muitos viram chaves estrangeiras, e os de muitos para muitos, tabelas próprias que carregam os atributos do relacionamento, como a participação (com o estado da presença e as marcações de tempo), a fila (com a posição) e a composição dos times (com o time de cada jogador). Os estados de fut, participação e partida, assim como os tipos de evento, são normalizados em tabelas de referência apontadas por chave estrangeira, o que preserva a integridade desses conjuntos e permite ampliá-los sem alterar o esquema das tabelas que os utilizam.
+      O modelo físico correspondente, apresentado no Apêndice~\ref{apendice:MER}, traduz esse conceito em tabelas. As entidades tornam-se tabelas com chave primária; os relacionamentos de um para muitos tornam-se chaves estrangeiras, e os de muitos para muitos, tabelas próprias que carregam os atributos do relacionamento, como a participação (com o estado da presença e as marcações de tempo), a fila (com a posição) e a composição dos times (com o time de cada jogador). Os estados de fut, participação e partida, assim como os tipos de evento, são normalizados em tabelas de referência apontadas por chave estrangeira, o que preserva a integridade desses conjuntos e permite ampliá-los sem alterar o esquema das tabelas que os utilizam.
 
       Algumas decisões de modelagem sustentam regras de negócio e são detalhadas na construção do sistema (Capítulo~\ref{sec:desenvolvimento}): os atributos de domínio fechado da quadra são representados por tipos enumerados; o tempo e o número de gols de cada partida são copiados para a própria partida no momento de sua criação, o que preserva o histórico diante de mudanças de configuração; e a fila é mantida por posições inteiras estáveis, sem compactação global após saídas. Movimentos, trocas e rotações podem atribuir novas posições aos jogadores envolvidos, normalmente a partir do maior valor corrente, enquanto as posições dos demais permanecem inalteradas. O dicionário de dados, com a descrição de cada entidade, atributo e restrição, encontra-se no Apêndice~\ref{apendice:dicionario}.
 
